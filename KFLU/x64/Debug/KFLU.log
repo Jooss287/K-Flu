@@ -1,0 +1,9 @@
+﻿  Moc'ing mainwindow.h...
+  Uic'ing mainwindow.ui...
+D:\QT\workspace\KFLU\mainwindow.ui : warning : Z-order assignment: 'widget' is not a valid widget.
+D:\QT\workspace\KFLU\mainwindow.ui : warning : Z-order assignment: 'areaWidget' is not a valid widget.
+  moc_mainwindow.cpp
+  main.cpp
+  mainwindow.cpp
+  코드를 생성하고 있습니다...
+  KFLU.vcxproj -> D:\QT\workspace\KFLU\debug\KFLU.exe

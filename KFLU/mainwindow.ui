@@ -216,7 +216,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#000000;&quot;&gt;65세 이상&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_8">
+      <widget class="QTextEdit" name="input_Age0to6">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -228,6 +228,9 @@ p, li { white-space: pre-wrap; }
          <height>31</height>
         </rect>
        </property>
+       <property name="autoFormatting">
+        <set>QTextEdit::AutoNone</set>
+       </property>
        <property name="html">
         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -236,7 +239,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_9">
+      <widget class="QTextEdit" name="input_Age7to12">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -256,7 +259,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_10">
+      <widget class="QTextEdit" name="input_Age13to18">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -276,7 +279,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_11">
+      <widget class="QTextEdit" name="input_Age19to64">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -299,7 +302,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_12">
+      <widget class="QTextEdit" name="input_Age65toEnd">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -1088,7 +1091,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;18세 이하 어린이 및 청소년 간 접촉 확률&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_51">
+      <widget class="QTextEdit" name="input_SchoolRatio">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -1149,7 +1152,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;(1은 평소와 같은 접촉 정도를 의미함)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_54">
+      <widget class="QTextEdit" name="input_AbsentRatio">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -1176,11 +1179,11 @@ p, li { white-space: pre-wrap; }
       <zorder>textEdit_5</zorder>
       <zorder>textEdit_6</zorder>
       <zorder>textEdit_7</zorder>
-      <zorder>textEdit_8</zorder>
-      <zorder>textEdit_9</zorder>
-      <zorder>textEdit_10</zorder>
-      <zorder>textEdit_11</zorder>
-      <zorder>textEdit_12</zorder>
+      <zorder>input_Age0to6</zorder>
+      <zorder>input_Age7to12</zorder>
+      <zorder>input_Age13to18</zorder>
+      <zorder>input_Age19to64</zorder>
+      <zorder>input_Age65toEnd</zorder>
       <zorder>textEdit_13</zorder>
       <zorder>textEdit_15</zorder>
       <zorder>textEdit_17</zorder>
@@ -1221,8 +1224,8 @@ p, li { white-space: pre-wrap; }
       <zorder>textEdit_50</zorder>
       <zorder>textEdit_52</zorder>
       <zorder>textEdit_53</zorder>
-      <zorder>textEdit_51</zorder>
-      <zorder>textEdit_54</zorder>
+      <zorder>input_SchoolRatio</zorder>
+      <zorder>input_AbsentRatio</zorder>
      </widget>
      <widget class="QWidget" name="tab_2">
       <property name="autoFillBackground">
@@ -1256,7 +1259,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-306</y>
+          <y>0</y>
           <width>865</width>
           <height>900</height>
          </rect>
@@ -1305,7 +1308,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(감염 시점부터 증상 발현까지 걸리는 시간이며 이는 총 7단계로 나뉘어져 있음)&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_56">
+        <widget class="QTextEdit" name="input_LatentPeriod">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1345,7 +1348,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_59">
+        <widget class="QTextEdit" name="input_infDuration_1_1">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1516,7 +1519,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;(65세 이상)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_75">
+        <widget class="QTextEdit" name="input_infDuration_2_1">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1536,7 +1539,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_76">
+        <widget class="QTextEdit" name="input_infDuration_1_2">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1556,7 +1559,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_77">
+        <widget class="QTextEdit" name="input_infDuration_2_2">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1576,7 +1579,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_78">
+        <widget class="QTextEdit" name="input_infDuration_1_3">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1596,7 +1599,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_79">
+        <widget class="QTextEdit" name="input_infDuration_2_3">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1636,7 +1639,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;업무복귀 평균시간(일)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_65">
+        <widget class="QTextEdit" name="input_returnToWork">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1656,7 +1659,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_67">
+        <widget class="QTextEdit" name="input_MildRate">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1740,7 +1743,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;증상자 중 중증도가 높은 경우(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_71">
+        <widget class="QTextEdit" name="input_SevereRate">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1802,7 +1805,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;(0세-18세)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_81">
+        <widget class="QTextEdit" name="input_high_1_3">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1865,7 +1868,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;고위험군 비율(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_84">
+        <widget class="QTextEdit" name="input_high_2_2">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1885,7 +1888,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_85">
+        <widget class="QTextEdit" name="input_high_2_1">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1925,7 +1928,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_87">
+        <widget class="QTextEdit" name="input_high_1_2">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -1968,7 +1971,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;중증도가 높으면서 치료하지 않았을 경우의 연령별 입원 비율&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_89">
+        <widget class="QTextEdit" name="input_high_2_3">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2009,7 +2012,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;(65세 이상)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_91">
+        <widget class="QTextEdit" name="input_high_1_1">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2029,7 +2032,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_92">
+        <widget class="QTextEdit" name="input_high_3_3">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2070,7 +2073,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;입원 확률(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_94">
+        <widget class="QTextEdit" name="input_high_3_2">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2090,7 +2093,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_95">
+        <widget class="QTextEdit" name="input_high_3_1">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2117,7 +2120,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>771</y>
+           <y>781</y>
            <width>181</width>
            <height>41</height>
           </rect>
@@ -2139,7 +2142,7 @@ p, li { white-space: pre-wrap; }
            <x>10</x>
            <y>740</y>
            <width>851</width>
-           <height>31</height>
+           <height>41</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -2150,17 +2153,18 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;중증도가 높으면서 치료하지 않았을 경우의 연령별 입원 비율&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;중증도가 높으면서 치료받지 않은 경우의 치사율&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(독감으로 인하여 사망할 확률)&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_98">
+        <widget class="QTextEdit" name="input_dead_2">
          <property name="enabled">
           <bool>true</bool>
          </property>
          <property name="geometry">
           <rect>
            <x>420</x>
-           <y>810</y>
+           <y>820</y>
            <width>221</width>
            <height>61</height>
           </rect>
@@ -2173,14 +2177,14 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_99">
+        <widget class="QTextEdit" name="input_dead_1">
          <property name="enabled">
           <bool>true</bool>
          </property>
          <property name="geometry">
           <rect>
            <x>190</x>
-           <y>810</y>
+           <y>820</y>
            <width>231</width>
            <height>61</height>
           </rect>
@@ -2200,7 +2204,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>810</y>
+           <y>820</y>
            <width>181</width>
            <height>61</height>
           </rect>
@@ -2222,7 +2226,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>640</x>
-           <y>770</y>
+           <y>780</y>
            <width>221</width>
            <height>41</height>
           </rect>
@@ -2236,14 +2240,14 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;(65세 이상)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_102">
+        <widget class="QTextEdit" name="input_dead_3">
          <property name="enabled">
           <bool>true</bool>
          </property>
          <property name="geometry">
           <rect>
            <x>640</x>
-           <y>810</y>
+           <y>820</y>
            <width>221</width>
            <height>61</height>
           </rect>
@@ -2263,7 +2267,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>190</x>
-           <y>770</y>
+           <y>780</y>
            <width>231</width>
            <height>41</height>
           </rect>
@@ -2284,7 +2288,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>420</x>
-           <y>770</y>
+           <y>780</y>
            <width>221</width>
            <height>41</height>
           </rect>
@@ -2308,46 +2312,46 @@ p, li { white-space: pre-wrap; }
         <zorder>textEdit_63</zorder>
         <zorder>textEdit_73</zorder>
         <zorder>textEdit_74</zorder>
-        <zorder>textEdit_75</zorder>
-        <zorder>textEdit_76</zorder>
-        <zorder>textEdit_77</zorder>
-        <zorder>textEdit_78</zorder>
-        <zorder>textEdit_79</zorder>
-        <zorder>textEdit_59</zorder>
+        <zorder>input_infDuration_2_1</zorder>
+        <zorder>input_infDuration_1_2</zorder>
+        <zorder>input_infDuration_2_2</zorder>
+        <zorder>input_infDuration_1_3</zorder>
+        <zorder>input_infDuration_2_3</zorder>
+        <zorder>input_infDuration_1_1</zorder>
         <zorder>textEdit_64</zorder>
-        <zorder>textEdit_65</zorder>
+        <zorder>input_returnToWork</zorder>
         <zorder>textEdit_68</zorder>
         <zorder>textEdit_69</zorder>
         <zorder>textEdit_70</zorder>
-        <zorder>textEdit_71</zorder>
-        <zorder>textEdit_67</zorder>
+        <zorder>input_SevereRate</zorder>
+        <zorder>input_MildRate</zorder>
         <zorder>textEdit_72</zorder>
         <zorder>textEdit_80</zorder>
         <zorder>textEdit_82</zorder>
         <zorder>textEdit_83</zorder>
-        <zorder>textEdit_84</zorder>
-        <zorder>textEdit_85</zorder>
+        <zorder>input_high_2_2</zorder>
+        <zorder>input_high_2_1</zorder>
         <zorder>textEdit_86</zorder>
-        <zorder>textEdit_87</zorder>
+        <zorder>input_high_1_2</zorder>
         <zorder>textEdit_88</zorder>
-        <zorder>textEdit_89</zorder>
+        <zorder>input_high_2_3</zorder>
         <zorder>textEdit_90</zorder>
-        <zorder>textEdit_91</zorder>
-        <zorder>textEdit_81</zorder>
-        <zorder>textEdit_92</zorder>
+        <zorder>input_high_1_1</zorder>
+        <zorder>input_high_1_3</zorder>
+        <zorder>input_high_3_3</zorder>
         <zorder>textEdit_93</zorder>
-        <zorder>textEdit_94</zorder>
-        <zorder>textEdit_95</zorder>
-        <zorder>textEdit_96</zorder>
+        <zorder>input_high_3_2</zorder>
+        <zorder>input_high_3_1</zorder>
         <zorder>textEdit_97</zorder>
         <zorder>textEdit_100</zorder>
         <zorder>textEdit_101</zorder>
-        <zorder>textEdit_102</zorder>
+        <zorder>input_dead_3</zorder>
         <zorder>textEdit_103</zorder>
         <zorder>textEdit_104</zorder>
-        <zorder>textEdit_98</zorder>
-        <zorder>textEdit_99</zorder>
-        <zorder>textEdit_56</zorder>
+        <zorder>input_dead_2</zorder>
+        <zorder>input_dead_1</zorder>
+        <zorder>input_LatentPeriod</zorder>
+        <zorder>textEdit_96</zorder>
        </widget>
       </widget>
      </widget>
@@ -2377,7 +2381,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>-89</y>
           <width>865</width>
           <height>630</height>
          </rect>
@@ -2426,7 +2430,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(모든 인구가 감염 가능성이 있을 때 1명의 감염병 환자가 감염 가능기간 동안 직접 감염시키는 평균 인원 수)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_107">
+        <widget class="QTextEdit" name="input_R0">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2446,7 +2450,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_124">
+        <widget class="QTextEdit" name="input_lastLatent">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2531,7 +2535,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;무증상일 경우(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_128">
+        <widget class="QTextEdit" name="input_asymptomatic">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2596,7 +2600,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(총 감염가능기간을 7일 이라고 했을 때 첫 3.5 일간 전염성이 나중 3.5일간 전염성에 비해 얼마나 강한지 비율로 나타냄)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_110">
+        <widget class="QTextEdit" name="input_halfInfectiosRate">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2616,7 +2620,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_155">
+        <widget class="QTextEdit" name="input_moderate">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2657,7 +2661,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_129">
+        <widget class="QTextEdit" name="input_isolSevereHome">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2677,7 +2681,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_157">
+        <widget class="QTextEdit" name="input_isolSevereHospital">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2697,7 +2701,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_130">
+        <widget class="QTextEdit" name="input_isolModerate">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2821,7 +2825,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;격리기간(일)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_160">
+        <widget class="QTextEdit" name="input_isolRange">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -2843,26 +2847,26 @@ p, li { white-space: pre-wrap; }
         </widget>
         <zorder>textEdit_105</zorder>
         <zorder>textEdit_106</zorder>
-        <zorder>textEdit_107</zorder>
+        <zorder>input_R0</zorder>
         <zorder>textEdit_125</zorder>
         <zorder>textEdit_126</zorder>
         <zorder>textEdit_127</zorder>
-        <zorder>textEdit_128</zorder>
+        <zorder>input_asymptomatic</zorder>
         <zorder>textEdit_108</zorder>
         <zorder>textEdit_109</zorder>
-        <zorder>textEdit_110</zorder>
+        <zorder>input_halfInfectiosRate</zorder>
         <zorder>textEdit_156</zorder>
-        <zorder>textEdit_124</zorder>
+        <zorder>input_lastLatent</zorder>
         <zorder>textEdit_158</zorder>
         <zorder>textEdit_131</zorder>
         <zorder>textEdit_132</zorder>
         <zorder>textEdit_133</zorder>
-        <zorder>textEdit_157</zorder>
+        <zorder>input_isolSevereHospital</zorder>
         <zorder>textEdit_159</zorder>
-        <zorder>textEdit_160</zorder>
-        <zorder>textEdit_155</zorder>
-        <zorder>textEdit_130</zorder>
-        <zorder>textEdit_129</zorder>
+        <zorder>input_isolRange</zorder>
+        <zorder>input_moderate</zorder>
+        <zorder>input_isolModerate</zorder>
+        <zorder>input_isolSevereHome</zorder>
        </widget>
       </widget>
      </widget>
@@ -2889,7 +2893,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>-49</y>
           <width>865</width>
           <height>590</height>
          </rect>
@@ -2938,7 +2942,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(전체 인구에서 항바이러스제를 투여할 수 있는 비율. 만약 10%라면 인구 10만명당 1만 dose 투여 가능하다는 의미)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_113">
+        <widget class="QTextEdit" name="input_antiviralsRate">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3002,7 +3006,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(증상발현 후 의료 서비스를 받는데 까지 걸리는 시간과 항바이러스제 투여까지 걸리는 시간)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_116">
+        <widget class="QTextEdit" name="input_medicalHelp">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3022,7 +3026,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_139">
+        <widget class="QTextEdit" name="input_durationReduct">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3042,7 +3046,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_163">
+        <widget class="QTextEdit" name="input_HospitailizationReduct">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3062,7 +3066,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_140">
+        <widget class="QTextEdit" name="input_contagiousnessReduct">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3165,7 +3169,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;유병 기간 감소 비율(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_117">
+        <widget class="QTextEdit" name="input_antiviralsHelp">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3205,7 +3209,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;항바이러스제(시)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_119">
+        <widget class="QTextEdit" name="input_verySickTreat">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3288,7 +3292,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;중증도가 높은 경우 치료(항바이러스제 투여 혹은 집에서 케어)를 받는 비율과 항바이러스제 사용 가능 기간&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_123">
+        <widget class="QTextEdit" name="input_verySickTreatRange">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3308,7 +3312,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_134">
+        <widget class="QTextEdit" name="input_extreamlySickTreatRate">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3391,7 +3395,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;기간(일)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_138">
+        <widget class="QTextEdit" name="input_extreamlySickTreat">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3413,29 +3417,29 @@ p, li { white-space: pre-wrap; }
         </widget>
         <zorder>textEdit_111</zorder>
         <zorder>textEdit_112</zorder>
-        <zorder>textEdit_113</zorder>
+        <zorder>input_antiviralsRate</zorder>
         <zorder>textEdit_114</zorder>
         <zorder>textEdit_115</zorder>
-        <zorder>textEdit_116</zorder>
+        <zorder>input_medicalHelp</zorder>
         <zorder>textEdit_164</zorder>
         <zorder>textEdit_141</zorder>
         <zorder>textEdit_142</zorder>
         <zorder>textEdit_143</zorder>
         <zorder>textEdit_118</zorder>
-        <zorder>textEdit_117</zorder>
+        <zorder>input_antiviralsHelp</zorder>
         <zorder>textEdit_120</zorder>
         <zorder>textEdit_121</zorder>
         <zorder>textEdit_122</zorder>
-        <zorder>textEdit_123</zorder>
-        <zorder>textEdit_119</zorder>
+        <zorder>input_verySickTreatRange</zorder>
+        <zorder>input_verySickTreat</zorder>
         <zorder>textEdit_135</zorder>
         <zorder>textEdit_136</zorder>
         <zorder>textEdit_137</zorder>
-        <zorder>textEdit_138</zorder>
-        <zorder>textEdit_134</zorder>
-        <zorder>textEdit_139</zorder>
-        <zorder>textEdit_163</zorder>
-        <zorder>textEdit_140</zorder>
+        <zorder>input_extreamlySickTreat</zorder>
+        <zorder>input_extreamlySickTreatRate</zorder>
+        <zorder>input_durationReduct</zorder>
+        <zorder>input_HospitailizationReduct</zorder>
+        <zorder>input_contagiousnessReduct</zorder>
        </widget>
       </widget>
      </widget>
@@ -3511,7 +3515,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(전체 인구에서 일반적인 접촉을 감소시키는 비율과 접촉을 감소시키는 기간)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_146">
+        <widget class="QTextEdit" name="input_contactReduct">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3575,7 +3579,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(18세 이하 어린이 및 청소년의 경우 휴교에 의해서 접촉이 감소되는 비율과 휴교 시 집 등에서 어른과 접촉 수준이 강화되는 정도를 나타냄. 접촉 강화 정도가 1인 경우는 평소와 접촉 정도가 비슷한 것을 의미함.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_149">
+        <widget class="QTextEdit" name="input_schoolClose">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3595,7 +3599,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_161">
+        <widget class="QTextEdit" name="input_SchoolCloseContact">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3635,7 +3639,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;접촉 수준 강화&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_167">
+        <widget class="QTextEdit" name="input_gatheringCancel">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3719,7 +3723,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(스포츠 경기관람, 대규모 행사 등의 대중집회 취소를 통해 접촉이 얼마나 감소되는지를 비율로 나타내고 취소하는 기간을 나타냄)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_171">
+        <widget class="QTextEdit" name="input_gatheringCancelRange">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3739,7 +3743,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_177">
+        <widget class="QTextEdit" name="input_contactReductRange">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -3781,19 +3785,19 @@ p, li { white-space: pre-wrap; }
         </widget>
         <zorder>textEdit_144</zorder>
         <zorder>textEdit_145</zorder>
-        <zorder>textEdit_146</zorder>
+        <zorder>input_contactReduct</zorder>
         <zorder>textEdit_147</zorder>
         <zorder>textEdit_148</zorder>
-        <zorder>textEdit_149</zorder>
+        <zorder>input_schoolClose</zorder>
         <zorder>textEdit_162</zorder>
         <zorder>textEdit_168</zorder>
         <zorder>textEdit_169</zorder>
         <zorder>textEdit_170</zorder>
-        <zorder>textEdit_171</zorder>
+        <zorder>input_gatheringCancelRange</zorder>
         <zorder>textEdit_178</zorder>
-        <zorder>textEdit_161</zorder>
-        <zorder>textEdit_177</zorder>
-        <zorder>textEdit_167</zorder>
+        <zorder>input_SchoolCloseContact</zorder>
+        <zorder>input_contactReductRange</zorder>
+        <zorder>input_gatheringCancel</zorder>
        </widget>
       </widget>
      </widget>
@@ -3828,7 +3832,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(독감으로 인하여 일반병실과 중환자실에 입원하게 되는 평균 기간)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_151">
+      <widget class="QTextEdit" name="input_NICU">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -3868,7 +3872,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;일반병실(일)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_153">
+      <widget class="QTextEdit" name="input_ICU">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -3911,8 +3915,8 @@ p, li { white-space: pre-wrap; }
       <zorder>textEdit_150</zorder>
       <zorder>textEdit_152</zorder>
       <zorder>textEdit_154</zorder>
-      <zorder>textEdit_153</zorder>
-      <zorder>textEdit_151</zorder>
+      <zorder>input_ICU</zorder>
+      <zorder>input_NICU</zorder>
      </widget>
      <widget class="QWidget" name="tab_7">
       <attribute name="title">
@@ -3937,7 +3941,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>-69</y>
           <width>865</width>
           <height>610</height>
          </rect>
@@ -3986,7 +3990,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(연령별로 백신을 얼마나 접종하는지 비율로 나타냄)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_172">
+        <widget class="QTextEdit" name="input_vaccine_1">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4004,26 +4008,6 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QTextEdit" name="textEdit_173">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>470</y>
-           <width>181</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;접종 효과(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QTextEdit" name="textEdit_174">
@@ -4046,11 +4030,11 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;백신 접종 효과&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(전체 백신 접종 인구 중 백신으로 인하여 항체가 생겨서 면역이 되는 인구의 비율)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;항체 생성 기간&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(백신 접종 이후 항체가 생성되는데 까지 걸리는 시간)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_175">
+        <widget class="QTextEdit" name="input_antibodyRange">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4070,7 +4054,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_176">
+        <widget class="QTextEdit" name="input_vaccine_2">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4110,7 +4094,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;7세-12세(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_182">
+        <widget class="QTextEdit" name="input_vaccine_3">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4150,7 +4134,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;13세-18세(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_185">
+        <widget class="QTextEdit" name="input_vaccine_4">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4190,7 +4174,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;19세-64세(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_187">
+        <widget class="QTextEdit" name="input_vaccine_5">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4250,8 +4234,8 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;백신 접종 효과&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(전체 백신 접종 인구 중 백신으로 인하여 항체가 생겨서 면역이 되는 인구의 비율)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;백신 접종 시기&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(백신 접종을 하게 되는 일을 입력함)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QTextEdit" name="textEdit_181">
@@ -4271,10 +4255,10 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;항체 생성 기간(일)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;백신 접종 시기(일)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_183">
+        <widget class="QTextEdit" name="input_vaccineStart">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4294,7 +4278,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_212">
+        <widget class="QTextEdit" name="input_vaccineEffect_1">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4334,7 +4318,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;7세-12세(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_203">
+        <widget class="QTextEdit" name="input_vaccineEffect_3">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4354,7 +4338,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_202">
+        <widget class="QTextEdit" name="input_vaccineEffect_5">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4414,7 +4398,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;13세-18세(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_207">
+        <widget class="QTextEdit" name="input_vaccineEffect_4">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4434,7 +4418,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_208">
+        <widget class="QTextEdit" name="input_vaccineEffect_2">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4518,34 +4502,54 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;65세 이상(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
+        <widget class="QTextEdit" name="textEdit_182">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>470</y>
+           <width>181</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;항체 생성 기간(일)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
         <zorder>textEdit_165</zorder>
         <zorder>textEdit_166</zorder>
-        <zorder>textEdit_173</zorder>
         <zorder>textEdit_174</zorder>
-        <zorder>textEdit_175</zorder>
         <zorder>textEdit_179</zorder>
         <zorder>textEdit_184</zorder>
         <zorder>textEdit_186</zorder>
-        <zorder>textEdit_176</zorder>
-        <zorder>textEdit_182</zorder>
-        <zorder>textEdit_185</zorder>
-        <zorder>textEdit_172</zorder>
+        <zorder>input_vaccine_2</zorder>
+        <zorder>input_vaccine_3</zorder>
+        <zorder>input_vaccine_4</zorder>
+        <zorder>input_vaccine_1</zorder>
         <zorder>textEdit_188</zorder>
-        <zorder>textEdit_187</zorder>
+        <zorder>input_vaccine_5</zorder>
         <zorder>textEdit_180</zorder>
         <zorder>textEdit_181</zorder>
-        <zorder>textEdit_183</zorder>
+        <zorder>input_vaccineStart</zorder>
         <zorder>textEdit_204</zorder>
         <zorder>textEdit_211</zorder>
         <zorder>textEdit_206</zorder>
-        <zorder>textEdit_208</zorder>
+        <zorder>input_vaccineEffect_2</zorder>
         <zorder>textEdit_209</zorder>
         <zorder>textEdit_205</zorder>
         <zorder>textEdit_210</zorder>
-        <zorder>textEdit_202</zorder>
-        <zorder>textEdit_207</zorder>
-        <zorder>textEdit_203</zorder>
-        <zorder>textEdit_212</zorder>
+        <zorder>input_vaccineEffect_5</zorder>
+        <zorder>input_vaccineEffect_4</zorder>
+        <zorder>input_vaccineEffect_3</zorder>
+        <zorder>input_vaccineEffect_1</zorder>
+        <zorder>textEdit_182</zorder>
+        <zorder>input_antibodyRange</zorder>
        </widget>
       </widget>
      </widget>
@@ -4621,7 +4625,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(일반병동, 중환자실에서 사용되는 N-95 마스크의 개수를 환자1명, 1일당으로 나타냄)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_191">
+        <widget class="QTextEdit" name="input_mask_NICU">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4686,7 +4690,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(중환자실 입원 환자 중 인공호흡기를 사용하여야 하는 비율)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_194">
+        <widget class="QTextEdit" name="input_respRate">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4706,7 +4710,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QTextEdit" name="textEdit_195">
+        <widget class="QTextEdit" name="input_mask_ICU">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -4748,12 +4752,12 @@ p, li { white-space: pre-wrap; }
         </widget>
         <zorder>textEdit_189</zorder>
         <zorder>textEdit_190</zorder>
-        <zorder>textEdit_191</zorder>
+        <zorder>input_mask_NICU</zorder>
         <zorder>textEdit_192</zorder>
         <zorder>textEdit_193</zorder>
-        <zorder>textEdit_194</zorder>
+        <zorder>input_respRate</zorder>
         <zorder>textEdit_196</zorder>
-        <zorder>textEdit_195</zorder>
+        <zorder>input_mask_ICU</zorder>
        </widget>
       </widget>
      </widget>
@@ -4788,7 +4792,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(외래환자에 대해서 검체 채취 후 검사하는 비율과 입원환자와 외래환자의 검체 검사를 다시 하게 되는 재검율)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_198">
+      <widget class="QTextEdit" name="input_outpatient">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -4829,7 +4833,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#000000;&quot;&gt;검체검사 비율(%)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="textEdit_200">
+      <widget class="QTextEdit" name="input_reinspect">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -5980,6 +5984,9 @@ p, li { white-space: pre-wrap; }
      </property>
     </widget>
    </widget>
+   <zorder>outputWidget</zorder>
+   <zorder>introWidget</zorder>
+   <zorder>inputWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

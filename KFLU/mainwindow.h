@@ -18,6 +18,16 @@ public:
 
 private slots:
 
+    void makeInfectionPlot(QVector<double>x, QVector<double>y, int size);
+
+    void makeResourcePlot(QVector<double>x, QVector<double>y, int size);
+
+    void makeSpecimenPlot(QVector<double>x, QVector<double>y, int size);
+
+    void makeDailyPlot(QVector<double>x, QVector<double>y, int size);
+
+    void makeCumulativePlot(QVector<double>x, QVector<double>y, int size);
+
     void on_inputButton_clicked();
 
     void on_areaButton_clicked();
@@ -174,8 +184,19 @@ private slots:
 
     void on_input_outpatient_textEdited(const QString &arg1);
 
+    void on_age_checkBox1_clicked();
+
+    void on_age_checkBox2_clicked();
+
+    void on_age_checkBox3_clicked();
+
+    void on_age_checkBox4_clicked();
+
+    void on_age_checkBox5_clicked();
+
 private:
     Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H

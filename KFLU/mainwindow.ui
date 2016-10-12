@@ -977,7 +977,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-359</y>
+          <y>0</y>
           <width>865</width>
           <height>900</height>
          </rect>
@@ -2077,7 +2077,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-89</y>
+          <y>0</y>
           <width>865</width>
           <height>630</height>
          </rect>
@@ -2558,7 +2558,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-49</y>
+          <y>0</y>
           <width>865</width>
           <height>590</height>
          </rect>
@@ -3543,7 +3543,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-69</y>
+          <y>0</y>
           <width>865</width>
           <height>610</height>
          </rect>
@@ -4585,14 +4585,6 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
       </widget>
-      <zorder>radioButton_6</zorder>
-      <zorder>radioButton_5</zorder>
-      <zorder>label_6</zorder>
-      <zorder>label_5</zorder>
-      <zorder>areaSubmit</zorder>
-      <zorder>radioButton_4</zorder>
-      <zorder>tabWidget</zorder>
-      <zorder>tabWidget</zorder>
      </widget>
     </widget>
     <zorder>areaWidget</zorder>
@@ -4612,7 +4604,7 @@ p, li { white-space: pre-wrap; }
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
-    <widget class="QTabWidget" name="tabWidget_2">
+    <widget class="QTabWidget" name="output_tab">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -4679,143 +4671,15 @@ p, li { white-space: pre-wrap; }
           <height>500</height>
          </rect>
         </property>
-        <widget class="QCheckBox" name="checkBox_5">
+        <widget class="QCustomPlot" name="customPlot_infection" native="true">
          <property name="geometry">
           <rect>
-           <x>700</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
+           <x>79</x>
+           <y>130</y>
+           <width>711</width>
+           <height>341</height>
           </rect>
          </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>65세 이상</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup</string>
-         </attribute>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_2">
-         <property name="geometry">
-          <rect>
-           <x>250</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>7세-12세</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup</string>
-         </attribute>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_4">
-         <property name="geometry">
-          <rect>
-           <x>550</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>19세-64세</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup</string>
-         </attribute>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_3">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>13세-18세</string>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup</string>
-         </attribute>
-        </widget>
-        <widget class="QTextEdit" name="textEdit_213">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>10</y>
-           <width>841</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(199, 199, 199);</string>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;연령별 선택&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(연령별로 결과 확인 가능)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>0세-6세</string>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <attribute name="buttonGroup">
-          <string notr="true">buttonGroup</string>
-         </attribute>
         </widget>
        </widget>
       </widget>
@@ -4851,127 +4715,14 @@ p, li { white-space: pre-wrap; }
           <height>500</height>
          </rect>
         </property>
-        <widget class="QCheckBox" name="checkBox_16">
+        <widget class="QCustomPlot" name="customPlot_resource" native="true">
          <property name="geometry">
           <rect>
-           <x>700</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
+           <x>79</x>
+           <y>130</y>
+           <width>711</width>
+           <height>341</height>
           </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>65세 이상</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_17">
-         <property name="geometry">
-          <rect>
-           <x>250</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>7세-12세</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_18">
-         <property name="geometry">
-          <rect>
-           <x>550</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>19세-64세</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_19">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>13세-18세</string>
-         </property>
-        </widget>
-        <widget class="QTextEdit" name="textEdit_216">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>10</y>
-           <width>841</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(199, 199, 199);</string>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;연령별 선택&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(연령별로 결과 확인 가능)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_20">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>0세-6세</string>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -5005,127 +4756,14 @@ p, li { white-space: pre-wrap; }
           <height>500</height>
          </rect>
         </property>
-        <widget class="QCheckBox" name="checkBox_21">
+        <widget class="QCustomPlot" name="customPlot_specimen" native="true">
          <property name="geometry">
           <rect>
-           <x>700</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
+           <x>79</x>
+           <y>130</y>
+           <width>711</width>
+           <height>341</height>
           </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>65세 이상</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_22">
-         <property name="geometry">
-          <rect>
-           <x>250</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>7세-12세</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_23">
-         <property name="geometry">
-          <rect>
-           <x>550</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>19세-64세</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_24">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>13세-18세</string>
-         </property>
-        </widget>
-        <widget class="QTextEdit" name="textEdit_217">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>10</y>
-           <width>841</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(199, 199, 199);</string>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;연령별 선택&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(연령별로 결과 확인 가능)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_25">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>0세-6세</string>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -5159,127 +4797,14 @@ p, li { white-space: pre-wrap; }
           <height>500</height>
          </rect>
         </property>
-        <widget class="QCheckBox" name="checkBox_26">
+        <widget class="QCustomPlot" name="customPlot_daily" native="true">
          <property name="geometry">
           <rect>
-           <x>700</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
+           <x>79</x>
+           <y>130</y>
+           <width>711</width>
+           <height>341</height>
           </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>65세 이상</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_27">
-         <property name="geometry">
-          <rect>
-           <x>250</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>7세-12세</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_28">
-         <property name="geometry">
-          <rect>
-           <x>550</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>19세-64세</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_29">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>13세-18세</string>
-         </property>
-        </widget>
-        <widget class="QTextEdit" name="textEdit_218">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>10</y>
-           <width>841</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(199, 199, 199);</string>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;연령별 선택&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(연령별로 결과 확인 가능)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_30">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>0세-6세</string>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -5313,127 +4838,14 @@ p, li { white-space: pre-wrap; }
           <height>500</height>
          </rect>
         </property>
-        <widget class="QCheckBox" name="checkBox_31">
+        <widget class="QCustomPlot" name="customPlot_cumulative" native="true">
          <property name="geometry">
           <rect>
-           <x>700</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
+           <x>79</x>
+           <y>130</y>
+           <width>711</width>
+           <height>341</height>
           </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>65세 이상</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_32">
-         <property name="geometry">
-          <rect>
-           <x>250</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>7세-12세</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_33">
-         <property name="geometry">
-          <rect>
-           <x>550</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>19세-64세</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_34">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>13세-18세</string>
-         </property>
-        </widget>
-        <widget class="QTextEdit" name="textEdit_219">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>10</y>
-           <width>841</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(199, 199, 199);</string>
-         </property>
-         <property name="html">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;연령별 선택&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(연령별로 결과 확인 가능)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBox_35">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>70</y>
-           <width>95</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>0세-6세</string>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>30</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
          </property>
         </widget>
        </widget>
@@ -5452,6 +4864,144 @@ p, li { white-space: pre-wrap; }
      <property name="text">
       <string>입력화면 이동</string>
      </property>
+    </widget>
+    <widget class="QCheckBox" name="age_checkBox5">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>120</y>
+       <width>95</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>65세 이상</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="age_checkBox3">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>120</y>
+       <width>95</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>13세-18세</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="age_checkBox1">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>120</y>
+       <width>95</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>0세-6세</string>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QCheckBox" name="age_checkBox2">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>120</y>
+       <width>95</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>7세-12세</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_213">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>841</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(199, 199, 199);</string>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#000000;&quot;&gt;연령별 선택&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:600; color:#7f7f7f;&quot;&gt;(연령별로 결과 확인 가능)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="age_checkBox4">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>120</y>
+       <width>95</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>19세-64세</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
     </widget>
    </widget>
    <widget class="QWidget" name="introWidget" native="true">
@@ -5541,8 +5091,8 @@ p, li { white-space: pre-wrap; }
      </property>
     </widget>
    </widget>
-   <zorder>outputWidget</zorder>
    <zorder>introWidget</zorder>
+   <zorder>outputWidget</zorder>
    <zorder>inputWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -5604,6 +5154,14 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
  <buttongroups>

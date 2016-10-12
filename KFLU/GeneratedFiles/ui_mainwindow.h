@@ -27,6 +27,7 @@
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
+#include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -276,53 +277,34 @@ public:
     QPushButton *areaSubmit;
     QRadioButton *radioButton_4;
     QWidget *outputWidget;
-    QTabWidget *tabWidget_2;
+    QTabWidget *output_tab;
     QWidget *tab_10;
     QScrollArea *scrollArea_11;
     QWidget *scrollAreaWidgetContents_11;
-    QCheckBox *checkBox_5;
-    QCheckBox *checkBox_2;
-    QCheckBox *checkBox_4;
-    QCheckBox *checkBox_3;
-    QTextEdit *textEdit_213;
-    QCheckBox *checkBox;
+    QCustomPlot *customPlot_infection;
     QWidget *tab_11;
     QScrollArea *scrollArea_12;
     QWidget *scrollAreaWidgetContents_14;
-    QCheckBox *checkBox_16;
-    QCheckBox *checkBox_17;
-    QCheckBox *checkBox_18;
-    QCheckBox *checkBox_19;
-    QTextEdit *textEdit_216;
-    QCheckBox *checkBox_20;
+    QCustomPlot *customPlot_resource;
     QWidget *tab_12;
     QScrollArea *scrollArea_13;
     QWidget *scrollAreaWidgetContents_15;
-    QCheckBox *checkBox_21;
-    QCheckBox *checkBox_22;
-    QCheckBox *checkBox_23;
-    QCheckBox *checkBox_24;
-    QTextEdit *textEdit_217;
-    QCheckBox *checkBox_25;
+    QCustomPlot *customPlot_specimen;
     QWidget *tab_13;
     QScrollArea *scrollArea_14;
     QWidget *scrollAreaWidgetContents_16;
-    QCheckBox *checkBox_26;
-    QCheckBox *checkBox_27;
-    QCheckBox *checkBox_28;
-    QCheckBox *checkBox_29;
-    QTextEdit *textEdit_218;
-    QCheckBox *checkBox_30;
+    QCustomPlot *customPlot_daily;
     QWidget *tab_14;
     QScrollArea *scrollArea_15;
     QWidget *scrollAreaWidgetContents_17;
-    QCheckBox *checkBox_31;
-    QCheckBox *checkBox_32;
-    QCheckBox *checkBox_33;
-    QCheckBox *checkBox_34;
-    QTextEdit *textEdit_219;
-    QCheckBox *checkBox_35;
+    QCustomPlot *customPlot_cumulative;
     QPushButton *inputPageBtn;
+    QCheckBox *age_checkBox5;
+    QCheckBox *age_checkBox3;
+    QCheckBox *age_checkBox1;
+    QCheckBox *age_checkBox2;
+    QTextEdit *textEdit_213;
+    QCheckBox *age_checkBox4;
     QWidget *introWidget;
     QLabel *label;
     QPushButton *inputButton;
@@ -584,7 +566,7 @@ public:
         scrollArea->setWidgetResizable(false);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, -359, 865, 900));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 865, 900));
         textEdit_57 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_57->setObjectName(QStringLiteral("textEdit_57"));
         textEdit_57->setEnabled(false);
@@ -875,7 +857,7 @@ public:
         scrollArea_2->setWidgetResizable(false);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, -89, 865, 630));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 865, 630));
         textEdit_105 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_105->setObjectName(QStringLiteral("textEdit_105"));
         textEdit_105->setEnabled(false);
@@ -988,7 +970,7 @@ public:
         scrollArea_3->setWidgetResizable(false);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, -49, 865, 590));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 865, 590));
         textEdit_111 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_111->setObjectName(QStringLiteral("textEdit_111"));
         textEdit_111->setEnabled(false);
@@ -1223,7 +1205,7 @@ public:
         scrollArea_5->setWidgetResizable(false);
         scrollAreaWidgetContents_5 = new QWidget();
         scrollAreaWidgetContents_5->setObjectName(QStringLiteral("scrollAreaWidgetContents_5"));
-        scrollAreaWidgetContents_5->setGeometry(QRect(0, -69, 865, 610));
+        scrollAreaWidgetContents_5->setGeometry(QRect(0, 0, 865, 610));
         textEdit_165 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_165->setObjectName(QStringLiteral("textEdit_165"));
         textEdit_165->setEnabled(false);
@@ -1472,14 +1454,6 @@ public:
         radioButton_4->setGeometry(QRect(100, 120, 186, 17));
         radioButton_4->setFont(font);
         radioButton_4->setChecked(true);
-        radioButton_6->raise();
-        radioButton_5->raise();
-        label_6->raise();
-        label_5->raise();
-        areaSubmit->raise();
-        radioButton_4->raise();
-        tabWidget->raise();
-        tabWidget->raise();
         areaWidget->raise();
         tabWidget->raise();
         outputPageBtn->raise();
@@ -1488,15 +1462,15 @@ public:
         outputWidget->setObjectName(QStringLiteral("outputWidget"));
         outputWidget->setGeometry(QRect(0, 0, 910, 620));
         outputWidget->setAutoFillBackground(true);
-        tabWidget_2 = new QTabWidget(outputWidget);
-        tabWidget_2->setObjectName(QStringLiteral("tabWidget_2"));
-        tabWidget_2->setGeometry(QRect(10, 20, 895, 581));
-        tabWidget_2->setMinimumSize(QSize(0, 541));
-        tabWidget_2->setStyleSheet(QString::fromUtf8("QTabBar::tab {font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; height: 30px; width:70px; }"));
-        tabWidget_2->setTabPosition(QTabWidget::North);
-        tabWidget_2->setTabShape(QTabWidget::Rounded);
-        tabWidget_2->setIconSize(QSize(30, 16));
-        tabWidget_2->setElideMode(Qt::ElideMiddle);
+        output_tab = new QTabWidget(outputWidget);
+        output_tab->setObjectName(QStringLiteral("output_tab"));
+        output_tab->setGeometry(QRect(10, 20, 895, 581));
+        output_tab->setMinimumSize(QSize(0, 541));
+        output_tab->setStyleSheet(QString::fromUtf8("QTabBar::tab {font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; height: 30px; width:70px; }"));
+        output_tab->setTabPosition(QTabWidget::North);
+        output_tab->setTabShape(QTabWidget::Rounded);
+        output_tab->setIconSize(QSize(30, 16));
+        output_tab->setElideMode(Qt::ElideMiddle);
         tab_10 = new QWidget();
         tab_10->setObjectName(QStringLiteral("tab_10"));
         tab_10->setAutoFillBackground(true);
@@ -1508,44 +1482,11 @@ public:
         scrollAreaWidgetContents_11 = new QWidget();
         scrollAreaWidgetContents_11->setObjectName(QStringLiteral("scrollAreaWidgetContents_11"));
         scrollAreaWidgetContents_11->setGeometry(QRect(0, 0, 865, 500));
-        checkBox_5 = new QCheckBox(scrollAreaWidgetContents_11);
-        buttonGroup = new QButtonGroup(MainWindow);
-        buttonGroup->setObjectName(QStringLiteral("buttonGroup"));
-        buttonGroup->addButton(checkBox_5);
-        checkBox_5->setObjectName(QStringLiteral("checkBox_5"));
-        checkBox_5->setGeometry(QRect(700, 70, 95, 40));
-        QFont font1;
-        font1.setPointSize(12);
-        checkBox_5->setFont(font1);
-        checkBox_2 = new QCheckBox(scrollAreaWidgetContents_11);
-        buttonGroup->addButton(checkBox_2);
-        checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
-        checkBox_2->setGeometry(QRect(250, 70, 95, 40));
-        checkBox_2->setFont(font1);
-        checkBox_4 = new QCheckBox(scrollAreaWidgetContents_11);
-        buttonGroup->addButton(checkBox_4);
-        checkBox_4->setObjectName(QStringLiteral("checkBox_4"));
-        checkBox_4->setGeometry(QRect(550, 70, 95, 40));
-        checkBox_4->setFont(font1);
-        checkBox_3 = new QCheckBox(scrollAreaWidgetContents_11);
-        buttonGroup->addButton(checkBox_3);
-        checkBox_3->setObjectName(QStringLiteral("checkBox_3"));
-        checkBox_3->setGeometry(QRect(400, 70, 95, 40));
-        checkBox_3->setFont(font1);
-        textEdit_213 = new QTextEdit(scrollAreaWidgetContents_11);
-        textEdit_213->setObjectName(QStringLiteral("textEdit_213"));
-        textEdit_213->setEnabled(false);
-        textEdit_213->setGeometry(QRect(20, 10, 841, 41));
-        textEdit_213->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
-        checkBox = new QCheckBox(scrollAreaWidgetContents_11);
-        buttonGroup->addButton(checkBox);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
-        checkBox->setGeometry(QRect(100, 70, 95, 40));
-        checkBox->setFont(font1);
-        checkBox->setIconSize(QSize(30, 30));
-        checkBox->setChecked(true);
+        customPlot_infection = new QCustomPlot(scrollAreaWidgetContents_11);
+        customPlot_infection->setObjectName(QStringLiteral("customPlot_infection"));
+        customPlot_infection->setGeometry(QRect(79, 130, 711, 341));
         scrollArea_11->setWidget(scrollAreaWidgetContents_11);
-        tabWidget_2->addTab(tab_10, QString());
+        output_tab->addTab(tab_10, QString());
         tab_11 = new QWidget();
         tab_11->setObjectName(QStringLiteral("tab_11"));
         tab_11->setAutoFillBackground(true);
@@ -1557,35 +1498,11 @@ public:
         scrollAreaWidgetContents_14 = new QWidget();
         scrollAreaWidgetContents_14->setObjectName(QStringLiteral("scrollAreaWidgetContents_14"));
         scrollAreaWidgetContents_14->setGeometry(QRect(0, 0, 865, 500));
-        checkBox_16 = new QCheckBox(scrollAreaWidgetContents_14);
-        checkBox_16->setObjectName(QStringLiteral("checkBox_16"));
-        checkBox_16->setGeometry(QRect(700, 70, 95, 40));
-        checkBox_16->setFont(font1);
-        checkBox_17 = new QCheckBox(scrollAreaWidgetContents_14);
-        checkBox_17->setObjectName(QStringLiteral("checkBox_17"));
-        checkBox_17->setGeometry(QRect(250, 70, 95, 40));
-        checkBox_17->setFont(font1);
-        checkBox_18 = new QCheckBox(scrollAreaWidgetContents_14);
-        checkBox_18->setObjectName(QStringLiteral("checkBox_18"));
-        checkBox_18->setGeometry(QRect(550, 70, 95, 40));
-        checkBox_18->setFont(font1);
-        checkBox_19 = new QCheckBox(scrollAreaWidgetContents_14);
-        checkBox_19->setObjectName(QStringLiteral("checkBox_19"));
-        checkBox_19->setGeometry(QRect(400, 70, 95, 40));
-        checkBox_19->setFont(font1);
-        textEdit_216 = new QTextEdit(scrollAreaWidgetContents_14);
-        textEdit_216->setObjectName(QStringLiteral("textEdit_216"));
-        textEdit_216->setEnabled(false);
-        textEdit_216->setGeometry(QRect(20, 10, 841, 41));
-        textEdit_216->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
-        checkBox_20 = new QCheckBox(scrollAreaWidgetContents_14);
-        checkBox_20->setObjectName(QStringLiteral("checkBox_20"));
-        checkBox_20->setGeometry(QRect(100, 70, 95, 40));
-        checkBox_20->setFont(font1);
-        checkBox_20->setIconSize(QSize(30, 30));
-        checkBox_20->setChecked(true);
+        customPlot_resource = new QCustomPlot(scrollAreaWidgetContents_14);
+        customPlot_resource->setObjectName(QStringLiteral("customPlot_resource"));
+        customPlot_resource->setGeometry(QRect(79, 130, 711, 341));
         scrollArea_12->setWidget(scrollAreaWidgetContents_14);
-        tabWidget_2->addTab(tab_11, QString());
+        output_tab->addTab(tab_11, QString());
         tab_12 = new QWidget();
         tab_12->setObjectName(QStringLiteral("tab_12"));
         scrollArea_13 = new QScrollArea(tab_12);
@@ -1596,35 +1513,11 @@ public:
         scrollAreaWidgetContents_15 = new QWidget();
         scrollAreaWidgetContents_15->setObjectName(QStringLiteral("scrollAreaWidgetContents_15"));
         scrollAreaWidgetContents_15->setGeometry(QRect(0, 0, 865, 500));
-        checkBox_21 = new QCheckBox(scrollAreaWidgetContents_15);
-        checkBox_21->setObjectName(QStringLiteral("checkBox_21"));
-        checkBox_21->setGeometry(QRect(700, 70, 95, 40));
-        checkBox_21->setFont(font1);
-        checkBox_22 = new QCheckBox(scrollAreaWidgetContents_15);
-        checkBox_22->setObjectName(QStringLiteral("checkBox_22"));
-        checkBox_22->setGeometry(QRect(250, 70, 95, 40));
-        checkBox_22->setFont(font1);
-        checkBox_23 = new QCheckBox(scrollAreaWidgetContents_15);
-        checkBox_23->setObjectName(QStringLiteral("checkBox_23"));
-        checkBox_23->setGeometry(QRect(550, 70, 95, 40));
-        checkBox_23->setFont(font1);
-        checkBox_24 = new QCheckBox(scrollAreaWidgetContents_15);
-        checkBox_24->setObjectName(QStringLiteral("checkBox_24"));
-        checkBox_24->setGeometry(QRect(400, 70, 95, 40));
-        checkBox_24->setFont(font1);
-        textEdit_217 = new QTextEdit(scrollAreaWidgetContents_15);
-        textEdit_217->setObjectName(QStringLiteral("textEdit_217"));
-        textEdit_217->setEnabled(false);
-        textEdit_217->setGeometry(QRect(20, 10, 841, 41));
-        textEdit_217->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
-        checkBox_25 = new QCheckBox(scrollAreaWidgetContents_15);
-        checkBox_25->setObjectName(QStringLiteral("checkBox_25"));
-        checkBox_25->setGeometry(QRect(100, 70, 95, 40));
-        checkBox_25->setFont(font1);
-        checkBox_25->setIconSize(QSize(30, 30));
-        checkBox_25->setChecked(true);
+        customPlot_specimen = new QCustomPlot(scrollAreaWidgetContents_15);
+        customPlot_specimen->setObjectName(QStringLiteral("customPlot_specimen"));
+        customPlot_specimen->setGeometry(QRect(79, 130, 711, 341));
         scrollArea_13->setWidget(scrollAreaWidgetContents_15);
-        tabWidget_2->addTab(tab_12, QString());
+        output_tab->addTab(tab_12, QString());
         tab_13 = new QWidget();
         tab_13->setObjectName(QStringLiteral("tab_13"));
         scrollArea_14 = new QScrollArea(tab_13);
@@ -1635,35 +1528,11 @@ public:
         scrollAreaWidgetContents_16 = new QWidget();
         scrollAreaWidgetContents_16->setObjectName(QStringLiteral("scrollAreaWidgetContents_16"));
         scrollAreaWidgetContents_16->setGeometry(QRect(0, 0, 865, 500));
-        checkBox_26 = new QCheckBox(scrollAreaWidgetContents_16);
-        checkBox_26->setObjectName(QStringLiteral("checkBox_26"));
-        checkBox_26->setGeometry(QRect(700, 70, 95, 40));
-        checkBox_26->setFont(font1);
-        checkBox_27 = new QCheckBox(scrollAreaWidgetContents_16);
-        checkBox_27->setObjectName(QStringLiteral("checkBox_27"));
-        checkBox_27->setGeometry(QRect(250, 70, 95, 40));
-        checkBox_27->setFont(font1);
-        checkBox_28 = new QCheckBox(scrollAreaWidgetContents_16);
-        checkBox_28->setObjectName(QStringLiteral("checkBox_28"));
-        checkBox_28->setGeometry(QRect(550, 70, 95, 40));
-        checkBox_28->setFont(font1);
-        checkBox_29 = new QCheckBox(scrollAreaWidgetContents_16);
-        checkBox_29->setObjectName(QStringLiteral("checkBox_29"));
-        checkBox_29->setGeometry(QRect(400, 70, 95, 40));
-        checkBox_29->setFont(font1);
-        textEdit_218 = new QTextEdit(scrollAreaWidgetContents_16);
-        textEdit_218->setObjectName(QStringLiteral("textEdit_218"));
-        textEdit_218->setEnabled(false);
-        textEdit_218->setGeometry(QRect(20, 10, 841, 41));
-        textEdit_218->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
-        checkBox_30 = new QCheckBox(scrollAreaWidgetContents_16);
-        checkBox_30->setObjectName(QStringLiteral("checkBox_30"));
-        checkBox_30->setGeometry(QRect(100, 70, 95, 40));
-        checkBox_30->setFont(font1);
-        checkBox_30->setIconSize(QSize(30, 30));
-        checkBox_30->setChecked(true);
+        customPlot_daily = new QCustomPlot(scrollAreaWidgetContents_16);
+        customPlot_daily->setObjectName(QStringLiteral("customPlot_daily"));
+        customPlot_daily->setGeometry(QRect(79, 130, 711, 341));
         scrollArea_14->setWidget(scrollAreaWidgetContents_16);
-        tabWidget_2->addTab(tab_13, QString());
+        output_tab->addTab(tab_13, QString());
         tab_14 = new QWidget();
         tab_14->setObjectName(QStringLiteral("tab_14"));
         scrollArea_15 = new QScrollArea(tab_14);
@@ -1674,38 +1543,50 @@ public:
         scrollAreaWidgetContents_17 = new QWidget();
         scrollAreaWidgetContents_17->setObjectName(QStringLiteral("scrollAreaWidgetContents_17"));
         scrollAreaWidgetContents_17->setGeometry(QRect(0, 0, 865, 500));
-        checkBox_31 = new QCheckBox(scrollAreaWidgetContents_17);
-        checkBox_31->setObjectName(QStringLiteral("checkBox_31"));
-        checkBox_31->setGeometry(QRect(700, 70, 95, 40));
-        checkBox_31->setFont(font1);
-        checkBox_32 = new QCheckBox(scrollAreaWidgetContents_17);
-        checkBox_32->setObjectName(QStringLiteral("checkBox_32"));
-        checkBox_32->setGeometry(QRect(250, 70, 95, 40));
-        checkBox_32->setFont(font1);
-        checkBox_33 = new QCheckBox(scrollAreaWidgetContents_17);
-        checkBox_33->setObjectName(QStringLiteral("checkBox_33"));
-        checkBox_33->setGeometry(QRect(550, 70, 95, 40));
-        checkBox_33->setFont(font1);
-        checkBox_34 = new QCheckBox(scrollAreaWidgetContents_17);
-        checkBox_34->setObjectName(QStringLiteral("checkBox_34"));
-        checkBox_34->setGeometry(QRect(400, 70, 95, 40));
-        checkBox_34->setFont(font1);
-        textEdit_219 = new QTextEdit(scrollAreaWidgetContents_17);
-        textEdit_219->setObjectName(QStringLiteral("textEdit_219"));
-        textEdit_219->setEnabled(false);
-        textEdit_219->setGeometry(QRect(20, 10, 841, 41));
-        textEdit_219->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
-        checkBox_35 = new QCheckBox(scrollAreaWidgetContents_17);
-        checkBox_35->setObjectName(QStringLiteral("checkBox_35"));
-        checkBox_35->setGeometry(QRect(100, 70, 95, 40));
-        checkBox_35->setFont(font1);
-        checkBox_35->setIconSize(QSize(30, 30));
-        checkBox_35->setChecked(true);
+        customPlot_cumulative = new QCustomPlot(scrollAreaWidgetContents_17);
+        customPlot_cumulative->setObjectName(QStringLiteral("customPlot_cumulative"));
+        customPlot_cumulative->setGeometry(QRect(79, 130, 711, 341));
         scrollArea_15->setWidget(scrollAreaWidgetContents_17);
-        tabWidget_2->addTab(tab_14, QString());
+        output_tab->addTab(tab_14, QString());
         inputPageBtn = new QPushButton(outputWidget);
         inputPageBtn->setObjectName(QStringLiteral("inputPageBtn"));
         inputPageBtn->setGeometry(QRect(810, 20, 91, 23));
+        age_checkBox5 = new QCheckBox(outputWidget);
+        buttonGroup = new QButtonGroup(MainWindow);
+        buttonGroup->setObjectName(QStringLiteral("buttonGroup"));
+        buttonGroup->addButton(age_checkBox5);
+        age_checkBox5->setObjectName(QStringLiteral("age_checkBox5"));
+        age_checkBox5->setGeometry(QRect(700, 120, 95, 40));
+        QFont font1;
+        font1.setPointSize(12);
+        age_checkBox5->setFont(font1);
+        age_checkBox3 = new QCheckBox(outputWidget);
+        buttonGroup->addButton(age_checkBox3);
+        age_checkBox3->setObjectName(QStringLiteral("age_checkBox3"));
+        age_checkBox3->setGeometry(QRect(400, 120, 95, 40));
+        age_checkBox3->setFont(font1);
+        age_checkBox1 = new QCheckBox(outputWidget);
+        buttonGroup->addButton(age_checkBox1);
+        age_checkBox1->setObjectName(QStringLiteral("age_checkBox1"));
+        age_checkBox1->setGeometry(QRect(100, 120, 95, 40));
+        age_checkBox1->setFont(font1);
+        age_checkBox1->setIconSize(QSize(30, 30));
+        age_checkBox1->setChecked(true);
+        age_checkBox2 = new QCheckBox(outputWidget);
+        buttonGroup->addButton(age_checkBox2);
+        age_checkBox2->setObjectName(QStringLiteral("age_checkBox2"));
+        age_checkBox2->setGeometry(QRect(250, 120, 95, 40));
+        age_checkBox2->setFont(font1);
+        textEdit_213 = new QTextEdit(outputWidget);
+        textEdit_213->setObjectName(QStringLiteral("textEdit_213"));
+        textEdit_213->setEnabled(false);
+        textEdit_213->setGeometry(QRect(30, 60, 841, 41));
+        textEdit_213->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
+        age_checkBox4 = new QCheckBox(outputWidget);
+        buttonGroup->addButton(age_checkBox4);
+        age_checkBox4->setObjectName(QStringLiteral("age_checkBox4"));
+        age_checkBox4->setGeometry(QRect(550, 120, 95, 40));
+        age_checkBox4->setFont(font1);
         introWidget = new QWidget(mainWidget);
         introWidget->setObjectName(QStringLiteral("introWidget"));
         introWidget->setGeometry(QRect(0, -10, 910, 620));
@@ -1733,8 +1614,8 @@ public:
         font3.setPointSize(10);
         label_2->setFont(font3);
         MainWindow->setCentralWidget(mainWidget);
-        outputWidget->raise();
         introWidget->raise();
+        outputWidget->raise();
         inputWidget->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -1756,7 +1637,7 @@ public:
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(0);
-        tabWidget_2->setCurrentIndex(0);
+        output_tab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -2520,10 +2401,16 @@ public:
         label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">\354\247\200\354\227\255 \354\234\240\355\230\225\354\235\204 \354\204\240\355\203\235\355\225\230\354\204\270\354\232\224</span></p></body></html>", 0));
         areaSubmit->setText(QApplication::translate("MainWindow", "\354\240\201\354\232\251", 0));
         radioButton_4->setText(QApplication::translate("MainWindow", "\353\214\200\353\217\204\354\213\234\355\230\225", 0));
-        checkBox_5->setText(QApplication::translate("MainWindow", "65\354\204\270 \354\235\264\354\203\201", 0));
-        checkBox_2->setText(QApplication::translate("MainWindow", "7\354\204\270-12\354\204\270", 0));
-        checkBox_4->setText(QApplication::translate("MainWindow", "19\354\204\270-64\354\204\270", 0));
-        checkBox_3->setText(QApplication::translate("MainWindow", "13\354\204\270-18\354\204\270", 0));
+        output_tab->setTabText(output_tab->indexOf(tab_10), QApplication::translate("MainWindow", "\352\260\220\354\227\274", 0));
+        output_tab->setTabText(output_tab->indexOf(tab_11), QApplication::translate("MainWindow", "\354\236\220\354\233\220", 0));
+        output_tab->setTabText(output_tab->indexOf(tab_12), QApplication::translate("MainWindow", "\352\262\200\354\262\264", 0));
+        output_tab->setTabText(output_tab->indexOf(tab_13), QApplication::translate("MainWindow", "\354\235\274\354\235\274", 0));
+        output_tab->setTabText(output_tab->indexOf(tab_14), QApplication::translate("MainWindow", "\353\210\204\354\240\201", 0));
+        inputPageBtn->setText(QApplication::translate("MainWindow", "\354\236\205\353\240\245\355\231\224\353\251\264 \354\235\264\353\217\231", 0));
+        age_checkBox5->setText(QApplication::translate("MainWindow", "65\354\204\270 \354\235\264\354\203\201", 0));
+        age_checkBox3->setText(QApplication::translate("MainWindow", "13\354\204\270-18\354\204\270", 0));
+        age_checkBox1->setText(QApplication::translate("MainWindow", "0\354\204\270-6\354\204\270", 0));
+        age_checkBox2->setText(QApplication::translate("MainWindow", "7\354\204\270-12\354\204\270", 0));
         textEdit_213->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2531,61 +2418,7 @@ public:
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\204\240\355\203\235</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\227\260\353\240\271\353\263\204\353\241\234 \352\262\260\352\263"
                         "\274 \355\231\225\354\235\270 \352\260\200\353\212\245)</span></p></body></html>", 0));
-        checkBox->setText(QApplication::translate("MainWindow", "0\354\204\270-6\354\204\270", 0));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_10), QApplication::translate("MainWindow", "\352\260\220\354\227\274", 0));
-        checkBox_16->setText(QApplication::translate("MainWindow", "65\354\204\270 \354\235\264\354\203\201", 0));
-        checkBox_17->setText(QApplication::translate("MainWindow", "7\354\204\270-12\354\204\270", 0));
-        checkBox_18->setText(QApplication::translate("MainWindow", "19\354\204\270-64\354\204\270", 0));
-        checkBox_19->setText(QApplication::translate("MainWindow", "13\354\204\270-18\354\204\270", 0));
-        textEdit_216->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\204\240\355\203\235</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\227\260\353\240\271\353\263\204\353\241\234 \352\262\260\352\263"
-                        "\274 \355\231\225\354\235\270 \352\260\200\353\212\245)</span></p></body></html>", 0));
-        checkBox_20->setText(QApplication::translate("MainWindow", "0\354\204\270-6\354\204\270", 0));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_11), QApplication::translate("MainWindow", "\354\236\220\354\233\220", 0));
-        checkBox_21->setText(QApplication::translate("MainWindow", "65\354\204\270 \354\235\264\354\203\201", 0));
-        checkBox_22->setText(QApplication::translate("MainWindow", "7\354\204\270-12\354\204\270", 0));
-        checkBox_23->setText(QApplication::translate("MainWindow", "19\354\204\270-64\354\204\270", 0));
-        checkBox_24->setText(QApplication::translate("MainWindow", "13\354\204\270-18\354\204\270", 0));
-        textEdit_217->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\204\240\355\203\235</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\227\260\353\240\271\353\263\204\353\241\234 \352\262\260\352\263"
-                        "\274 \355\231\225\354\235\270 \352\260\200\353\212\245)</span></p></body></html>", 0));
-        checkBox_25->setText(QApplication::translate("MainWindow", "0\354\204\270-6\354\204\270", 0));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_12), QApplication::translate("MainWindow", "\352\262\200\354\262\264", 0));
-        checkBox_26->setText(QApplication::translate("MainWindow", "65\354\204\270 \354\235\264\354\203\201", 0));
-        checkBox_27->setText(QApplication::translate("MainWindow", "7\354\204\270-12\354\204\270", 0));
-        checkBox_28->setText(QApplication::translate("MainWindow", "19\354\204\270-64\354\204\270", 0));
-        checkBox_29->setText(QApplication::translate("MainWindow", "13\354\204\270-18\354\204\270", 0));
-        textEdit_218->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\204\240\355\203\235</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\227\260\353\240\271\353\263\204\353\241\234 \352\262\260\352\263"
-                        "\274 \355\231\225\354\235\270 \352\260\200\353\212\245)</span></p></body></html>", 0));
-        checkBox_30->setText(QApplication::translate("MainWindow", "0\354\204\270-6\354\204\270", 0));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_13), QApplication::translate("MainWindow", "\354\235\274\354\235\274", 0));
-        checkBox_31->setText(QApplication::translate("MainWindow", "65\354\204\270 \354\235\264\354\203\201", 0));
-        checkBox_32->setText(QApplication::translate("MainWindow", "7\354\204\270-12\354\204\270", 0));
-        checkBox_33->setText(QApplication::translate("MainWindow", "19\354\204\270-64\354\204\270", 0));
-        checkBox_34->setText(QApplication::translate("MainWindow", "13\354\204\270-18\354\204\270", 0));
-        textEdit_219->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\204\240\355\203\235</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\227\260\353\240\271\353\263\204\353\241\234 \352\262\260\352\263"
-                        "\274 \355\231\225\354\235\270 \352\260\200\353\212\245)</span></p></body></html>", 0));
-        checkBox_35->setText(QApplication::translate("MainWindow", "0\354\204\270-6\354\204\270", 0));
-        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_14), QApplication::translate("MainWindow", "\353\210\204\354\240\201", 0));
-        inputPageBtn->setText(QApplication::translate("MainWindow", "\354\236\205\353\240\245\355\231\224\353\251\264 \354\235\264\353\217\231", 0));
+        age_checkBox4->setText(QApplication::translate("MainWindow", "19\354\204\270-64\354\204\270", 0));
         label->setText(QApplication::translate("MainWindow", "K-Flu", 0));
         inputButton->setText(QApplication::translate("MainWindow", "\354\236\205\353\240\245", 0));
         outputButton->setText(QApplication::translate("MainWindow", "\354\266\234\353\240\245", 0));

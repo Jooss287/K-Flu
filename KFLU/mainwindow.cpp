@@ -1,5 +1,6 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "qcustomplot.h"
 
 //**********************************************
 //Define Value 목록
@@ -140,19 +141,56 @@ double ReinspectionRate = 10.0;
 //외래환자 검체비율                (확인필요)
 double OutpatientSpecimenTesting = 50.0;
 
+
+/*output 관련 변수들*/
+int GraphAge = Age0to6; //default
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setDefault();
-
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+/*tab별 그래프 그리는 함수들*/
+void MainWindow::makeInfectionPlot(QVector<double>x, QVector<double>y, int size){
+
+    // create graph and assign data to it:
+    ui->customPlot_infection->addGraph();
+    ui->customPlot_infection->graph(0)->setData(x, y);
+    // give the axes some labels:
+    ui->customPlot_infection->xAxis->setLabel("x");
+    ui->customPlot_infection->yAxis->setLabel("y");
+    // set axes ranges, so we see all data:
+    ui->customPlot_infection->xAxis->setRange(-1, 1);
+    ui->customPlot_infection->yAxis->setRange(0, 1);
+    ui->customPlot_infection->replot();
+}
+
+void MainWindow::makeResourcePlot(QVector<double>x, QVector<double>y, int size){
+
+}
+
+void MainWindow::makeSpecimenPlot(QVector<double>x, QVector<double>y, int size){
+
+}
+
+
+void MainWindow::makeDailyPlot(QVector<double>x, QVector<double>y, int size){
+
+}
+
+
+void MainWindow::makeCumulativePlot(QVector<double>x, QVector<double>y, int size){
+
+}
+
+
 
 void MainWindow::setDefault()
 {
@@ -266,6 +304,7 @@ void MainWindow::setDefault()
     ui->input_outpatient->setText(QString::number(OutpatientSpecimenTesting));
 }
 
+//입력버튼 클릭
 void MainWindow::on_inputButton_clicked()
 {
 
@@ -273,13 +312,26 @@ void MainWindow::on_inputButton_clicked()
     ui->inputWidget->activateWindow();
     ui->inputWidget->raise();
 }
+
+//출력버튼 클릭
 void MainWindow::on_outputButton_clicked()
 {
     ui->outputWidget->show();
     ui->outputWidget->activateWindow();
     ui->outputWidget->raise();
+
+    /*graph x,y 값 설정*/
+    int size = 101;
+    QVector<double>x(size), y(size); // initialize with entries 0..100
+    for (int i=0; i<size; ++i)
+    {
+      x[i] = i/50.0 - 1; // x goes from -1 to 1
+      y[i] = x[i]*x[i]; // let's plot a quadratic function
+    }
+    MainWindow::makeInfectionPlot(x,y,size);
 }
 
+//지역유형버튼 클릭
 void MainWindow::on_areaButton_clicked()
 {
     ui->areaWidget->show();
@@ -287,18 +339,30 @@ void MainWindow::on_areaButton_clicked()
     ui->areaWidget->raise();
 }
 
+//지역유형 확인 클릭
 void MainWindow::on_areaSubmit_clicked()
 {
     ui->areaWidget->hide();
 }
 
+//출력화면 이동 버튼 클릭
 void MainWindow::on_outputPageBtn_clicked()
 {
     ui->outputWidget->show();
     ui->outputWidget->activateWindow();
     ui->outputWidget->raise();
-}
 
+    /*graph x,y 값 설정*/
+    int size = 101;
+    QVector<double>x(size), y(size); // initialize with entries 0..100
+    for (int i=0; i<size; ++i)
+    {
+      x[i] = i/50.0 - 1; // x goes from -1 to 1
+      y[i] = x[i]*x[i]; // let's plot a quadratic function
+    }
+    MainWindow::makeInfectionPlot(x,y,size);
+}
+//입력화면 이동 버튼 클릭
 void MainWindow::on_inputPageBtn_clicked()
 {
     ui->inputWidget->show();
@@ -677,4 +741,30 @@ void MainWindow::on_input_reinspect_textEdited(const QString &arg1)
 void MainWindow::on_input_outpatient_textEdited(const QString &arg1)
 {
     OutpatientSpecimenTesting = arg1.toDouble();
+}
+
+/*output 나이 선택*/
+void MainWindow::on_age_checkBox1_clicked()
+{
+    GraphAge = Age0to6;
+}
+
+void MainWindow::on_age_checkBox2_clicked()
+{
+    GraphAge = Age7to12;
+}
+
+void MainWindow::on_age_checkBox3_clicked()
+{
+    GraphAge = Age13to18;
+}
+
+void MainWindow::on_age_checkBox4_clicked()
+{
+    GraphAge = Age19to64;
+}
+
+void MainWindow::on_age_checkBox5_clicked()
+{
+    GraphAge = Age65toEnd;
 }

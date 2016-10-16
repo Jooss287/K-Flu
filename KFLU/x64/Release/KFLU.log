@@ -1,2 +1,9 @@
-﻿  main.cpp
-  KFLU.vcxproj -> D:\QT\workspace\git_kflu\KFLU\release\KFLU.exe
+﻿  define.cpp
+  mainwindow.cpp
+mainwindow.cpp(22): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+mainwindow.cpp(36): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+mainwindow.cpp(40): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+mainwindow.cpp(45): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+mainwindow.cpp(50): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+  코드를 생성하고 있습니다...
+  KFLU.vcxproj -> D:\KFLU\KFLU\release\KFLU.exe

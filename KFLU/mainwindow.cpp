@@ -1,146 +1,7 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qcustomplot.h"
-
-//**********************************************
-//Define Value 목록
-//==============================================
-//연령별 분포
-#define Age0to6 0
-#define Age7to12 1
-#define Age13to18 2
-#define Age19to64 3
-#define Age65toEnd 4
-#define AgeTotal 5	//ContactMatrix 합계 Part
-
-#define StageofAgeGroups 5
-#define StageofAgeTotal 6
-
-
-//근로기준 연령분포
-#define Child 0
-#define Worker 1
-#define Elderly 2
-#define StageofWorkAge 3
-
-//Severe 분포 -> AM / VX에 적용
-#define NonSevere 0
-#define Severe 1
-#define StageofSevere 2
-
-//Risk 분포
-#define LowRisk 0
-#define HighRisk 1
-#define StageofRisk 2
-
-//질병단계 k to m
-#define Stageofk 7		//임의 값임
-
-//**********************************************
-//Define Function 목록
-//==============================================
-double percentage(double);
-
-
-//**********************************************
-//Input 화면 탭 입력변수 목록
-//==============================================
-//--인구
-unsigned int Population[StageofAgeTotal] = { 0, 0, 0, 0, 0, 0 };	//0to6, 7to12, 13to18, 19to64, 65toEnd, total
-unsigned int ContactMatrix[StageofAgeTotal][StageofAgeTotal] = { { 0, 0, 0, 0, 0, 0 },
-                                                                { 0, 0, 0, 0, 0, 0 },
-                                                                { 0, 0, 0, 0, 0, 0 },
-                                                                { 0, 0, 0, 0, 0, 0 },
-                                                                { 0, 0, 0, 0, 0, 0 },
-                                                                { 0, 0, 0, 0, 0, 0 } };
-int SchoolContactRate = 50.0;
-//결석으로 어른과 접촉이 강화되는 정도
-unsigned int AbsenceContactRatio = 3;
-
-//--질병 TAB
-double LatentPeriod = 1.9;
-double InfectiousDuration[StageofSevere][StageofWorkAge] = { { 0, 0 },
-                                                            {0, 0} };
-
-double ReturntoWorkPeriod = 5.0;
-double SevereRate = 50.0;
-double MildRate = 33.3;
-double HighRiskRate[StageofWorkAge] = { 6.0, 14.0, 47.0 };
-double LowRiskHospitalRate[StageofWorkAge] = { 0.187, 14.0, 47.0 };
-double HighRiskHospitalRate[StageofWorkAge] = { 1.333, 2.762, 7.768 };
-double DeadRate[StageofWorkAge] = { 5.541, 16.541, 39.505 };
-
-//--전염성 TAB
-//기초 감염 재 생산수
-double R0 = 2.5;
-//총 감염 가능 기간 중 절반 기간 동안 갖는 전염성 비율
-double HalfInfectiousRate = 90.0;
-//중증도가 높은 경우와 비교 했을 때 상대적 전염성
-double LastLatentPeriodCase = 50.0;
-double AsymptomaticCase = 50.0;
-double ModerateCase = 100.0;
-//부분 격리
-double ModerateCaseIsolation = 50.0;
-double SevereHomeCaseIsolation = 50.0;
-double SevereHospitalCaseIsolation = 100.0;
-double RangeofIsolation = 0;
-
-//--치료 TAB
-//항바이러스제 투여 가능 비율
-double AntiviralsInjectionRate = 100.0;
-//의료서비스 이용가능 시간
-double MedicalHelp = 24.0;
-double AntiviralsHelp = 48.0;
-//Very Sick Case 치료
-double VerySickTreatRate = 0;
-double VerySickTreatRange = 0.0;
-//Extremely Sick Case 치료
-double ExtremelySickTreatRate = 0;
-double ExtremelySickTreatRange = 0.0;
-//치료 효과
-double ContagiousnessReduction = 80.0;
-double DiseaseDurationReduction = 25.0;
-double HospitalizationReduction =50.0;
-
-//--격리 TAB
-//일반접촉 감소 비율 및 기간
-double ContactReductionRate = 0.0;
-double ContactReductionRange = 0;
-//휴교 및 그에 따른 접촉 수준 변동
-double SchoolCloseRange = 0;
-double SchoolCloseContactRatio = 2;
-//대중집회 취소 및 그에 따른 접촉 수준 변동
-double GatheringCancelReductionRate = 0.0;
-double GatheringCancleRange = 0;
-
-//--입원 TAB
-//평균 재원기간
-double HospitalizationNICU = 5;
-double HospitalizationICU = 10;
-
-//--백신 TAB
-//연령별 백신 접종률
-double VaccineAgeRate[StageofAgeGroups] = {0, 0, 0, 0, 0 };
-//연령별 백신 접종효과
-double VaccineEffect[StageofAgeGroups] = {0, 0, 0, 0, 0 };
-//항체생성기간
-double AntibodyCreateRange= 14.0;
-//백신 접종시기
-double VaccineStart = 0; //아직 정의 안됨
-
-//--자원 TAB
-//N-95마스크(1명, 1일당 개수)
-double MaskNeedNICU;
-double MaskNeedICU;
-//인공호흡기 (입원환자 중 인공호흡기 사용 비율)
-double RespiratorNeedRate = 50.0;
-
-//--검체 TAB
-//검체 재검율
-double ReinspectionRate = 10.0;
-//외래환자 검체비율                (확인필요)
-double OutpatientSpecimenTesting = 50.0;
-
+#include <define.h>
 
 /*output 관련 변수들*/
 int GraphAge = Age0to6; //default
@@ -236,7 +97,7 @@ void MainWindow::setDefault()
     /*전염성 tab 기본값 세팅*/
     ui->input_R0->setText(QString::number(R0));
 
-    ui->input_halfInfectiosRate->setText(QString::number(HalfInfectiousRate));
+    ui->input_halfInfectiosRate->setText(QString::number(HalfInfectiousRate)); 
 
     ui->input_lastLatent->setText(QString::number(LastLatentPeriodCase));
     ui->input_asymptomatic->setText(QString::number(AsymptomaticCase));
@@ -284,11 +145,11 @@ void MainWindow::setDefault()
     ui->input_vaccine_4->setText(QString::number(VaccineAgeRate[Age19to64]));
     ui->input_vaccine_5->setText(QString::number(VaccineAgeRate[Age65toEnd]));
 
-    ui->input_vaccineEffect_1->setText(QString::number(VaccineEffect[Age0to6]));
-    ui->input_vaccineEffect_2->setText(QString::number(VaccineEffect[Age7to12]));
-    ui->input_vaccineEffect_3->setText(QString::number(VaccineEffect[Age13to18]));
-    ui->input_vaccineEffect_4->setText(QString::number(VaccineEffect[Age19to64]));
-    ui->input_vaccineEffect_5->setText(QString::number(VaccineEffect[Age65toEnd]));
+    ui->input_vaccineEffect_1->setText(QString::number(VaccineEffectAgeRate[Age0to6]));
+    ui->input_vaccineEffect_2->setText(QString::number(VaccineEffectAgeRate[Age7to12]));
+    ui->input_vaccineEffect_3->setText(QString::number(VaccineEffectAgeRate[Age13to18]));
+    ui->input_vaccineEffect_4->setText(QString::number(VaccineEffectAgeRate[Age19to64]));
+    ui->input_vaccineEffect_5->setText(QString::number(VaccineEffectAgeRate[Age65toEnd]));
 
     ui->input_antibodyRange->setText(QString::number(AntibodyCreateRange));
     ui->input_vaccineStart->setText(QString::number(VaccineStart));
@@ -683,27 +544,27 @@ void MainWindow::on_input_vaccine_5_textEdited(const QString &arg1)
 
 void MainWindow::on_input_vaccineEffect_1_textEdited(const QString &arg1)
 {
-    VaccineEffect[Age0to6] = arg1.toDouble();
+	VaccineEffectAgeRate[Age0to6] = arg1.toDouble();
 }
 
 void MainWindow::on_input_vaccineEffect_2_textEdited(const QString &arg1)
 {
-    VaccineEffect[Age7to12] = arg1.toDouble();
+	VaccineEffectAgeRate[Age7to12] = arg1.toDouble();
 }
 
 void MainWindow::on_input_vaccineEffect_3_textEdited(const QString &arg1)
 {
-    VaccineEffect[Age13to18] = arg1.toDouble();
+	VaccineEffectAgeRate[Age13to18] = arg1.toDouble();
 }
 
 void MainWindow::on_input_vaccineEffect_4_textEdited(const QString &arg1)
 {
-    VaccineEffect[Age19to64] = arg1.toDouble();
+	VaccineEffectAgeRate[Age19to64] = arg1.toDouble();
 }
 
 void MainWindow::on_input_vaccineEffect_5_textEdited(const QString &arg1)
 {
-    VaccineEffect[Age65toEnd] = arg1.toDouble();
+	VaccineEffectAgeRate[Age65toEnd] = arg1.toDouble();
 }
 
 void MainWindow::on_input_antibodyRange_textEdited(const QString &arg1)

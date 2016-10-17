@@ -3,8 +3,21 @@
 #include "qcustomplot.h"
 #include <define.h>
 
+/*input 관련 변수들*/
+int PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
+
+int contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
+int contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
+int contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
+int contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
+int contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
+
+int contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+
 /*output 관련 변수들*/
 int GraphAge = Age0to6; //default
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -56,13 +69,11 @@ void MainWindow::makeCumulativePlot(QVector<double>x, QVector<double>y, int size
 void MainWindow::setDefault()
 {
     /*인구 tab 기본값 세팅*/
-    ui->input_Age0to6->setText(QString::number(Population[Age0to6]));
-    ui->input_Age7to12->setText(QString::number(Population[Age7to12]));
-    ui->input_Age13to18->setText(QString::number(Population[Age13to18]));
-    ui->input_Age19to64->setText(QString::number(Population[Age19to64]));
-    ui->input_Age65toEnd->setText(QString::number(Population[Age65toEnd]));
 
-    ui->input_SchoolRatio->setText(QString::number(SchoolContactRate));
+    ui->input_SchoolRatio0to6->setText(QString::number(SchoolContactRate)); //초기값 수정 필요
+    ui->input_SchoolRatio7to12->setText(QString::number(SchoolContactRate)); //초기값 수정 필요
+    ui->input_SchoolRatio13to18->setText(QString::number(SchoolContactRate)); //초기값 수정 필요
+
     ui->input_AbsentRatio->setText(QString::number(AbsenceContactRatio));
 
     /*질병 tab 기본값 세팅*/
@@ -106,7 +117,8 @@ void MainWindow::setDefault()
     ui->input_isolModerate->setText(QString::number(ModerateCaseIsolation));
     ui->input_isolSevereHome->setText(QString::number(SevereHomeCaseIsolation));
     ui->input_isolSevereHospital->setText(QString::number(SevereHospitalCaseIsolation));
-    ui->input_isolRange->setText(QString::number(RangeofIsolation));
+    ui->input_isolStart->setText(QString::number(RangeofIsolation));//변수 수정 필요
+    ui->input_isolEnd->setText(QString::number(RangeofIsolation));//변수 수정 필요
 
     /*치료 tab 기본값 세팅*/
     ui->input_antiviralsRate->setText(QString::number(AntiviralsInjectionRate));
@@ -115,10 +127,12 @@ void MainWindow::setDefault()
     ui->input_antiviralsHelp->setText(QString::number(AntiviralsHelp));
 
     ui->input_verySickTreat->setText(QString::number(VerySickTreatRate));
-    ui->input_verySickTreatRange->setText(QString::number(VerySickTreatRange));
+    ui->input_verySickTreatStart->setText(QString::number(VerySickTreatRange));//변수 수정 필요
+    ui->input_verySickTreatEnd->setText(QString::number(VerySickTreatRange));//변수 수정 필요
 
     ui->input_extreamlySickTreat->setText(QString::number(ExtremelySickTreatRate));
-    ui->input_extreamlySickTreatRange->setText(QString::number(ExtremelySickTreatRange));
+    ui->input_extreamlySickTreatStart->setText(QString::number(ExtremelySickTreatRange));//변수 수정 필요
+    ui->input_extreamlySickTreatEnd->setText(QString::number(ExtremelySickTreatRange));//변수 수정 필요
 
     ui->input_contagiousnessReduct->setText(QString::number(ContagiousnessReduction));
     ui->input_durationReduct->setText(QString::number(DiseaseDurationReduction));
@@ -126,13 +140,16 @@ void MainWindow::setDefault()
 
     /*격리 tab 기본값 세팅*/
     ui->input_contactReduct->setText(QString::number(ContactReductionRate));
-    ui->input_contactReductRange->setText(QString::number(ContactReductionRange));
+    ui->input_contactReductStart->setText(QString::number(ContactReductionRange));//변수 수정 필요
+    ui->input_contactReductEnd->setText(QString::number(ContactReductionRange));//변수 수정 필요
 
-    ui->input_schoolClose->setText(QString::number(SchoolCloseRange));
+    ui->input_SchoolCloseStart->setText(QString::number(SchoolCloseRange)); //변수 수정 필요
+    ui->input_SchoolCloseEnd->setText(QString::number(SchoolCloseRange));//변수 수정 필요
     ui->input_SchoolCloseContact->setText(QString::number(SchoolCloseContactRatio));
 
     ui->input_gatheringCancel->setText(QString::number(GatheringCancelReductionRate));
-    ui->input_gatheringCancelRange->setText(QString::number(GatheringCancleRange));
+    ui->input_gatheringCancelStart->setText(QString::number(GatheringCancleRange));//변수 수정 필요
+    ui->input_gatheringCancelEnd->setText(QString::number(GatheringCancleRange));//변수 수정 필요
 
     /*입원 tab 기본값 세팅*/
     ui->input_NICU->setText(QString::number(HospitalizationNICU));
@@ -165,31 +182,13 @@ void MainWindow::setDefault()
     ui->input_outpatient->setText(QString::number(OutpatientSpecimenTesting));
 }
 
-//입력버튼 클릭
-void MainWindow::on_inputButton_clicked()
+//시작버튼 클릭
+void MainWindow::on_startButton_clicked()
 {
 
     ui->inputWidget->show();
     ui->inputWidget->activateWindow();
     ui->inputWidget->raise();
-}
-
-//출력버튼 클릭
-void MainWindow::on_outputButton_clicked()
-{
-    ui->outputWidget->show();
-    ui->outputWidget->activateWindow();
-    ui->outputWidget->raise();
-
-    /*graph x,y 값 설정*/
-    int size = 101;
-    QVector<double>x(size), y(size); // initialize with entries 0..100
-    for (int i=0; i<size; ++i)
-    {
-      x[i] = i/50.0 - 1; // x goes from -1 to 1
-      y[i] = x[i]*x[i]; // let's plot a quadratic function
-    }
-    MainWindow::makeInfectionPlot(x,y,size);
 }
 
 //지역유형버튼 클릭
@@ -235,29 +234,156 @@ void MainWindow::on_inputPageBtn_clicked()
 void MainWindow::on_input_Age0to6_textEdited(const QString &arg1)
 {
     Population[Age0to6] = arg1.toInt();
+    PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
+    ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
 void MainWindow::on_input_Age7to12_textEdited(const QString &arg1)
 {
     Population[Age7to12] = arg1.toInt();
+    PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
+    ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
 void MainWindow::on_input_Age13to18_textEdited(const QString &arg1)
 {
     Population[Age13to18] = arg1.toInt();
+    PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
+    ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
 void MainWindow::on_input_Age19to64_textEdited(const QString &arg1)
 {
     Population[Age19to64] = arg1.toInt();
+    PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
+    ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
 void MainWindow::on_input_Age65toEnd_textEdited(const QString &arg1)
 {
     Population[Age65toEnd] = arg1.toInt();
+    PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
+    ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
-void MainWindow::on_input_SchoolRatio_textEdited(const QString &arg1)
+void MainWindow::on_input_contact_1_1_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age0to6][Age0to6] = arg1.toInt();
+    contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_1_2_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age0to6][Age7to12] = arg1.toInt();
+    contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_1_3_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age0to6][Age13to18] = arg1.toInt();
+    contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_1_4_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age0to6][Age19to64] = arg1.toInt();
+    contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_1_5_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age0to6][Age65toEnd] = arg1.toInt();
+    contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_2_2_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age7to12][Age7to12] = arg1.toInt();
+    contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_2_3_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age7to12][Age13to18] = arg1.toInt();
+    contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_2_4_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age7to12][Age19to64] = arg1.toInt();
+    contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_2_5_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age7to12][Age65toEnd] = arg1.toInt();
+    contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_3_3_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age13to18][Age13to18] = arg1.toInt();
+    contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_3_4_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age13to18][Age19to64] = arg1.toInt();
+    contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_3_5_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age13to18][Age65toEnd] = arg1.toInt();
+    contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_4_4_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age19to64][Age19to64] = arg1.toInt();
+    contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_4_5_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age19to64][Age65toEnd] = arg1.toInt();
+    contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+void MainWindow::on_input_contact_5_5_textEdited(const QString &arg1)
+{
+    ContactMatrix[Age65toEnd][Age65toEnd] = arg1.toInt();
+    contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
+    contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+}
+
+
+//인풋 변수 수정 필요
+void MainWindow::on_input_SchoolRatio0to6_textEdited(const QString &arg1)
+{
+    SchoolContactRate = arg1.toDouble();
+}
+//인풋 변수 수정 필요
+void MainWindow::on_input_SchoolRatio7to12_textEdited(const QString &arg1)
+{
+    SchoolContactRate = arg1.toDouble();
+}
+//인풋 변수 수정 필요
+void MainWindow::on_input_SchoolRatio13to18_textEdited(const QString &arg1)
 {
     SchoolContactRate = arg1.toDouble();
 }
@@ -414,10 +540,15 @@ void MainWindow::on_input_isolSevereHospital_textEdited(const QString &arg1)
 {
     SevereHospitalCaseIsolation = arg1.toDouble();
 }
-
-void MainWindow::on_input_isolRange_textEdited(const QString &arg1)
+//변수 수정 필요
+void MainWindow::on_input_isolStart_textEdited(const QString &arg1)
 {
     RangeofIsolation = arg1.toDouble();
+}
+//변수 수정 필요
+void MainWindow::on_input_isolEnd_textEdited(const QString &arg1)
+{
+    ExtremelySickTreatRange = arg1.toDouble();
 }
 
 /*치료 tab input 받아오기*/
@@ -441,18 +572,30 @@ void MainWindow::on_input_verySickTreat_textEdited(const QString &arg1)
 {
     VerySickTreatRate = arg1.toDouble();
 }
-
-void MainWindow::on_input_verySickTreatRange_textEdited(const QString &arg1)
+//변수 수정 필요
+void MainWindow::on_input_verySickTreatStart_textEdited(const QString &arg1)
 {
     VerySickTreatRange = arg1.toDouble();
 }
+//변수 수정 필요
+void MainWindow::on_input_verySickTreatEnd_textEdited(const QString &arg1)
+{
+    VerySickTreatRange = arg1.toDouble();
+}
+
+
 
 void MainWindow::on_input_extreamlySickTreat_textEdited(const QString &arg1)
 {
     ExtremelySickTreatRate = arg1.toDouble();
 }
-
-void MainWindow::on_input_extreamlySickTreatRange_textEdited(const QString &arg1)
+//변수 수정 필요
+void MainWindow::on_input_extreamlySickTreatStart_textEdited(const QString &arg1)
+{
+    ExtremelySickTreatRange = arg1.toDouble();
+}
+//변수 수정 필요
+void MainWindow::on_input_extreamlySickTreatEnd_textEdited(const QString &arg1)
 {
     ExtremelySickTreatRange = arg1.toDouble();
 }
@@ -478,30 +621,45 @@ void MainWindow::on_input_contactReduct_textEdited(const QString &arg1)
 {
     ContactReductionRate = arg1.toDouble();
 }
-
-void MainWindow::on_input_contactReductRange_textEdited(const QString &arg1)
+//변수 수정 필요
+void MainWindow::on_input_contactReductStart_textEdited(const QString &arg1)
+{
+    ContactReductionRange = arg1.toDouble();
+}
+//변수 수정 필요
+void MainWindow::on_input_contactReductEnd_textEdited(const QString &arg1)
 {
     ContactReductionRange = arg1.toDouble();
 }
 
-void MainWindow::on_input_schoolClose_textEdited(const QString &arg1)
+//변수 수정 필요
+void MainWindow::on_input_SchoolCloseStart_textEdited(const QString &arg1)
 {
-    SchoolCloseContactRatio = arg1.toDouble();
+}
+//변수 수정 필요
+void MainWindow::on_input_SchoolCloseEnd_textEdited(const QString &arg1)
+{
+
 }
 
-void MainWindow::on_input_SchoolCloseContact_textEdited(const QString &arg1)
+void MainWindow::on_input_schoolCloseContact_textEdited(const QString &arg1)
 {
-    AbsenceContactRatio = arg1.toDouble();
+    SchoolCloseContactRatio = arg1.toDouble();
 }
 
 void MainWindow::on_input_gatheringCancel_textEdited(const QString &arg1)
 {
     GatheringCancelReductionRate = arg1.toDouble();
 }
-
-void MainWindow::on_input_gatheringCancelRange_textEdited(const QString &arg1)
+//변수 수정 필요
+void MainWindow::on_input_gatheringCancelStart_textEdited(const QString &arg1)
 {
-    GatheringCancleRange = arg1.toDouble();
+
+}
+//변수 수정 필요
+void MainWindow::on_input_gatheringCancelEnd_textEdited(const QString &arg1)
+{
+
 }
 
 /*입원 tab input 받아오기*/
@@ -629,3 +787,4 @@ void MainWindow::on_age_checkBox5_clicked()
 {
     GraphAge = Age65toEnd;
 }
+

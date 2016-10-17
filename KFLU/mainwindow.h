@@ -28,7 +28,7 @@ private slots:
 
     void makeCumulativePlot(QVector<double>x, QVector<double>y, int size);
 
-    void on_inputButton_clicked();
+    void on_startButton_clicked();
 
     void on_areaButton_clicked();
 
@@ -37,8 +37,6 @@ private slots:
     void on_outputPageBtn_clicked();
 
     void on_inputPageBtn_clicked();
-
-    void on_outputButton_clicked();
 
     void on_input_Age0to6_textEdited(const QString &arg1);
 
@@ -50,7 +48,11 @@ private slots:
 
     void on_input_Age65toEnd_textEdited(const QString &arg1);
 
-    void on_input_SchoolRatio_textEdited(const QString &arg1);
+    void on_input_SchoolRatio0to6_textEdited(const QString &arg1);
+
+    void on_input_SchoolRatio7to12_textEdited(const QString &arg1);
+
+    void on_input_SchoolRatio13to18_textEdited(const QString &arg1);
 
     void on_input_AbsentRatio_textEdited(const QString &arg1);
 
@@ -112,7 +114,9 @@ private slots:
 
     void on_input_isolSevereHospital_textEdited(const QString &arg1);
 
-    void on_input_isolRange_textEdited(const QString &arg1);
+    void on_input_isolStart_textEdited(const QString &arg1);
+
+    void on_input_isolEnd_textEdited(const QString &arg1);
 
     void on_input_antiviralsRate_textEdited(const QString &arg1);
 
@@ -122,11 +126,15 @@ private slots:
 
     void on_input_verySickTreat_textEdited(const QString &arg1);
 
-    void on_input_verySickTreatRange_textEdited(const QString &arg1);
+    void on_input_verySickTreatStart_textEdited(const QString &arg1);
+
+    void on_input_verySickTreatEnd_textEdited(const QString &arg1);
 
     void on_input_extreamlySickTreat_textEdited(const QString &arg1);
 
-    void on_input_extreamlySickTreatRange_textEdited(const QString &arg1);
+    void on_input_extreamlySickTreatStart_textEdited(const QString &arg1);
+
+    void on_input_extreamlySickTreatEnd_textEdited(const QString &arg1);
 
     void on_input_contagiousnessReduct_textEdited(const QString &arg1);
 
@@ -136,15 +144,21 @@ private slots:
 
     void on_input_contactReduct_textEdited(const QString &arg1);
 
-    void on_input_contactReductRange_textEdited(const QString &arg1);
+    void on_input_contactReductStart_textEdited(const QString &arg1);
 
-    void on_input_schoolClose_textEdited(const QString &arg1);
+    void on_input_contactReductEnd_textEdited(const QString &arg1);
 
-    void on_input_SchoolCloseContact_textEdited(const QString &arg1);
+    void on_input_SchoolCloseStart_textEdited(const QString &arg1);
+
+    void on_input_SchoolCloseEnd_textEdited(const QString &arg1);
+
+    void on_input_schoolCloseContact_textEdited(const QString &arg1);
 
     void on_input_gatheringCancel_textEdited(const QString &arg1);
 
-    void on_input_gatheringCancelRange_textEdited(const QString &arg1);
+    void on_input_gatheringCancelStart_textEdited(const QString &arg1);
+
+    void on_input_gatheringCancelEnd_textEdited(const QString &arg1);
 
     void on_input_NICU_textEdited(const QString &arg1);
 
@@ -193,6 +207,36 @@ private slots:
     void on_age_checkBox4_clicked();
 
     void on_age_checkBox5_clicked();
+
+    void on_input_contact_1_1_textEdited(const QString &arg1);
+
+    void on_input_contact_1_2_textEdited(const QString &arg1);
+
+    void on_input_contact_1_3_textEdited(const QString &arg1);
+
+    void on_input_contact_1_4_textEdited(const QString &arg1);
+
+    void on_input_contact_1_5_textEdited(const QString &arg1);
+
+    void on_input_contact_2_2_textEdited(const QString &arg1);
+
+    void on_input_contact_2_3_textEdited(const QString &arg1);
+
+    void on_input_contact_2_4_textEdited(const QString &arg1);
+
+    void on_input_contact_2_5_textEdited(const QString &arg1);
+
+    void on_input_contact_3_3_textEdited(const QString &arg1);
+
+    void on_input_contact_3_4_textEdited(const QString &arg1);
+
+    void on_input_contact_3_5_textEdited(const QString &arg1);
+
+    void on_input_contact_4_4_textEdited(const QString &arg1);
+
+    void on_input_contact_4_5_textEdited(const QString &arg1);
+
+    void on_input_contact_5_5_textEdited(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

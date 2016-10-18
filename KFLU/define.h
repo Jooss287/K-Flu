@@ -7,6 +7,7 @@
 //==============================================
 #define Maximumday 200
 #define TimeResolution 10
+#define NumberofArray Maximumday*TimeResolution
 //**********************************************
 //Define Value 목록
 //==============================================
@@ -54,9 +55,6 @@
 #define RstageLast 8
 #define RstageGroups 9
 
-//질병단계 k to m
-#define Stageofk 7		//임의 값임
-
 //BinarySearch 함수 input data로 사용
 #define typeR0 0
 #define typeF50 1
@@ -66,6 +64,25 @@
 #define MedYES 1
 #define MedGroups 2
 
+#define IsoNO 0
+#define IsoYES 1
+#define IsoGroups 2
+
+#define Estage1 0
+#define Estage2 1
+#define EstageLast 6
+#define EstageGroups 7
+
+#define Istage1 0
+#define Istage2 1
+#define IstageLast 18
+#define IstageGroups 19
+
+#define Rstage1 0
+#define Rstage2 1
+#define RstageLast 8
+#define RstageGroups 9
+
 #define ItypeA 0
 #define ItypeM 1
 #define ItypeV 2
@@ -73,12 +90,6 @@
 #define ItypeX 4
 #define ItypeH 5
 #define ItypeGroups 6
-
-#define IsoNO 0
-#define IsoYES 1
-#define IsoGroups 2
-
-
 
 
 //**********************************************
@@ -99,6 +110,8 @@
 #define APsize StageofAgeGroups
 #define CAPsize StageofAgeGroups
 #define CCIsize StageofAgeGroups
+//추가 리스트
+#define OutpatientsSize StageofAgeGroups
 
 //ouput array list
 #define Soffset 0
@@ -118,14 +131,19 @@
 #define CCIoffset (CAPoffset + CAPsize)
 
 #define Outpatients (CCIoffset + CCIsize)
-#define Antivirals (Outpatients + 1)
+#define Antivirals (Outpatients + OutpatientsSize)
 #define Hospitalisation (Antivirals + 1)
 
+// 감염자 TAB : Susceptibles, exposed, asymptomatic, moderate, severe, dead, immune
+// 의료자원 TAB : N-95mask, respirator,  Antivirals
+// 검체수 TAB : Specimen
+// 일일 TAB : outpatients, HospitalICU, HospitalNICU
+// 누적 TAB : outpatients, HospitalICU, HospitalNICU
 #define InfectedC (Hospitalisation + 1)
 #define CasesC (InfectedC + 1)
 #define HCWWorkReduction (CasesC + 1)
 #define HCWReturnAntivirals (HCWWorkReduction + 1)
-#define OupputArray (HCWReturnAntivirals + 1)
+#define OutputArray (HCWReturnAntivirals + 1)
 
 
 //**********************************************
@@ -133,6 +151,7 @@
 //==============================================
 double percentage(double);
 double changehour(double hour);
+
 int S(int age, int risk);
 int E(int age, int risk, int eStages);
 int A(int age, int iStage);
@@ -147,6 +166,13 @@ int I(int age);
 int AP(int age);
 int CPA(int age);
 int CIC(int age);
+
+
+void InitialY();
+void Initialize();
+void EvaluationY(double day);
+void KfluStep();
+void ArrayforPlot(double day);
 
 //**********************************************
 //Input 화면 탭 입력변수 목록
@@ -194,10 +220,10 @@ unsigned int RangeofIsolationEnd = 200;
 //--치료 TAB
 //항바이러스제 투여 가능 비율
 double AntiviralsInjectionRate = 100.0;		/*percentage 함수 필요*/
-											//의료서비스 이용가능 시간
+//의료서비스 이용가능 시간
 double MedicalHelp = 24.0;			//consultationDelay day로 환산
 double AntiviralsHelp = 48.0;		//maxTreatmentDelay day로 환산
-									//Very Sick Case 치료
+//Very Sick Case 치료
 double VerySickTreatRate = 0;		/*percentage 함수 필요*/
 unsigned int  VerySickTreatRangeBegin = 0;
 unsigned int  VerySickTreatRangeEnd = 200;
@@ -220,7 +246,7 @@ unsigned int  SchoolCloseRangeBegin = 0;
 unsigned int  SchoolCloseRangeEnd = 200;
 double SchoolCloseContactRatio = 2;
 //대중집회 취소 및 그에 따른 접촉 수준 변동
-double GatheringCancelReductionRate = 0.0;
+double GatheringCancelReductionRate = 0.0;		/*percentage 함수 필요*/
 unsigned int  GatheringCancleRangeBegin = 0;
 unsigned int  GatheringCancleRangeEnd = 200;
 
@@ -255,9 +281,12 @@ double OutpatientSpecimenTesting = 50.0;		/*percentage 함수 필요*/
 //**********************************************
 //방정식 계산 시 필요 변수 목록
 //==============================================
+//Number of prodromal stages
+int prodromalStages = 2;
 
-// Initialize the contagiousness of cases (by course of disease).
-double contagiousness[ItypeGroups]; // infFact(Influsim)
+//Initialize the contagiousness of cases (by course of disease).
+//infFact(Influsim)
+double contagiousness[ItypeGroups]; 
 
 //Rate at which severe and extremely severe cases seek medical help.
 double alpha;
@@ -266,18 +295,19 @@ double alphaW[StageofAgeGroups];
 
 //beta, ebeta
 double eBeta[StageofAgeGroups][StageofAgeGroups];
-double beta[StageofAgeGroups][StageofAgeGroups][MedGroups][ItypeGroups][IsoGroups]; // medgroups yes no, ITypegroups 6, ISOGroups yes no.
+/*medgroups yes no, ITypegroups 6, ISOGroups yes no.*/
+double beta[StageofAgeGroups][StageofAgeGroups][MedGroups][ItypeGroups][IsoGroups]; 
 
-//ageClass
 unsigned int healthCareWorkers = 375;
 double total;
-double initialExposed; // Initial fraction of newly infected individuals.
+// Initial fraction of newly infected individuals.
+double initialExposed;
 double ageDistribution[StageofAgeGroups];
 
 unsigned int ageClass[StageofAgeGroups] = { Child, Child, Child, Worker, Elderly, Worker }; // 0, 0, 0, 1, 2, 1(HCW)
 
-double redistributionFactor[Age19to64];
-double redistributionFactorChildHealthCare[Age19to64];
+double redistributionFactor[ChildClass];
+double redistributionFactorChildHealthCare[ChildClass];
 
 double ageMatrix[StageofAgeGroups][StageofAgeGroups];
 
@@ -300,13 +330,20 @@ double Individuals[StageofAgeGroups];
 
 double tau[StageofAgeGroups];
 
+//The eigenvecor for the largest eigenvalue (used for initialisation of the population).
+double eigenvector[StageofAgeGroups];
+
+//Force of infection.
+double lambda[StageofAgeGroups];
+
 bool doSchoolClosure0to6[2000];
 bool doSchoolClosure7to12[2000];
 bool doSchoolClosure13to18[2000];
 
 
-double Susceptible[StageofAgeGroups][StageofRisk];
-double delta; //incubate the infection
+double Susceptibles[StageofAgeGroups][StageofRisk];
+//incubate the infection
+double delta; 
 
 //Average time after onset of symptoms when severe and extremely severe cases seek medical help[days].
 double consultationDelay = 1.0;
@@ -315,6 +352,7 @@ double consultationDelay = 1.0;
 double outpatientVisits = 1;
 
 //Course of disease(by age and risk group).
+//destiny(influsim)
 double Courseofdisease[StageofAgeGroups][StageofRisk][ItypeGroups];
 
 //Transition rate during the contagious period (by age, medication and course of disease)
@@ -323,13 +361,208 @@ double gamma[StageofAgeGroups][MedGroups][ItypeGroups];
 //Maximum stage of contagiousness during which antiviral treatment can be given (by age)
 int maxTreatmentStage[StageofAgeGroups];
 
+//Fraction of immune individuals at start of simulation.
+double immuneFract[StageofAgeGroups] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+
+double OutputY[OutputArray];
+double CumulateOutput[OutputArray];
+
+
 //**********************************************
 //Function & Class
 //==============================================
+class BinarySearch
+{
+public:
+	double gam = 0;
+	double dead = 0;
+
+	double findRoot(double a, double b, int type) {
+		if ((a <= 0) && (b >= 0))
+			return find(a, b, type);
+		else if ((b <= 0) && (a >= 0))
+			return find(b, a, type);
+		else
+		{
+		}//system Error massage
+	}
+	double ComputeR0(double b)
+	{
+		for (int ageSus = 0; ageSus < StageofAgeGroups; ageSus++) {
+			for (int ageInf = 0; ageInf < StageofAgeGroups; ageInf++) {
+				eBeta[ageSus][ageInf] = LastLatentPeriodCase * b * ContactMatrix[ageSus][ageInf];   // eBeta. LastLatentPeriodCase = eInfFact
+
+				for (int type = ItypeA; type <= ItypeM; type++) { // type A, M
+					beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf];  // Contact Matrix를 ageMatrix로 바꿔야하나? fill matrix 함수
+				}
+			}
+		}
+
+		//Severly ill children do not go to school      beta에서 예외부분 처리. 학교다니는 나이대
+		for (int type = ItypeV; type <= ItypeH; type++)  // type V, W, X, H
+		{
+			for (int ageSus = Age0to6; ageSus <= Age13to18; ageSus++) {
+				for (int ageInf = Age0to6; ageInf <= Age13to18; ageInf++) {
+					if (ageSus == ageInf) {
+						beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf] * (1.0 - SchoolContactRate[ageSus]); // 결석으로 인해 학교 나이대 서로서로 접촉 X
+					}
+					else {
+						beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf]; // 그 외에 영향 없도록
+					}
+				}
+			}
+			for (int ageSus = Age19to64; ageSus <= HCW; ageSus++) { // 결석한 학생들이 care받으면서 생기는 전염성. 대상은 학생나이대 이후 전부, HCW포함
+				for (int ageInf = Age0to6; ageInf <= Age13to18; ageInf++) {
+					//수정beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf] * redistributionFactorChildHealthCare; //????? 이 변수? influsim에는 계산해서 구하는 변수
+					// redistributionFraction을 이용해 redistributionFactorChildHealthCare을 구해야하지만 UI상에는 접촉강화정도 3.0만 표기.
+					// influsim 상에서 redistributionFraction는 디폴트로 있지만 인풋은 받지 않는 모양
+				}
+			}
+
+			//all other contacts remain untouched
+			for (int ageSus = Age0to6; ageSus < StageofAgeGroups; ageSus++) {
+				for (int ageInf = Age19to64; ageInf < StageofAgeGroups; ageInf++) {
+					beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf];
+				}
+			}
+		}
+
+		for (int ageSus = 0; ageSus < StageofAgeGroups; ageSus++) { // Med Yes의 경우
+			for (int ageInf = 0; ageInf < StageofAgeGroups; ageInf++) {
+				for (int type = ItypeA; type < ItypeGroups; type++) {
+					beta[ageSus][ageInf][MedYES][type][IsoNO] = beta[ageSus][ageInf][MedNO][type][IsoNO] * (1.0 - ContagiousnessReduction);
+				}
+			}
+		}
+
+		//nextGenerationMatrix Calculation
+		double nextGenerationMatrix[StageofAgeGroups][StageofAgeGroups];
+		for (int ageSus = 0; ageSus < StageofAgeGroups; ageSus++) {
+			for (int ageInf = 0; ageInf < StageofAgeGroups; ageInf++) {
+				nextGenerationMatrix[ageSus][ageInf] = 
+					(Susceptibles[ageSus][LowRisk] + Susceptibles[ageSus][HighRisk]) * eBeta[ageSus][ageInf] * LatentPeriod * prodromalStages / EstageGroups;
+				for (int risk = 0; risk < StageofRisk; risk++) {
+					for (int type = 0; type < ItypeGroups; type++) {
+						double temp = Susceptibles[ageSus][risk] * Courseofdisease[ageInf][risk][type]
+									* beta[ageSus][ageInf][MedNO][type][IsoNO] * infDur[ageInf][MedNO][type];
+					if ((type == ItypeX) || (type == ItypeH))
+						temp *= (1.0 - deadFraction[ageInf]);
+					nextGenerationMatrix[ageSus][ageInf] += temp;
+					}
+				}
+			}
+		}
+		
+
+		Eigen::MatrixXd Ematirx(7, 7);
+		Eigen::MatrixXd realEigenvalues;
+		Eigen::MatrixXd imagEigenvalues;
+		Eigen::MatrixXd getEigenvector;
+
+		for (int i = 0; i < 7; i++)
+		{
+			for (int j = 0; j < 7; j++)
+			{
+				Ematirx(i, j) = nextGenerationMatrix[i][j];
+			}
+		}
+
+		Eigen::EigenSolver<Eigen::MatrixXd> Eigen_Matrix(Ematirx);
+		realEigenvalues = Eigen_Matrix.eigenvalues().real();
+		imagEigenvalues = Eigen_Matrix.eigenvalues().imag();
+		getEigenvector = Eigen_Matrix.eigenvectors().real();
+		double sizerealEigen = Eigen_Matrix.eigenvalues().real().size();
+
+		double maxEigenvalue = -INFINITY;
+		int maxI = -1;
+
+		for (int i = 0; i < sizerealEigen; i++) {
+			if (imagEigenvalues(i) != 0)
+			{
+			}//System.err.println("Imaginary eigenvalue (" + realEigenvalues[i] + ", " + imagEigenvalues[i] + " ) ignored."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			else if (realEigenvalues(i) > maxEigenvalue) {
+				maxI = i;
+				maxEigenvalue = realEigenvalues(i);
+			}
+		}
+
+		double sum = 0.0;
+
+		for (int age = 0; age < StageofAgeGroups; age++) {
+			eigenvector[age] = getEigenvector(age, maxI);
+			sum += eigenvector[age];
+		}
+		for (int age = 0; age < StageofAgeGroups; age++) {
+			eigenvector[age] /= sum; // potential division by zero!
+		}
+		//m = nextGenerationMatrix;
+		//bb = b;
+		return maxEigenvalue - 2.5;
+
+	}
+	double computeDeadFraction(double gam, double t, double dead)
+	{
+		double result = 0.0;
+		double product = 1.0;
+		double temp = gam / (gam + t);
+		for (int iStage = 0; iStage < IstageGroups; iStage++) {
+			result += product;
+			product *= temp;
+		}
+		result *= t / (t + gam);
+		return result - dead;
+	}
+	double ComputeF50(double mu)
+	{
+		double product = 1.0;
+		double sum = IstageGroups;
+		if (mu < 1.0) sum = (1.0 - pow(mu, IstageGroups)) / (1.0 - mu);
+		for (int i = 0; i < IstageGroups; i++) {
+			contagiousness[i] = IstageGroups  * product / sum; // potential division by zero!
+			product *= mu;
+		}
+		double allStagesInfectiosity = 0.0;
+		for (int i = 0; i < IstageGroups; i++) {
+			allStagesInfectiosity += contagiousness[i];
+		}
+		int halfInfectiousStages = IstageGroups / 2;
+		double halfStagesInfectiosity = 0.0;
+		for (int i = 0; i < halfInfectiousStages; i++) {
+			halfStagesInfectiosity += contagiousness[i];
+		}
+		if (halfInfectiousStages + halfInfectiousStages < IstageGroups) {
+			halfStagesInfectiosity += 0.5 * contagiousness[halfInfectiousStages];
+		}
+
+		return 0;//halfInfectiosity - (halfStagesInfectiosity / allStagesInfectiosity);
+	}
+private:
+	double find(double a, double b, int type) {
+		double c = 0.5 * (a + b);
+		double cval;
+		
+		if (b - a <= 1.8e-15)
+			return c;
+		switch (type)
+		{
+		case typeR0: cval = ComputeR0(c); break;
+		case typeF50: cval = ComputeF50(c); break;
+		case typeDeadFraction: cval = computeDeadFraction(gam, c, dead); break;
+		default: return 0;
+		}
+		if (cval < 0)
+			return find(c, b, type);
+		if (cval > 0)
+			return find(a, c, type);
+		return c;
+	}
+};
+
 double percentage(double value)
 {
 	return (value / 100);
 }
+
 double changehour(double hour)
 {
 	return (hour / 24);
@@ -390,197 +623,9 @@ int CPA(int age) {
 int CIC(int age) {
 	return CCIoffset + age;
 }
-
-class BinarySearch
-{
-public:
-	double gam = 0;
-	double dead = 0;
-
-	double findRoot(double a, double b, int type) {
-		if ((a <= 0) && (b >= 0))
-			return find(a, b, type);
-		else if ((b <= 0) && (a >= 0))
-			return find(b, a, type);
-		else
-		{
-		}//system Error massage
-	}
-	double ComputeR0(double b)
-	{
-		for (int ageSus = 0; ageSus < StageofAgeGroups; ageSus++) {
-			for (int ageInf = 0; ageInf < StageofAgeGroups; ageInf++) {
-				eBeta[ageSus][ageInf] = LastLatentPeriodCase * b * ContactMatrix[ageSus][ageInf];   // eBeta.             LastLatentPeriodCase = eInfFact
-
-				for (int type = ItypeA; type <= ItypeM; type++) { // type A, M
-					beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf];  // Contact Matrix를 ageMatrix로 바꿔야하나? fill matrix 함수
-				}
-			}
-		}
-
-		//Severly ill children do not go to school      beta에서 예외부분 처리. 학교다니는 나이대
-		for (int type = ItypeV; type <= ItypeH; type++)  // type V, W, X, H
-		{
-			for (int ageSus = Age0to6; ageSus <= Age13to18; ageSus++) {
-				for (int ageInf = Age0to6; ageInf <= Age13to18; ageInf++) {
-					if (ageSus == ageInf) {
-						beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf] * (1.0 - SchoolContactRate[ageSus]); // 결석으로 인해 학교 나이대 서로서로 접촉 X
-					}
-					else {
-						beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf]; // 그 외에 영향 없도록
-					}
-				}
-			}
-			for (int ageSus = Age19to64; ageSus <= HCW; ageSus++) { // 결석한 학생들이 care받으면서 생기는 전염성. 대상은 학생나이대 이후 전부, HCW포함
-				for (int ageInf = Age0to6; ageInf <= Age13to18; ageInf++) {
-					//수정beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf] * redistributionFactorChildHealthCare; //????? 이 변수? influsim에는 계산해서 구하는 변수
-																																							   // redistributionFraction을 이용해 redistributionFactorChildHealthCare을 구해야하지만 UI상에는 접촉강화정도 3.0만 표기.
-																																							   // influsim 상에서 redistributionFraction는 디폴트로 있지만 인풋은 받지 않는 모양
-				}
-			}
-
-			//all other contacts remain untouched
-			for (int ageSus = Age0to6; ageSus < StageofAgeGroups; ageSus++) {
-				for (int ageInf = Age19to64; ageInf < StageofAgeGroups; ageInf++) {
-					beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf];
-				}
-			}
-		}
-
-		for (int ageSus = 0; ageSus < StageofAgeGroups; ageSus++) { // Med Yes의 경우
-			for (int ageInf = 0; ageInf < StageofAgeGroups; ageInf++) {
-				for (int type = ItypeA; type < ItypeGroups; type++) {
-					beta[ageSus][ageInf][MedYES][type][IsoNO] = beta[ageSus][ageInf][MedNO][type][IsoNO] * (1.0 - ContagiousnessReduction);
-				}
-			}
-		}
-
-		/*수정
-		//nextGenerationMatrix Calculation
-		double nextGenerationMatrix[StageofAgeGroups][StageofAgeGroups];
-		for (int ageSus = 0; ageSus < StageofAgeGroups; ageSus++) {
-			for (int ageInf = 0; ageInf < StageofAgeGroups; ageInf++) {
-				nextGenerationMatrix[ageSus][ageInf] = (susceptibles[ageSus][LowRisk] + susceptibles[ageSus][HighRisk])
-					* eBeta[ageSus][ageInf] * expDur[0] * prodromalStages / EstageGroups;
-				for (int risk = 0; risk < StageofRisk; risk++) {
-					for (int type = 0; type < ItypeGroups; type++) {
-						double temp = susceptibles(ageSus, risk) * destiny(ageInf, risk, type)
-							* beta[ageSus][ageInf][MedNO][type][IsoNO] * infDur[ageInf][MedNO][type];
-						if ((type == ItypeX) || (type == ItypeH))
-							temp *= (1.0 - deadFraction[ageInf]);
-						nextGenerationMatrix[ageSus][ageInf] += temp;
-					}
-				}
-			}
-		}*/
-
-		Eigen::MatrixXd Ematirx(7, 7);
-		Eigen::MatrixXd realEigenvalues;
-		Eigen::MatrixXd imagEigenvalues;
-		Eigen::MatrixXd getEigenvector;
-
-		for (int i = 0; i < 7; i++)
-		{
-			for (int j = 0; j < 7; j++)
-			{
-				//수정Ematirx(i, j) = nextGenerationMatrix[i][j];
-			}
-		}
-
-		Eigen::EigenSolver<Eigen::MatrixXd> Eigen_Matrix(Ematirx);
-		realEigenvalues = Eigen_Matrix.eigenvalues().real();
-		imagEigenvalues = Eigen_Matrix.eigenvalues().imag();
-		getEigenvector = Eigen_Matrix.eigenvectors().real();
-		double sizerealEigen = Eigen_Matrix.eigenvalues().real().size();
-
-		double maxEigenvalue = -INFINITY;
-		int maxI = -1;
-
-		for (int i = 0; i < sizerealEigen; i++) {
-			if (imagEigenvalues(i) != 0)
-			{
-			}//System.err.println("Imaginary eigenvalue (" + realEigenvalues[i] + ", " + imagEigenvalues[i] + " ) ignored."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			else if (realEigenvalues(i) > maxEigenvalue) {
-				maxI = i;
-				maxEigenvalue = realEigenvalues(i);
-			}
-		}
-
-		double eigenvector[StageofAgeGroups];
-		double sum = 0.0;
-
-		for (int age = 0; age < StageofAgeGroups; age++) {
-			eigenvector[age] = getEigenvector(age, maxI);
-			sum += eigenvector[age];
-		}
-		for (int age = 0; age < StageofAgeGroups; age++) {
-			eigenvector[age] /= sum; // potential division by zero!
-		}
-		//m = nextGenerationMatrix;
-		//bb = b;
-		return maxEigenvalue - 2.5;
-
-	}
-	double computeDeadFraction(double gam, double t, double dead)
-	{
-		double result = 0.0;
-		double product = 1.0;
-		double temp = gam / (gam + t);
-		for (int iStage = 0; iStage < IstageGroups; iStage++) {
-			result += product;
-			product *= temp;
-		}
-		result *= t / (t + gam);
-		return result - dead;
-	}
-	double ComputeF50(double mu)
-	{
-		double product = 1.0;
-		double sum = IstageGroups;
-		if (mu < 1.0) sum = (1.0 - pow(mu, IstageGroups)) / (1.0 - mu);
-		for (int i = 0; i < IstageGroups; i++) {
-			contagiousness[i] = IstageGroups  * product / sum; // potential division by zero!
-			product *= mu;
-		}
-		double allStagesInfectiosity = 0.0;
-		for (int i = 0; i < IstageGroups; i++) {
-			allStagesInfectiosity += contagiousness[i];
-		}
-		int halfInfectiousStages = IstageGroups / 2;
-		double halfStagesInfectiosity = 0.0;
-		for (int i = 0; i < halfInfectiousStages; i++) {
-			halfStagesInfectiosity += contagiousness[i];
-		}
-		if (halfInfectiousStages + halfInfectiousStages < IstageGroups) {
-			halfStagesInfectiosity += 0.5 * contagiousness[halfInfectiousStages];
-		}
-
-		return 0;//halfInfectiosity - (halfStagesInfectiosity / allStagesInfectiosity);
-	}
-private:
-	double find(double a, double b, int type) {
-		double c = 0.5 * (a + b);
-		double cval;
-
-		switch (type)
-		{
-		case typeR0: cval = ComputeR0(c); break;
-		case typeF50: cval = ComputeF50(c); break;
-		case typeDeadFraction: cval = computeDeadFraction(gam, c, dead); break;
-		default: return 0;
-		}
-		if (cval < 0)
-			return find(c, b, type);
-		if (cval > 0)
-			return find(a, c, type);
-		return c;
-	}
-};
-
 /*Initialize function*/
 void Initialize()
 {
-	//
 	Individuals[Age0to6] = Population[Age0to6];
 	Individuals[Age7to12] = Population[Age7to12];
 	Individuals[Age13to18] = Population[Age13to18];
@@ -607,8 +652,8 @@ void Initialize()
 
 	// Distribution of individuals (by age and risk group
 	for (int age = 0; age < StageofAgeGroups; age++) {
-		Susceptible[age][LowRisk] = ageDistribution[age] * (1.0 - percentage(HighRiskRate[ageClass[age]]));
-		Susceptible[age][HighRisk] = ageDistribution[age] * percentage(HighRiskRate[ageClass[age]]);
+		Susceptibles[age][LowRisk] = ageDistribution[age] * (1.0 - percentage(HighRiskRate[ageClass[age]]));
+		Susceptibles[age][HighRisk] = ageDistribution[age] * percentage(HighRiskRate[ageClass[age]]);
 	}
 
 	//Initializae the contact matrix
@@ -741,14 +786,14 @@ void Initialize()
 	// and medication). tau is chosen such that the chosen fraction dies 
 	// during the period of contagiousness.
 	for (int age = 0; age < StageofAgeGroups; age++) {
-		double dead = deadFraction[age];
-		double gam = gamma[age][MedNO][ItypeH];
+		Root.dead = deadFraction[age];
+		Root.gam = gamma[age][MedNO][ItypeH];
 		tau[age] = Root.findRoot(0, 1, typeDeadFraction);
 	}
 
-	std::fill_n(doSchoolClosure0to6, (Maximumday*TimeResolution), false);
-	std::fill_n(doSchoolClosure7to12, (Maximumday*TimeResolution), false);
-	std::fill_n(doSchoolClosure13to18, (Maximumday*TimeResolution), false);
+	std::fill_n(doSchoolClosure0to6, NumberofArray, false);
+	std::fill_n(doSchoolClosure7to12, NumberofArray, false);
+	std::fill_n(doSchoolClosure13to18, NumberofArray, false);
 
 
 	//std::fill_n(cc + 3, 5, true); -> 0001111100000~
@@ -756,5 +801,297 @@ void Initialize()
 		std::fill_n(doSchoolClosure0to6 + SchoolCloseRangeBegin, SchoolCloseRangeEnd - SchoolCloseRangeBegin, true);
 		std::fill_n(doSchoolClosure7to12 + SchoolCloseRangeBegin, SchoolCloseRangeEnd - SchoolCloseRangeBegin, true);
 		std::fill_n(doSchoolClosure13to18 + SchoolCloseRangeBegin, SchoolCloseRangeEnd - SchoolCloseRangeBegin, true);
+	}
+}
+
+/*Initial Y data*/
+void InitialY()
+{
+	std::fill_n(OutputY, OutputArray, 0);
+
+	for (int age = 0; age < StageofAgeGroups; age++) {
+		for (int risk = 0; risk < StageofRisk; risk++) {
+			if (age == HCW) {
+				OutputY[S(age, risk)] = Susceptibles[age][risk] * (1.0 - immuneFract[Age19to64]);
+				OutputY[I(age)] += Susceptibles[age][risk] * immuneFract[Age19to64];
+			}
+			else {
+				OutputY[S(age, risk)] = Susceptibles[age][risk] * (1.0 - immuneFract[age]);
+				OutputY[I(age)] += Susceptibles[age][risk] * immuneFract[age];
+			}
+		}
+	}
+	for (int age = 0; age < StageofAgeGroups; age++) {
+		double exposedLowRisk = (1.0 - HighRiskRate[ageClass[age]]) * eigenvector[age] / total; // potential division by zero!
+		OutputY[S(age, LowRisk)] -= exposedLowRisk;
+		OutputY[E(age, LowRisk, Estage1)] = exposedLowRisk;
+		double exposedHighRisk = HighRiskRate[ageClass[age]] * eigenvector[age] / total; // potential division by zero!
+		OutputY[S(age, HighRisk)] -= exposedHighRisk;
+		OutputY[E(age, HighRisk, Estage1)] = exposedHighRisk;
+	}
+
+	/*누적 데이터 초기값 설정*/
+	for (int i = 0; i < OutputArray; i++)
+		CumulateOutput[i] = OutputY[i];
+}
+
+/////////////////////////////////////////////////////====================================================================================================
+/////////////////////////////////////////////////////====================================================================================================
+
+//Daily fraction of treatment dose during antiviral prophylaxis.
+double zeta = 0.1;
+
+//Contact shift of flu patients to HCW [%].
+double hcwContactFraction = 0.9;
+
+//First day of health care worker prophylaxis.
+double hcwProphylaxisBegin = 0.0;
+
+//Day at which health care worker prophylaxis is terminated.
+double hcwProphylaxisEnd = 0.0;
+
+//Fraction of the population for which antiviral treatment is available.
+double antiviralRessource = 1.0;
+
+//Treshold above which school closing is applied.
+double schoolClosingTreshold = 1.0;
+
+//Number of non-flu patients.
+double nonFluPatients = 500;
+
+//Fraction of non-flu patients sent home.
+double sentHomeFraction = 0.0;
+
+//Reduction of susceptibility by antiviral prophylactic treatement.
+double treatEfficacySusceptiblilty = 0.5;
+
+void EvaluationY(double time)
+{
+	// Initialize counters. 
+	
+	// 감염자 TAB : Susceptibles, exposed, asymptomatic, moderate, severe, dead, immune
+	// 의료자원 TAB : N-95mask, respirator,  Antivirals
+	// 검체수 TAB : 
+	// 일일 TAB : outpatients, HospitalICU, HospitalNICU
+	// 누적 TAB : outpatients, HospitalICU, HospitalNICU
+	OutputY[Outpatients] = 0.0;
+	OutputY[Antivirals] = 0.0;
+	OutputY[Hospitalisation] = 0.0;
+	OutputY[HCWReturnAntivirals] = 0.0;
+
+
+
+	bool doProphylaxis = false;
+	if ((time >= hcwProphylaxisBegin) && (time<hcwProphylaxisEnd)) {
+		if (antiviralRessource>CumulateOutput[Antivirals]) {
+			doProphylaxis = true;
+			OutputY[Antivirals] += zeta * (healthCareWorkers / total - CumulateOutput[D(HCW)] - CumulateOutput[HCWReturnAntivirals]);
+		}
+	}
+	
+	if (SchoolCloseRangeBegin == SchoolCloseRangeEnd) {
+		if (CumulateOutput[AP(Age0to6)] * total / Individuals[Age0to6] > schoolClosingTreshold)
+			doSchoolClosure0to6[(int)ceil(time)] = true;
+		if (CumulateOutput[AP(Age7to12)] * total / Individuals[Age7to12] > schoolClosingTreshold)
+			doSchoolClosure7to12[(int)ceil(time)] = true;
+		if (CumulateOutput[AP(Age13to18)] * total / Individuals[Age13to18] > schoolClosingTreshold)
+			doSchoolClosure13to18[(int)ceil(time)] = true;
+	}
+
+	bool doSchoolClosing0to6 = doSchoolClosure0to6[(int)floor(time)];
+	bool doSchoolClosing6to12 = doSchoolClosure7to12[(int)floor(time)];
+	bool doSchoolClosing13to19 = doSchoolClosure13to18[(int)floor(time)];
+
+	// Calculate the current force of infection.
+	lambda[HCW] = 0.0;
+	for (int ageSus = 0; ageSus < StageofAgeGroups; ageSus++) {
+		if (ageSus<HCW) lambda[ageSus] = 0.0;
+		for (int ageInf = 0; ageInf < StageofAgeGroups; ageInf++) {
+
+			double cancellingFactor = 1.0;
+			double infChildCareFactor = 1.0;
+			double susChildCareFactor = 1.0;
+			int isolation = ((time >= RangeofIsolationBegin) && (time < RangeofIsolationEnd)) ? IsoYES : IsoNO;
+			if ((ageSus <= Age13to18) && (ageInf <= Age13to18)) {/*학교 휴교에 따른 영향*/
+				if (ageSus == ageInf) {
+					if ((ageInf == Age0to6) && (doSchoolClosing0to6)) {
+						cancellingFactor = (1.0 - percentage(SchoolContactRate[ageInf]));
+					}
+					if ((ageInf == Age7to12) && (doSchoolClosing6to12)) {
+						cancellingFactor = (1.0 - percentage(SchoolContactRate[ageInf]));
+					}
+					if ((ageInf == Age13to18) && (doSchoolClosing13to19)) {
+						cancellingFactor = (1.0 - percentage(SchoolContactRate[ageInf]));
+					}
+				}
+			}
+			else if ((ageSus >= Age19to64) && (ageInf >= Age19to64)) {/*대중집회에 따른 영향*/
+				if ((time >= GatheringCancleRangeBegin) && (time<GatheringCancleRangeEnd)) {
+					cancellingFactor = (1.0 - percentage(GatheringCancelReductionRate));
+				}
+			}
+			else {
+				if (doSchoolClosing0to6) {
+					if (ageInf == Age0to6) infChildCareFactor = redistributionFactor[ageInf];
+					if (ageSus == Age0to6) susChildCareFactor = redistributionFactor[ageSus];
+				}
+				if (doSchoolClosing6to12) {
+					if (ageInf == Age7to12) infChildCareFactor = redistributionFactor[ageInf];
+					if (ageSus == Age7to12) susChildCareFactor = redistributionFactor[ageSus];
+				}
+				if (doSchoolClosing13to19) {
+					if (ageInf == Age13to18) infChildCareFactor = redistributionFactor[ageInf];
+					if (ageSus == Age13to18) susChildCareFactor = redistributionFactor[ageSus];
+				}
+			}
+
+			double generalFactor = 1.0;
+			if ((time >= ContactReductionRangeBegin) && (time <  ContactReductionRangeEnd))
+				generalFactor *= (1.0 - ContactReductionRate);
+			double temp = 0.0;
+			double tempHCW = 0.0;
+			for (int eStage = EstageGroups - prodromalStages; eStage < EstageGroups; eStage++) {
+				temp += (CumulateOutput[E(ageInf, LowRisk, eStage)] + CumulateOutput[E(ageInf, HighRisk, eStage)])  * eBeta[ageSus][ageInf] * cancellingFactor * susChildCareFactor * infChildCareFactor;
+			}
+
+			for (int iStage = 0; iStage < IstageGroups; iStage++) {
+				temp += (CumulateOutput[A(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeA][isolation] * cancellingFactor * susChildCareFactor * infChildCareFactor
+					+ CumulateOutput[M(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeM][isolation] * cancellingFactor * susChildCareFactor * infChildCareFactor
+					+ CumulateOutput[V(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeV][isolation] * susChildCareFactor
+					+ CumulateOutput[X(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeX][isolation] * susChildCareFactor
+					+ CumulateOutput[W(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeW][isolation] * susChildCareFactor
+					+ CumulateOutput[W(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeW][isolation] * susChildCareFactor
+					+ (CumulateOutput[H(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeH][isolation] * susChildCareFactor
+						+ CumulateOutput[H(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeH][isolation] * susChildCareFactor) * (1.0 - hcwContactFraction)) * contagiousness[iStage];
+
+				tempHCW += (CumulateOutput[A(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeA][isolation]
+					+ CumulateOutput[M(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeM][isolation]
+					+ CumulateOutput[V(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeV][isolation]
+					+ CumulateOutput[X(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeX][isolation]
+					+ CumulateOutput[W(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeW][isolation]
+					+ CumulateOutput[W(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeW][isolation])
+					* Individuals[ageInf] * hcwContactFraction * contagiousness[iStage] * (nonFluPatients / total) * (1.0 - sentHomeFraction) / healthCareWorkers;
+
+				tempHCW += (CumulateOutput[H(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeH][isolation]
+					+ CumulateOutput[H(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeH][isolation])
+					* Individuals[ageInf] * hcwContactFraction * contagiousness[iStage] / healthCareWorkers;
+			}
+			lambda[HCW] += tempHCW * generalFactor;
+			lambda[ageSus] += temp * generalFactor;
+		}
+	}
+
+	if (doProphylaxis) {
+		lambda[HCW] *= (1.0 - treatEfficacySusceptiblilty);
+	}
+
+	// Calculate what fraction of severe cases are treated.
+	double todaySevereTreatFract = 0.0;
+	if ((time >= VerySickTreatRangeBegin) && (time<VerySickTreatRangeEnd)) {
+		todaySevereTreatFract = percentage(VerySickTreatRate);
+		if (antiviralRessource <= CumulateOutput[Antivirals]) todaySevereTreatFract = 0.0;
+	}
+
+	// Calculate what fraction of extremely severe cases are treated.
+	double todayExtremeTreatFract = 0.0;
+	if ((time >= ExtremelySickTreatRangeBegin) && (time<ExtremelySickTreatRangeEnd)) {
+		todayExtremeTreatFract = percentage(ExtremelySickTreatRate);
+		if (antiviralRessource <= CumulateOutput[Antivirals]) todayExtremeTreatFract = 0.0;
+	}
+
+	// Susceptible individuals are infected.
+	double ImmunebyVaccine;
+	double Vaccine;
+	if ((VaccineStart <= time) && (time < (VaccineStart + AntibodyCreateRange)))
+		ImmunebyVaccine = 1;
+	else
+		ImmunebyVaccine = 0;
+	for (int age = 0; age < StageofAgeGroups; age++) {
+		for (int risk = 0; risk < StageofRisk; risk++) {
+			Vaccine = ImmunebyVaccine * VaccineAgeRate[age] / AntibodyCreateRange * VaccineEffectAgeRate[age];
+			OutputY[S(age, risk)] = -lambda[age] * (1 - Vaccine) * CumulateOutput[S(age, risk)] - Vaccine * CumulateOutput[S(age, risk)];
+		}
+	}
+
+	for (int age = 0; age < StageofAgeGroups; age++) {
+		for (int risk = 0; risk < StageofRisk; risk++) {
+			for (int k = 0; k < EstageGroups; k++) {
+				if (k == Estage1)
+					OutputY[E(age, risk, k)] = lambda[age] * (1 - Vaccine) * CumulateOutput[S(age, risk)] - delta * CumulateOutput[E(age, risk, Estage1)];
+				OutputY[E(age, risk, k)] = delta * (CumulateOutput[E(age, risk, k - 1)] - CumulateOutput[E(age, risk, k)]);
+			}
+		}
+	}
+
+
+
+
+
+	/*누적 데이터 계산(초기값 사용시에는 주석처리)*/
+	for (int i = 0; i < OutputArray; i++)
+		CumulateOutput[i] += OutputY[i];
+}
+
+// 감염자 TAB : Susceptibles, exposed, asymptomatic, moderate, severe, dead, immune
+double PlotSusceptibles[StageofAgeGroups][NumberofArray];
+double PlotExposed[StageofAgeGroups][NumberofArray];
+double PlotAsymptomatic[StageofAgeGroups][NumberofArray];
+double PlotModerate[StageofAgeGroups][NumberofArray];
+double PlotSevere[StageofAgeGroups][NumberofArray];
+double PlotDead[StageofAgeGroups][NumberofArray];
+double PlotImmune[StageofAgeGroups][NumberofArray];
+
+// 의료자원 TAB : N-95mask, respirator,  Antivirals
+double PlotN95mask[StageofAgeGroups][NumberofArray];
+double PlotRespirator[StageofAgeGroups][NumberofArray];
+double PlotAntivirals[StageofAgeGroups][NumberofArray];
+
+// 검체수 TAB : Specimen
+double PlotSpecimen[StageofAgeGroups][NumberofArray];
+
+// 일일 TAB : outpatients, HospitalICU, HospitalNICU
+double PlotOutpatients[StageofAgeGroups][NumberofArray];
+double PlotHospitalICU[StageofAgeGroups][NumberofArray];
+double PlotHospitalNICU[StageofAgeGroups][NumberofArray];
+
+// 누적 TAB : outpatients, HospitalICU, HospitalNICU
+double PlotCumOutpatients[StageofAgeGroups][NumberofArray];
+double PlotCumHospitalICU[StageofAgeGroups][NumberofArray];
+double PlotCumHospitalNICU[StageofAgeGroups][NumberofArray];
+
+void KfluStep()
+{
+	double day;
+	
+	Initialize();
+	InitialY();
+	for (day = 0.0; day < Maximumday; day = day + (1.0 / TimeResolution))
+	{
+		EvaluationY(day);
+		ArrayforPlot(day);
+		/*std::cout << '\r';
+		for (int i = 0; i <= day*10; i++)
+			std::cout << PlotSusceptibles[1][i] << ' ';
+		*/
+	}
+}
+
+
+void ArrayforPlot(double m)
+{
+	int day_t = round(m*10);
+	
+	for (int age = 0; age < StageofAgeGroups; age++)
+	{
+		PlotSusceptibles[age][day_t] = OutputY[S(age, LowRisk)] + OutputY[S(age, HighRisk)];
+		for (int k = 0; k < EstageGroups; k++)
+			PlotExposed[age][day_t] += OutputY[E(age, LowRisk, k)] + OutputY[E(age, HighRisk, k)];
+		for (int k = 0; k < IstageGroups; k++) {
+			PlotAsymptomatic[age][day_t] += OutputY[A(age, k)];
+			PlotModerate[age][day_t] += OutputY[M(age, k)];
+			//PlotSevere[age][day_t] += OutputY[S(age, k)];
+		}
+		PlotDead[age][day_t] = OutputY[D(age)];
+		PlotImmune[age][day_t] = OutputY[I(age)];
 	}
 }

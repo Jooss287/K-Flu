@@ -5432,41 +5432,65 @@ p, li { white-space: pre-wrap; }
       <attribute name="title">
        <string>감염자</string>
       </attribute>
-      <widget class="QScrollArea" name="scrollArea_11">
+      <widget class="QCustomPlot" name="customPlot_infection" native="true">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>885</width>
-         <height>541</height>
+         <x>30</x>
+         <y>90</y>
+         <width>831</width>
+         <height>281</height>
         </rect>
        </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+      </widget>
+      <widget class="QTableWidget" name="infectionTable">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>370</y>
+         <width>831</width>
+         <height>171</height>
+        </rect>
        </property>
-       <property name="widgetResizable">
-        <bool>false</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_11">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>865</width>
-          <height>500</height>
-         </rect>
+       <column>
+        <property name="text">
+         <string/>
         </property>
-        <widget class="QCustomPlot" name="customPlot_infection" native="true">
-         <property name="geometry">
-          <rect>
-           <x>79</x>
-           <y>130</y>
-           <width>711</width>
-           <height>341</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
+       </column>
+       <column>
+        <property name="text">
+         <string>감수성기에 있는 사람</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>잠복기에 있는 사람</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>무증상자</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>중증도가 중간인 사람</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>중증도가 높은 사람</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>사망자</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>회복한 사람</string>
+        </property>
+       </column>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_11">
@@ -5653,8 +5677,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QCheckBox" name="age_checkBox5">
      <property name="geometry">
       <rect>
-       <x>600</x>
-       <y>120</y>
+       <x>580</x>
+       <y>100</y>
        <width>95</width>
        <height>40</height>
       </rect>
@@ -5674,8 +5698,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QCheckBox" name="age_checkBox3">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>120</y>
+       <x>330</x>
+       <y>100</y>
        <width>95</width>
        <height>40</height>
       </rect>
@@ -5695,8 +5719,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QCheckBox" name="age_checkBox1">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>120</y>
+       <x>100</x>
+       <y>100</y>
        <width>95</width>
        <height>40</height>
       </rect>
@@ -5726,7 +5750,7 @@ p, li { white-space: pre-wrap; }
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>120</y>
+       <y>100</y>
        <width>95</width>
        <height>40</height>
       </rect>
@@ -5739,6 +5763,9 @@ p, li { white-space: pre-wrap; }
      <property name="text">
       <string>7세-12세</string>
      </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
     </widget>
     <widget class="QTextEdit" name="textEdit_213">
      <property name="enabled">
@@ -5767,8 +5794,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QCheckBox" name="age_checkBox4">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>120</y>
+       <x>460</x>
+       <y>100</y>
        <width>95</width>
        <height>40</height>
       </rect>
@@ -5788,8 +5815,8 @@ p, li { white-space: pre-wrap; }
     <widget class="QCheckBox" name="age_checkBox6">
      <property name="geometry">
       <rect>
-       <x>730</x>
-       <y>120</y>
+       <x>710</x>
+       <y>100</y>
        <width>95</width>
        <height>40</height>
       </rect>

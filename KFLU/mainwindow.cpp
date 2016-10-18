@@ -3,6 +3,7 @@
 #include "qcustomplot.h"
 #include <define.h>
 
+
 /*input 관련 변수들*/
 int PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
 
@@ -16,8 +17,7 @@ int contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 
 
 /*output 관련 변수들*/
 int GraphAge = Age0to6; //default
-
-
+bool AgeAll = true;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -32,35 +32,52 @@ MainWindow::~MainWindow()
     delete ui;
 }
 /*tab별 그래프 그리는 함수들*/
-void MainWindow::makeInfectionPlot(QVector<double>x, QVector<double>y, int size){
+void MainWindow::makeInfectionPlot(QVector<double>x, QVector<double>y){
 
-    // create graph and assign data to it:
-    ui->customPlot_infection->addGraph();
+	ui->customPlot_infection->legend->setVisible(true);
+	ui->customPlot_infection->legend->setBrush(QBrush(QColor(255, 255, 255, 230)));
+	// by default, the legend is in the inset layout of the main axis rect. So this is how we access it to change legend placement:
+	ui->customPlot_infection->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignBottom | Qt::AlignRight);
+
+    ui->customPlot_infection->xAxis->setLabel("일");
+	ui->customPlot_infection->yAxis->setLabel("인구");
+
+	// set axes ranges, so we see all data:
+	ui->customPlot_infection->xAxis->setRange(-1, 1);
+	ui->customPlot_infection->yAxis->setRange(0, 1);
+
+	// create graph and assign data to it:
+	ui->customPlot_infection->addGraph();
     ui->customPlot_infection->graph(0)->setData(x, y);
-    // give the axes some labels:
-    ui->customPlot_infection->xAxis->setLabel("x");
-    ui->customPlot_infection->yAxis->setLabel("y");
-    // set axes ranges, so we see all data:
-    ui->customPlot_infection->xAxis->setRange(-1, 1);
-    ui->customPlot_infection->yAxis->setRange(0, 1);
+	ui->customPlot_infection->graph(0)->setName("감수성기에 있는 사람");
     ui->customPlot_infection->replot();
-}
 
-void MainWindow::makeResourcePlot(QVector<double>x, QVector<double>y, int size){
-
-}
-
-void MainWindow::makeSpecimenPlot(QVector<double>x, QVector<double>y, int size){
-
-}
-
-
-void MainWindow::makeDailyPlot(QVector<double>x, QVector<double>y, int size){
-
+    ui->infectionTable->setColumnWidth(0,80);
+    ui->infectionTable->setColumnWidth(1,130);
+    ui->infectionTable->setColumnWidth(2,120);
+    ui->infectionTable->setColumnWidth(3,80);
+    ui->infectionTable->setColumnWidth(4,130);
+	ui->infectionTable->setColumnWidth(5,120);
+	ui->infectionTable->setColumnWidth(6,70);
+	ui->infectionTable->setColumnWidth(7,90);
 }
 
 
-void MainWindow::makeCumulativePlot(QVector<double>x, QVector<double>y, int size){
+void MainWindow::makeResourcePlot(QVector<double>x, QVector<double>y){
+
+}
+
+void MainWindow::makeSpecimenPlot(QVector<double>x, QVector<double>y){
+
+}
+
+
+void MainWindow::makeDailyPlot(QVector<double>x, QVector<double>y){
+
+}
+
+
+void MainWindow::makeCumulativePlot(QVector<double>x, QVector<double>y){
 
 }
 
@@ -70,9 +87,9 @@ void MainWindow::setDefault()
 {
     /*인구 tab 기본값 세팅*/
 
-    ui->input_SchoolRatio0to6->setText(QString::number(SchoolContactRate)); //초기값 수정 필요
-    ui->input_SchoolRatio7to12->setText(QString::number(SchoolContactRate)); //초기값 수정 필요
-    ui->input_SchoolRatio13to18->setText(QString::number(SchoolContactRate)); //초기값 수정 필요
+    ui->input_SchoolRatio0to6->setText(QString::number(SchoolCloseContactRatio)); //초기값 수정 필요
+    ui->input_SchoolRatio7to12->setText(QString::number(SchoolCloseContactRatio)); //초기값 수정 필요
+    ui->input_SchoolRatio13to18->setText(QString::number(SchoolCloseContactRatio)); //초기값 수정 필요
 
     ui->input_AbsentRatio->setText(QString::number(AbsenceContactRatio));
 
@@ -117,8 +134,8 @@ void MainWindow::setDefault()
     ui->input_isolModerate->setText(QString::number(ModerateCaseIsolation));
     ui->input_isolSevereHome->setText(QString::number(SevereHomeCaseIsolation));
     ui->input_isolSevereHospital->setText(QString::number(SevereHospitalCaseIsolation));
-    ui->input_isolStart->setText(QString::number(RangeofIsolation));//변수 수정 필요
-    ui->input_isolEnd->setText(QString::number(RangeofIsolation));//변수 수정 필요
+    ui->input_isolStart->setText(QString::number(RangeofIsolationBegin));
+    ui->input_isolEnd->setText(QString::number(RangeofIsolationEnd));
 
     /*치료 tab 기본값 세팅*/
     ui->input_antiviralsRate->setText(QString::number(AntiviralsInjectionRate));
@@ -127,12 +144,12 @@ void MainWindow::setDefault()
     ui->input_antiviralsHelp->setText(QString::number(AntiviralsHelp));
 
     ui->input_verySickTreat->setText(QString::number(VerySickTreatRate));
-    ui->input_verySickTreatStart->setText(QString::number(VerySickTreatRange));//변수 수정 필요
-    ui->input_verySickTreatEnd->setText(QString::number(VerySickTreatRange));//변수 수정 필요
+    ui->input_verySickTreatStart->setText(QString::number(VerySickTreatRangeBegin));
+    ui->input_verySickTreatEnd->setText(QString::number(VerySickTreatRangeEnd));
 
     ui->input_extreamlySickTreat->setText(QString::number(ExtremelySickTreatRate));
-    ui->input_extreamlySickTreatStart->setText(QString::number(ExtremelySickTreatRange));//변수 수정 필요
-    ui->input_extreamlySickTreatEnd->setText(QString::number(ExtremelySickTreatRange));//변수 수정 필요
+    ui->input_extreamlySickTreatStart->setText(QString::number(ExtremelySickTreatRangeBegin));
+    ui->input_extreamlySickTreatEnd->setText(QString::number(ExtremelySickTreatRangeEnd));
 
     ui->input_contagiousnessReduct->setText(QString::number(ContagiousnessReduction));
     ui->input_durationReduct->setText(QString::number(DiseaseDurationReduction));
@@ -140,16 +157,16 @@ void MainWindow::setDefault()
 
     /*격리 tab 기본값 세팅*/
     ui->input_contactReduct->setText(QString::number(ContactReductionRate));
-    ui->input_contactReductStart->setText(QString::number(ContactReductionRange));//변수 수정 필요
-    ui->input_contactReductEnd->setText(QString::number(ContactReductionRange));//변수 수정 필요
+    ui->input_contactReductStart->setText(QString::number(ContactReductionRangeBegin));
+    ui->input_contactReductEnd->setText(QString::number(ContactReductionRangeEnd));
 
-    ui->input_SchoolCloseStart->setText(QString::number(SchoolCloseRange)); //변수 수정 필요
-    ui->input_SchoolCloseEnd->setText(QString::number(SchoolCloseRange));//변수 수정 필요
+    ui->input_SchoolCloseStart->setText(QString::number(SchoolCloseRangeBegin));
+    ui->input_SchoolCloseEnd->setText(QString::number(SchoolCloseRangeEnd));
     ui->input_SchoolCloseContact->setText(QString::number(SchoolCloseContactRatio));
 
     ui->input_gatheringCancel->setText(QString::number(GatheringCancelReductionRate));
-    ui->input_gatheringCancelStart->setText(QString::number(GatheringCancleRange));//변수 수정 필요
-    ui->input_gatheringCancelEnd->setText(QString::number(GatheringCancleRange));//변수 수정 필요
+    ui->input_gatheringCancelStart->setText(QString::number(GatheringCancleRangeBegin));
+    ui->input_gatheringCancelEnd->setText(QString::number(GatheringCancleRangeEnd));
 
     /*입원 tab 기본값 세팅*/
     ui->input_NICU->setText(QString::number(HospitalizationNICU));
@@ -220,7 +237,7 @@ void MainWindow::on_outputPageBtn_clicked()
       x[i] = i/50.0 - 1; // x goes from -1 to 1
       y[i] = x[i]*x[i]; // let's plot a quadratic function
     }
-    MainWindow::makeInfectionPlot(x,y,size);
+    MainWindow::makeInfectionPlot(x,y);
 }
 //입력화면 이동 버튼 클릭
 void MainWindow::on_inputPageBtn_clicked()
@@ -375,17 +392,17 @@ void MainWindow::on_input_contact_5_5_textEdited(const QString &arg1)
 //인풋 변수 수정 필요
 void MainWindow::on_input_SchoolRatio0to6_textEdited(const QString &arg1)
 {
-    SchoolContactRate = arg1.toDouble();
+	SchoolCloseContactRatio = arg1.toDouble();
 }
 //인풋 변수 수정 필요
 void MainWindow::on_input_SchoolRatio7to12_textEdited(const QString &arg1)
 {
-    SchoolContactRate = arg1.toDouble();
+	SchoolCloseContactRatio = arg1.toDouble();
 }
 //인풋 변수 수정 필요
 void MainWindow::on_input_SchoolRatio13to18_textEdited(const QString &arg1)
 {
-    SchoolContactRate = arg1.toDouble();
+	SchoolCloseContactRatio = arg1.toDouble();
 }
 
 void MainWindow::on_input_AbsentRatio_textEdited(const QString &arg1)
@@ -540,15 +557,15 @@ void MainWindow::on_input_isolSevereHospital_textEdited(const QString &arg1)
 {
     SevereHospitalCaseIsolation = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_isolStart_textEdited(const QString &arg1)
 {
-    RangeofIsolation = arg1.toDouble();
+    RangeofIsolationBegin = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_isolEnd_textEdited(const QString &arg1)
 {
-    ExtremelySickTreatRange = arg1.toDouble();
+    ExtremelySickTreatRangeBegin = arg1.toDouble();
 }
 
 /*치료 tab input 받아오기*/
@@ -572,15 +589,15 @@ void MainWindow::on_input_verySickTreat_textEdited(const QString &arg1)
 {
     VerySickTreatRate = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_verySickTreatStart_textEdited(const QString &arg1)
 {
-    VerySickTreatRange = arg1.toDouble();
+    VerySickTreatRangeBegin = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_verySickTreatEnd_textEdited(const QString &arg1)
 {
-    VerySickTreatRange = arg1.toDouble();
+    VerySickTreatRangeEnd = arg1.toDouble();
 }
 
 
@@ -589,15 +606,15 @@ void MainWindow::on_input_extreamlySickTreat_textEdited(const QString &arg1)
 {
     ExtremelySickTreatRate = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_extreamlySickTreatStart_textEdited(const QString &arg1)
 {
-    ExtremelySickTreatRange = arg1.toDouble();
+    ExtremelySickTreatRangeBegin = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_extreamlySickTreatEnd_textEdited(const QString &arg1)
 {
-    ExtremelySickTreatRange = arg1.toDouble();
+    ExtremelySickTreatRangeEnd = arg1.toDouble();
 }
 
 void MainWindow::on_input_contagiousnessReduct_textEdited(const QString &arg1)
@@ -621,25 +638,25 @@ void MainWindow::on_input_contactReduct_textEdited(const QString &arg1)
 {
     ContactReductionRate = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_contactReductStart_textEdited(const QString &arg1)
 {
-    ContactReductionRange = arg1.toDouble();
+    ContactReductionRangeBegin = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_contactReductEnd_textEdited(const QString &arg1)
 {
-    ContactReductionRange = arg1.toDouble();
+    ContactReductionRangeEnd = arg1.toDouble();
 }
 
-//변수 수정 필요
 void MainWindow::on_input_SchoolCloseStart_textEdited(const QString &arg1)
 {
+	SchoolCloseRangeBegin = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_SchoolCloseEnd_textEdited(const QString &arg1)
 {
-
+	SchoolCloseRangeEnd = arg1.toDouble();
 }
 
 void MainWindow::on_input_schoolCloseContact_textEdited(const QString &arg1)
@@ -651,15 +668,15 @@ void MainWindow::on_input_gatheringCancel_textEdited(const QString &arg1)
 {
     GatheringCancelReductionRate = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_gatheringCancelStart_textEdited(const QString &arg1)
 {
-
+	GatheringCancleRangeBegin = arg1.toDouble();
 }
-//변수 수정 필요
+
 void MainWindow::on_input_gatheringCancelEnd_textEdited(const QString &arg1)
 {
-
+	GatheringCancleRangeEnd = arg1.toDouble();
 }
 
 /*입원 tab input 받아오기*/
@@ -766,25 +783,34 @@ void MainWindow::on_input_outpatient_textEdited(const QString &arg1)
 void MainWindow::on_age_checkBox1_clicked()
 {
     GraphAge = Age0to6;
+    AgeAll = false;
 }
 
 void MainWindow::on_age_checkBox2_clicked()
 {
     GraphAge = Age7to12;
+    AgeAll = false;
 }
 
 void MainWindow::on_age_checkBox3_clicked()
 {
     GraphAge = Age13to18;
+    AgeAll = false;
 }
 
 void MainWindow::on_age_checkBox4_clicked()
 {
     GraphAge = Age19to64;
+    AgeAll = false;
 }
 
 void MainWindow::on_age_checkBox5_clicked()
 {
     GraphAge = Age65toEnd;
+    AgeAll = false;
 }
 
+void MainWindow::on_age_checkBox6_clicked()
+{
+    AgeAll = true;
+}

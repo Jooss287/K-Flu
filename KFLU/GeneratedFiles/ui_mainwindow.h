@@ -25,6 +25,7 @@
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 #include "qcustomplot.h"
@@ -313,9 +314,8 @@ public:
     QWidget *outputWidget;
     QTabWidget *output_tab;
     QWidget *tab_10;
-    QScrollArea *scrollArea_11;
-    QWidget *scrollAreaWidgetContents_11;
     QCustomPlot *customPlot_infection;
+    QTableWidget *infectionTable;
     QWidget *tab_11;
     QScrollArea *scrollArea_12;
     QWidget *scrollAreaWidgetContents_14;
@@ -1761,18 +1761,30 @@ public:
         tab_10 = new QWidget();
         tab_10->setObjectName(QStringLiteral("tab_10"));
         tab_10->setAutoFillBackground(true);
-        scrollArea_11 = new QScrollArea(tab_10);
-        scrollArea_11->setObjectName(QStringLiteral("scrollArea_11"));
-        scrollArea_11->setGeometry(QRect(0, 0, 885, 541));
-        scrollArea_11->setFrameShape(QFrame::NoFrame);
-        scrollArea_11->setWidgetResizable(false);
-        scrollAreaWidgetContents_11 = new QWidget();
-        scrollAreaWidgetContents_11->setObjectName(QStringLiteral("scrollAreaWidgetContents_11"));
-        scrollAreaWidgetContents_11->setGeometry(QRect(0, 0, 865, 500));
-        customPlot_infection = new QCustomPlot(scrollAreaWidgetContents_11);
+        customPlot_infection = new QCustomPlot(tab_10);
         customPlot_infection->setObjectName(QStringLiteral("customPlot_infection"));
-        customPlot_infection->setGeometry(QRect(79, 130, 711, 341));
-        scrollArea_11->setWidget(scrollAreaWidgetContents_11);
+        customPlot_infection->setGeometry(QRect(30, 90, 831, 281));
+        infectionTable = new QTableWidget(tab_10);
+        if (infectionTable->columnCount() < 8)
+            infectionTable->setColumnCount(8);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        infectionTable->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        infectionTable->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        infectionTable->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        infectionTable->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        infectionTable->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        infectionTable->setHorizontalHeaderItem(5, __qtablewidgetitem5);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        infectionTable->setHorizontalHeaderItem(6, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        infectionTable->setHorizontalHeaderItem(7, __qtablewidgetitem7);
+        infectionTable->setObjectName(QStringLiteral("infectionTable"));
+        infectionTable->setGeometry(QRect(30, 370, 831, 171));
         output_tab->addTab(tab_10, QString());
         tab_11 = new QWidget();
         tab_11->setObjectName(QStringLiteral("tab_11"));
@@ -1843,25 +1855,26 @@ public:
         buttonGroup->setObjectName(QStringLiteral("buttonGroup"));
         buttonGroup->addButton(age_checkBox5);
         age_checkBox5->setObjectName(QStringLiteral("age_checkBox5"));
-        age_checkBox5->setGeometry(QRect(600, 120, 95, 40));
+        age_checkBox5->setGeometry(QRect(580, 100, 95, 40));
         QFont font1;
         font1.setPointSize(12);
         age_checkBox5->setFont(font1);
         age_checkBox3 = new QCheckBox(outputWidget);
         buttonGroup->addButton(age_checkBox3);
         age_checkBox3->setObjectName(QStringLiteral("age_checkBox3"));
-        age_checkBox3->setGeometry(QRect(340, 120, 95, 40));
+        age_checkBox3->setGeometry(QRect(330, 100, 95, 40));
         age_checkBox3->setFont(font1);
         age_checkBox1 = new QCheckBox(outputWidget);
         buttonGroup->addButton(age_checkBox1);
         age_checkBox1->setObjectName(QStringLiteral("age_checkBox1"));
-        age_checkBox1->setGeometry(QRect(80, 120, 95, 40));
+        age_checkBox1->setGeometry(QRect(100, 100, 95, 40));
         age_checkBox1->setFont(font1);
         age_checkBox1->setIconSize(QSize(30, 30));
         age_checkBox1->setChecked(true);
         age_checkBox2 = new QCheckBox(outputWidget);
+        buttonGroup->addButton(age_checkBox2);
         age_checkBox2->setObjectName(QStringLiteral("age_checkBox2"));
-        age_checkBox2->setGeometry(QRect(210, 120, 95, 40));
+        age_checkBox2->setGeometry(QRect(210, 100, 95, 40));
         age_checkBox2->setFont(font1);
         textEdit_213 = new QTextEdit(outputWidget);
         textEdit_213->setObjectName(QStringLiteral("textEdit_213"));
@@ -1871,12 +1884,12 @@ public:
         age_checkBox4 = new QCheckBox(outputWidget);
         buttonGroup->addButton(age_checkBox4);
         age_checkBox4->setObjectName(QStringLiteral("age_checkBox4"));
-        age_checkBox4->setGeometry(QRect(470, 120, 95, 40));
+        age_checkBox4->setGeometry(QRect(460, 100, 95, 40));
         age_checkBox4->setFont(font1);
         age_checkBox6 = new QCheckBox(outputWidget);
         buttonGroup->addButton(age_checkBox6);
         age_checkBox6->setObjectName(QStringLiteral("age_checkBox6"));
-        age_checkBox6->setGeometry(QRect(730, 120, 95, 40));
+        age_checkBox6->setGeometry(QRect(710, 100, 95, 40));
         age_checkBox6->setFont(font1);
         introWidget = new QWidget(mainWidget);
         introWidget->setObjectName(QStringLiteral("introWidget"));
@@ -2744,6 +2757,20 @@ public:
         label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">\354\247\200\354\227\255 \354\234\240\355\230\225\354\235\204 \354\204\240\355\203\235\355\225\230\354\204\270\354\232\224</span></p></body></html>", 0));
         areaSubmit->setText(QApplication::translate("MainWindow", "\354\240\201\354\232\251", 0));
         radioButton_4->setText(QApplication::translate("MainWindow", "\354\204\234\354\232\270\355\230\225", 0));
+        QTableWidgetItem *___qtablewidgetitem = infectionTable->horizontalHeaderItem(1);
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\352\260\220\354\210\230\354\204\261\352\270\260\354\227\220 \354\236\210\353\212\224 \354\202\254\353\236\214", 0));
+        QTableWidgetItem *___qtablewidgetitem1 = infectionTable->horizontalHeaderItem(2);
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "\354\236\240\353\263\265\352\270\260\354\227\220 \354\236\210\353\212\224 \354\202\254\353\236\214", 0));
+        QTableWidgetItem *___qtablewidgetitem2 = infectionTable->horizontalHeaderItem(3);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "\353\254\264\354\246\235\354\203\201\354\236\220", 0));
+        QTableWidgetItem *___qtablewidgetitem3 = infectionTable->horizontalHeaderItem(4);
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "\354\244\221\354\246\235\353\217\204\352\260\200 \354\244\221\352\260\204\354\235\270 \354\202\254\353\236\214", 0));
+        QTableWidgetItem *___qtablewidgetitem4 = infectionTable->horizontalHeaderItem(5);
+        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \354\202\254\353\236\214", 0));
+        QTableWidgetItem *___qtablewidgetitem5 = infectionTable->horizontalHeaderItem(6);
+        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "\354\202\254\353\247\235\354\236\220", 0));
+        QTableWidgetItem *___qtablewidgetitem6 = infectionTable->horizontalHeaderItem(7);
+        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "\355\232\214\353\263\265\355\225\234 \354\202\254\353\236\214", 0));
         output_tab->setTabText(output_tab->indexOf(tab_10), QApplication::translate("MainWindow", "\352\260\220\354\227\274\354\236\220", 0));
         output_tab->setTabText(output_tab->indexOf(tab_11), QApplication::translate("MainWindow", "\354\235\230\353\243\214\354\236\220\354\233\220", 0));
         output_tab->setTabText(output_tab->indexOf(tab_12), QApplication::translate("MainWindow", "\352\262\200\354\262\264\354\210\230", 0));

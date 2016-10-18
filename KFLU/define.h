@@ -320,9 +320,6 @@ double Courseofdisease[StageofAgeGroups][StageofRisk][ItypeGroups];
 //Transition rate during the contagious period (by age, medication and course of disease)
 double gamma[StageofAgeGroups][MedGroups][ItypeGroups];
 
-//Average duration of the infectious period (by age, medication and course of disease)
-double infDur[StageofAgeGroups][MedGroups][ItypeGroups];
-
 //Maximum stage of contagiousness during which antiviral treatment can be given (by age)
 int maxTreatmentStage[StageofAgeGroups];
 

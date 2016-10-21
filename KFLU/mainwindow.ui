@@ -925,12 +925,12 @@ p, li { white-space: pre-wrap; }
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="input_AbsentRatio">
+      <widget class="QLineEdit" name="input_AbsentRatio0to6">
        <property name="geometry">
         <rect>
          <x>320</x>
          <y>470</y>
-         <width>541</width>
+         <width>181</width>
          <height>61</height>
         </rect>
        </property>
@@ -1288,6 +1288,44 @@ p, li { white-space: pre-wrap; }
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
+      <widget class="QLineEdit" name="input_AbsentRatio7to12">
+       <property name="geometry">
+        <rect>
+         <x>500</x>
+         <y>470</y>
+         <width>181</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="input_AbsentRatio13to18">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>470</y>
+         <width>181</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
       <zorder>textEdit</zorder>
       <zorder>textEdit_2</zorder>
       <zorder>textEdit_3</zorder>
@@ -1324,7 +1362,7 @@ p, li { white-space: pre-wrap; }
       <zorder>input_contact_3_3</zorder>
       <zorder>input_contact_3_4</zorder>
       <zorder>input_contact_4_4</zorder>
-      <zorder>input_AbsentRatio</zorder>
+      <zorder>input_AbsentRatio0to6</zorder>
       <zorder>textEdit_18</zorder>
       <zorder>input_contact_total0to6</zorder>
       <zorder>input_contact_total7to12</zorder>
@@ -1348,6 +1386,9 @@ p, li { white-space: pre-wrap; }
       <zorder>input_contact_2_5</zorder>
       <zorder>input_contact_1_5</zorder>
       <zorder>input_Age65toEnd</zorder>
+      <zorder>input_AbsentRatio7to12</zorder>
+      <zorder>input_AbsentRatio13to18</zorder>
+      <zorder>csvWidget</zorder>
      </widget>
      <widget class="QWidget" name="tab_2">
       <property name="autoFillBackground">
@@ -5435,9 +5476,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QCustomPlot" name="customPlot_infection" native="true">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>20</x>
          <y>90</y>
-         <width>831</width>
+         <width>851</width>
          <height>281</height>
         </rect>
        </property>
@@ -5445,17 +5486,12 @@ p, li { white-space: pre-wrap; }
       <widget class="QTableWidget" name="infectionTable">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>20</x>
          <y>370</y>
-         <width>831</width>
+         <width>851</width>
          <height>171</height>
         </rect>
        </property>
-       <column>
-        <property name="text">
-         <string/>
-        </property>
-       </column>
        <column>
         <property name="text">
          <string>감수성기에 있는 사람</string>
@@ -5500,164 +5536,150 @@ p, li { white-space: pre-wrap; }
       <attribute name="title">
        <string>의료자원</string>
       </attribute>
-      <widget class="QScrollArea" name="scrollArea_12">
+      <widget class="QCustomPlot" name="customPlot_resource" native="true">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>885</width>
-         <height>541</height>
+         <x>20</x>
+         <y>90</y>
+         <width>851</width>
+         <height>281</height>
         </rect>
        </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+      </widget>
+      <widget class="QTableWidget" name="resourceTable">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>370</y>
+         <width>851</width>
+         <height>171</height>
+        </rect>
        </property>
-       <property name="widgetResizable">
-        <bool>false</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_14">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>865</width>
-          <height>500</height>
-         </rect>
+       <column>
+        <property name="text">
+         <string>N-95 마스크</string>
         </property>
-        <widget class="QCustomPlot" name="customPlot_resource" native="true">
-         <property name="geometry">
-          <rect>
-           <x>79</x>
-           <y>130</y>
-           <width>711</width>
-           <height>341</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
+       </column>
+       <column>
+        <property name="text">
+         <string>인공호흡기</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>항바이러스제</string>
+        </property>
+       </column>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_12">
       <attribute name="title">
        <string>검체수</string>
       </attribute>
-      <widget class="QScrollArea" name="scrollArea_13">
+      <widget class="QTableWidget" name="specimenTable">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>885</width>
-         <height>541</height>
+         <x>20</x>
+         <y>370</y>
+         <width>851</width>
+         <height>171</height>
         </rect>
        </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>false</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_15">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>865</width>
-          <height>500</height>
-         </rect>
+       <column>
+        <property name="text">
+         <string>검체 수</string>
         </property>
-        <widget class="QCustomPlot" name="customPlot_specimen" native="true">
-         <property name="geometry">
-          <rect>
-           <x>79</x>
-           <y>130</y>
-           <width>711</width>
-           <height>341</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
+       </column>
+      </widget>
+      <widget class="QCustomPlot" name="customPlot_specimen" native="true">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>90</y>
+         <width>851</width>
+         <height>281</height>
+        </rect>
+       </property>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_13">
       <attribute name="title">
        <string>일일</string>
       </attribute>
-      <widget class="QScrollArea" name="scrollArea_14">
+      <widget class="QCustomPlot" name="customPlot_daily" native="true">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>885</width>
-         <height>541</height>
+         <x>20</x>
+         <y>90</y>
+         <width>851</width>
+         <height>281</height>
         </rect>
        </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+      </widget>
+      <widget class="QTableWidget" name="dailyTable">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>370</y>
+         <width>851</width>
+         <height>171</height>
+        </rect>
        </property>
-       <property name="widgetResizable">
-        <bool>false</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_16">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>865</width>
-          <height>500</height>
-         </rect>
+       <column>
+        <property name="text">
+         <string>외래환자 수</string>
         </property>
-        <widget class="QCustomPlot" name="customPlot_daily" native="true">
-         <property name="geometry">
-          <rect>
-           <x>79</x>
-           <y>130</y>
-           <width>711</width>
-           <height>341</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
+       </column>
+       <column>
+        <property name="text">
+         <string>중환자실 병상 수</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>일반 병상 수</string>
+        </property>
+       </column>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_14">
       <attribute name="title">
        <string>누적</string>
       </attribute>
-      <widget class="QScrollArea" name="scrollArea_15">
+      <widget class="QTableWidget" name="cumulativeTable">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>885</width>
-         <height>541</height>
+         <x>20</x>
+         <y>370</y>
+         <width>851</width>
+         <height>171</height>
         </rect>
        </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>false</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_17">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>865</width>
-          <height>500</height>
-         </rect>
+       <column>
+        <property name="text">
+         <string>외래환자 수(누적)</string>
         </property>
-        <widget class="QCustomPlot" name="customPlot_cumulative" native="true">
-         <property name="geometry">
-          <rect>
-           <x>79</x>
-           <y>130</y>
-           <width>711</width>
-           <height>341</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
+       </column>
+       <column>
+        <property name="text">
+         <string>중환자실 환자 수(누적)</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>일반 병상 수(누적)</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QCustomPlot" name="customPlot_cumulative" native="true">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>90</y>
+         <width>851</width>
+         <height>281</height>
+        </rect>
+       </property>
       </widget>
      </widget>
     </widget>
@@ -5740,7 +5762,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="checked">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -5775,7 +5797,7 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>30</x>
        <y>60</y>
-       <width>841</width>
+       <width>851</width>
        <height>41</height>
       </rect>
      </property>
@@ -5828,6 +5850,9 @@ p, li { white-space: pre-wrap; }
      </property>
      <property name="text">
       <string>전체 연령</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -5903,6 +5928,313 @@ p, li { white-space: pre-wrap; }
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="jpgWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>851</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white; font-family:'맑은 고딕';</string>
+    </property>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>851</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>831</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;결과물의 그래프를 JPG 파일로 저장하실 수 있습니다. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>10</y>
+        <width>311</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;JPG 파일로 변환할 결과물을 선택하세요&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="areaSubmit_3">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>160</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>적용</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>감염자</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_2</string>
+      </attribute>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_2">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>의료자원</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_2</string>
+      </attribute>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_3">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>검체수</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_2</string>
+      </attribute>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_4">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>일일</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_2</string>
+      </attribute>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_5">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>누적</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_2</string>
+      </attribute>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="csvWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>851</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white; font-family:'맑은 고딕';</string>
+    </property>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>851</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>831</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;결과물의 그래프를 CSV 파일로 저장하실 수 있습니다. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>10</y>
+        <width>311</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;CSV 파일로 변환할 결과물을 선택하세요&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="areaSubmit_4">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>160</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>적용</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_6">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>감염자</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_7">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>의료자원</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_8">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>검체수</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_9">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>일일</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_10">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>110</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>누적</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <zorder>csvWidget</zorder>
+   <zorder>jpgWidget</zorder>
    <zorder>introWidget</zorder>
    <zorder>outputWidget</zorder>
    <zorder>inputWidget</zorder>
@@ -5920,26 +6252,28 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>파일</string>
     </property>
-    <addaction name="actionOpne"/>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>다른 파일로 변환하기</string>
+     </property>
+     <addaction name="actionJPG"/>
+     <addaction name="actionCSV"/>
+    </widget>
+    <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
-    <addaction name="action"/>
+    <addaction name="menu_2"/>
    </widget>
    <widget class="QMenu" name="menuFdddd">
     <property name="title">
      <string>도움말</string>
     </property>
     <addaction name="actionK_flu"/>
-    <addaction name="action_2"/>
+    <addaction name="actionContact"/>
    </widget>
    <addaction name="menuAaa"/>
    <addaction name="menuFdddd"/>
   </widget>
-  <action name="actionHi">
-   <property name="text">
-    <string>hi</string>
-   </property>
-  </action>
-  <action name="actionOpne">
+  <action name="actionOpen">
    <property name="text">
     <string>새로운 파일열기</string>
    </property>
@@ -5949,19 +6283,24 @@ p, li { white-space: pre-wrap; }
     <string>저장하기</string>
    </property>
   </action>
-  <action name="action">
-   <property name="text">
-    <string>다른 파일로 변환하기</string>
-   </property>
-  </action>
   <action name="actionK_flu">
    <property name="text">
     <string>K flu 설명서</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="actionContact">
    <property name="text">
     <string>연락처</string>
+   </property>
+  </action>
+  <action name="actionJPG">
+   <property name="text">
+    <string>JPG파일로 변환하기</string>
+   </property>
+  </action>
+  <action name="actionCSV">
+   <property name="text">
+    <string>CSV파일로 변환하기</string>
    </property>
   </action>
  </widget>
@@ -5978,5 +6317,10 @@ p, li { white-space: pre-wrap; }
  <connections/>
  <buttongroups>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2">
+   <property name="exclusive">
+    <bool>false</bool>
+   </property>
+  </buttongroup>
  </buttongroups>
 </ui>

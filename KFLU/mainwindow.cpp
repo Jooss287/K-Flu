@@ -1,7 +1,13 @@
 ﻿#include "mainwindow.h"
+#include <stdio.h>
 #include "ui_mainwindow.h"
 #include "qcustomplot.h"
 #include <define.h>
+
+#include <qstring.h>
+
+using namespace std;
+#define toKor(str) QString::fromLocal8Bit(str)
 
 
 /*input 관련 변수들*/
@@ -19,6 +25,29 @@ int contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 
 int GraphAge = Age0to6; //default
 bool AgeAll = true;
 
+QVector<double> SusceptibleArray(NumberofArray);
+QVector<double> ExposedArray(NumberofArray);
+QVector<double> AsymptomaticArray(NumberofArray);
+QVector<double> ModerateArray(NumberofArray);
+QVector<double> SevereArray(NumberofArray);
+QVector<double> DeadArray(NumberofArray);
+QVector<double> ImmuneArray(NumberofArray);
+
+QVector<double> MaskArray(NumberofArray);
+QVector<double> RespArray(NumberofArray);
+QVector<double> AntiviralsArray(NumberofArray);
+
+QVector<double> SpecimenArray(NumberofArray);
+
+QVector<double> DailyOutpatientArray(NumberofArray);
+QVector<double> DailyICUArray(NumberofArray);
+QVector<double> DailyNICUArray(NumberofArray);
+
+QVector<double> CumulOutpatientArray(NumberofArray);
+QVector<double> CumulICUArray(NumberofArray);
+QVector<double> CumulNICUArray(NumberofArray);
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -31,67 +60,597 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+//Output array 만드는 함수
+QVector<double> MainWindow::setOutputArray(int k) {
+
+	/*graph x,y 값 설정*/
+	QVector<double> y(NumberofArray);
+
+	switch (k) {
+	case 0: //Susceptibles
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				SusceptibleArray[i] = PlotSusceptibles[0][i] + PlotSusceptibles[1][i] + PlotSusceptibles[2][i] + PlotSusceptibles[3][i] + PlotSusceptibles[4][i] + PlotSusceptibles[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				SusceptibleArray[i] = PlotSusceptibles[GraphAge][i];
+			}
+		}
+		break;
+	case 1: // exposed
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				ExposedArray[i] = PlotExposed[0][i] + PlotExposed[1][i] + PlotExposed[2][i] + PlotExposed[3][i] + PlotExposed[4][i] + PlotExposed[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				ExposedArray[i] = PlotExposed[GraphAge][i];
+			}
+		}
+		break;
+	case 2: // asymptomatic
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				AsymptomaticArray[i] = PlotAsymptomatic[0][i] + PlotAsymptomatic[1][i] + PlotAsymptomatic[2][i] + PlotAsymptomatic[3][i] + PlotAsymptomatic[4][i] + PlotAsymptomatic[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				AsymptomaticArray[i] = PlotAsymptomatic[GraphAge][i];
+			}
+		}
+		break;
+	case 3: // Moderate
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				ModerateArray[i] = PlotModerate[0][i] + PlotModerate[1][i] + PlotModerate[2][i] + PlotModerate[3][i] + PlotModerate[4][i] + PlotModerate[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				ModerateArray[i] = PlotModerate[GraphAge][i];
+			}
+		}
+		break;
+	case 4: // Severe
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				SevereArray[i] = PlotSevere[0][i] + PlotSevere[1][i] + PlotSevere[2][i] + PlotSevere[3][i] + PlotModerate[4][i] + PlotModerate[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				ModerateArray[i] = PlotModerate[GraphAge][i];
+			}
+		}
+		break;
+	case 5: // Dead
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				DeadArray[i] = PlotDead[0][i] + PlotDead[1][i] + PlotDead[2][i] + PlotDead[3][i] + PlotDead[4][i] + PlotDead[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				DeadArray[i] = PlotDead[GraphAge][i];
+			}
+		}
+		break;
+	case 6: // Immune
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				ImmuneArray[i] = PlotImmune[0][i] + PlotImmune[1][i] + PlotImmune[2][i] + PlotImmune[3][i] + PlotImmune[4][i] + PlotImmune[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				ImmuneArray[i] = PlotImmune[GraphAge][i];
+			}
+		}
+		break;
+	case 7: // N95mask
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				MaskArray[i] = PlotN95mask[0][i] + PlotN95mask[1][i] + PlotN95mask[2][i] + PlotN95mask[3][i] + PlotN95mask[4][i] + PlotN95mask[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				MaskArray[i] = PlotN95mask[GraphAge][i];
+			}
+		}
+		break;
+	case 8: // Respirator
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				RespArray[i] = PlotRespirator[0][i] + PlotRespirator[1][i] + PlotRespirator[2][i] + PlotRespirator[3][i] + PlotRespirator[4][i] + PlotRespirator[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				RespArray[i] = PlotRespirator[GraphAge][i];
+			}
+		}
+		break;
+	case 9: // Antivirals
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				AntiviralsArray[i] = PlotAntivirals[0][i] + PlotAntivirals[1][i] + PlotAntivirals[2][i] + PlotAntivirals[3][i] + PlotAntivirals[4][i] + PlotAntivirals[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				AntiviralsArray[i] = PlotAntivirals[GraphAge][i];
+			}
+		}
+		break;
+	case 10: // Specimen
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				SpecimenArray[i] = PlotSpecimen[0][i] + PlotSpecimen[1][i] + PlotSpecimen[2][i] + PlotSpecimen[3][i] + PlotSpecimen[4][i] + PlotSpecimen[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				SpecimenArray[i] = PlotSpecimen[GraphAge][i];
+			}
+		}
+		break;
+	case 11: //Outpatients
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				DailyOutpatientArray[i] = PlotOutpatients[0][i] + PlotOutpatients[1][i] + PlotOutpatients[2][i] + PlotOutpatients[3][i] + PlotOutpatients[4][i] + PlotOutpatients[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				DailyOutpatientArray[i] = PlotOutpatients[GraphAge][i];
+			}
+		}
+		break;
+	case 12: //HospitalICU
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				DailyICUArray[i] = PlotHospitalICU[0][i] + PlotHospitalICU[1][i] + PlotHospitalICU[2][i] + PlotHospitalICU[3][i] + PlotHospitalICU[4][i] + PlotHospitalICU[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				DailyICUArray[i] = PlotHospitalICU[GraphAge][i];
+			}
+		}
+		break;
+	case 13: //Hospital NICU
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				DailyNICUArray[i] = PlotHospitalNICU[0][i] + PlotHospitalNICU[1][i] + PlotHospitalNICU[2][i] + PlotHospitalNICU[3][i] + PlotHospitalNICU[4][i] + PlotHospitalNICU[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				DailyNICUArray[i] = PlotHospitalNICU[GraphAge][i];
+			}
+		}
+		break;
+	case 14: //Outpatients (cumulative)
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				CumulOutpatientArray[i] = PlotCumOutpatients[0][i] + PlotCumOutpatients[1][i] + PlotCumOutpatients[2][i] + PlotCumOutpatients[3][i] + PlotCumOutpatients[4][i] + PlotCumOutpatients[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				CumulOutpatientArray[i] = PlotCumOutpatients[GraphAge][i];
+			}
+		}
+		break;
+	case 15: //HospitalICU (cumulative)
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				CumulICUArray[i] = PlotCumHospitalICU[0][i] + PlotCumHospitalICU[1][i] + PlotCumHospitalICU[2][i] + PlotCumHospitalICU[3][i] + PlotCumHospitalICU[4][i] + PlotCumHospitalICU[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				CumulICUArray[i] = PlotCumHospitalICU[GraphAge][i];
+			}
+		}
+		break;
+	case 16: //Hospital NICU (cumulative)
+		if (AgeAll) {
+			for (int i = 0; i < NumberofArray; i++) {
+				CumulNICUArray[i] = PlotCumHospitalNICU[0][i] + PlotCumHospitalNICU[1][i] + PlotCumHospitalNICU[2][i] + PlotCumHospitalNICU[3][i] + PlotCumHospitalNICU[4][i] + PlotCumHospitalNICU[5][i];
+			}
+		}
+		else {
+			for (int i = 0; i < NumberofArray; i++) {
+				CumulNICUArray[i] = PlotCumHospitalNICU[GraphAge][i];
+			}
+		}
+		break;
+	}
+	return y;
+}
+
 /*tab별 그래프 그리는 함수들*/
-void MainWindow::makeInfectionPlot(QVector<double>x, QVector<double>y){
+void MainWindow::makeInfectionPlot(){
+
+	ui->customPlot_infection->setLocale(QLocale(QLocale::Korean));
 
 	ui->customPlot_infection->legend->setVisible(true);
 	ui->customPlot_infection->legend->setBrush(QBrush(QColor(255, 255, 255, 230)));
-	// by default, the legend is in the inset layout of the main axis rect. So this is how we access it to change legend placement:
-	ui->customPlot_infection->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignBottom | Qt::AlignRight);
 
-    ui->customPlot_infection->xAxis->setLabel("일");
-	ui->customPlot_infection->yAxis->setLabel("인구");
+	ui->customPlot_infection->axisRect()->setAutoMargins(QCP::msLeft | QCP::msTop | QCP::msBottom);
+	ui->customPlot_infection->axisRect()->setMargins(QMargins(20, 0, 140, 0));
+	ui->customPlot_infection->axisRect()->insetLayout()->setInsetPlacement(0, QCPLayoutInset::ipFree);
+	ui->customPlot_infection->axisRect()->insetLayout()->setInsetRect(0, QRectF(1.0, 0, 0.2, 0.2));
+    ui->customPlot_infection->xAxis->setLabel(toKor("일"));
+	ui->customPlot_infection->yAxis->setLabel(toKor("인구"));
 
 	// set axes ranges, so we see all data:
-	ui->customPlot_infection->xAxis->setRange(-1, 1);
-	ui->customPlot_infection->yAxis->setRange(0, 1);
+	ui->customPlot_infection->xAxis->setRange(0, 180);
+	ui->customPlot_infection->yAxis->setRange(0, 10000000);
 
-	// create graph and assign data to it:
+	QVector<double> x(NumberofArray);
+
+	for (int i = 0; i<NumberofArray; i++) {
+
+		x[i] = i;
+	}
+
+	//감수성기 그래프
 	ui->customPlot_infection->addGraph();
-    ui->customPlot_infection->graph(0)->setData(x, y);
-	ui->customPlot_infection->graph(0)->setName("감수성기에 있는 사람");
+    ui->customPlot_infection->graph(0)->setData(x, SusceptibleArray);
+	ui->customPlot_infection->graph(0)->setName(toKor("감수성기에 있는 사람"));
+	ui->customPlot_infection->graph(0)->setPen(QColor(255, 0, 0, 255));
     ui->customPlot_infection->replot();
 
-    ui->infectionTable->setColumnWidth(0,80);
-    ui->infectionTable->setColumnWidth(1,130);
-    ui->infectionTable->setColumnWidth(2,120);
-    ui->infectionTable->setColumnWidth(3,80);
-    ui->infectionTable->setColumnWidth(4,130);
-	ui->infectionTable->setColumnWidth(5,120);
-	ui->infectionTable->setColumnWidth(6,70);
-	ui->infectionTable->setColumnWidth(7,90);
+	//잠복기 그래프
+	ui->customPlot_infection->addGraph();
+	ui->customPlot_infection->graph(1)->setData(x, ExposedArray);
+	ui->customPlot_infection->graph(1)->setName(toKor("잠복기에 있는 사람"));
+	ui->customPlot_infection->graph(1)->setPen(QColor(0, 0, 255, 255));
+	ui->customPlot_infection->replot();
+
+	//무증상자 그래프
+	ui->customPlot_infection->addGraph();
+	ui->customPlot_infection->graph(2)->setData(x, AsymptomaticArray);
+	ui->customPlot_infection->graph(2)->setName(toKor("무증상자"));
+	ui->customPlot_infection->graph(2)->setPen(QColor(0, 255, 0, 255));
+	ui->customPlot_infection->replot();
+
+	//중증도 중간 그래프
+	ui->customPlot_infection->addGraph();
+	ui->customPlot_infection->graph(3)->setData(x, ModerateArray);
+	ui->customPlot_infection->graph(3)->setName(toKor("중증도가 중간인 사람"));
+	ui->customPlot_infection->graph(3)->setPen(QColor(255, 228, 0, 255));
+	ui->customPlot_infection->replot();
+
+	//중증도 높음 그래프
+	ui->customPlot_infection->addGraph();
+	ui->customPlot_infection->graph(4)->setData(x, SevereArray);
+	ui->customPlot_infection->graph(4)->setName(toKor("중증도가 높은 사람"));
+	ui->customPlot_infection->graph(4)->setPen(QColor(255, 0, 221, 255));
+	ui->customPlot_infection->replot();
+
+	//사망자 그래프
+	ui->customPlot_infection->addGraph();
+	ui->customPlot_infection->graph(5)->setData(x, DeadArray);
+	ui->customPlot_infection->graph(5)->setName(toKor("사망자"));
+	ui->customPlot_infection->graph(5)->setPen(QColor(0, 216, 255, 255));
+	ui->customPlot_infection->replot();
+
+	//회복 그래프
+	ui->customPlot_infection->addGraph();
+	ui->customPlot_infection->graph(6)->setData(x, ImmuneArray);
+	ui->customPlot_infection->graph(6)->setName(toKor("회복한 사람"));
+	ui->customPlot_infection->graph(6)->setPen(QColor(255, 94, 0, 255));
+	ui->customPlot_infection->replot();
+
+	//테이블 크기 조절
+    ui->infectionTable->setColumnWidth(0,130);
+    ui->infectionTable->setColumnWidth(1,120);
+    ui->infectionTable->setColumnWidth(2,90);
+    ui->infectionTable->setColumnWidth(3,130);
+	ui->infectionTable->setColumnWidth(4,130);
+	ui->infectionTable->setColumnWidth(5,90);
+	ui->infectionTable->setColumnWidth(6,90);
+
+	//테이블 인풋 
+	ui->infectionTable->setRowCount(NumberofArray);
+	for (int i = 0; i < NumberofArray; i++) {
+		ui->infectionTable->setItem(i, 0, new QTableWidgetItem(QString::number((double)SusceptibleArray[i], 'f')));
+	}
+
+	for (int i = 0; i < NumberofArray; i++) {
+		ui->infectionTable->setItem(i, 1, new QTableWidgetItem(QString::number(ExposedArray[i])));
+	}
+
+	for (int i = 0; i < NumberofArray; i++) {
+		ui->infectionTable->setItem(i, 2, new QTableWidgetItem(QString::number(AsymptomaticArray[i])));
+	}
+
+	for (int i = 0; i <NumberofArray; i++) {
+		ui->infectionTable->setItem(i, 3, new QTableWidgetItem(QString::number(ModerateArray[i])));
+	}
+
+	for (int i = 0; i < NumberofArray; i++) {
+		ui->infectionTable->setItem(i, 4, new QTableWidgetItem(QString::number(SevereArray[i])));
+	}
+
+	for (int i = 0; i < NumberofArray; i++) {
+		ui->infectionTable->setItem(i, 5, new QTableWidgetItem(QString::number(DeadArray[i])));
+	}
+
+	for (int i = 0; i < 200; i++) {
+		ui->infectionTable->setItem(i, 6, new QTableWidgetItem(QString::number(ImmuneArray[i])));
+	}
 }
 
 
-void MainWindow::makeResourcePlot(QVector<double>x, QVector<double>y){
+void MainWindow::makeResourcePlot(){
 
+	ui->customPlot_resource->setLocale(QLocale(QLocale::Korean));
+
+	ui->customPlot_resource->legend->setVisible(true);
+	ui->customPlot_resource->legend->setBrush(QBrush(QColor(255, 255, 255, 230)));
+
+	ui->customPlot_resource->axisRect()->setAutoMargins(QCP::msLeft | QCP::msTop | QCP::msBottom);
+	ui->customPlot_resource->axisRect()->setMargins(QMargins(20, 0, 140, 0));
+	ui->customPlot_resource->axisRect()->insetLayout()->setInsetPlacement(0, QCPLayoutInset::ipFree);
+	ui->customPlot_resource->axisRect()->insetLayout()->setInsetRect(0, QRectF(1.0, 0, 0.2, 0.2));
+	ui->customPlot_resource->xAxis->setLabel(toKor("일"));
+	ui->customPlot_resource->yAxis->setLabel(toKor("인구"));
+
+
+	// set axes ranges, so we see all data:
+	ui->customPlot_resource->xAxis->setRange(0, 210);
+	ui->customPlot_resource->yAxis->setRange(0, 500000);
+
+	QVector<double> x(NumberofArray);
+
+	for (int i = 0; i<NumberofArray; i++) {
+		x[i] = i;
+	}
+
+	//마스크 그래프
+	ui->customPlot_resource->addGraph();
+	ui->customPlot_resource->graph(0)->setData(x, MaskArray);
+	ui->customPlot_resource->graph(0)->setName(toKor("외래 환자"));
+	ui->customPlot_resource->graph(0)->setPen(QColor(255, 0, 0, 255));
+	ui->customPlot_resource->replot();
+
+	//인공호흡기 그래프
+	ui->customPlot_resource->addGraph();
+	ui->customPlot_resource->graph(1)->setData(x, RespArray);
+	ui->customPlot_resource->graph(1)->setName(toKor("입원 환자"));
+	ui->customPlot_resource->graph(1)->setPen(QColor(0, 0, 255, 255));
+	ui->customPlot_resource->replot();
+
+	//항바이러스제 그래프
+	ui->customPlot_resource->addGraph();
+	ui->customPlot_resource->graph(2)->setData(x, AntiviralsArray);
+	ui->customPlot_resource->graph(2)->setName(toKor("항바이러스제"));
+	ui->customPlot_resource->graph(2)->setPen(QColor(0, 255, 0, 255));
+	ui->customPlot_resource->replot();
+
+
+	//테이블 크기 조절
+	ui->resourceTable->setColumnWidth(0, 150);
+	ui->resourceTable->setColumnWidth(1, 150);
+	ui->resourceTable->setColumnWidth(2, 150);
+
+
+	//테이블 인풋 
+	ui->resourceTable->setRowCount(NumberofArray);
+	for (int i = 0; i < NumberofArray; i++) {
+		ui->resourceTable->setItem(i, 0, new QTableWidgetItem(QString::number((double)MaskArray[i], 'f')));
+	}
+
+	for (int i = 0; i < NumberofArray; i++) {
+		ui->resourceTable->setItem(i, 1, new QTableWidgetItem(QString::number(RespArray[i])));
+	}
+
+	for (int i = 0; i < NumberofArray; i++) {
+		ui->resourceTable->setItem(i, 2, new QTableWidgetItem(QString::number(AntiviralsArray[i])));
+	}
 }
 
-void MainWindow::makeSpecimenPlot(QVector<double>x, QVector<double>y){
+void MainWindow::makeSpecimenPlot(){
+	ui->customPlot_specimen->setLocale(QLocale(QLocale::Korean));
 
+	ui->customPlot_specimen->legend->setVisible(true);
+	ui->customPlot_specimen->legend->setBrush(QBrush(QColor(255, 255, 255, 230)));
+
+	ui->customPlot_specimen->axisRect()->setAutoMargins(QCP::msLeft | QCP::msTop | QCP::msBottom);
+	ui->customPlot_specimen->axisRect()->setMargins(QMargins(20, 0, 140, 0));
+	ui->customPlot_specimen->axisRect()->insetLayout()->setInsetPlacement(0, QCPLayoutInset::ipFree);
+	ui->customPlot_specimen->axisRect()->insetLayout()->setInsetRect(0, QRectF(1.0, 0, 0.2, 0.2));
+	ui->customPlot_specimen->xAxis->setLabel(toKor("일"));
+	ui->customPlot_specimen->yAxis->setLabel(toKor("인구"));
+
+
+	// set axes ranges, so we see all data:
+	ui->customPlot_specimen->xAxis->setRange(0, 210);
+	ui->customPlot_specimen->yAxis->setRange(0, 500000);
+
+	QVector<double> x(NumberofArray);
+
+	for (int i = 0; i<200; i++) {
+		x[i] = i;
+	}
+
+	//검체 수 그래프
+	ui->customPlot_specimen->addGraph();
+	ui->customPlot_specimen->graph(0)->setData(x, SpecimenArray);
+	ui->customPlot_specimen->graph(0)->setName(toKor("검체 수"));
+	ui->customPlot_specimen->graph(0)->setPen(QColor(255, 0, 0, 255));
+	ui->customPlot_specimen->replot();
+
+
+	//테이블 크기 조절
+	ui->resourceTable->setColumnWidth(0, 150);
+
+
+	//테이블 인풋 
+	ui->specimenTable->setRowCount(200);
+	for (int i = 0; i < 200; i++) {
+		ui->specimenTable->setItem(i, 0, new QTableWidgetItem(QString::number((double)SpecimenArray[i], 'f')));
+	}
 }
 
 
-void MainWindow::makeDailyPlot(QVector<double>x, QVector<double>y){
+void MainWindow::makeDailyPlot(){
+	ui->customPlot_daily->setLocale(QLocale(QLocale::Korean));
 
+	ui->customPlot_daily->legend->setVisible(true);
+	ui->customPlot_daily->legend->setBrush(QBrush(QColor(255, 255, 255, 230)));
+
+	ui->customPlot_daily->axisRect()->setAutoMargins(QCP::msLeft | QCP::msTop | QCP::msBottom);
+	ui->customPlot_daily->axisRect()->setMargins(QMargins(20, 0, 140, 0));
+	ui->customPlot_daily->axisRect()->insetLayout()->setInsetPlacement(0, QCPLayoutInset::ipFree);
+	ui->customPlot_daily->axisRect()->insetLayout()->setInsetRect(0, QRectF(1.0, 0, 0.2, 0.2));
+	ui->customPlot_daily->xAxis->setLabel(toKor("일"));
+	ui->customPlot_daily->yAxis->setLabel(toKor("인구"));
+
+
+	// set axes ranges, so we see all data:
+	ui->customPlot_daily->xAxis->setRange(0, 210);
+	ui->customPlot_daily->yAxis->setRange(0, 500000);
+
+	QVector<double> x(NumberofArray);
+
+	for (int i = 0; i<NumberofArray; i++) {
+		x[i] = i;
+	}
+
+	//외래환자 그래프
+	ui->customPlot_daily->addGraph();
+	ui->customPlot_daily->graph(0)->setData(x, DailyOutpatientArray);
+	ui->customPlot_daily->graph(0)->setName(toKor("외래환자 수"));
+	ui->customPlot_daily->graph(0)->setPen(QColor(255, 0, 0, 255));
+	ui->customPlot_daily->replot();
+
+	//중환자실 병상 그래프
+	ui->customPlot_daily->addGraph();
+	ui->customPlot_daily->graph(1)->setData(x, DailyICUArray);
+	ui->customPlot_daily->graph(1)->setName(toKor("중환자실 병상 수"));
+	ui->customPlot_daily->graph(1)->setPen(QColor(0, 0, 255, 255));
+	ui->customPlot_daily->replot();
+
+	//일반 병상 그래프
+	ui->customPlot_daily->addGraph();
+	ui->customPlot_daily->graph(2)->setData(x, DailyNICUArray);
+	ui->customPlot_daily->graph(2)->setName(toKor("일반 병상 수"));
+	ui->customPlot_daily->graph(2)->setPen(QColor(0, 255, 0, 255));
+	ui->customPlot_daily->replot();
+
+
+	//테이블 크기 조절
+	ui->dailyTable->setColumnWidth(0, 150);
+	ui->dailyTable->setColumnWidth(1, 150);
+	ui->dailyTable->setColumnWidth(2, 150);
+
+
+	//테이블 인풋 
+	ui->dailyTable->setRowCount(200);
+	for (int i = 0; i < 200; i++) {
+		ui->dailyTable->setItem(i, 0, new QTableWidgetItem(QString::number((double) DailyOutpatientArray[i], 'f')));
+	}
+
+	for (int i = 0; i < 200; i++) {
+		ui->dailyTable->setItem(i, 1, new QTableWidgetItem(QString::number(DailyICUArray[i])));
+	}
+
+	for (int i = 0; i < 200; i++) {
+		ui->dailyTable->setItem(i, 2, new QTableWidgetItem(QString::number(DailyNICUArray[i])));
+	}
 }
 
 
-void MainWindow::makeCumulativePlot(QVector<double>x, QVector<double>y){
+void MainWindow::makeCumulativePlot(){
+	ui->customPlot_cumulative->setLocale(QLocale(QLocale::Korean));
 
+	ui->customPlot_cumulative->legend->setVisible(true);
+	ui->customPlot_cumulative->legend->setBrush(QBrush(QColor(255, 255, 255, 230)));
+
+	ui->customPlot_cumulative->axisRect()->setAutoMargins(QCP::msLeft | QCP::msTop | QCP::msBottom);
+	ui->customPlot_cumulative->axisRect()->setMargins(QMargins(20, 0, 140, 0));
+	ui->customPlot_cumulative->axisRect()->insetLayout()->setInsetPlacement(0, QCPLayoutInset::ipFree);
+	ui->customPlot_cumulative->axisRect()->insetLayout()->setInsetRect(0, QRectF(1.0, 0, 0.2, 0.2));
+	ui->customPlot_cumulative->xAxis->setLabel(toKor("일"));
+	ui->customPlot_cumulative->yAxis->setLabel(toKor("인구"));
+
+
+	// set axes ranges, so we see all data:
+	ui->customPlot_cumulative->xAxis->setRange(0, 210);
+	ui->customPlot_cumulative->yAxis->setRange(0, 500000);
+
+	QVector<double> x(NumberofArray);
+
+	for (int i = 0; i<NumberofArray; i++) {
+		x[i] = i;
+	}
+
+	//외래환자 그래프
+	ui->customPlot_cumulative->addGraph();
+	ui->customPlot_cumulative->graph(0)->setData(x, CumulOutpatientArray);
+	ui->customPlot_cumulative->graph(0)->setName(toKor("외래환자 수(누적)"));
+	ui->customPlot_cumulative->graph(0)->setPen(QColor(255, 0, 0, 255));
+	ui->customPlot_cumulative->replot();
+
+	//중환자실 환자 그래프
+	ui->customPlot_cumulative->addGraph();
+	ui->customPlot_cumulative->graph(1)->setData(x, CumulICUArray);
+	ui->customPlot_cumulative->graph(1)->setName(toKor("중환자실 환자 수(누적)"));
+	ui->customPlot_cumulative->graph(1)->setPen(QColor(0, 0, 255, 255));
+	ui->customPlot_cumulative->replot();
+
+	//일반환자 그래프
+	ui->customPlot_cumulative->addGraph();
+	ui->customPlot_cumulative->graph(2)->setData(x, CumulNICUArray);
+	ui->customPlot_cumulative->graph(2)->setName(toKor("일반 환자 수(누적)"));
+	ui->customPlot_cumulative->graph(2)->setPen(QColor(0, 255, 0, 255));
+	ui->customPlot_cumulative->replot();
+
+
+	//테이블 크기 조절
+	ui->cumulativeTable->setColumnWidth(0, 150);
+	ui->cumulativeTable->setColumnWidth(1, 150);
+	ui->cumulativeTable->setColumnWidth(2, 150);
+
+
+	//테이블 인풋 
+	ui->cumulativeTable->setRowCount(200);
+	for (int i = 0; i < 200; i++) {
+		ui->cumulativeTable->setItem(i, 0, new QTableWidgetItem(QString::number((double)CumulOutpatientArray[i], 'f')));
+	}
+
+	for (int i = 0; i < 200; i++) {
+		ui->cumulativeTable->setItem(i, 1, new QTableWidgetItem(QString::number(CumulICUArray[i])));
+	}
+
+	for (int i = 0; i < 200; i++) {
+		ui->cumulativeTable->setItem(i, 2, new QTableWidgetItem(QString::number(CumulNICUArray[i])));
+	}
 }
-
 
 
 void MainWindow::setDefault()
 {
     /*인구 tab 기본값 세팅*/
 
-    ui->input_SchoolRatio0to6->setText(QString::number(SchoolCloseContactRatio)); //초기값 수정 필요
-    ui->input_SchoolRatio7to12->setText(QString::number(SchoolCloseContactRatio)); //초기값 수정 필요
-    ui->input_SchoolRatio13to18->setText(QString::number(SchoolCloseContactRatio)); //초기값 수정 필요
+    ui->input_SchoolRatio0to6->setText(QString::number(SchoolContactRate[0]));
+    ui->input_SchoolRatio7to12->setText(QString::number(SchoolContactRate[1])); 
+    ui->input_SchoolRatio13to18->setText(QString::number(SchoolContactRate[2]));
 
-    ui->input_AbsentRatio->setText(QString::number(AbsenceContactRatio));
+    ui->input_AbsentRatio0to6->setText(QString::number(AbsenceContactRatio)); //초기값 수정 필요
+	ui->input_AbsentRatio7to12->setText(QString::number(AbsenceContactRatio)); //초기값 수정 필요
+	ui->input_AbsentRatio13to18->setText(QString::number(AbsenceContactRatio)); //초기값 수정 필요
 
     /*질병 tab 기본값 세팅*/
     ui->input_LatentPeriod->setText(QString::number(LatentPeriod));
@@ -225,19 +784,39 @@ void MainWindow::on_areaSubmit_clicked()
 //출력화면 이동 버튼 클릭
 void MainWindow::on_outputPageBtn_clicked()
 {
+
+	KfluStep();
     ui->outputWidget->show();
     ui->outputWidget->activateWindow();
     ui->outputWidget->raise();
 
-    /*graph x,y 값 설정*/
-    int size = 101;
-    QVector<double>x(size), y(size); // initialize with entries 0..100
-    for (int i=0; i<size; ++i)
-    {
-      x[i] = i/50.0 - 1; // x goes from -1 to 1
-      y[i] = x[i]*x[i]; // let's plot a quadratic function
-    }
-    MainWindow::makeInfectionPlot(x,y);
+	SusceptibleArray = MainWindow::setOutputArray(0);
+	ExposedArray = MainWindow::setOutputArray(1);
+	AsymptomaticArray = MainWindow::setOutputArray(2);
+	ModerateArray = MainWindow::setOutputArray(3);
+	SevereArray = MainWindow::setOutputArray(4);
+	DeadArray = MainWindow::setOutputArray(5);
+	ImmuneArray = MainWindow::setOutputArray(6);
+
+	MaskArray = MainWindow::setOutputArray(7);
+	RespArray = MainWindow::setOutputArray(8);
+	AntiviralsArray = MainWindow::setOutputArray(9);
+
+	SpecimenArray = MainWindow::setOutputArray(10);
+
+	DailyOutpatientArray = MainWindow::setOutputArray(11);
+	DailyICUArray = MainWindow::setOutputArray(12);
+	DailyNICUArray = MainWindow::setOutputArray(13);
+
+	CumulOutpatientArray = MainWindow::setOutputArray(14);
+	CumulICUArray = MainWindow::setOutputArray(15);
+	CumulNICUArray = MainWindow::setOutputArray(16);
+
+	MainWindow::makeInfectionPlot();
+	MainWindow::makeResourcePlot();
+	MainWindow::makeSpecimenPlot();
+	MainWindow::makeDailyPlot();
+	MainWindow::makeCumulativePlot();
 }
 //입력화면 이동 버튼 클릭
 void MainWindow::on_inputPageBtn_clicked()
@@ -392,22 +971,32 @@ void MainWindow::on_input_contact_5_5_textEdited(const QString &arg1)
 //인풋 변수 수정 필요
 void MainWindow::on_input_SchoolRatio0to6_textEdited(const QString &arg1)
 {
-	SchoolCloseContactRatio = arg1.toDouble();
+    SchoolContactRate[0] = arg1.toDouble();
 }
 //인풋 변수 수정 필요
 void MainWindow::on_input_SchoolRatio7to12_textEdited(const QString &arg1)
 {
-	SchoolCloseContactRatio = arg1.toDouble();
+    SchoolContactRate[1] = arg1.toDouble();
 }
 //인풋 변수 수정 필요
 void MainWindow::on_input_SchoolRatio13to18_textEdited(const QString &arg1)
 {
-	SchoolCloseContactRatio = arg1.toDouble();
+    SchoolContactRate[2] = arg1.toDouble();
 }
 
-void MainWindow::on_input_AbsentRatio_textEdited(const QString &arg1)
+void MainWindow::on_input_AbsentRatio0to6_textEdited(const QString &arg1)
 {
-    AbsenceContactRatio = arg1.toDouble();
+
+}
+
+void MainWindow::on_input_AbsentRatio7to12_textEdited(const QString &arg1)
+{
+
+}
+
+void MainWindow::on_input_AbsentRatio13to18_textEdited(const QString &arg1)
+{
+
 }
 
 /*질병 tab input 받아오기*/
@@ -813,4 +1402,46 @@ void MainWindow::on_age_checkBox5_clicked()
 void MainWindow::on_age_checkBox6_clicked()
 {
     AgeAll = true;
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+
+}
+
+void MainWindow::on_actionK_flu_triggered()
+{
+
+}
+
+void MainWindow::on_actionExport_triggered()
+{
+	FILE* fp = fopen("output/test.csv", "w+");
+	fprintf(fp, "KFLU,\n");
+	fprintf(fp, "test,cell1,cell2\n");
+	fclose(fp);
+}
+
+void MainWindow::on_actionContact_triggered()
+{
+
+}
+
+void MainWindow::on_actionJPG_triggered()
+{
+    ui->jpgWidget->show();
+    ui->jpgWidget->activateWindow();
+    ui->jpgWidget->raise();
+}
+
+void MainWindow::on_actionCSV_triggered()
+{
+    ui->csvWidget->show();
+    ui->csvWidget->activateWindow();
+    ui->csvWidget->raise();
 }

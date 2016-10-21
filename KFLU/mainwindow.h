@@ -12,21 +12,23 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+	QVector<double> setOutputArray(int x);
+
+	void makeInfectionPlot();
+
+	void makeResourcePlot();
+
+	void makeSpecimenPlot();
+
+	void makeDailyPlot();
+
+	void makeCumulativePlot();
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void setDefault();
 
 private slots:
-
-    void makeInfectionPlot(QVector<double>x, QVector<double>y);
-
-    void makeResourcePlot(QVector<double>x, QVector<double>y);
-
-    void makeSpecimenPlot(QVector<double>x, QVector<double>y);
-
-    void makeDailyPlot(QVector<double>x, QVector<double>y);
-
-    void makeCumulativePlot(QVector<double>x, QVector<double>y);
 
     void on_startButton_clicked();
 
@@ -54,7 +56,11 @@ private slots:
 
     void on_input_SchoolRatio13to18_textEdited(const QString &arg1);
 
-    void on_input_AbsentRatio_textEdited(const QString &arg1);
+    void on_input_AbsentRatio0to6_textEdited(const QString &arg1);
+
+    void on_input_AbsentRatio7to12_textEdited(const QString &arg1);
+
+    void on_input_AbsentRatio13to18_textEdited(const QString &arg1);
 
     void on_input_LatentPeriod_textEdited(const QString &arg1);
 
@@ -240,6 +246,20 @@ private slots:
 
     void on_input_contact_5_5_textEdited(const QString &arg1);
 
+
+    void on_actionOpen_triggered();
+
+    void on_actionSave_triggered();
+
+    void on_actionK_flu_triggered();
+
+    void on_actionExport_triggered();
+
+    void on_actionContact_triggered();
+
+    void on_actionJPG_triggered();
+
+    void on_actionCSV_triggered();
 
 private:
     Ui::MainWindow *ui;

@@ -68,6 +68,11 @@
 #define IsoYES 1
 #define IsoGroups 2
 
+#define Non 0
+#define NICU 1
+#define ICU 2
+#define ICUGroups 3
+
 #define Estage1 0
 #define Estage2 1
 #define EstageLast 6
@@ -102,7 +107,7 @@
 #define Vsize (StageofAgeGroups * IstageGroups)
 #define Wsize (StageofAgeGroups * IstageGroups * MedGroups)
 #define Xsize (StageofAgeGroups * IstageGroups)
-#define Hsize (StageofAgeGroups * IstageGroups * MedGroups)
+#define Hsize (StageofAgeGroups * IstageGroups * MedGroups * ICUGroups)
 #define Rsize (StageofAgeGroups * RstageGroups)
 #define Dsize StageofAgeGroups
 #define Isize StageofAgeGroups
@@ -145,6 +150,41 @@
 #define HCWReturnAntivirals (HCWWorkReduction + 1)
 #define OutputArray (HCWReturnAntivirals + 1)
 
+//**********************************************
+//Output variables 목록
+//==============================================
+// 감염자 TAB : Susceptibles, exposed, asymptomatic, moderate, severe, dead, immune
+double PlotSusceptibles[StageofAgeGroups][NumberofArray];
+double PlotExposed[StageofAgeGroups][NumberofArray];
+double PlotAsymptomatic[StageofAgeGroups][NumberofArray];
+double PlotModerate[StageofAgeGroups][NumberofArray];
+double PlotSevere[StageofAgeGroups][NumberofArray];
+double PlotDead[StageofAgeGroups][NumberofArray];
+double PlotImmune[StageofAgeGroups][NumberofArray];
+
+// 의료자원 TAB : N-95mask, respirator,  Antivirals
+double PlotN95mask[StageofAgeGroups][NumberofArray];
+double PlotRespirator[StageofAgeGroups][NumberofArray];
+double PlotAntivirals[StageofAgeGroups][NumberofArray];
+
+// 검체수 TAB : Specimen
+double PlotSpecimen[StageofAgeGroups][NumberofArray];
+
+// 일일 TAB : outpatients, HospitalICU, HospitalNICU
+double PlotOutpatients[StageofAgeGroups][NumberofArray];
+double PlotHospitalICU[StageofAgeGroups][NumberofArray];
+double PlotHospitalNICU[StageofAgeGroups][NumberofArray];
+
+// 누적 TAB : outpatients, HospitalICU, HospitalNICU
+double PlotCumOutpatients[StageofAgeGroups][NumberofArray];
+double PlotCumHospitalICU[StageofAgeGroups][NumberofArray];
+double PlotCumHospitalNICU[StageofAgeGroups][NumberofArray];
+
+// 실제 Output
+double InitY[OutputArray];
+double OutputY[OutputArray];
+double VectorY[OutputArray];
+
 
 //**********************************************
 //Define Function 목록
@@ -170,7 +210,7 @@ int CIC(int age);
 
 void InitialY();
 void Initialize();
-void EvaluationY(double day);
+void Evaluation(double day);
 void KfluStep();
 void ArrayforPlot(double day);
 
@@ -257,9 +297,9 @@ double HospitalizationICU = 10.0;
 
 //--백신 TAB
 //연령별 백신 접종률
-double VaccineAgeRate[StageofAgeGroups] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+double VaccineAgeRate[StageofAgeGroups] = { 0.0, 0.0, 0.0, 0.0, 0.0 };		/*percentage 함수 필요*/
 //연령별 백신 접종효과
-double VaccineEffectAgeRate[StageofAgeGroups] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+double VaccineEffectAgeRate[StageofAgeGroups] = { 0.0, 0.0, 0.0, 0.0, 0.0 };		/*percentage 함수 필요*/
 //항체생성기간
 double AntibodyCreateRange = 14;
 //백신 접종 시기
@@ -284,9 +324,11 @@ double OutpatientSpecimenTesting = 50.0;		/*percentage 함수 필요*/
 //Number of prodromal stages
 int prodromalStages = 2;
 
-//Initialize the contagiousness of cases (by course of disease).
-//infFact(Influsim)
-double contagiousness[ItypeGroups]; 
+//Contagiousness distribution over the infectious stages.
+double contagiousness[IstageGroups];
+
+//Contagiousness (by course of disease).
+double infFact[ItypeGroups];
 
 //Rate at which severe and extremely severe cases seek medical help.
 double alpha;
@@ -356,7 +398,7 @@ double outpatientVisits = 1;
 double Courseofdisease[StageofAgeGroups][StageofRisk][ItypeGroups];
 
 //Transition rate during the contagious period (by age, medication and course of disease)
-double gamma[StageofAgeGroups][MedGroups][ItypeGroups];
+double gamma[StageofAgeGroups][MedGroups][ItypeGroups][ICUGroups];
 
 //Maximum stage of contagiousness during which antiviral treatment can be given (by age)
 int maxTreatmentStage[StageofAgeGroups];
@@ -364,8 +406,41 @@ int maxTreatmentStage[StageofAgeGroups];
 //Fraction of immune individuals at start of simulation.
 double immuneFract[StageofAgeGroups] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 
-double OutputY[OutputArray];
-double CumulateOutput[OutputArray];
+//**********************************************
+//임의 Variables
+//==============================================
+//Fraction of non-flu patients sent home.
+double sentHomeFraction = 0.0;
+
+//Daily fraction of treatment dose during antiviral prophylaxis.
+double zeta = 0.1;
+
+//Contact shift of flu patients to HCW [%].
+double hcwContactFraction = 0.9;
+
+//First day of health care worker prophylaxis.
+double hcwProphylaxisBegin = 0.0;
+
+//Day at which health care worker prophylaxis is terminated.
+double hcwProphylaxisEnd = 0.0;
+
+//Fraction of the population for which antiviral treatment is available.
+double antiviralRessource = 1.0;
+
+//Treshold above which school closing is applied.
+double schoolClosingTreshold = 1.0;
+
+//Number of non-flu patients.
+double nonFluPatients = 500;
+
+//Reduction of susceptibility by antiviral prophylactic treatement.
+double treatEfficacySusceptiblilty = 0.5;
+
+//입원한 인플루엔자 감염환자 중 ICU Care가 필요한 평균 분율(default 0.15)
+double FractionofICU = 0.15;
+
+//ICU 입원 시 Sojourn time
+double infDurforICU = 10.0;
 
 
 //**********************************************
@@ -390,10 +465,10 @@ public:
 	{
 		for (int ageSus = 0; ageSus < StageofAgeGroups; ageSus++) {
 			for (int ageInf = 0; ageInf < StageofAgeGroups; ageInf++) {
-				eBeta[ageSus][ageInf] = LastLatentPeriodCase * b * ContactMatrix[ageSus][ageInf];   // eBeta. LastLatentPeriodCase = eInfFact
+				eBeta[ageSus][ageInf] = percentage(LastLatentPeriodCase) * b * ContactMatrix[ageSus][ageInf];   // eBeta. LastLatentPeriodCase = eInfFact
 
 				for (int type = ItypeA; type <= ItypeM; type++) { // type A, M
-					beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf];  // Contact Matrix를 ageMatrix로 바꿔야하나? fill matrix 함수
+					beta[ageSus][ageInf][MedNO][type][IsoNO] = infFact[type] * b * ContactMatrix[ageSus][ageInf];  // Contact Matrix를 ageMatrix로 바꿔야하나? fill matrix 함수
 				}
 			}
 		}
@@ -404,23 +479,23 @@ public:
 			for (int ageSus = Age0to6; ageSus <= Age13to18; ageSus++) {
 				for (int ageInf = Age0to6; ageInf <= Age13to18; ageInf++) {
 					if (ageSus == ageInf) {
-						beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf] * (1.0 - SchoolContactRate[ageSus]); // 결석으로 인해 학교 나이대 서로서로 접촉 X
+						beta[ageSus][ageInf][MedNO][type][IsoNO] = infFact[type] * b * ContactMatrix[ageSus][ageInf] * (1.0 - percentage(SchoolContactRate[ageSus])); // 결석으로 인해 학교 나이대 서로서로 접촉 X
 					}
 					else {
-						beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf]; // 그 외에 영향 없도록
+						beta[ageSus][ageInf][MedNO][type][IsoNO] = infFact[type] * b * ContactMatrix[ageSus][ageInf]; // 그 외에 영향 없도록
 					}
 				}
 			}
 			for (int ageSus = Age19to64; ageSus <= HCW; ageSus++) { // 결석한 학생들이 care받으면서 생기는 전염성. 대상은 학생나이대 이후 전부, HCW포함
 				for (int ageInf = Age0to6; ageInf <= Age13to18; ageInf++) {
-					beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf] * redistributionFactorChildHealthCare[ageInf];
+					beta[ageSus][ageInf][MedNO][type][IsoNO] = infFact[type] * b * ContactMatrix[ageSus][ageInf] * redistributionFactorChildHealthCare[ageInf];
 				}
 			}
 
 			//all other contacts remain untouched
 			for (int ageSus = Age0to6; ageSus < StageofAgeGroups; ageSus++) {
 				for (int ageInf = Age19to64; ageInf < StageofAgeGroups; ageInf++) {
-					beta[ageSus][ageInf][MedNO][type][IsoNO] = contagiousness[type] * b * ContactMatrix[ageSus][ageInf];
+					beta[ageSus][ageInf][MedNO][type][IsoNO] = infFact[type] * b * ContactMatrix[ageSus][ageInf];
 				}
 			}
 		}
@@ -428,7 +503,7 @@ public:
 		for (int ageSus = 0; ageSus < StageofAgeGroups; ageSus++) { // Med Yes의 경우
 			for (int ageInf = 0; ageInf < StageofAgeGroups; ageInf++) {
 				for (int type = ItypeA; type < ItypeGroups; type++) {
-					beta[ageSus][ageInf][MedYES][type][IsoNO] = beta[ageSus][ageInf][MedNO][type][IsoNO] * (1.0 - ContagiousnessReduction);
+					beta[ageSus][ageInf][MedYES][type][IsoNO] = beta[ageSus][ageInf][MedNO][type][IsoNO] * (1.0 - percentage(ContagiousnessReduction));
 				}
 			}
 		}
@@ -451,15 +526,26 @@ public:
 			}
 		}
 		
+		/*
+		for (int i = 0; i < StageofAgeGroups; i++)
+		{
+			for (int j = 0; j < StageofAgeGroups; j++)
+			{
+				std::cout.precision(4);
+				std::cout << std::fixed << nextGenerationMatrix[i][j] << '\t\t';
+			}
+			std::cout << std::endl;
+		}*/
 
-		Eigen::MatrixXd Ematirx(7, 7);
+
+		Eigen::MatrixXd Ematirx(StageofAgeGroups, StageofAgeGroups);
 		Eigen::MatrixXd realEigenvalues;
 		Eigen::MatrixXd imagEigenvalues;
 		Eigen::MatrixXd getEigenvector;
 
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < StageofAgeGroups; i++)
 		{
-			for (int j = 0; j < 7; j++)
+			for (int j = 0; j < StageofAgeGroups; j++)
 			{
 				Ematirx(i, j) = nextGenerationMatrix[i][j];
 			}
@@ -484,6 +570,11 @@ public:
 			}
 		}
 
+		/*
+		for (int i = 0; i < sizerealEigen; i++) {
+			std::cout << realEigenvalues(i) << std::endl;
+		}*/
+
 		double sum = 0.0;
 
 		for (int age = 0; age < StageofAgeGroups; age++) {
@@ -493,6 +584,7 @@ public:
 		for (int age = 0; age < StageofAgeGroups; age++) {
 			eigenvector[age] /= sum; // potential division by zero!
 		}
+
 		//m = nextGenerationMatrix;
 		//bb = b;
 		return maxEigenvalue - 2.5;
@@ -532,7 +624,7 @@ public:
 			halfStagesInfectiosity += 0.5 * contagiousness[halfInfectiousStages];
 		}
 
-		return 0;//halfInfectiosity - (halfStagesInfectiosity / allStagesInfectiosity);
+		return percentage(HalfInfectiousRate) - (halfStagesInfectiosity / allStagesInfectiosity);
 	}
 private:
 	double find(double a, double b, int type) {
@@ -594,8 +686,8 @@ int X(int age, int iStage) {
 	return Xoffset + age * IstageGroups + iStage;
 }
 
-int H(int age, int iStage, int med) {
-	return Hoffset + (age * IstageGroups + iStage) * MedGroups + med;
+int H(int age, int iStage, int med, int icu) {
+	return Hoffset + ((age * IstageGroups + iStage) * MedGroups + med) * ICUGroups + icu;
 }
 
 int R(int age, int rStage) {
@@ -720,12 +812,12 @@ void Initialize()
 	}
 
 	//Initialize the contagiousness of cases by course of disease
-	contagiousness[ItypeA] = percentage(AsymptomaticCase);
-	contagiousness[ItypeM] = percentage(ModerateCase);
-	contagiousness[ItypeV] = 1.0;
-	contagiousness[ItypeW] = 1.0;
-	contagiousness[ItypeX] = 1.0;
-	contagiousness[ItypeH] = 1.0;
+	infFact[ItypeA] = percentage(AsymptomaticCase);
+	infFact[ItypeM] = percentage(ModerateCase);
+	infFact[ItypeV] = 1.0;
+	infFact[ItypeW] = 1.0;
+	infFact[ItypeX] = 1.0;
+	infFact[ItypeH] = 1.0;
 
 	// Initialize the contagiousness distribution.
 	BinarySearch Root;
@@ -756,11 +848,17 @@ void Initialize()
 	for (int age = 0; age < StageofAgeGroups; age++) {
 		for (int med = 0; med < MedGroups; med++) {
 			for (int type = 0; type < ItypeGroups; type++) {
-				gamma[age][med][type] = ItypeGroups / infDur[age][med][type]; // potential division by zero!
+				//gamma[age][med][type] = ItypeGroups / infDur[age][med][type]; // potential division by zero!
+				gamma[age][med][type][Non] = ItypeGroups / infDur[age][med][type];
 			}
+			gamma[age][MedYES][ItypeH][ICU] = ItypeGroups / infDurforICU;
+			gamma[age][MedNO][ItypeH][ICU] = ItypeGroups / infDurforICU;
+			gamma[age][MedYES][ItypeH][NICU] = ItypeGroups / (1 - percentage(DiseaseDurationReduction)) * infDur[age][med][ItypeH];
+			gamma[age][MedNO][ItypeH][NICU] = ItypeGroups / infDur[age][med][ItypeH];
 		}
-		maxTreatmentStage[age] = (int)ceil(changehour(AntiviralsHelp) * gamma[age][MedNO][ItypeV]);
+		maxTreatmentStage[age] = (int)ceil(changehour(AntiviralsHelp) * gamma[age][MedNO][ItypeV][Non]);
 	}
+
 
 	// Find a factor x such that the resulting basic reproduction number is 
 	// as desired. This will implicitly initialize the effective contact matrix beta.
@@ -785,7 +883,7 @@ void Initialize()
 	// during the period of contagiousness.
 	for (int age = 0; age < StageofAgeGroups; age++) {
 		Root.dead = deadFraction[age];
-		Root.gam = gamma[age][MedNO][ItypeH];
+		Root.gam = gamma[age][MedNO][ItypeH][ICU] + gamma[age][MedNO][ItypeH][NICU];
 		tau[age] = Root.findRoot(0, 1, typeDeadFraction);
 	}
 
@@ -805,65 +903,34 @@ void Initialize()
 /*Initial Y data*/
 void InitialY()
 {
-	std::fill_n(OutputY, OutputArray, 0);
+	std::fill_n(InitY, OutputArray, 0);
 
 	for (int age = 0; age < StageofAgeGroups; age++) {
 		for (int risk = 0; risk < StageofRisk; risk++) {
 			if (age == HCW) {
-				OutputY[S(age, risk)] = Susceptibles[age][risk] * (1.0 - immuneFract[Age19to64]);
-				OutputY[I(age)] += Susceptibles[age][risk] * immuneFract[Age19to64];
+				InitY[S(age, risk)] = Susceptibles[age][risk] * (1.0 - immuneFract[Age19to64]);
+				InitY[I(age)] += Susceptibles[age][risk] * immuneFract[Age19to64];
 			}
 			else {
-				OutputY[S(age, risk)] = Susceptibles[age][risk] * (1.0 - immuneFract[age]);
-				OutputY[I(age)] += Susceptibles[age][risk] * immuneFract[age];
+				InitY[S(age, risk)] = Susceptibles[age][risk] * (1.0 - immuneFract[age]);
+				InitY[I(age)] += Susceptibles[age][risk] * immuneFract[age];
 			}
 		}
 	}
 	for (int age = 0; age < StageofAgeGroups; age++) {
-		double exposedLowRisk = (1.0 - HighRiskRate[ageClass[age]]) * eigenvector[age] / total; // potential division by zero!
-		OutputY[S(age, LowRisk)] -= exposedLowRisk;
-		OutputY[E(age, LowRisk, Estage1)] = exposedLowRisk;
-		double exposedHighRisk = HighRiskRate[ageClass[age]] * eigenvector[age] / total; // potential division by zero!
-		OutputY[S(age, HighRisk)] -= exposedHighRisk;
-		OutputY[E(age, HighRisk, Estage1)] = exposedHighRisk;
+		double exposedLowRisk = (1.0 - percentage(HighRiskRate[ageClass[age]])) * eigenvector[age] / total; // potential division by zero!
+		InitY[S(age, LowRisk)] -= exposedLowRisk;
+		InitY[E(age, LowRisk, Estage1)] = exposedLowRisk;
+		double exposedHighRisk = percentage(HighRiskRate[ageClass[age]]) * eigenvector[age] / total; // potential division by zero!
+		InitY[S(age, HighRisk)] -= exposedHighRisk;
+		InitY[E(age, HighRisk, Estage1)] = exposedHighRisk;
 	}
-
-	/*누적 데이터 초기값 설정*/
-	for (int i = 0; i < OutputArray; i++)
-		CumulateOutput[i] = OutputY[i];
 }
 
 /////////////////////////////////////////////////////====================================================================================================
 /////////////////////////////////////////////////////====================================================================================================
 
-//Daily fraction of treatment dose during antiviral prophylaxis.
-double zeta = 0.1;
-
-//Contact shift of flu patients to HCW [%].
-double hcwContactFraction = 0.9;
-
-//First day of health care worker prophylaxis.
-double hcwProphylaxisBegin = 0.0;
-
-//Day at which health care worker prophylaxis is terminated.
-double hcwProphylaxisEnd = 0.0;
-
-//Fraction of the population for which antiviral treatment is available.
-double antiviralRessource = 1.0;
-
-//Treshold above which school closing is applied.
-double schoolClosingTreshold = 1.0;
-
-//Number of non-flu patients.
-double nonFluPatients = 500;
-
-//Fraction of non-flu patients sent home.
-double sentHomeFraction = 0.0;
-
-//Reduction of susceptibility by antiviral prophylactic treatement.
-double treatEfficacySusceptiblilty = 0.5;
-
-void EvaluationY(double time)
+void Evaluation(double time)
 {
 	// Initialize counters. 
 	
@@ -881,18 +948,18 @@ void EvaluationY(double time)
 
 	bool doProphylaxis = false;
 	if ((time >= hcwProphylaxisBegin) && (time<hcwProphylaxisEnd)) {
-		if (antiviralRessource>CumulateOutput[Antivirals]) {
+		if (antiviralRessource>VectorY[Antivirals]) {
 			doProphylaxis = true;
-			OutputY[Antivirals] += zeta * (healthCareWorkers / total - CumulateOutput[D(HCW)] - CumulateOutput[HCWReturnAntivirals]);
+			OutputY[Antivirals] += zeta * (healthCareWorkers / total - VectorY[D(HCW)] - VectorY[HCWReturnAntivirals]);
 		}
 	}
 	
 	if (SchoolCloseRangeBegin == SchoolCloseRangeEnd) {
-		if (CumulateOutput[AP(Age0to6)] * total / Individuals[Age0to6] > schoolClosingTreshold)
+		if (VectorY[AP(Age0to6)] * total / Individuals[Age0to6] > schoolClosingTreshold)
 			doSchoolClosure0to6[(int)ceil(time)] = true;
-		if (CumulateOutput[AP(Age7to12)] * total / Individuals[Age7to12] > schoolClosingTreshold)
+		if (VectorY[AP(Age7to12)] * total / Individuals[Age7to12] > schoolClosingTreshold)
 			doSchoolClosure7to12[(int)ceil(time)] = true;
-		if (CumulateOutput[AP(Age13to18)] * total / Individuals[Age13to18] > schoolClosingTreshold)
+		if (VectorY[AP(Age13to18)] * total / Individuals[Age13to18] > schoolClosingTreshold)
 			doSchoolClosure13to18[(int)ceil(time)] = true;
 	}
 
@@ -945,33 +1012,40 @@ void EvaluationY(double time)
 
 			double generalFactor = 1.0;
 			if ((time >= ContactReductionRangeBegin) && (time <  ContactReductionRangeEnd))
-				generalFactor *= (1.0 - ContactReductionRate);
+				generalFactor *= (1.0 - percentage(ContactReductionRate));
 			double temp = 0.0;
 			double tempHCW = 0.0;
 			for (int eStage = EstageGroups - prodromalStages; eStage < EstageGroups; eStage++) {
-				temp += (CumulateOutput[E(ageInf, LowRisk, eStage)] + CumulateOutput[E(ageInf, HighRisk, eStage)])  * eBeta[ageSus][ageInf] * cancellingFactor * susChildCareFactor * infChildCareFactor;
+				double a = VectorY[E(ageInf, LowRisk, eStage)];
+				double b = VectorY[E(ageInf, HighRisk, eStage)];
+				double c = eBeta[ageSus][ageInf];
+				temp += (VectorY[E(ageInf, LowRisk, eStage)] + VectorY[E(ageInf, HighRisk, eStage)])  * eBeta[ageSus][ageInf] * cancellingFactor * susChildCareFactor * infChildCareFactor;
 			}
 
 			for (int iStage = 0; iStage < IstageGroups; iStage++) {
-				temp += (CumulateOutput[A(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeA][isolation] * cancellingFactor * susChildCareFactor * infChildCareFactor
-					+ CumulateOutput[M(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeM][isolation] * cancellingFactor * susChildCareFactor * infChildCareFactor
-					+ CumulateOutput[V(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeV][isolation] * susChildCareFactor
-					+ CumulateOutput[X(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeX][isolation] * susChildCareFactor
-					+ CumulateOutput[W(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeW][isolation] * susChildCareFactor
-					+ CumulateOutput[W(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeW][isolation] * susChildCareFactor
-					+ (CumulateOutput[H(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeH][isolation] * susChildCareFactor
-						+ CumulateOutput[H(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeH][isolation] * susChildCareFactor) * (1.0 - hcwContactFraction)) * contagiousness[iStage];
+				temp += (VectorY[A(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeA][isolation] * cancellingFactor * susChildCareFactor * infChildCareFactor
+					+ VectorY[M(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeM][isolation] * cancellingFactor * susChildCareFactor * infChildCareFactor
+					+ VectorY[V(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeV][isolation] * susChildCareFactor
+					+ VectorY[X(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeX][isolation] * susChildCareFactor
+					+ VectorY[W(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeW][isolation] * susChildCareFactor
+					+ VectorY[W(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeW][isolation] * susChildCareFactor
+					+ (VectorY[H(ageInf, iStage, MedNO, NICU)] * beta[ageSus][ageInf][MedNO][ItypeH][isolation] * susChildCareFactor
+					+ VectorY[H(ageInf, iStage, MedNO, ICU)] * beta[ageSus][ageInf][MedNO][ItypeH][isolation] * susChildCareFactor
+					+ VectorY[H(ageInf, iStage, MedYES, ICU)] * beta[ageSus][ageInf][MedYES][ItypeH][isolation] * susChildCareFactor
+					+ VectorY[H(ageInf, iStage, MedYES, NICU)] * beta[ageSus][ageInf][MedYES][ItypeH][isolation] * susChildCareFactor) * (1.0 - hcwContactFraction) * contagiousness[iStage]);
 
-				tempHCW += (CumulateOutput[A(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeA][isolation]
-					+ CumulateOutput[M(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeM][isolation]
-					+ CumulateOutput[V(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeV][isolation]
-					+ CumulateOutput[X(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeX][isolation]
-					+ CumulateOutput[W(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeW][isolation]
-					+ CumulateOutput[W(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeW][isolation])
+				tempHCW += (VectorY[A(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeA][isolation]
+					+ VectorY[M(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeM][isolation]
+					+ VectorY[V(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeV][isolation]
+					+ VectorY[X(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeX][isolation]
+					+ VectorY[W(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeW][isolation]
+					+ VectorY[W(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeW][isolation])
 					* Individuals[ageInf] * hcwContactFraction * contagiousness[iStage] * (nonFluPatients / total) * (1.0 - sentHomeFraction) / healthCareWorkers;
 
-				tempHCW += (CumulateOutput[H(ageInf, iStage, MedNO)] * beta[ageSus][ageInf][MedNO][ItypeH][isolation]
-					+ CumulateOutput[H(ageInf, iStage, MedYES)] * beta[ageSus][ageInf][MedYES][ItypeH][isolation])
+				tempHCW += (VectorY[H(ageInf, iStage, MedNO, NICU)] * beta[ageSus][ageInf][MedNO][ItypeH][isolation]
+					+ VectorY[H(ageInf, iStage, MedNO, ICU)] * beta[ageSus][ageInf][MedNO][ItypeH][isolation]
+					+ VectorY[H(ageInf, iStage, MedYES, ICU)] * beta[ageSus][ageInf][MedYES][ItypeH][isolation]
+					+ VectorY[H(ageInf, iStage, MedYES, NICU)] * beta[ageSus][ageInf][MedYES][ItypeH][isolation])
 					* Individuals[ageInf] * hcwContactFraction * contagiousness[iStage] / healthCareWorkers;
 			}
 			lambda[HCW] += tempHCW * generalFactor;
@@ -987,14 +1061,14 @@ void EvaluationY(double time)
 	double todaySevereTreatFract = 0.0;
 	if ((time >= VerySickTreatRangeBegin) && (time<VerySickTreatRangeEnd)) {
 		todaySevereTreatFract = percentage(VerySickTreatRate);
-		if (antiviralRessource <= CumulateOutput[Antivirals]) todaySevereTreatFract = 0.0;
+		if (antiviralRessource <= VectorY[Antivirals]) todaySevereTreatFract = 0.0;
 	}
 
 	// Calculate what fraction of extremely severe cases are treated.
 	double todayExtremeTreatFract = 0.0;
 	if ((time >= ExtremelySickTreatRangeBegin) && (time<ExtremelySickTreatRangeEnd)) {
 		todayExtremeTreatFract = percentage(ExtremelySickTreatRate);
-		if (antiviralRessource <= CumulateOutput[Antivirals]) todayExtremeTreatFract = 0.0;
+		if (antiviralRessource <= VectorY[Antivirals]) todayExtremeTreatFract = 0.0;
 	}
 
 	// Susceptible individuals are infected.
@@ -1006,125 +1080,158 @@ void EvaluationY(double time)
 		ImmunebyVaccine = 0;
 	for (int age = 0; age < StageofAgeGroups; age++) {
 		for (int risk = 0; risk < StageofRisk; risk++) {
-			Vaccine = ImmunebyVaccine * VaccineAgeRate[age] / AntibodyCreateRange * VaccineEffectAgeRate[age];
-			OutputY[S(age, risk)] = -lambda[age] * (1 - Vaccine) * CumulateOutput[S(age, risk)] - Vaccine * CumulateOutput[S(age, risk)];
+			Vaccine = ImmunebyVaccine * percentage(VaccineAgeRate[age]) / AntibodyCreateRange * percentage(VaccineEffectAgeRate[age]);
+			OutputY[S(age, risk)] = -lambda[age] * (1 - Vaccine) * VectorY[S(age, risk)] - Vaccine * VectorY[S(age, risk)];
 		}
 	}
-	/*
+	
 	for (int age = 0; age < StageofAgeGroups; age++) {
 		for (int risk = 0; risk < StageofRisk; risk++) {
 			for (int k = 0; k < EstageGroups; k++) {
 				if (k == Estage1)
-					OutputY[E(age, risk, k)] = lambda[age] * (1 - Vaccine) * CumulateOutput[S(age, risk)] - delta * CumulateOutput[E(age, risk, Estage1)];
-				OutputY[E(age, risk, k)] = delta * (CumulateOutput[E(age, risk, k - 1)] - CumulateOutput[E(age, risk, k)]);
+					OutputY[E(age, risk, k)] = lambda[age] * (1 - Vaccine) * VectorY[S(age, risk)] - delta * VectorY[E(age, risk, Estage1)];
+				OutputY[E(age, risk, k)] = delta * (VectorY[E(age, risk, k - 1)] - VectorY[E(age, risk, k)]);
 			}
 
 			// Some of the individuals who have just passed through 
 			// the incubation period become asymptomatic cases now.
 			OutputY[A(age, Istage1)]
-				= delta * (Courseofdisease[age][LowRisk][ItypeA] * CumulateOutput[E(age, LowRisk, EstageLast)]
-					+ Courseofdisease[age][HighRisk][ItypeA] * CumulateOutput[E(age, HighRisk, EstageLast)])
-				- gamma[age][MedNO][ItypeA] * CumulateOutput[A(age, Istage1)];
+				= delta * (Courseofdisease[age][LowRisk][ItypeA] * VectorY[E(age, LowRisk, EstageLast)]
+					+ Courseofdisease[age][HighRisk][ItypeA] * VectorY[E(age, HighRisk, EstageLast)])
+				- gamma[age][MedNO][ItypeA][Non] * VectorY[A(age, Istage1)];
 			// Some of the individuals who have just passed through 
 			// the incubation period become moderately sick cases now.
-			double mCases = delta * (Courseofdisease[age][LowRisk][ItypeM] * CumulateOutput[E(age, LowRisk, EstageLast)]
-				+ Courseofdisease[age][HighRisk][ItypeM] * CumulateOutput[E(age, HighRisk, EstageLast)]);
-			OutputY[M(age, Istage1)] = mCases - gamma[age][MedNO][ItypeM] * CumulateOutput[M(age, Istage1)];
+			double mCases = delta * (Courseofdisease[age][LowRisk][ItypeM] * VectorY[E(age, LowRisk, EstageLast)]
+				+ Courseofdisease[age][HighRisk][ItypeM] * VectorY[E(age, HighRisk, EstageLast)]);
+			OutputY[M(age, Istage1)] = mCases - gamma[age][MedNO][ItypeM][Non] * VectorY[M(age, Istage1)];
 			// Some of the individuals who have just passed through 
 			// the incubation period become severe cases now.
-			double vCases = delta * (Courseofdisease[age][LowRisk][ItypeV] * CumulateOutput[E(age, LowRisk, EstageLast)]
-				+ Courseofdisease[age][HighRisk][ItypeV] * CumulateOutput[E(age, HighRisk, EstageLast)]);
-			OutputY[V(age, Istage1)] = vCases - (gamma[age][MedNO][ItypeV] + alpha) * CumulateOutput[V(age, Istage1)];
+			double vCases = delta * (Courseofdisease[age][LowRisk][ItypeV] * VectorY[E(age, LowRisk, EstageLast)]
+				+ Courseofdisease[age][HighRisk][ItypeV] * VectorY[E(age, HighRisk, EstageLast)]);
+			OutputY[V(age, Istage1)] = vCases - (gamma[age][MedNO][ItypeV][Non] + alpha) * VectorY[V(age, Istage1)];
 			// Some of the individuals who have just passed through 
 			// the incubation period become extremely severe cases now.
-			double xCases = delta * (Courseofdisease[age][LowRisk][ItypeX] * CumulateOutput[E(age, LowRisk, EstageLast)]
-				+ Courseofdisease[age][HighRisk][ItypeX] * CumulateOutput[E(age, HighRisk, EstageLast)]);
-			OutputY[X(age, Istage1)] = xCases - (gamma[age][MedNO][ItypeX] + (alpha + tau[age])) * CumulateOutput[X(age, Istage1)];
+			double xCases = delta * (Courseofdisease[age][LowRisk][ItypeX] * VectorY[E(age, LowRisk, EstageLast)]
+				+ Courseofdisease[age][HighRisk][ItypeX] * VectorY[E(age, HighRisk, EstageLast)]);
+			OutputY[X(age, Istage1)] = xCases - (gamma[age][MedNO][ItypeX][Non] + (alpha + tau[age])) * VectorY[X(age, Istage1)];
 			// Some severe cases in contagiousness stage 1 have received treatment.
 			// Some extremely severe cases in contagiousness stage 1 whose 
 			// hospitalization could be avoided through antiviral treatment, join this group.
 			OutputY[W(age, Istage1, MedYES)]
-				= alpha * (CumulateOutput[V(age, Istage1)] * todaySevereTreatFract + hospPrevTreat * CumulateOutput[X(age, Istage1)] * todayExtremeTreatFract)
-				- gamma[age][MedYES][ItypeW] * CumulateOutput[W(age, Istage1, MedYES)];
+				= alpha * (VectorY[V(age, Istage1)] * todaySevereTreatFract + hospPrevTreat * VectorY[X(age, Istage1)] * todayExtremeTreatFract)
+				- gamma[age][MedYES][ItypeW][Non] * VectorY[W(age, Istage1, MedYES)];
 			// Some extremely severe cases in contagiousness stage 1 have received 
 			// treatment and are hospitalized (hospitalization could not be prevented).
-			OutputY[H(age, Istage1, MedYES)]
-				= alpha * todayExtremeTreatFract * (1.0 - hospPrevTreat) * CumulateOutput[X(age, Istage1)]
-				- (gamma[age][MedYES][ItypeW] + tau[age]) * CumulateOutput[H(age, Istage1, MedYES)];
+			// Istage1, Treated, ICU case
+			OutputY[H(age, Istage1, MedYES, ICU)]
+				= FractionofICU * (alpha * todayExtremeTreatFract * (1.0 - hospPrevTreat) * VectorY[X(age, Istage1)])
+				- (gamma[age][MedYES][ItypeH][ICU] + tau[age]) * VectorY[H(age, Istage1, MedYES, ICU)];
+			// Istage1, Treated, NICU case
+			OutputY[H(age, Istage1, MedYES, NICU)]
+				= (1.0 - FractionofICU) * (alpha * todayExtremeTreatFract * (1.0 - hospPrevTreat) * VectorY[X(age, Istage1)])
+				- (gamma[age][MedYES][ItypeH][NICU] + tau[age]) * VectorY[H(age, Istage1, MedYES, NICU)];
 			// Some severe cases in contagiousness stage 1 have seen the doctor 
 			// but have not received treatment.
 			OutputY[W(age, Istage1, MedNO)]
-				= alpha * (1.0 - todaySevereTreatFract) * CumulateOutput[V(age, Istage1)] - gamma[age][MedNO][ItypeW] * CumulateOutput[W(age, Istage1, MedNO)];
+				= alpha * (1.0 - todaySevereTreatFract) * VectorY[V(age, Istage1)] - gamma[age][MedNO][ItypeW][Non] * VectorY[W(age, Istage1, MedNO)];
 			// Some extremely severe cases in contagiousness stage 1 have seen 
 			// the doctor and have been hospitalized, but have not received treatment.
-			OutputY[H(age, Istage1, MedNO)]
-				= alpha * (1.0 - todayExtremeTreatFract) * CumulateOutput[X(age, Istage1)] - (gamma[age][MedNO][ItypeH] + tau[age]) * CumulateOutput[H(age, Istage1, MedNO)];
+			//Istage1, UnTreated, ICU
+			OutputY[H(age, Istage1, MedNO,ICU)]
+				= FractionofICU * (alpha * (1.0 - todayExtremeTreatFract) * VectorY[X(age, Istage1)]) - (gamma[age][MedNO][ItypeH][ICU] + tau[age]) * VectorY[H(age, Istage1, MedNO, ICU)];
+			//Istage1, UnTreated, NICU
+			OutputY[H(age, Istage1, MedNO,NICU)]
+				= (1.0 - FractionofICU) * (alpha * (1.0 - todayExtremeTreatFract) * VectorY[X(age, Istage1)]) - (gamma[age][MedNO][ItypeH][NICU] + tau[age]) * VectorY[H(age, Istage1, MedNO, NICU)];
 
 			for (int iStage = Istage2; iStage < IstageGroups; iStage++) {
 				int previousStage = iStage - 1;
 				// Progress through the contagious period for asymptomatic cases.
 				OutputY[A(age, iStage)]
-					= gamma[age][MedNO][ItypeA] * (CumulateOutput[A(age, previousStage)] - CumulateOutput[A(age, iStage)]);
+					= gamma[age][MedNO][ItypeA][Non] * (VectorY[A(age, previousStage)] - VectorY[A(age, iStage)]);
 				// Progress through the contagious period for moderately sick cases.
 				OutputY[M(age, iStage)]
-					= gamma[age][MedNO][ItypeM] * (CumulateOutput[M(age, previousStage)] - CumulateOutput[M(age, iStage)]);
+					= gamma[age][MedNO][ItypeM][Non] * (VectorY[M(age, previousStage)] - VectorY[M(age, iStage)]);
 				// Progress through the contagious period for severe cases 
 				// (some seek medical help and possibly obtain treatment).
 				OutputY[V(age, iStage)]
-					= gamma[age][MedNO][ItypeV] * (CumulateOutput[V(age, previousStage)] - CumulateOutput[V(age, iStage)])
-					- alpha * CumulateOutput[V(age, iStage)];
+					= gamma[age][MedNO][ItypeV][Non] * (VectorY[V(age, previousStage)] - VectorY[V(age, iStage)])
+					- alpha * VectorY[V(age, iStage)];
 				// Progress through the contagious period for extremely severe cases 
 				// (some seek medical help, may be hospitalized and/or obtain antiviral treatment).
 				OutputY[X(age, iStage)]
-					= gamma[age][MedNO][ItypeX] * (CumulateOutput[X(age, previousStage)] - CumulateOutput[X(age, iStage)]) - (alpha + tau[age])  * CumulateOutput[X(age, iStage)];
+					= gamma[age][MedNO][ItypeX][Non] * (VectorY[X(age, previousStage)] - VectorY[X(age, iStage)]) - (alpha + tau[age])  * VectorY[X(age, iStage)];
 				if (iStage + 1 < maxTreatmentStage[age]) {
 					// Some severe cases have just been treated, others simply progress 
 					// in their contagious period. Some newly treated extremely severe 
 					// cases whose hospitalization could be prevented by treatment, join this group.
 					OutputY[W(age, iStage, MedYES)]
-						= gamma[age][MedYES][ItypeW] * (CumulateOutput[W(age, previousStage, MedYES)]
-							- CumulateOutput[W(age, iStage, MedYES)]) + alpha * (CumulateOutput[V(age, iStage)] * todaySevereTreatFract
-								+ hospPrevTreat * CumulateOutput[X(age, iStage)] * todayExtremeTreatFract);
+						= gamma[age][MedYES][ItypeW][Non] * (VectorY[W(age, previousStage, MedYES)]
+							- VectorY[W(age, iStage, MedYES)]) + alpha * (VectorY[V(age, iStage)] * todaySevereTreatFract
+								+ hospPrevTreat * VectorY[X(age, iStage)] * todayExtremeTreatFract);
 					// Some new severe cases have just seen the doctor without receiving 
 					// antiviral treatment, others simply progress in their contagious period.
 					OutputY[W(age, iStage, MedNO)]
-						= gamma[age][MedNO][ItypeW] * (CumulateOutput[W(age, previousStage, MedNO)]
-							- CumulateOutput[W(age, iStage, MedNO)]) + alpha * (1.0 - todaySevereTreatFract) * CumulateOutput[V(age, iStage)];
+						= gamma[age][MedNO][ItypeW][Non] * (VectorY[W(age, previousStage, MedNO)]
+							- VectorY[W(age, iStage, MedNO)]) + alpha * (1.0 - todaySevereTreatFract) * VectorY[V(age, iStage)];
 					// Some new extremely severe cases have just been treated and 
 					// hospitalized, other hospitalized casess simply progress in their 
 					// contagious period.
-					OutputY[H(age, iStage, MedYES)]
-						= gamma[age][MedYES][ItypeH] * (CumulateOutput[H(age, previousStage, MedYES)]
-							- CumulateOutput[H(age, iStage, MedYES)]) + (1.0 - hospPrevTreat) * todayExtremeTreatFract * alpha * CumulateOutput[X(age, iStage)]
-						- tau[age] * CumulateOutput[H(age, iStage, MedYES)];
+					//Istage, UnTreat, ICU
+					OutputY[H(age, iStage, MedYES, ICU)]
+						= FractionofICU * (alpha * todayExtremeTreatFract * (1.0 - hospPrevTreat) * VectorY[X(age, iStage)])
+						+ gamma[age][MedYES][ItypeH][ICU] * (VectorY[H(age, previousStage, MedYES, ICU)] - VectorY[H(age, iStage, MedYES, ICU)])
+						- tau[age] * VectorY[H(age, iStage, MedYES, ICU)];
+					//Istage, UnTreat, NICU
+					OutputY[H(age, iStage, MedYES, NICU)]
+						= (1.0 - FractionofICU) * alpha * todayExtremeTreatFract * (1.0 - hospPrevTreat) * VectorY[X(age, iStage)]
+						+ gamma[age][MedYES][ItypeH][NICU] * (VectorY[H(age, previousStage, MedYES, NICU)] - VectorY[H(age, iStage, MedYES, NICU)])
+						- tau[age] * VectorY[H(age, iStage, MedYES, NICU)];
 					// Some new extremely severe cases have just been hospitalized 
 					// without receiving antiviral treatment; other hospitalized cases 
 					// simply progress in their contagious period.
-					OutputY[H(age, iStage, MedNO)]
-						= gamma[age][MedNO][ItypeH] * (CumulateOutput[H(age, previousStage, MedNO)]
-							- CumulateOutput[H(age, iStage, MedNO)]) + (1.0 - todayExtremeTreatFract) * alpha * CumulateOutput[X(age, iStage)]
-						- tau[age] * CumulateOutput[H(age, iStage, MedNO)];
+					//Istage, UnTreat, ICU
+					OutputY[H(age, iStage, MedNO, ICU)]
+						= FractionofICU * (alpha * (1.0 - todayExtremeTreatFract) * VectorY[X(age, iStage)])
+						+ gamma[age][MedNO][ItypeH][ICU] * (VectorY[H(age, previousStage, MedNO, ICU)] - VectorY[H(age, iStage, MedNO, ICU)])
+						- tau[age] * VectorY[H(age, iStage, MedNO, ICU)];
+					//Istage, UnTreat, NICU
+					OutputY[H(age, iStage, MedNO, NICU)]
+						= (1.0 - FractionofICU) * (alpha * (1.0 - todayExtremeTreatFract) * VectorY[X(age, iStage)])
+						+ gamma[age][MedNO][ItypeH][NICU] * (VectorY[H(age, previousStage, MedNO, NICU)] - VectorY[H(age, iStage, MedNO, NICU)])
+						- tau[age] * VectorY[H(age, iStage, MedNO, NICU)];
 				}
 				else {
 					// Formerly treated severe cases progress in their contagious period.
 					OutputY[W(age, iStage, MedYES)]
-						= gamma[age][MedYES][ItypeW] * (CumulateOutput[W(age, previousStage, MedYES)]
-							- CumulateOutput[W(age, iStage, MedYES)]);
+						= gamma[age][MedYES][ItypeW][Non] * (VectorY[W(age, previousStage, MedYES)]
+							- VectorY[W(age, iStage, MedYES)]);
 					// Some new severe cases have just seen the doctor without receiving 
 					// antiviral treatment, others simply progress in their contagious period.
 					OutputY[W(age, iStage, MedNO)]
-						= gamma[age][MedNO][ItypeW] * (CumulateOutput[W(age, previousStage, MedNO)]
-							- CumulateOutput[W(age, iStage, MedNO)]) + alpha * CumulateOutput[V(age, iStage)];
+						= gamma[age][MedNO][ItypeW][Non] * (VectorY[W(age, previousStage, MedNO)]
+							- VectorY[W(age, iStage, MedNO)]) + alpha * VectorY[V(age, iStage)];
 					// Formerly treated hospitalized cases progress in their contagious period.
-					OutputY[H(age, iStage, MedYES)]
-						= gamma[age][MedYES][ItypeH] * (CumulateOutput[H(age, previousStage, MedYES)]
-							- CumulateOutput[H(age, iStage, MedYES)]) - tau[age] * CumulateOutput[H(age, iStage, MedYES)];
+					//Istage, Treat, NICU
+					OutputY[H(age, iStage, MedYES, NICU)]
+						= gamma[age][MedYES][ItypeH][NICU] * (VectorY[H(age, previousStage, MedYES, NICU)] - VectorY[H(age, iStage, MedYES, NICU)])
+						- tau[age] * VectorY[H(age, iStage, MedYES, NICU)];
+					//Istage, Treat, ICU
+					OutputY[H(age, iStage, MedYES, ICU)]
+						= gamma[age][MedYES][ItypeH][ICU] * (VectorY[H(age, previousStage, MedYES, ICU)] - VectorY[H(age, iStage, MedYES, ICU)])
+						- tau[age] * VectorY[H(age, iStage, MedYES, ICU)];
 					// Some new extremely severe cases have just seen the doctor and 
 					// have been hospitalized without receiving antiviral treatment, other 
 					// formerly untreated hospitalized cases simply progress in their contagious period.
-					OutputY[H(age, iStage, MedNO)]
-						= gamma[age][MedNO][ItypeH] * (CumulateOutput[H(age, previousStage, MedNO)]
-							- CumulateOutput[H(age, iStage, MedNO)]) + alpha * CumulateOutput[X(age, iStage)] - tau[age] * CumulateOutput[H(age, iStage, MedNO)];
+					//Istage, UnTreat, ICU
+					OutputY[H(age, iStage, MedNO, ICU)]
+						= alpha * VectorY[X(age, iStage)]
+						+ gamma[age][MedNO][ItypeH][ICU] * (VectorY[H(age, previousStage, MedNO, ICU)] - VectorY[H(age, iStage, MedNO, ICU)])
+						- tau[age] * VectorY[H(age, iStage, MedNO, ICU)];
+					//Istage, UnTreat, NICU
+					OutputY[H(age, iStage, MedNO, NICU)]
+						= alpha * VectorY[X(age, iStage)]
+						+ gamma[age][MedNO][ItypeH][NICU] * (VectorY[H(age, previousStage, MedNO, NICU)] - VectorY[H(age, iStage, MedNO, NICU)])
+						- tau[age] * VectorY[H(age, iStage, MedNO, NICU)];
 				}
 			}
 		}
@@ -1132,73 +1239,76 @@ void EvaluationY(double time)
 
 
 	for (int age = 0; age < StageofAgeGroups; age++) {
-		out[R(age, Rstage1)] = 0.0;
+		OutputY[R(age, Rstage1)] = 0.0;
 		for (int rStage = Rstage2; rStage < RstageGroups; rStage++) {
-			out[R(age, rStage)] = 0.0;
+			OutputY[R(age, rStage)] = 0.0;
 		}
-		out[D(age)] = 0.0;
-		out[I(age)] = 0.0;
+		OutputY[D(age)] = 0.0;
+		OutputY[I(age)] = 0.0;
 
 		// All severe and extremely severe cases have to go through a period
 		// of reconvalcescence after passing through their contagious period.
-		out[R(age, Rstage1)]
-			+= gamma(age, MedNO, ItypeV) 	* y[V(age, IstageLast)]
-			+ gamma(age, MedNO, ItypeX) 	* y[X(age, IstageLast)]
-			+ gamma(age, MedNO, ItypeW) 	* y[W(age, IstageLast, MedNO)]
-			+ gamma(age, MedNO, ItypeH)	* y[H(age, IstageLast, MedNO)]
-			+ gamma(age, MedYES, ItypeW)	* y[W(age, IstageLast, MedYES)]
-			+ gamma(age, MedYES, ItypeH)	* y[H(age, IstageLast, MedYES)]
-			- rho * y[R(age, Rstage1)];
+		OutputY[R(age, Rstage1)]
+			+= gamma[age][MedNO][ItypeV][Non] * VectorY[V(age, IstageLast)]
+			+ gamma[age][MedNO][ItypeX][Non] * VectorY[X(age, IstageLast)]
+			+ gamma[age][MedNO][ItypeW][Non] * VectorY[W(age, IstageLast, MedNO)]
+			+ gamma[age][MedNO][ItypeH][ICU] * VectorY[H(age, IstageLast, MedNO, ICU)]
+			+ gamma[age][MedNO][ItypeH][NICU] * VectorY[H(age, IstageLast, MedNO, NICU)]
+			+ gamma[age][MedYES][ItypeW][Non] * VectorY[W(age, IstageLast, MedYES)]
+			+ gamma[age][MedYES][ItypeH][ICU] * VectorY[H(age, IstageLast, MedYES, ICU)]
+			+ gamma[age][MedYES][ItypeH][NICU] * VectorY[H(age, IstageLast, MedYES, NICU)]
+			- rho * VectorY[R(age, Rstage1)];
 		if (age == HCW) {
-			out[HCWReturnAntivirals]
-				+= gamma(HCW, MedNO, ItypeV)  * y[V(HCW, IstageLast)]
-				+ gamma(HCW, MedNO, ItypeW) 	* y[W(HCW, IstageLast, MedNO)]
-				+ gamma(HCW, MedNO, ItypeX) 	* y[X(HCW, IstageLast)]
-				+ gamma(HCW, MedNO, ItypeH)    * y[H(HCW, IstageLast, MedNO)];
+			OutputY[HCWReturnAntivirals]
+				+= gamma[HCW][MedNO][ItypeV][Non] * VectorY[V(HCW, IstageLast)]
+				+ gamma[HCW][MedNO][ItypeW][Non] * VectorY[W(HCW, IstageLast, MedNO)]
+				+ gamma[HCW][MedNO][ItypeX][Non] * VectorY[X(HCW, IstageLast)]
+				+ gamma[HCW][MedNO][ItypeH][ICU] * VectorY[H(HCW, IstageLast, MedNO, ICU)];
+				+ gamma[HCW][MedNO][ItypeH][NICU] * VectorY[H(HCW, IstageLast, MedNO, NICU)];
 		}
 
 		// Progress during the reconvalescent period.
 		for (int rStage = Rstage2; rStage < RstageGroups; rStage++) {
-			out[R(age, rStage)] += rho * (y[R(age, rStage - 1)] - y[R(age, rStage)]);
+			OutputY[R(age, rStage)] += rho * (VectorY[R(age, rStage - 1)] - VectorY[R(age, rStage)]);
 		}
 
 		// Update the number of cases who died.
 		double dead = 0;
 		for (int iStage = 0; iStage < IstageGroups; iStage++) {
-			dead += tau(age) * (y[X(age, iStage)] + y[H(age, iStage, MedNO)] + y[H(age, iStage, MedYES)]);
+			dead += tau[age] * (VectorY[X(age, iStage)] + VectorY[H(age, iStage, MedNO)] + VectorY[H(age, iStage, MedYES)]);
 			if (age == HCW) {
-				out[HCWReturnAntivirals] -= tau(HCW) * y[H(HCW, iStage, MedYES)];
+				OutputY[HCWReturnAntivirals] -= tau[HCW] * VectorY[H(HCW, iStage, MedYES)];
 			}
 		}
-		out[D(age)] += dead;
+		OutputY[D(age)] += dead;
 
 		// Update the number of fully recovered immune people.
-		out[I(age)] += gamma(age, MedNO, ITYPE_A)
-			* y[A(age, ISTAGE_LAST)] + gamma(age, MED_NO, ITYPE_M)
-			* y[M(age, ISTAGE_LAST)] + rho * y[R(age, RSTAGE_LAST)];
+		OutputY[I(age)] += gamma[age][MedNO][ItypeA][Non]
+			* VectorY[A(age, IstageLast)] + gamma[age][MedNO][ItypeM][Non]
+			* VectorY[M(age, IstageLast)] + rho * VectorY[R(age, RstageLast)];
 
 		// Update the number of outpatient visits.
-		for (int iStage = 0; iStage < ISTAGEGROUPS; iStage++) {
-			out[Outpatients] += alpha  * (y[V(age, iStage)] + y[X(age, iStage)]);
-			out[Outpatients] += alphaW[age] * (y[W(age, iStage, MED_NO)] + y[W(age, iStage, MedYES)]);
+		for (int iStage = 0; iStage < IstageGroups; iStage++) {
+			OutputY[Outpatients] += alpha  * (VectorY[V(age, iStage)] + VectorY[X(age, iStage)]);
+			OutputY[Outpatients] += alphaW[age] * (VectorY[W(age, iStage, MedNO)] + VectorY[W(age, iStage, MedYES)]);
 		}
 
 		// Update the number of antiviral doses used.
 		for (int iStage = 0; iStage < maxTreatmentStage[age]; iStage++) {
-			double treated = alpha * (y[V(age, iStage)] * todaySevereTreatFract + y[X(age, iStage)] * todayExtremeTreatFract);
-			out[Antivirals] += treated;
+			double treated = alpha * (VectorY[V(age, iStage)] * todaySevereTreatFract + VectorY[X(age, iStage)] * todayExtremeTreatFract);
+			OutputY[Antivirals] += treated;
 			if (age == HCW) {
-				out[HCWReturnAntivirals] += treated;
+				OutputY[HCWReturnAntivirals] += treated;
 			}
 		}
 
 		// Update the number of hospitalizations.
-		for (int iStage = 0; iStage < maxTreatmentStage(age); iStage++) {
-			out[Hospitalisation] += alpha
-				* (1.0 - todayExtremeTreatFract + todayExtremeTreatFract * (1.0 - hospPrevTreat)) * y[X(age, iStage)];
+		for (int iStage = 0; iStage < maxTreatmentStage[age]; iStage++) {
+			OutputY[Hospitalisation] += alpha
+				* (1.0 - todayExtremeTreatFract + todayExtremeTreatFract * (1.0 - hospPrevTreat)) * VectorY[X(age, iStage)];
 		}
-		for (int iStage = maxTreatmentStage(age); iStage < ISTAGEGROUPS; iStage++) {
-			out[Hospitalisation] += alpha * y[X(age, iStage)];
+		for (int iStage = maxTreatmentStage[age]; iStage < IstageGroups; iStage++) {
+			OutputY[Hospitalisation] += alpha * VectorY[X(age, iStage)];
 		}
 
 
@@ -1206,51 +1316,19 @@ void EvaluationY(double time)
 		double caseIncidence = 0.0;
 		double recoveryIncidence = 0.0;
 		caseIncidence += delta
-			* (destiny(age, RISK_LOW, ITYPE_V) * y[E(age, RISK_LOW, ESTAGE_LAST)]
-				+ destiny(age, RISK_HIGH, ITYPE_V) * y[E(age, RISK_HIGH, ESTAGE_LAST)]
-				+ destiny(age, RISK_LOW, ITYPE_X) * y[E(age, RISK_LOW, ESTAGE_LAST)]
-				+ destiny(age, RISK_HIGH, ITYPE_X) * y[E(age, RISK_HIGH, ESTAGE_LAST)]);
-		recoveryIncidence += rho * y[R(age, RSTAGE_LAST)];
-		out[CIC(age)] = caseIncidence;
-		out[AP(age)] = caseIncidence - recoveryIncidence - dead;
+			* (Courseofdisease[age][LowRisk][ItypeV] * VectorY[E(age, LowRisk, EstageLast)]
+				+ Courseofdisease[age][HighRisk][ItypeV] * VectorY[E(age, HighRisk, EstageLast)]
+				+ Courseofdisease[age][LowRisk][ItypeX] * VectorY[E(age, LowRisk, EstageLast)]
+				+ Courseofdisease[age][HighRisk][ItypeX] * VectorY[E(age, HighRisk, EstageLast)]);
+		recoveryIncidence += rho * VectorY[R(age, RstageLast)];
+		OutputY[CIC(age)] = caseIncidence;
+		OutputY[AP(age)] = caseIncidence - recoveryIncidence - dead;
 
-		//          Update the cumulative absenteeism prevalence due to influenza.
-		out[CPA(age)] = y[AP(age)];
-	}*/
-
-
-
-	/*누적 데이터 계산(초기값 사용시에는 주석처리)*/
-	for (int i = 0; i < OutputArray; i++)
-		CumulateOutput[i] += OutputY[i];
+		//Update the cumulative absenteeism prevalence due to influenza.
+		OutputY[CPA(age)] = VectorY[AP(age)];
+	
+	}
 }
-
-// 감염자 TAB : Susceptibles, exposed, asymptomatic, moderate, severe, dead, immune
-double PlotSusceptibles[StageofAgeGroups][NumberofArray];
-double PlotExposed[StageofAgeGroups][NumberofArray];
-double PlotAsymptomatic[StageofAgeGroups][NumberofArray];
-double PlotModerate[StageofAgeGroups][NumberofArray];
-double PlotSevere[StageofAgeGroups][NumberofArray];
-double PlotDead[StageofAgeGroups][NumberofArray];
-double PlotImmune[StageofAgeGroups][NumberofArray];
-
-// 의료자원 TAB : N-95mask, respirator,  Antivirals
-double PlotN95mask[StageofAgeGroups][NumberofArray];
-double PlotRespirator[StageofAgeGroups][NumberofArray];
-double PlotAntivirals[StageofAgeGroups][NumberofArray];
-
-// 검체수 TAB : Specimen
-double PlotSpecimen[StageofAgeGroups][NumberofArray];
-
-// 일일 TAB : outpatients, HospitalICU, HospitalNICU
-double PlotOutpatients[StageofAgeGroups][NumberofArray];
-double PlotHospitalICU[StageofAgeGroups][NumberofArray];
-double PlotHospitalNICU[StageofAgeGroups][NumberofArray];
-
-// 누적 TAB : outpatients, HospitalICU, HospitalNICU
-double PlotCumOutpatients[StageofAgeGroups][NumberofArray];
-double PlotCumHospitalICU[StageofAgeGroups][NumberofArray];
-double PlotCumHospitalNICU[StageofAgeGroups][NumberofArray];
 
 void KfluStep()
 {
@@ -1260,7 +1338,7 @@ void KfluStep()
 	InitialY();
 	for (day = 0.0; day < Maximumday; day = day + (1.0 / TimeResolution))
 	{
-		EvaluationY(day);
+		Evaluation(day);
 		ArrayforPlot(day);
 		/*std::cout << '\r';
 		for (int i = 0; i <= day*10; i++)
@@ -1268,7 +1346,6 @@ void KfluStep()
 		*/
 	}
 }
-
 
 void ArrayforPlot(double m)
 {

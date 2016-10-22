@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[118];
-    char stringdata0[3658];
+    QByteArrayData data[122];
+    char stringdata0[3793];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -96,57 +96,61 @@ QT_MOC_LITERAL(63, 1958, 38), // "on_input_contactReductStart_t..."
 QT_MOC_LITERAL(64, 1997, 36), // "on_input_contactReductEnd_tex..."
 QT_MOC_LITERAL(65, 2034, 36), // "on_input_SchoolCloseStart_tex..."
 QT_MOC_LITERAL(66, 2071, 34), // "on_input_SchoolCloseEnd_textE..."
-QT_MOC_LITERAL(67, 2106, 38), // "on_input_schoolCloseContact_t..."
-QT_MOC_LITERAL(68, 2145, 35), // "on_input_gatheringCancel_text..."
-QT_MOC_LITERAL(69, 2181, 40), // "on_input_gatheringCancelStart..."
-QT_MOC_LITERAL(70, 2222, 38), // "on_input_gatheringCancelEnd_t..."
-QT_MOC_LITERAL(71, 2261, 24), // "on_input_NICU_textEdited"
-QT_MOC_LITERAL(72, 2286, 23), // "on_input_ICU_textEdited"
-QT_MOC_LITERAL(73, 2310, 29), // "on_input_vaccine_1_textEdited"
-QT_MOC_LITERAL(74, 2340, 29), // "on_input_vaccine_2_textEdited"
-QT_MOC_LITERAL(75, 2370, 29), // "on_input_vaccine_3_textEdited"
-QT_MOC_LITERAL(76, 2400, 29), // "on_input_vaccine_4_textEdited"
-QT_MOC_LITERAL(77, 2430, 29), // "on_input_vaccine_5_textEdited"
-QT_MOC_LITERAL(78, 2460, 35), // "on_input_vaccineEffect_1_text..."
-QT_MOC_LITERAL(79, 2496, 35), // "on_input_vaccineEffect_2_text..."
-QT_MOC_LITERAL(80, 2532, 35), // "on_input_vaccineEffect_3_text..."
-QT_MOC_LITERAL(81, 2568, 35), // "on_input_vaccineEffect_4_text..."
-QT_MOC_LITERAL(82, 2604, 35), // "on_input_vaccineEffect_5_text..."
-QT_MOC_LITERAL(83, 2640, 33), // "on_input_antibodyRange_textEd..."
-QT_MOC_LITERAL(84, 2674, 32), // "on_input_vaccineStart_textEdited"
-QT_MOC_LITERAL(85, 2707, 29), // "on_input_mask_NICU_textEdited"
-QT_MOC_LITERAL(86, 2737, 28), // "on_input_mask_ICU_textEdited"
-QT_MOC_LITERAL(87, 2766, 28), // "on_input_respRate_textEdited"
-QT_MOC_LITERAL(88, 2795, 29), // "on_input_reinspect_textEdited"
-QT_MOC_LITERAL(89, 2825, 30), // "on_input_outpatient_textEdited"
-QT_MOC_LITERAL(90, 2856, 24), // "on_age_checkBox1_clicked"
-QT_MOC_LITERAL(91, 2881, 24), // "on_age_checkBox2_clicked"
-QT_MOC_LITERAL(92, 2906, 24), // "on_age_checkBox3_clicked"
-QT_MOC_LITERAL(93, 2931, 24), // "on_age_checkBox4_clicked"
-QT_MOC_LITERAL(94, 2956, 24), // "on_age_checkBox5_clicked"
-QT_MOC_LITERAL(95, 2981, 24), // "on_age_checkBox6_clicked"
-QT_MOC_LITERAL(96, 3006, 31), // "on_input_contact_1_1_textEdited"
-QT_MOC_LITERAL(97, 3038, 31), // "on_input_contact_1_2_textEdited"
-QT_MOC_LITERAL(98, 3070, 31), // "on_input_contact_1_3_textEdited"
-QT_MOC_LITERAL(99, 3102, 31), // "on_input_contact_1_4_textEdited"
-QT_MOC_LITERAL(100, 3134, 31), // "on_input_contact_1_5_textEdited"
-QT_MOC_LITERAL(101, 3166, 31), // "on_input_contact_2_2_textEdited"
-QT_MOC_LITERAL(102, 3198, 31), // "on_input_contact_2_3_textEdited"
-QT_MOC_LITERAL(103, 3230, 31), // "on_input_contact_2_4_textEdited"
-QT_MOC_LITERAL(104, 3262, 31), // "on_input_contact_2_5_textEdited"
-QT_MOC_LITERAL(105, 3294, 31), // "on_input_contact_3_3_textEdited"
-QT_MOC_LITERAL(106, 3326, 31), // "on_input_contact_3_4_textEdited"
-QT_MOC_LITERAL(107, 3358, 31), // "on_input_contact_3_5_textEdited"
-QT_MOC_LITERAL(108, 3390, 31), // "on_input_contact_4_4_textEdited"
-QT_MOC_LITERAL(109, 3422, 31), // "on_input_contact_4_5_textEdited"
-QT_MOC_LITERAL(110, 3454, 31), // "on_input_contact_5_5_textEdited"
-QT_MOC_LITERAL(111, 3486, 23), // "on_actionOpen_triggered"
-QT_MOC_LITERAL(112, 3510, 23), // "on_actionSave_triggered"
-QT_MOC_LITERAL(113, 3534, 24), // "on_actionK_flu_triggered"
-QT_MOC_LITERAL(114, 3559, 25), // "on_actionExport_triggered"
-QT_MOC_LITERAL(115, 3585, 26), // "on_actionContact_triggered"
-QT_MOC_LITERAL(116, 3612, 22), // "on_actionJPG_triggered"
-QT_MOC_LITERAL(117, 3635, 22) // "on_actionCSV_triggered"
+QT_MOC_LITERAL(67, 2106, 42), // "on_input_schoolCloseContact0t..."
+QT_MOC_LITERAL(68, 2149, 43), // "on_input_schoolCloseContact7t..."
+QT_MOC_LITERAL(69, 2193, 44), // "on_input_schoolCloseContact13..."
+QT_MOC_LITERAL(70, 2238, 35), // "on_input_gatheringCancel_text..."
+QT_MOC_LITERAL(71, 2274, 40), // "on_input_gatheringCancelStart..."
+QT_MOC_LITERAL(72, 2315, 38), // "on_input_gatheringCancelEnd_t..."
+QT_MOC_LITERAL(73, 2354, 24), // "on_input_NICU_textEdited"
+QT_MOC_LITERAL(74, 2379, 23), // "on_input_ICU_textEdited"
+QT_MOC_LITERAL(75, 2403, 29), // "on_input_vaccine_1_textEdited"
+QT_MOC_LITERAL(76, 2433, 29), // "on_input_vaccine_2_textEdited"
+QT_MOC_LITERAL(77, 2463, 29), // "on_input_vaccine_3_textEdited"
+QT_MOC_LITERAL(78, 2493, 29), // "on_input_vaccine_4_textEdited"
+QT_MOC_LITERAL(79, 2523, 29), // "on_input_vaccine_5_textEdited"
+QT_MOC_LITERAL(80, 2553, 35), // "on_input_vaccineEffect_1_text..."
+QT_MOC_LITERAL(81, 2589, 35), // "on_input_vaccineEffect_2_text..."
+QT_MOC_LITERAL(82, 2625, 35), // "on_input_vaccineEffect_3_text..."
+QT_MOC_LITERAL(83, 2661, 35), // "on_input_vaccineEffect_4_text..."
+QT_MOC_LITERAL(84, 2697, 35), // "on_input_vaccineEffect_5_text..."
+QT_MOC_LITERAL(85, 2733, 33), // "on_input_antibodyRange_textEd..."
+QT_MOC_LITERAL(86, 2767, 32), // "on_input_vaccineStart_textEdited"
+QT_MOC_LITERAL(87, 2800, 29), // "on_input_mask_NICU_textEdited"
+QT_MOC_LITERAL(88, 2830, 28), // "on_input_mask_ICU_textEdited"
+QT_MOC_LITERAL(89, 2859, 28), // "on_input_respRate_textEdited"
+QT_MOC_LITERAL(90, 2888, 29), // "on_input_reinspect_textEdited"
+QT_MOC_LITERAL(91, 2918, 30), // "on_input_outpatient_textEdited"
+QT_MOC_LITERAL(92, 2949, 24), // "on_age_checkBox1_clicked"
+QT_MOC_LITERAL(93, 2974, 24), // "on_age_checkBox2_clicked"
+QT_MOC_LITERAL(94, 2999, 24), // "on_age_checkBox3_clicked"
+QT_MOC_LITERAL(95, 3024, 24), // "on_age_checkBox4_clicked"
+QT_MOC_LITERAL(96, 3049, 24), // "on_age_checkBox5_clicked"
+QT_MOC_LITERAL(97, 3074, 24), // "on_age_checkBox6_clicked"
+QT_MOC_LITERAL(98, 3099, 31), // "on_input_contact_1_1_textEdited"
+QT_MOC_LITERAL(99, 3131, 31), // "on_input_contact_1_2_textEdited"
+QT_MOC_LITERAL(100, 3163, 31), // "on_input_contact_1_3_textEdited"
+QT_MOC_LITERAL(101, 3195, 31), // "on_input_contact_1_4_textEdited"
+QT_MOC_LITERAL(102, 3227, 31), // "on_input_contact_1_5_textEdited"
+QT_MOC_LITERAL(103, 3259, 31), // "on_input_contact_2_2_textEdited"
+QT_MOC_LITERAL(104, 3291, 31), // "on_input_contact_2_3_textEdited"
+QT_MOC_LITERAL(105, 3323, 31), // "on_input_contact_2_4_textEdited"
+QT_MOC_LITERAL(106, 3355, 31), // "on_input_contact_2_5_textEdited"
+QT_MOC_LITERAL(107, 3387, 31), // "on_input_contact_3_3_textEdited"
+QT_MOC_LITERAL(108, 3419, 31), // "on_input_contact_3_4_textEdited"
+QT_MOC_LITERAL(109, 3451, 31), // "on_input_contact_3_5_textEdited"
+QT_MOC_LITERAL(110, 3483, 31), // "on_input_contact_4_4_textEdited"
+QT_MOC_LITERAL(111, 3515, 31), // "on_input_contact_4_5_textEdited"
+QT_MOC_LITERAL(112, 3547, 31), // "on_input_contact_5_5_textEdited"
+QT_MOC_LITERAL(113, 3579, 23), // "on_actionOpen_triggered"
+QT_MOC_LITERAL(114, 3603, 23), // "on_actionSave_triggered"
+QT_MOC_LITERAL(115, 3627, 24), // "on_actionK_flu_triggered"
+QT_MOC_LITERAL(116, 3652, 25), // "on_actionExport_triggered"
+QT_MOC_LITERAL(117, 3678, 26), // "on_actionContact_triggered"
+QT_MOC_LITERAL(118, 3705, 22), // "on_actionJPG_triggered"
+QT_MOC_LITERAL(119, 3728, 22), // "on_actionCSV_triggered"
+QT_MOC_LITERAL(120, 3751, 20), // "on_jpgSubmit_clicked"
+QT_MOC_LITERAL(121, 3772, 20) // "on_csvSubmit_clicked"
 
     },
     "MainWindow\0on_startButton_clicked\0\0"
@@ -212,7 +216,9 @@ QT_MOC_LITERAL(117, 3635, 22) // "on_actionCSV_triggered"
     "on_input_contactReductEnd_textEdited\0"
     "on_input_SchoolCloseStart_textEdited\0"
     "on_input_SchoolCloseEnd_textEdited\0"
-    "on_input_schoolCloseContact_textEdited\0"
+    "on_input_schoolCloseContact0to6_textEdited\0"
+    "on_input_schoolCloseContact7to12_textEdited\0"
+    "on_input_schoolCloseContact13to18_textEdited\0"
     "on_input_gatheringCancel_textEdited\0"
     "on_input_gatheringCancelStart_textEdited\0"
     "on_input_gatheringCancelEnd_textEdited\0"
@@ -260,7 +266,8 @@ QT_MOC_LITERAL(117, 3635, 22) // "on_actionCSV_triggered"
     "on_actionK_flu_triggered\0"
     "on_actionExport_triggered\0"
     "on_actionContact_triggered\0"
-    "on_actionJPG_triggered\0on_actionCSV_triggered"
+    "on_actionJPG_triggered\0on_actionCSV_triggered\0"
+    "on_jpgSubmit_clicked\0on_csvSubmit_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -270,7 +277,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-     115,   14, // methods
+     119,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -278,121 +285,125 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  589,    2, 0x08 /* Private */,
-       3,    0,  590,    2, 0x08 /* Private */,
-       4,    0,  591,    2, 0x08 /* Private */,
-       5,    0,  592,    2, 0x08 /* Private */,
-       6,    0,  593,    2, 0x08 /* Private */,
-       7,    1,  594,    2, 0x08 /* Private */,
-       9,    1,  597,    2, 0x08 /* Private */,
-      10,    1,  600,    2, 0x08 /* Private */,
-      11,    1,  603,    2, 0x08 /* Private */,
-      12,    1,  606,    2, 0x08 /* Private */,
-      13,    1,  609,    2, 0x08 /* Private */,
-      14,    1,  612,    2, 0x08 /* Private */,
-      15,    1,  615,    2, 0x08 /* Private */,
-      16,    1,  618,    2, 0x08 /* Private */,
-      17,    1,  621,    2, 0x08 /* Private */,
-      18,    1,  624,    2, 0x08 /* Private */,
-      19,    1,  627,    2, 0x08 /* Private */,
-      20,    1,  630,    2, 0x08 /* Private */,
-      21,    1,  633,    2, 0x08 /* Private */,
-      22,    1,  636,    2, 0x08 /* Private */,
-      23,    1,  639,    2, 0x08 /* Private */,
-      24,    1,  642,    2, 0x08 /* Private */,
-      25,    1,  645,    2, 0x08 /* Private */,
-      26,    1,  648,    2, 0x08 /* Private */,
-      27,    1,  651,    2, 0x08 /* Private */,
-      28,    1,  654,    2, 0x08 /* Private */,
-      29,    1,  657,    2, 0x08 /* Private */,
-      30,    1,  660,    2, 0x08 /* Private */,
-      31,    1,  663,    2, 0x08 /* Private */,
-      32,    1,  666,    2, 0x08 /* Private */,
-      33,    1,  669,    2, 0x08 /* Private */,
-      34,    1,  672,    2, 0x08 /* Private */,
-      35,    1,  675,    2, 0x08 /* Private */,
-      36,    1,  678,    2, 0x08 /* Private */,
-      37,    1,  681,    2, 0x08 /* Private */,
-      38,    1,  684,    2, 0x08 /* Private */,
-      39,    1,  687,    2, 0x08 /* Private */,
-      40,    1,  690,    2, 0x08 /* Private */,
-      41,    1,  693,    2, 0x08 /* Private */,
-      42,    1,  696,    2, 0x08 /* Private */,
-      43,    1,  699,    2, 0x08 /* Private */,
-      44,    1,  702,    2, 0x08 /* Private */,
-      45,    1,  705,    2, 0x08 /* Private */,
-      46,    1,  708,    2, 0x08 /* Private */,
-      47,    1,  711,    2, 0x08 /* Private */,
-      48,    1,  714,    2, 0x08 /* Private */,
-      49,    1,  717,    2, 0x08 /* Private */,
-      50,    1,  720,    2, 0x08 /* Private */,
-      51,    1,  723,    2, 0x08 /* Private */,
-      52,    1,  726,    2, 0x08 /* Private */,
-      53,    1,  729,    2, 0x08 /* Private */,
-      54,    1,  732,    2, 0x08 /* Private */,
-      55,    1,  735,    2, 0x08 /* Private */,
-      56,    1,  738,    2, 0x08 /* Private */,
-      57,    1,  741,    2, 0x08 /* Private */,
-      58,    1,  744,    2, 0x08 /* Private */,
-      59,    1,  747,    2, 0x08 /* Private */,
-      60,    1,  750,    2, 0x08 /* Private */,
-      61,    1,  753,    2, 0x08 /* Private */,
-      62,    1,  756,    2, 0x08 /* Private */,
-      63,    1,  759,    2, 0x08 /* Private */,
-      64,    1,  762,    2, 0x08 /* Private */,
-      65,    1,  765,    2, 0x08 /* Private */,
-      66,    1,  768,    2, 0x08 /* Private */,
-      67,    1,  771,    2, 0x08 /* Private */,
-      68,    1,  774,    2, 0x08 /* Private */,
-      69,    1,  777,    2, 0x08 /* Private */,
-      70,    1,  780,    2, 0x08 /* Private */,
-      71,    1,  783,    2, 0x08 /* Private */,
-      72,    1,  786,    2, 0x08 /* Private */,
-      73,    1,  789,    2, 0x08 /* Private */,
-      74,    1,  792,    2, 0x08 /* Private */,
-      75,    1,  795,    2, 0x08 /* Private */,
-      76,    1,  798,    2, 0x08 /* Private */,
-      77,    1,  801,    2, 0x08 /* Private */,
-      78,    1,  804,    2, 0x08 /* Private */,
-      79,    1,  807,    2, 0x08 /* Private */,
-      80,    1,  810,    2, 0x08 /* Private */,
-      81,    1,  813,    2, 0x08 /* Private */,
-      82,    1,  816,    2, 0x08 /* Private */,
-      83,    1,  819,    2, 0x08 /* Private */,
-      84,    1,  822,    2, 0x08 /* Private */,
-      85,    1,  825,    2, 0x08 /* Private */,
-      86,    1,  828,    2, 0x08 /* Private */,
-      87,    1,  831,    2, 0x08 /* Private */,
-      88,    1,  834,    2, 0x08 /* Private */,
-      89,    1,  837,    2, 0x08 /* Private */,
-      90,    0,  840,    2, 0x08 /* Private */,
-      91,    0,  841,    2, 0x08 /* Private */,
-      92,    0,  842,    2, 0x08 /* Private */,
-      93,    0,  843,    2, 0x08 /* Private */,
-      94,    0,  844,    2, 0x08 /* Private */,
-      95,    0,  845,    2, 0x08 /* Private */,
-      96,    1,  846,    2, 0x08 /* Private */,
-      97,    1,  849,    2, 0x08 /* Private */,
-      98,    1,  852,    2, 0x08 /* Private */,
-      99,    1,  855,    2, 0x08 /* Private */,
-     100,    1,  858,    2, 0x08 /* Private */,
-     101,    1,  861,    2, 0x08 /* Private */,
-     102,    1,  864,    2, 0x08 /* Private */,
-     103,    1,  867,    2, 0x08 /* Private */,
-     104,    1,  870,    2, 0x08 /* Private */,
-     105,    1,  873,    2, 0x08 /* Private */,
-     106,    1,  876,    2, 0x08 /* Private */,
-     107,    1,  879,    2, 0x08 /* Private */,
-     108,    1,  882,    2, 0x08 /* Private */,
-     109,    1,  885,    2, 0x08 /* Private */,
-     110,    1,  888,    2, 0x08 /* Private */,
-     111,    0,  891,    2, 0x08 /* Private */,
-     112,    0,  892,    2, 0x08 /* Private */,
-     113,    0,  893,    2, 0x08 /* Private */,
-     114,    0,  894,    2, 0x08 /* Private */,
-     115,    0,  895,    2, 0x08 /* Private */,
-     116,    0,  896,    2, 0x08 /* Private */,
-     117,    0,  897,    2, 0x08 /* Private */,
+       1,    0,  609,    2, 0x08 /* Private */,
+       3,    0,  610,    2, 0x08 /* Private */,
+       4,    0,  611,    2, 0x08 /* Private */,
+       5,    0,  612,    2, 0x08 /* Private */,
+       6,    0,  613,    2, 0x08 /* Private */,
+       7,    1,  614,    2, 0x08 /* Private */,
+       9,    1,  617,    2, 0x08 /* Private */,
+      10,    1,  620,    2, 0x08 /* Private */,
+      11,    1,  623,    2, 0x08 /* Private */,
+      12,    1,  626,    2, 0x08 /* Private */,
+      13,    1,  629,    2, 0x08 /* Private */,
+      14,    1,  632,    2, 0x08 /* Private */,
+      15,    1,  635,    2, 0x08 /* Private */,
+      16,    1,  638,    2, 0x08 /* Private */,
+      17,    1,  641,    2, 0x08 /* Private */,
+      18,    1,  644,    2, 0x08 /* Private */,
+      19,    1,  647,    2, 0x08 /* Private */,
+      20,    1,  650,    2, 0x08 /* Private */,
+      21,    1,  653,    2, 0x08 /* Private */,
+      22,    1,  656,    2, 0x08 /* Private */,
+      23,    1,  659,    2, 0x08 /* Private */,
+      24,    1,  662,    2, 0x08 /* Private */,
+      25,    1,  665,    2, 0x08 /* Private */,
+      26,    1,  668,    2, 0x08 /* Private */,
+      27,    1,  671,    2, 0x08 /* Private */,
+      28,    1,  674,    2, 0x08 /* Private */,
+      29,    1,  677,    2, 0x08 /* Private */,
+      30,    1,  680,    2, 0x08 /* Private */,
+      31,    1,  683,    2, 0x08 /* Private */,
+      32,    1,  686,    2, 0x08 /* Private */,
+      33,    1,  689,    2, 0x08 /* Private */,
+      34,    1,  692,    2, 0x08 /* Private */,
+      35,    1,  695,    2, 0x08 /* Private */,
+      36,    1,  698,    2, 0x08 /* Private */,
+      37,    1,  701,    2, 0x08 /* Private */,
+      38,    1,  704,    2, 0x08 /* Private */,
+      39,    1,  707,    2, 0x08 /* Private */,
+      40,    1,  710,    2, 0x08 /* Private */,
+      41,    1,  713,    2, 0x08 /* Private */,
+      42,    1,  716,    2, 0x08 /* Private */,
+      43,    1,  719,    2, 0x08 /* Private */,
+      44,    1,  722,    2, 0x08 /* Private */,
+      45,    1,  725,    2, 0x08 /* Private */,
+      46,    1,  728,    2, 0x08 /* Private */,
+      47,    1,  731,    2, 0x08 /* Private */,
+      48,    1,  734,    2, 0x08 /* Private */,
+      49,    1,  737,    2, 0x08 /* Private */,
+      50,    1,  740,    2, 0x08 /* Private */,
+      51,    1,  743,    2, 0x08 /* Private */,
+      52,    1,  746,    2, 0x08 /* Private */,
+      53,    1,  749,    2, 0x08 /* Private */,
+      54,    1,  752,    2, 0x08 /* Private */,
+      55,    1,  755,    2, 0x08 /* Private */,
+      56,    1,  758,    2, 0x08 /* Private */,
+      57,    1,  761,    2, 0x08 /* Private */,
+      58,    1,  764,    2, 0x08 /* Private */,
+      59,    1,  767,    2, 0x08 /* Private */,
+      60,    1,  770,    2, 0x08 /* Private */,
+      61,    1,  773,    2, 0x08 /* Private */,
+      62,    1,  776,    2, 0x08 /* Private */,
+      63,    1,  779,    2, 0x08 /* Private */,
+      64,    1,  782,    2, 0x08 /* Private */,
+      65,    1,  785,    2, 0x08 /* Private */,
+      66,    1,  788,    2, 0x08 /* Private */,
+      67,    1,  791,    2, 0x08 /* Private */,
+      68,    1,  794,    2, 0x08 /* Private */,
+      69,    1,  797,    2, 0x08 /* Private */,
+      70,    1,  800,    2, 0x08 /* Private */,
+      71,    1,  803,    2, 0x08 /* Private */,
+      72,    1,  806,    2, 0x08 /* Private */,
+      73,    1,  809,    2, 0x08 /* Private */,
+      74,    1,  812,    2, 0x08 /* Private */,
+      75,    1,  815,    2, 0x08 /* Private */,
+      76,    1,  818,    2, 0x08 /* Private */,
+      77,    1,  821,    2, 0x08 /* Private */,
+      78,    1,  824,    2, 0x08 /* Private */,
+      79,    1,  827,    2, 0x08 /* Private */,
+      80,    1,  830,    2, 0x08 /* Private */,
+      81,    1,  833,    2, 0x08 /* Private */,
+      82,    1,  836,    2, 0x08 /* Private */,
+      83,    1,  839,    2, 0x08 /* Private */,
+      84,    1,  842,    2, 0x08 /* Private */,
+      85,    1,  845,    2, 0x08 /* Private */,
+      86,    1,  848,    2, 0x08 /* Private */,
+      87,    1,  851,    2, 0x08 /* Private */,
+      88,    1,  854,    2, 0x08 /* Private */,
+      89,    1,  857,    2, 0x08 /* Private */,
+      90,    1,  860,    2, 0x08 /* Private */,
+      91,    1,  863,    2, 0x08 /* Private */,
+      92,    0,  866,    2, 0x08 /* Private */,
+      93,    0,  867,    2, 0x08 /* Private */,
+      94,    0,  868,    2, 0x08 /* Private */,
+      95,    0,  869,    2, 0x08 /* Private */,
+      96,    0,  870,    2, 0x08 /* Private */,
+      97,    0,  871,    2, 0x08 /* Private */,
+      98,    1,  872,    2, 0x08 /* Private */,
+      99,    1,  875,    2, 0x08 /* Private */,
+     100,    1,  878,    2, 0x08 /* Private */,
+     101,    1,  881,    2, 0x08 /* Private */,
+     102,    1,  884,    2, 0x08 /* Private */,
+     103,    1,  887,    2, 0x08 /* Private */,
+     104,    1,  890,    2, 0x08 /* Private */,
+     105,    1,  893,    2, 0x08 /* Private */,
+     106,    1,  896,    2, 0x08 /* Private */,
+     107,    1,  899,    2, 0x08 /* Private */,
+     108,    1,  902,    2, 0x08 /* Private */,
+     109,    1,  905,    2, 0x08 /* Private */,
+     110,    1,  908,    2, 0x08 /* Private */,
+     111,    1,  911,    2, 0x08 /* Private */,
+     112,    1,  914,    2, 0x08 /* Private */,
+     113,    0,  917,    2, 0x08 /* Private */,
+     114,    0,  918,    2, 0x08 /* Private */,
+     115,    0,  919,    2, 0x08 /* Private */,
+     116,    0,  920,    2, 0x08 /* Private */,
+     117,    0,  921,    2, 0x08 /* Private */,
+     118,    0,  922,    2, 0x08 /* Private */,
+     119,    0,  923,    2, 0x08 /* Private */,
+     120,    0,  924,    2, 0x08 /* Private */,
+     121,    0,  925,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -482,6 +493,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void, QMetaType::QString,    8,
+    QMetaType::Void, QMetaType::QString,    8,
+    QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -503,6 +516,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void, QMetaType::QString,    8,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -584,57 +599,61 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 61: _t->on_input_contactReductEnd_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 62: _t->on_input_SchoolCloseStart_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 63: _t->on_input_SchoolCloseEnd_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 64: _t->on_input_schoolCloseContact_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 65: _t->on_input_gatheringCancel_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 66: _t->on_input_gatheringCancelStart_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 67: _t->on_input_gatheringCancelEnd_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 68: _t->on_input_NICU_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 69: _t->on_input_ICU_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 70: _t->on_input_vaccine_1_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 71: _t->on_input_vaccine_2_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 72: _t->on_input_vaccine_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 73: _t->on_input_vaccine_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 74: _t->on_input_vaccine_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 75: _t->on_input_vaccineEffect_1_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 76: _t->on_input_vaccineEffect_2_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 77: _t->on_input_vaccineEffect_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 78: _t->on_input_vaccineEffect_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 79: _t->on_input_vaccineEffect_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 80: _t->on_input_antibodyRange_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 81: _t->on_input_vaccineStart_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 82: _t->on_input_mask_NICU_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 83: _t->on_input_mask_ICU_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 84: _t->on_input_respRate_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 85: _t->on_input_reinspect_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 86: _t->on_input_outpatient_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 87: _t->on_age_checkBox1_clicked(); break;
-        case 88: _t->on_age_checkBox2_clicked(); break;
-        case 89: _t->on_age_checkBox3_clicked(); break;
-        case 90: _t->on_age_checkBox4_clicked(); break;
-        case 91: _t->on_age_checkBox5_clicked(); break;
-        case 92: _t->on_age_checkBox6_clicked(); break;
-        case 93: _t->on_input_contact_1_1_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 94: _t->on_input_contact_1_2_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 95: _t->on_input_contact_1_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 96: _t->on_input_contact_1_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 97: _t->on_input_contact_1_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 98: _t->on_input_contact_2_2_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 99: _t->on_input_contact_2_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 100: _t->on_input_contact_2_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 101: _t->on_input_contact_2_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 102: _t->on_input_contact_3_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 103: _t->on_input_contact_3_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 104: _t->on_input_contact_3_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 105: _t->on_input_contact_4_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 106: _t->on_input_contact_4_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 107: _t->on_input_contact_5_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 108: _t->on_actionOpen_triggered(); break;
-        case 109: _t->on_actionSave_triggered(); break;
-        case 110: _t->on_actionK_flu_triggered(); break;
-        case 111: _t->on_actionExport_triggered(); break;
-        case 112: _t->on_actionContact_triggered(); break;
-        case 113: _t->on_actionJPG_triggered(); break;
-        case 114: _t->on_actionCSV_triggered(); break;
+        case 64: _t->on_input_schoolCloseContact0to6_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 65: _t->on_input_schoolCloseContact7to12_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 66: _t->on_input_schoolCloseContact13to18_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 67: _t->on_input_gatheringCancel_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 68: _t->on_input_gatheringCancelStart_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 69: _t->on_input_gatheringCancelEnd_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 70: _t->on_input_NICU_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 71: _t->on_input_ICU_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 72: _t->on_input_vaccine_1_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 73: _t->on_input_vaccine_2_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 74: _t->on_input_vaccine_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 75: _t->on_input_vaccine_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 76: _t->on_input_vaccine_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 77: _t->on_input_vaccineEffect_1_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 78: _t->on_input_vaccineEffect_2_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 79: _t->on_input_vaccineEffect_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 80: _t->on_input_vaccineEffect_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 81: _t->on_input_vaccineEffect_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 82: _t->on_input_antibodyRange_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 83: _t->on_input_vaccineStart_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 84: _t->on_input_mask_NICU_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 85: _t->on_input_mask_ICU_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 86: _t->on_input_respRate_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 87: _t->on_input_reinspect_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 88: _t->on_input_outpatient_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 89: _t->on_age_checkBox1_clicked(); break;
+        case 90: _t->on_age_checkBox2_clicked(); break;
+        case 91: _t->on_age_checkBox3_clicked(); break;
+        case 92: _t->on_age_checkBox4_clicked(); break;
+        case 93: _t->on_age_checkBox5_clicked(); break;
+        case 94: _t->on_age_checkBox6_clicked(); break;
+        case 95: _t->on_input_contact_1_1_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 96: _t->on_input_contact_1_2_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 97: _t->on_input_contact_1_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 98: _t->on_input_contact_1_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 99: _t->on_input_contact_1_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 100: _t->on_input_contact_2_2_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 101: _t->on_input_contact_2_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 102: _t->on_input_contact_2_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 103: _t->on_input_contact_2_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 104: _t->on_input_contact_3_3_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 105: _t->on_input_contact_3_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 106: _t->on_input_contact_3_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 107: _t->on_input_contact_4_4_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 108: _t->on_input_contact_4_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 109: _t->on_input_contact_5_5_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 110: _t->on_actionOpen_triggered(); break;
+        case 111: _t->on_actionSave_triggered(); break;
+        case 112: _t->on_actionK_flu_triggered(); break;
+        case 113: _t->on_actionExport_triggered(); break;
+        case 114: _t->on_actionContact_triggered(); break;
+        case 115: _t->on_actionJPG_triggered(); break;
+        case 116: _t->on_actionCSV_triggered(); break;
+        case 117: _t->on_jpgSubmit_clicked(); break;
+        case 118: _t->on_csvSubmit_clicked(); break;
         default: ;
         }
     }
@@ -665,13 +684,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 115)
+        if (_id < 119)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 115;
+        _id -= 119;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 115)
+        if (_id < 119)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 115;
+        _id -= 119;
     }
     return _id;
 }

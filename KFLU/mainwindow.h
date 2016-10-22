@@ -12,6 +12,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+	void MainWindow::run(double goal);
+
+	void MainWindow::setStart(double startX);
+
+	void MainWindow::step();
+
 	QVector<double> setOutputArray(int x);
 
 	void makeInfectionPlot();
@@ -158,7 +164,11 @@ private slots:
 
     void on_input_SchoolCloseEnd_textEdited(const QString &arg1);
 
-    void on_input_schoolCloseContact_textEdited(const QString &arg1);
+    void on_input_schoolCloseContact0to6_textEdited(const QString &arg1);
+
+	void on_input_schoolCloseContact7to12_textEdited(const QString &arg1);
+
+	void on_input_schoolCloseContact13to18_textEdited(const QString &arg1);
 
     void on_input_gatheringCancel_textEdited(const QString &arg1);
 
@@ -260,6 +270,10 @@ private slots:
     void on_actionJPG_triggered();
 
     void on_actionCSV_triggered();
+
+    void on_jpgSubmit_clicked();
+
+    void on_csvSubmit_clicked();
 
 private:
     Ui::MainWindow *ui;

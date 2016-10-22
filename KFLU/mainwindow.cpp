@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 #include "qcustomplot.h"
 #include <define.h>
+#include <algorithm>  
 
 #include <qstring.h>
 
@@ -22,6 +23,23 @@ int contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
 int contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
 
 /*output 관련 변수들*/
+int steps=0;
+int evals = 0;
+/**
+* The current x value.
+*/
+double day;
+double y[sizeof(OutputY)];
+double h = 1;
+double maxError = 0.02;
+double minError = maxError / 4;
+
+QVector<double> yInVector;
+QVector<double> k1;
+QVector<double> k2;
+QVector<double> k3;
+QVector<double> k4;
+
 int GraphAge = Age0to6; //default
 bool AgeAll = true;
 
@@ -60,224 +78,129 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-//Output array 만드는 함수
-QVector<double> MainWindow::setOutputArray(int k) {
-
-	/*graph x,y 값 설정*/
-	QVector<double> y(NumberofArray);
-
-	switch (k) {
-	case 0: //Susceptibles
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				SusceptibleArray[i] = PlotSusceptibles[0][i] + PlotSusceptibles[1][i] + PlotSusceptibles[2][i] + PlotSusceptibles[3][i] + PlotSusceptibles[4][i] + PlotSusceptibles[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				SusceptibleArray[i] = PlotSusceptibles[GraphAge][i];
-			}
-		}
-		break;
-	case 1: // exposed
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				ExposedArray[i] = PlotExposed[0][i] + PlotExposed[1][i] + PlotExposed[2][i] + PlotExposed[3][i] + PlotExposed[4][i] + PlotExposed[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				ExposedArray[i] = PlotExposed[GraphAge][i];
-			}
-		}
-		break;
-	case 2: // asymptomatic
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				AsymptomaticArray[i] = PlotAsymptomatic[0][i] + PlotAsymptomatic[1][i] + PlotAsymptomatic[2][i] + PlotAsymptomatic[3][i] + PlotAsymptomatic[4][i] + PlotAsymptomatic[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				AsymptomaticArray[i] = PlotAsymptomatic[GraphAge][i];
-			}
-		}
-		break;
-	case 3: // Moderate
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				ModerateArray[i] = PlotModerate[0][i] + PlotModerate[1][i] + PlotModerate[2][i] + PlotModerate[3][i] + PlotModerate[4][i] + PlotModerate[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				ModerateArray[i] = PlotModerate[GraphAge][i];
-			}
-		}
-		break;
-	case 4: // Severe
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				SevereArray[i] = PlotSevere[0][i] + PlotSevere[1][i] + PlotSevere[2][i] + PlotSevere[3][i] + PlotModerate[4][i] + PlotModerate[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				ModerateArray[i] = PlotModerate[GraphAge][i];
-			}
-		}
-		break;
-	case 5: // Dead
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				DeadArray[i] = PlotDead[0][i] + PlotDead[1][i] + PlotDead[2][i] + PlotDead[3][i] + PlotDead[4][i] + PlotDead[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				DeadArray[i] = PlotDead[GraphAge][i];
-			}
-		}
-		break;
-	case 6: // Immune
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				ImmuneArray[i] = PlotImmune[0][i] + PlotImmune[1][i] + PlotImmune[2][i] + PlotImmune[3][i] + PlotImmune[4][i] + PlotImmune[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				ImmuneArray[i] = PlotImmune[GraphAge][i];
-			}
-		}
-		break;
-	case 7: // N95mask
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				MaskArray[i] = PlotN95mask[0][i] + PlotN95mask[1][i] + PlotN95mask[2][i] + PlotN95mask[3][i] + PlotN95mask[4][i] + PlotN95mask[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				MaskArray[i] = PlotN95mask[GraphAge][i];
-			}
-		}
-		break;
-	case 8: // Respirator
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				RespArray[i] = PlotRespirator[0][i] + PlotRespirator[1][i] + PlotRespirator[2][i] + PlotRespirator[3][i] + PlotRespirator[4][i] + PlotRespirator[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				RespArray[i] = PlotRespirator[GraphAge][i];
-			}
-		}
-		break;
-	case 9: // Antivirals
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				AntiviralsArray[i] = PlotAntivirals[0][i] + PlotAntivirals[1][i] + PlotAntivirals[2][i] + PlotAntivirals[3][i] + PlotAntivirals[4][i] + PlotAntivirals[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				AntiviralsArray[i] = PlotAntivirals[GraphAge][i];
-			}
-		}
-		break;
-	case 10: // Specimen
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				SpecimenArray[i] = PlotSpecimen[0][i] + PlotSpecimen[1][i] + PlotSpecimen[2][i] + PlotSpecimen[3][i] + PlotSpecimen[4][i] + PlotSpecimen[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				SpecimenArray[i] = PlotSpecimen[GraphAge][i];
-			}
-		}
-		break;
-	case 11: //Outpatients
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				DailyOutpatientArray[i] = PlotOutpatients[0][i] + PlotOutpatients[1][i] + PlotOutpatients[2][i] + PlotOutpatients[3][i] + PlotOutpatients[4][i] + PlotOutpatients[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				DailyOutpatientArray[i] = PlotOutpatients[GraphAge][i];
-			}
-		}
-		break;
-	case 12: //HospitalICU
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				DailyICUArray[i] = PlotHospitalICU[0][i] + PlotHospitalICU[1][i] + PlotHospitalICU[2][i] + PlotHospitalICU[3][i] + PlotHospitalICU[4][i] + PlotHospitalICU[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				DailyICUArray[i] = PlotHospitalICU[GraphAge][i];
-			}
-		}
-		break;
-	case 13: //Hospital NICU
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				DailyNICUArray[i] = PlotHospitalNICU[0][i] + PlotHospitalNICU[1][i] + PlotHospitalNICU[2][i] + PlotHospitalNICU[3][i] + PlotHospitalNICU[4][i] + PlotHospitalNICU[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				DailyNICUArray[i] = PlotHospitalNICU[GraphAge][i];
-			}
-		}
-		break;
-	case 14: //Outpatients (cumulative)
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				CumulOutpatientArray[i] = PlotCumOutpatients[0][i] + PlotCumOutpatients[1][i] + PlotCumOutpatients[2][i] + PlotCumOutpatients[3][i] + PlotCumOutpatients[4][i] + PlotCumOutpatients[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				CumulOutpatientArray[i] = PlotCumOutpatients[GraphAge][i];
-			}
-		}
-		break;
-	case 15: //HospitalICU (cumulative)
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				CumulICUArray[i] = PlotCumHospitalICU[0][i] + PlotCumHospitalICU[1][i] + PlotCumHospitalICU[2][i] + PlotCumHospitalICU[3][i] + PlotCumHospitalICU[4][i] + PlotCumHospitalICU[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				CumulICUArray[i] = PlotCumHospitalICU[GraphAge][i];
-			}
-		}
-		break;
-	case 16: //Hospital NICU (cumulative)
-		if (AgeAll) {
-			for (int i = 0; i < NumberofArray; i++) {
-				CumulNICUArray[i] = PlotCumHospitalNICU[0][i] + PlotCumHospitalNICU[1][i] + PlotCumHospitalNICU[2][i] + PlotCumHospitalNICU[3][i] + PlotCumHospitalNICU[4][i] + PlotCumHospitalNICU[5][i];
-			}
-		}
-		else {
-			for (int i = 0; i < NumberofArray; i++) {
-				CumulNICUArray[i] = PlotCumHospitalNICU[GraphAge][i];
-			}
-		}
-		break;
-	}
-	return y;
+void MainWindow::setStart(double startX) {
+	day = startX;
+	steps = 0;
+	evals = 0;
 }
+
+void MainWindow::run(double goal) {
+
+	while (day + h < goal) {
+		step();
+	}
+	double hold = h;
+	while (abs((day - goal) / goal) > 1E-13) {
+		h = min(goal - day, h);
+
+		step();
+	}
+
+	h = hold;
+}
+void MainWindow::step() {
+	steps++;
+
+	double y[sizeof(OutputY)] = {};
+	//System.arraycopy(y, 0, yInVector, 0, y.length);
+
+	// k1
+	EvaluationY(day);
+	//dgl.eval(day, yInVector, k1);
+	evals++;
+
+	// k2
+	for (int i = 0; i < sizeof(y); i++) yInVector[i] = y[i] + 0.5 * h * k1[i];
+
+	EvaluationY(day);
+	//dgl.eval(day + 0.5 * h, yInVector, k2);
+	evals++;
+
+	// k3
+	for (int i = 0; i < sizeof(y); i++) yInVector[i] = y[i] + 0.5 * h * k2[i];
+
+	EvaluationY(day);
+	//dgl.eval(day + 0.5 * h, yInVector, k3);
+	evals++;
+
+	// Calculate error
+	double normK = 0.0;
+	double max = 0.0;
+
+	for (int i = 0; i < sizeof(y); i++) {
+		double diffK1K2 = k1[i] - k2[i];
+
+		normK += diffK1K2 * diffK1K2;
+
+		double absK = abs(k2[i] - k3[i]);
+
+		if (absK > max) max = absK;
+	}
+
+	double error = minError;
+
+	if (normK > 0.0) error = max / sqrt(normK);
+
+	// Discard step and decrease h if error is too large
+	if (error > maxError) {
+		h /= 2;
+		return;
+	}
+
+	// k4
+	for (int i = 0; i < sizeof(y); i++) yInVector[i] = y[i] + h * k3[i];
+	//dgl.eval(day + h, yInVector, k4);
+	evals++;
+
+	// Update x and y
+	day += h;
+	for (int i = 0; i < sizeof(y); i++) y[i] += h*(k1[i] + 2 * (k2[i] + k3[i]) + k4[i]) / 6;
+	
+	qDebug("%f",y[S(Age0to6, LowRisk)]);
+
+	if (AgeAll) {
+		SusceptibleArray[day] = y[S(Age0to6, LowRisk)] + y[S(Age0to6, HighRisk)]+ y[S(Age7to12, LowRisk)] + y[S(Age7to12, HighRisk)]+ y[S(Age13to18, LowRisk)] + y[S(Age13to18, HighRisk)] + y[S(Age13to18, LowRisk)] + y[S(Age19to64, HighRisk)] + y[S(Age65toEnd, LowRisk)] + y[S(Age65toEnd, HighRisk)];
+		for (int k = 0; k < EstageGroups; k++)
+			ExposedArray[day] += y[E(Age0to6, LowRisk,k)] + y[E(Age0to6, HighRisk, k)] + y[E(Age7to12, LowRisk, k)] + y[E(Age7to12, HighRisk, k)] + y[E(Age13to18, LowRisk, k)] + y[E(Age13to18, HighRisk, k)] + y[E(Age13to18, LowRisk, k)] + y[E(Age19to64, HighRisk, k)] + y[E(Age65toEnd, LowRisk, k)] + y[E(Age65toEnd, HighRisk, k)];
+		for (int k = 0; k < IstageGroups; k++) {
+			AsymptomaticArray[day] += OutputY[A(Age0to6, k)]+ OutputY[A(Age7to12, k)] + OutputY[A(Age13to18, k)] + OutputY[A(Age19to64, k)] + OutputY[A(Age65toEnd, k)];
+			ModerateArray[day] += OutputY[M(Age0to6, k)] + OutputY[M(Age7to12, k)] + OutputY[M(Age13to18, k)] + OutputY[M(Age19to64, k)] + OutputY[M(Age65toEnd, k)];
+			SevereArray[day] += OutputY[S(Age0to6, k)] + OutputY[S(Age7to12, k)] + OutputY[S(Age13to18, k)] + OutputY[S(Age19to64, k)] + OutputY[S(Age65toEnd, k)];
+		}
+		DeadArray[day] = OutputY[D(Age0to6)]+ OutputY[D(Age7to12)]+ OutputY[D(Age13to18)]+ OutputY[D(Age19to64)]+ OutputY[D(Age65toEnd)];
+		ImmuneArray[day] = OutputY[I(Age0to6)] + OutputY[I(Age7to12)] + OutputY[I(Age13to18)] + OutputY[I(Age19to64)] + OutputY[I(Age65toEnd)];
+	}
+	else {
+		SusceptibleArray[day] = y[S(GraphAge, LowRisk)] + y[S(GraphAge, HighRisk)];
+		for (int k = 0; k < EstageGroups; k++)
+			ExposedArray[day] += y[E(GraphAge, LowRisk, k)] + y[E(GraphAge, HighRisk, k)];
+
+		for (int k = 0; k < IstageGroups; k++) {
+			AsymptomaticArray[day] += OutputY[A(GraphAge, k)];
+			ModerateArray[day] += OutputY[M(GraphAge, k)];
+			SevereArray[day] += OutputY[S(GraphAge, k)];
+		}
+		DeadArray[day] = OutputY[D(GraphAge)];
+		ImmuneArray[day] = OutputY[I(GraphAge)];
+	}
+
+
+	// Increase h, if error was very small
+	if (error < minError) h *= 2;
+}
+
+
 
 /*tab별 그래프 그리는 함수들*/
 void MainWindow::makeInfectionPlot(){
+
+	ui->customPlot_infection->removeGraph(0);
+	ui->customPlot_infection->removeGraph(1);
+	ui->customPlot_infection->removeGraph(2);
+	ui->customPlot_infection->removeGraph(3);
+	ui->customPlot_infection->removeGraph(4);
+	ui->customPlot_infection->removeGraph(5);
+	ui->customPlot_infection->removeGraph(6);
 
 	ui->customPlot_infection->setLocale(QLocale(QLocale::Korean));
 
@@ -648,9 +571,9 @@ void MainWindow::setDefault()
     ui->input_SchoolRatio7to12->setText(QString::number(SchoolContactRate[1])); 
     ui->input_SchoolRatio13to18->setText(QString::number(SchoolContactRate[2]));
 
-    ui->input_AbsentRatio0to6->setText(QString::number(AbsenceContactRatio)); //초기값 수정 필요
-	ui->input_AbsentRatio7to12->setText(QString::number(AbsenceContactRatio)); //초기값 수정 필요
-	ui->input_AbsentRatio13to18->setText(QString::number(AbsenceContactRatio)); //초기값 수정 필요
+    ui->input_AbsentRatio0to6->setText(QString::number(AbsenceContactRatio[0]));
+	ui->input_AbsentRatio7to12->setText(QString::number(AbsenceContactRatio[1]));
+	ui->input_AbsentRatio13to18->setText(QString::number(AbsenceContactRatio[2]));
 
     /*질병 tab 기본값 세팅*/
     ui->input_LatentPeriod->setText(QString::number(LatentPeriod));
@@ -721,7 +644,9 @@ void MainWindow::setDefault()
 
     ui->input_SchoolCloseStart->setText(QString::number(SchoolCloseRangeBegin));
     ui->input_SchoolCloseEnd->setText(QString::number(SchoolCloseRangeEnd));
-    ui->input_SchoolCloseContact->setText(QString::number(SchoolCloseContactRatio));
+    ui->input_SchoolCloseContact0to6->setText(QString::number(SchoolCloseContactRatio[0]));
+	ui->input_SchoolCloseContact7to12->setText(QString::number(SchoolCloseContactRatio[1]));
+	ui->input_SchoolCloseContact13to18->setText(QString::number(SchoolCloseContactRatio[2]));
 
     ui->input_gatheringCancel->setText(QString::number(GatheringCancelReductionRate));
     ui->input_gatheringCancelStart->setText(QString::number(GatheringCancleRangeBegin));
@@ -784,39 +709,16 @@ void MainWindow::on_areaSubmit_clicked()
 //출력화면 이동 버튼 클릭
 void MainWindow::on_outputPageBtn_clicked()
 {
-
-	KfluStep();
+	run(200);
     ui->outputWidget->show();
     ui->outputWidget->activateWindow();
     ui->outputWidget->raise();
 
-	SusceptibleArray = MainWindow::setOutputArray(0);
-	ExposedArray = MainWindow::setOutputArray(1);
-	AsymptomaticArray = MainWindow::setOutputArray(2);
-	ModerateArray = MainWindow::setOutputArray(3);
-	SevereArray = MainWindow::setOutputArray(4);
-	DeadArray = MainWindow::setOutputArray(5);
-	ImmuneArray = MainWindow::setOutputArray(6);
-
-	MaskArray = MainWindow::setOutputArray(7);
-	RespArray = MainWindow::setOutputArray(8);
-	AntiviralsArray = MainWindow::setOutputArray(9);
-
-	SpecimenArray = MainWindow::setOutputArray(10);
-
-	DailyOutpatientArray = MainWindow::setOutputArray(11);
-	DailyICUArray = MainWindow::setOutputArray(12);
-	DailyNICUArray = MainWindow::setOutputArray(13);
-
-	CumulOutpatientArray = MainWindow::setOutputArray(14);
-	CumulICUArray = MainWindow::setOutputArray(15);
-	CumulNICUArray = MainWindow::setOutputArray(16);
-
 	MainWindow::makeInfectionPlot();
-	MainWindow::makeResourcePlot();
-	MainWindow::makeSpecimenPlot();
-	MainWindow::makeDailyPlot();
-	MainWindow::makeCumulativePlot();
+	//MainWindow::makeResourcePlot();
+	//MainWindow::makeSpecimenPlot();
+	//MainWindow::makeDailyPlot();
+	//MainWindow::makeCumulativePlot();
 }
 //입력화면 이동 버튼 클릭
 void MainWindow::on_inputPageBtn_clicked()
@@ -867,6 +769,8 @@ void MainWindow::on_input_contact_1_1_textEdited(const QString &arg1)
     ContactMatrix[Age0to6][Age0to6] = arg1.toInt();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_1_2_textEdited(const QString &arg1)
@@ -874,6 +778,8 @@ void MainWindow::on_input_contact_1_2_textEdited(const QString &arg1)
     ContactMatrix[Age0to6][Age7to12] = arg1.toInt();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_1_3_textEdited(const QString &arg1)
@@ -881,6 +787,8 @@ void MainWindow::on_input_contact_1_3_textEdited(const QString &arg1)
     ContactMatrix[Age0to6][Age13to18] = arg1.toInt();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_1_4_textEdited(const QString &arg1)
@@ -888,6 +796,8 @@ void MainWindow::on_input_contact_1_4_textEdited(const QString &arg1)
     ContactMatrix[Age0to6][Age19to64] = arg1.toInt();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_1_5_textEdited(const QString &arg1)
@@ -895,13 +805,18 @@ void MainWindow::on_input_contact_1_5_textEdited(const QString &arg1)
     ContactMatrix[Age0to6][Age65toEnd] = arg1.toInt();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
+
 
 void MainWindow::on_input_contact_2_2_textEdited(const QString &arg1)
 {
     ContactMatrix[Age7to12][Age7to12] = arg1.toInt();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_2_3_textEdited(const QString &arg1)
@@ -909,6 +824,8 @@ void MainWindow::on_input_contact_2_3_textEdited(const QString &arg1)
     ContactMatrix[Age7to12][Age13to18] = arg1.toInt();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_2_4_textEdited(const QString &arg1)
@@ -916,6 +833,8 @@ void MainWindow::on_input_contact_2_4_textEdited(const QString &arg1)
     ContactMatrix[Age7to12][Age19to64] = arg1.toInt();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_2_5_textEdited(const QString &arg1)
@@ -923,6 +842,8 @@ void MainWindow::on_input_contact_2_5_textEdited(const QString &arg1)
     ContactMatrix[Age7to12][Age65toEnd] = arg1.toInt();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_3_3_textEdited(const QString &arg1)
@@ -930,6 +851,8 @@ void MainWindow::on_input_contact_3_3_textEdited(const QString &arg1)
     ContactMatrix[Age13to18][Age13to18] = arg1.toInt();
     contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total13to18->setText(QString::number(contactTotal13to18));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_3_4_textEdited(const QString &arg1)
@@ -937,6 +860,8 @@ void MainWindow::on_input_contact_3_4_textEdited(const QString &arg1)
     ContactMatrix[Age13to18][Age19to64] = arg1.toInt();
     contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total13to18->setText(QString::number(contactTotal13to18));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_3_5_textEdited(const QString &arg1)
@@ -944,6 +869,8 @@ void MainWindow::on_input_contact_3_5_textEdited(const QString &arg1)
     ContactMatrix[Age13to18][Age65toEnd] = arg1.toInt();
     contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total13to18->setText(QString::number(contactTotal13to18));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_4_4_textEdited(const QString &arg1)
@@ -951,6 +878,8 @@ void MainWindow::on_input_contact_4_4_textEdited(const QString &arg1)
     ContactMatrix[Age19to64][Age19to64] = arg1.toInt();
     contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total19to64->setText(QString::number(contactTotal19to64));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_4_5_textEdited(const QString &arg1)
@@ -958,6 +887,8 @@ void MainWindow::on_input_contact_4_5_textEdited(const QString &arg1)
     ContactMatrix[Age19to64][Age65toEnd] = arg1.toInt();
     contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total19to64->setText(QString::number(contactTotal19to64));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_5_5_textEdited(const QString &arg1)
@@ -965,6 +896,8 @@ void MainWindow::on_input_contact_5_5_textEdited(const QString &arg1)
     ContactMatrix[Age65toEnd][Age65toEnd] = arg1.toInt();
     contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+    ui->input_contact_total65toEnd->setText(QString::number(contactTotal65toEnd));
+    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 
@@ -1248,9 +1181,19 @@ void MainWindow::on_input_SchoolCloseEnd_textEdited(const QString &arg1)
 	SchoolCloseRangeEnd = arg1.toDouble();
 }
 
-void MainWindow::on_input_schoolCloseContact_textEdited(const QString &arg1)
+void MainWindow::on_input_schoolCloseContact0to6_textEdited(const QString &arg1)
 {
-    SchoolCloseContactRatio = arg1.toDouble();
+    SchoolCloseContactRatio[0] = arg1.toDouble();
+}
+
+void MainWindow::on_input_schoolCloseContact7to12_textEdited(const QString &arg1)
+{
+	SchoolCloseContactRatio[1] = arg1.toDouble();
+}
+
+void MainWindow::on_input_schoolCloseContact13to18_textEdited(const QString &arg1)
+{
+	SchoolCloseContactRatio[2] = arg1.toDouble();
 }
 
 void MainWindow::on_input_gatheringCancel_textEdited(const QString &arg1)
@@ -1444,4 +1387,14 @@ void MainWindow::on_actionCSV_triggered()
     ui->csvWidget->show();
     ui->csvWidget->activateWindow();
     ui->csvWidget->raise();
+}
+
+void MainWindow::on_jpgSubmit_clicked()
+{
+    ui->jpgWidget->hide();
+}
+
+void MainWindow::on_csvSubmit_clicked()
+{
+    ui->csvWidget->hide();
 }

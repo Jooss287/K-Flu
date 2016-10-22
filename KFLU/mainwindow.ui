@@ -1388,7 +1388,6 @@ p, li { white-space: pre-wrap; }
       <zorder>input_Age65toEnd</zorder>
       <zorder>input_AbsentRatio7to12</zorder>
       <zorder>input_AbsentRatio13to18</zorder>
-      <zorder>csvWidget</zorder>
      </widget>
      <widget class="QWidget" name="tab_2">
       <property name="autoFillBackground">
@@ -3832,7 +3831,7 @@ p, li { white-space: pre-wrap; }
            <x>10</x>
            <y>220</y>
            <width>181</width>
-           <height>31</height>
+           <height>61</height>
           </rect>
          </property>
          <property name="html">
@@ -3850,7 +3849,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>310</y>
+           <y>340</y>
            <width>181</width>
            <height>31</height>
           </rect>
@@ -3870,7 +3869,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>340</y>
+           <y>370</y>
            <width>181</width>
            <height>31</height>
           </rect>
@@ -3890,7 +3889,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>269</y>
+           <y>299</y>
            <width>851</width>
            <height>41</height>
           </rect>
@@ -3946,12 +3945,12 @@ p, li { white-space: pre-wrap; }
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
-        <widget class="QLineEdit" name="input_SchoolCloseContact">
+        <widget class="QLineEdit" name="input_SchoolCloseContact0to6">
          <property name="geometry">
           <rect>
            <x>190</x>
-           <y>220</y>
-           <width>671</width>
+           <y>250</y>
+           <width>221</width>
            <height>31</height>
           </rect>
          </property>
@@ -3969,7 +3968,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>190</x>
-           <y>310</y>
+           <y>340</y>
            <width>671</width>
            <height>31</height>
           </rect>
@@ -4152,7 +4151,7 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>190</x>
-           <y>340</y>
+           <y>370</y>
            <width>671</width>
            <height>31</height>
           </rect>
@@ -4230,6 +4229,124 @@ p, li { white-space: pre-wrap; }
           </property>
          </widget>
         </widget>
+        <widget class="QTextEdit" name="textEdit_24">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>220</y>
+           <width>221</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#000000;&quot;&gt;0세-6세&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextEdit" name="textEdit_27">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>410</x>
+           <y>220</y>
+           <width>231</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#000000;&quot;&gt;7세-12세&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QTextEdit" name="textEdit_29">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>640</x>
+           <y>220</y>
+           <width>221</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#000000;&quot;&gt;13세-18세&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="input_SchoolCloseContact7to12">
+         <property name="geometry">
+          <rect>
+           <x>410</x>
+           <y>250</y>
+           <width>231</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="maxLength">
+          <number>20</number>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="input_SchoolCloseContact13to18">
+         <property name="geometry">
+          <rect>
+           <x>640</x>
+           <y>250</y>
+           <width>221</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="maxLength">
+          <number>20</number>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <zorder>textEdit_144</zorder>
+        <zorder>textEdit_145</zorder>
+        <zorder>textEdit_147</zorder>
+        <zorder>textEdit_148</zorder>
+        <zorder>textEdit_162</zorder>
+        <zorder>textEdit_168</zorder>
+        <zorder>textEdit_169</zorder>
+        <zorder>textEdit_170</zorder>
+        <zorder>textEdit_178</zorder>
+        <zorder>input_contactReduct</zorder>
+        <zorder>input_gatheringCancel</zorder>
+        <zorder>widget_4</zorder>
+        <zorder>widget_7</zorder>
+        <zorder>textEdit_24</zorder>
+        <zorder>textEdit_27</zorder>
+        <zorder>textEdit_29</zorder>
+        <zorder>widget_6</zorder>
+        <zorder>input_SchoolCloseContact0to6</zorder>
+        <zorder>input_SchoolCloseContact7to12</zorder>
+        <zorder>input_SchoolCloseContact13to18</zorder>
        </widget>
       </widget>
      </widget>
@@ -5601,6 +5718,8 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
       </widget>
+      <zorder>customPlot_specimen</zorder>
+      <zorder>specimenTable</zorder>
      </widget>
      <widget class="QWidget" name="tab_13">
       <attribute name="title">
@@ -5681,6 +5800,8 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
       </widget>
+      <zorder>customPlot_cumulative</zorder>
+      <zorder>cumulativeTable</zorder>
      </widget>
     </widget>
     <widget class="QPushButton" name="inputPageBtn">
@@ -5993,7 +6114,7 @@ p, li { white-space: pre-wrap; }
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;JPG 파일로 변환할 결과물을 선택하세요&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="areaSubmit_3">
+     <widget class="QPushButton" name="jpgSubmit">
       <property name="geometry">
        <rect>
         <x>730</x>
@@ -6153,7 +6274,7 @@ p, li { white-space: pre-wrap; }
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;CSV 파일로 변환할 결과물을 선택하세요&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="areaSubmit_4">
+     <widget class="QPushButton" name="csvSubmit">
       <property name="geometry">
        <rect>
         <x>730</x>

@@ -235,7 +235,7 @@ public:
     QTextEdit *textEdit_170;
     QTextEdit *textEdit_178;
     QLineEdit *input_contactReduct;
-    QLineEdit *input_SchoolCloseContact;
+    QLineEdit *input_SchoolCloseContact0to6;
     QLineEdit *input_gatheringCancel;
     QWidget *widget_4;
     QLineEdit *input_contactReductStart;
@@ -249,6 +249,11 @@ public:
     QLineEdit *input_gatheringCancelStart;
     QLineEdit *input_isolRange_9;
     QLineEdit *input_gatheringCancelEnd;
+    QTextEdit *textEdit_24;
+    QTextEdit *textEdit_27;
+    QTextEdit *textEdit_29;
+    QLineEdit *input_SchoolCloseContact7to12;
+    QLineEdit *input_SchoolCloseContact13to18;
     QWidget *tab_6;
     QTextEdit *textEdit_150;
     QTextEdit *textEdit_152;
@@ -346,7 +351,7 @@ public:
     QGroupBox *groupBox_3;
     QLabel *label_9;
     QLabel *label_10;
-    QPushButton *areaSubmit_3;
+    QPushButton *jpgSubmit;
     QCheckBox *checkBox;
     QCheckBox *checkBox_2;
     QCheckBox *checkBox_3;
@@ -356,7 +361,7 @@ public:
     QGroupBox *groupBox_4;
     QLabel *label_11;
     QLabel *label_12;
-    QPushButton *areaSubmit_4;
+    QPushButton *csvSubmit;
     QCheckBox *checkBox_6;
     QCheckBox *checkBox_7;
     QCheckBox *checkBox_8;
@@ -1383,19 +1388,19 @@ public:
         textEdit_162 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_162->setObjectName(QStringLiteral("textEdit_162"));
         textEdit_162->setEnabled(false);
-        textEdit_162->setGeometry(QRect(10, 220, 181, 31));
+        textEdit_162->setGeometry(QRect(10, 220, 181, 61));
         textEdit_168 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_168->setObjectName(QStringLiteral("textEdit_168"));
         textEdit_168->setEnabled(false);
-        textEdit_168->setGeometry(QRect(10, 310, 181, 31));
+        textEdit_168->setGeometry(QRect(10, 340, 181, 31));
         textEdit_169 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_169->setObjectName(QStringLiteral("textEdit_169"));
         textEdit_169->setEnabled(false);
-        textEdit_169->setGeometry(QRect(10, 340, 181, 31));
+        textEdit_169->setGeometry(QRect(10, 370, 181, 31));
         textEdit_170 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_170->setObjectName(QStringLiteral("textEdit_170"));
         textEdit_170->setEnabled(false);
-        textEdit_170->setGeometry(QRect(10, 269, 851, 41));
+        textEdit_170->setGeometry(QRect(10, 299, 851, 41));
         textEdit_170->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_178 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_178->setObjectName(QStringLiteral("textEdit_178"));
@@ -1406,14 +1411,14 @@ public:
         input_contactReduct->setGeometry(QRect(190, 50, 671, 31));
         input_contactReduct->setMaxLength(20);
         input_contactReduct->setAlignment(Qt::AlignCenter);
-        input_SchoolCloseContact = new QLineEdit(scrollAreaWidgetContents_4);
-        input_SchoolCloseContact->setObjectName(QStringLiteral("input_SchoolCloseContact"));
-        input_SchoolCloseContact->setGeometry(QRect(190, 220, 671, 31));
-        input_SchoolCloseContact->setMaxLength(20);
-        input_SchoolCloseContact->setAlignment(Qt::AlignCenter);
+        input_SchoolCloseContact0to6 = new QLineEdit(scrollAreaWidgetContents_4);
+        input_SchoolCloseContact0to6->setObjectName(QStringLiteral("input_SchoolCloseContact0to6"));
+        input_SchoolCloseContact0to6->setGeometry(QRect(190, 250, 221, 31));
+        input_SchoolCloseContact0to6->setMaxLength(20);
+        input_SchoolCloseContact0to6->setAlignment(Qt::AlignCenter);
         input_gatheringCancel = new QLineEdit(scrollAreaWidgetContents_4);
         input_gatheringCancel->setObjectName(QStringLiteral("input_gatheringCancel"));
-        input_gatheringCancel->setGeometry(QRect(190, 310, 671, 31));
+        input_gatheringCancel->setGeometry(QRect(190, 340, 671, 31));
         input_gatheringCancel->setMaxLength(20);
         input_gatheringCancel->setAlignment(Qt::AlignCenter);
         widget_4 = new QWidget(scrollAreaWidgetContents_4);
@@ -1464,7 +1469,7 @@ public:
         input_SchoolCloseEnd->setAlignment(Qt::AlignCenter);
         widget_7 = new QWidget(scrollAreaWidgetContents_4);
         widget_7->setObjectName(QStringLiteral("widget_7"));
-        widget_7->setGeometry(QRect(190, 340, 671, 31));
+        widget_7->setGeometry(QRect(190, 370, 671, 31));
         widget_7->setStyleSheet(QStringLiteral("background-color:white; border:1px solid black;"));
         input_gatheringCancelStart = new QLineEdit(widget_7);
         input_gatheringCancelStart->setObjectName(QStringLiteral("input_gatheringCancelStart"));
@@ -1485,7 +1490,49 @@ public:
         input_gatheringCancelEnd->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_gatheringCancelEnd->setMaxLength(20);
         input_gatheringCancelEnd->setAlignment(Qt::AlignCenter);
+        textEdit_24 = new QTextEdit(scrollAreaWidgetContents_4);
+        textEdit_24->setObjectName(QStringLiteral("textEdit_24"));
+        textEdit_24->setEnabled(false);
+        textEdit_24->setGeometry(QRect(190, 220, 221, 31));
+        textEdit_27 = new QTextEdit(scrollAreaWidgetContents_4);
+        textEdit_27->setObjectName(QStringLiteral("textEdit_27"));
+        textEdit_27->setEnabled(false);
+        textEdit_27->setGeometry(QRect(410, 220, 231, 31));
+        textEdit_29 = new QTextEdit(scrollAreaWidgetContents_4);
+        textEdit_29->setObjectName(QStringLiteral("textEdit_29"));
+        textEdit_29->setEnabled(false);
+        textEdit_29->setGeometry(QRect(640, 220, 221, 31));
+        input_SchoolCloseContact7to12 = new QLineEdit(scrollAreaWidgetContents_4);
+        input_SchoolCloseContact7to12->setObjectName(QStringLiteral("input_SchoolCloseContact7to12"));
+        input_SchoolCloseContact7to12->setGeometry(QRect(410, 250, 231, 31));
+        input_SchoolCloseContact7to12->setMaxLength(20);
+        input_SchoolCloseContact7to12->setAlignment(Qt::AlignCenter);
+        input_SchoolCloseContact13to18 = new QLineEdit(scrollAreaWidgetContents_4);
+        input_SchoolCloseContact13to18->setObjectName(QStringLiteral("input_SchoolCloseContact13to18"));
+        input_SchoolCloseContact13to18->setGeometry(QRect(640, 250, 221, 31));
+        input_SchoolCloseContact13to18->setMaxLength(20);
+        input_SchoolCloseContact13to18->setAlignment(Qt::AlignCenter);
         scrollArea_4->setWidget(scrollAreaWidgetContents_4);
+        textEdit_144->raise();
+        textEdit_145->raise();
+        textEdit_147->raise();
+        textEdit_148->raise();
+        textEdit_162->raise();
+        textEdit_168->raise();
+        textEdit_169->raise();
+        textEdit_170->raise();
+        textEdit_178->raise();
+        input_contactReduct->raise();
+        input_gatheringCancel->raise();
+        widget_4->raise();
+        widget_7->raise();
+        textEdit_24->raise();
+        textEdit_27->raise();
+        textEdit_29->raise();
+        widget_6->raise();
+        input_SchoolCloseContact0to6->raise();
+        input_SchoolCloseContact7to12->raise();
+        input_SchoolCloseContact13to18->raise();
         tabWidget->addTab(tab_5, QString());
         tab_6 = new QWidget();
         tab_6->setObjectName(QStringLiteral("tab_6"));
@@ -1847,6 +1894,8 @@ public:
         customPlot_specimen->setObjectName(QStringLiteral("customPlot_specimen"));
         customPlot_specimen->setGeometry(QRect(20, 90, 851, 281));
         output_tab->addTab(tab_12, QString());
+        customPlot_specimen->raise();
+        specimenTable->raise();
         tab_13 = new QWidget();
         tab_13->setObjectName(QStringLiteral("tab_13"));
         customPlot_daily = new QCustomPlot(tab_13);
@@ -1881,6 +1930,8 @@ public:
         customPlot_cumulative->setObjectName(QStringLiteral("customPlot_cumulative"));
         customPlot_cumulative->setGeometry(QRect(20, 90, 851, 281));
         output_tab->addTab(tab_14, QString());
+        customPlot_cumulative->raise();
+        cumulativeTable->raise();
         inputPageBtn = new QPushButton(outputWidget);
         inputPageBtn->setObjectName(QStringLiteral("inputPageBtn"));
         inputPageBtn->setGeometry(QRect(810, 20, 91, 23));
@@ -1966,9 +2017,9 @@ public:
         label_10 = new QLabel(groupBox_3);
         label_10->setObjectName(QStringLiteral("label_10"));
         label_10->setGeometry(QRect(310, 10, 311, 31));
-        areaSubmit_3 = new QPushButton(groupBox_3);
-        areaSubmit_3->setObjectName(QStringLiteral("areaSubmit_3"));
-        areaSubmit_3->setGeometry(QRect(730, 160, 111, 31));
+        jpgSubmit = new QPushButton(groupBox_3);
+        jpgSubmit->setObjectName(QStringLiteral("jpgSubmit"));
+        jpgSubmit->setGeometry(QRect(730, 160, 111, 31));
         checkBox = new QCheckBox(groupBox_3);
         buttonGroup_2 = new QButtonGroup(MainWindow);
         buttonGroup_2->setObjectName(QStringLiteral("buttonGroup_2"));
@@ -2010,9 +2061,9 @@ public:
         label_12 = new QLabel(groupBox_4);
         label_12->setObjectName(QStringLiteral("label_12"));
         label_12->setGeometry(QRect(310, 10, 311, 31));
-        areaSubmit_4 = new QPushButton(groupBox_4);
-        areaSubmit_4->setObjectName(QStringLiteral("areaSubmit_4"));
-        areaSubmit_4->setGeometry(QRect(730, 160, 111, 31));
+        csvSubmit = new QPushButton(groupBox_4);
+        csvSubmit->setObjectName(QStringLiteral("csvSubmit"));
+        csvSubmit->setGeometry(QRect(730, 160, 111, 31));
         checkBox_6 = new QCheckBox(groupBox_4);
         checkBox_6->setObjectName(QStringLiteral("checkBox_6"));
         checkBox_6->setGeometry(QRect(30, 110, 70, 17));
@@ -2683,7 +2734,7 @@ public:
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\240\221\354\264\211 \352\260\220\354\206\214 \352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
         input_contactReduct->setText(QString());
-        input_SchoolCloseContact->setText(QString());
+        input_SchoolCloseContact0to6->setText(QString());
         input_gatheringCancel->setText(QString());
         input_contactReductStart->setText(QString());
         input_isolRange_5->setText(QApplication::translate("MainWindow", "-", 0));
@@ -2694,6 +2745,23 @@ public:
         input_gatheringCancelStart->setText(QString());
         input_isolRange_9->setText(QApplication::translate("MainWindow", "-", 0));
         input_gatheringCancelEnd->setText(QString());
+        textEdit_24->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
+        textEdit_27->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
+        textEdit_29->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
+        input_SchoolCloseContact7to12->setText(QString());
+        input_SchoolCloseContact13to18->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "\352\262\251\353\246\254", 0));
         textEdit_150->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -2939,7 +3007,7 @@ public:
         groupBox_3->setTitle(QString());
         label_9->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">\352\262\260\352\263\274\353\254\274\354\235\230 \352\267\270\353\236\230\355\224\204\353\245\274 JPG \355\214\214\354\235\274\353\241\234 \354\240\200\354\236\245\355\225\230\354\213\244 \354\210\230 \354\236\210\354\212\265\353\213\210\353\213\244. </span></p></body></html>", 0));
         label_10->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">JPG \355\214\214\354\235\274\353\241\234 \353\263\200\355\231\230\355\225\240 \352\262\260\352\263\274\353\254\274\354\235\204 \354\204\240\355\203\235\355\225\230\354\204\270\354\232\224</span></p></body></html>", 0));
-        areaSubmit_3->setText(QApplication::translate("MainWindow", "\354\240\201\354\232\251", 0));
+        jpgSubmit->setText(QApplication::translate("MainWindow", "\354\240\201\354\232\251", 0));
         checkBox->setText(QApplication::translate("MainWindow", "\352\260\220\354\227\274\354\236\220", 0));
         checkBox_2->setText(QApplication::translate("MainWindow", "\354\235\230\353\243\214\354\236\220\354\233\220", 0));
         checkBox_3->setText(QApplication::translate("MainWindow", "\352\262\200\354\262\264\354\210\230", 0));
@@ -2948,7 +3016,7 @@ public:
         groupBox_4->setTitle(QString());
         label_11->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">\352\262\260\352\263\274\353\254\274\354\235\230 \352\267\270\353\236\230\355\224\204\353\245\274 CSV \355\214\214\354\235\274\353\241\234 \354\240\200\354\236\245\355\225\230\354\213\244 \354\210\230 \354\236\210\354\212\265\353\213\210\353\213\244. </span></p></body></html>", 0));
         label_12->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">CSV \355\214\214\354\235\274\353\241\234 \353\263\200\355\231\230\355\225\240 \352\262\260\352\263\274\353\254\274\354\235\204 \354\204\240\355\203\235\355\225\230\354\204\270\354\232\224</span></p></body></html>", 0));
-        areaSubmit_4->setText(QApplication::translate("MainWindow", "\354\240\201\354\232\251", 0));
+        csvSubmit->setText(QApplication::translate("MainWindow", "\354\240\201\354\232\251", 0));
         checkBox_6->setText(QApplication::translate("MainWindow", "\352\260\220\354\227\274\354\236\220", 0));
         checkBox_7->setText(QApplication::translate("MainWindow", "\354\235\230\353\243\214\354\236\220\354\233\220", 0));
         checkBox_8->setText(QApplication::translate("MainWindow", "\352\262\200\354\262\264\354\210\230", 0));

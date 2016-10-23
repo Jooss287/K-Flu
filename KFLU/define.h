@@ -238,7 +238,6 @@ int Resp(int age);
 int AV(int age);
 int Spec(int age);
 
-
 int Op(int age); //Outpatients
 int HICU(int age);
 int HNICU(int age);
@@ -480,8 +479,6 @@ double FractionofICU = 0.15;
 //ICU 입원 시 Sojourn time
 double infDurforICU = 10.0;
 
-
-double test[NumberofArray];
 //**********************************************
 //Function & Class
 //==============================================
@@ -565,18 +562,6 @@ public:
 			}
 		}
 		
-		
-		for (int i = 0; i < StageofAgeGroups; i++)
-		{
-			for (int j = 0; j < StageofAgeGroups; j++)
-			{
-				std::cout.precision(4);
-				std::cout << std::fixed << nextGenerationMatrix[i][j] << 'kkk';
-			}
-			std::cout << std::endl;
-		}
-
-
 		Eigen::MatrixXd Ematirx(StageofAgeGroups, StageofAgeGroups);
 		Eigen::MatrixXd realEigenvalues;
 		Eigen::MatrixXd imagEigenvalues;
@@ -773,8 +758,6 @@ int CHICU(int age) {
 int CHNICU(int age) {
 	return CumHospitalNICU + age;
 }
-
-
 int AP(int age) {
 	return APoffset + age;
 }
@@ -1033,7 +1016,7 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 			OutputY[HCW] = zeta * (healthCareWorkers / total - VectorY[D(HCW)] - VectorY[HCWReturnAntivirals]);
 		}
 	}
-	
+	//고려
 	if (SchoolCloseRangeBegin == SchoolCloseRangeEnd) {
 		if (VectorY[AP(Age0to6)] * total / Individuals[Age0to6] > schoolClosingTreshold)
 			doSchoolClosure0to6[(int)ceil(time)] = true;
@@ -1366,9 +1349,9 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 		OutputY[D(age)] += dead;
 
 		// Update the number of fully recovered immune people.
-		OutputY[I(age)] += gamma[age][MedNO][ItypeA][Non]
-			* VectorY[A(age, IstageLast)] + gamma[age][MedNO][ItypeM][Non]
-			* VectorY[M(age, IstageLast)] + rho * VectorY[R(age, RstageLast)];
+		OutputY[I(age)] += gamma[age][MedNO][ItypeA][Non] * VectorY[A(age, IstageLast)]
+			+ gamma[age][MedNO][ItypeM][Non] * VectorY[M(age, IstageLast)] + rho * VectorY[R(age, RstageLast)]
+			+ Vaccine * (VectorY[S(age, LowRisk)]+ VectorY[S(age, HighRisk)]);
 
 		// Update the number of outpatient visits.
 		for (int iStage = 0; iStage < IstageGroups; iStage++) {
@@ -1409,6 +1392,43 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 		//Update the cumulative absenteeism prevalence due to influenza.
 		//OutputY[CPA(age)] = VectorY[AP(age)];
 	
+
+		int N95(int age);
+		int Resp(int age);
+		int AV(int age);
+		int Spec(int age);
+
+		////////
+		double ventilation = 0.0;
+
+		for (int age = 0; age < StageofAgeGroups; age++)
+		{
+			for (int iStage = 0; iStage < IstageGroups; iStage++)
+			{
+				ventilation += percentage(RespiratorNeedRate) * (VectorY[H(age, iStage, MedYES, ICU)] + VectorY[H(age, iStage, MedNO, ICU)]);
+			}
+		}
+
+		////////
+		double NumberofTest = 0.0;
+		for (int age = 0; age < StageofAgeGroups; age++)
+		{
+			NumberofTest += (1 + percentage(ReinspectionRate)) * (VectorY[H(age, Istage1, MedYES, ICU)] + VectorY[H(age, Istage1, MedNO, ICU)] + VectorY[H(age, Istage1, MedYES, NICU)] + VectorY[H(age, Istage1, MedNO, NICU)])
+				+ percentage(OutpatientSpecimenTesting) * (VectorY[W(age, Istage1, MedYES)] + VectorY[W(age, Istage1, MedNO)]);
+		}
+
+		//////
+		double N95maskNeed = 0.0;
+		for (int age = 0; age < StageofAgeGroups; age++)
+		{
+			for (int iStage = 0; iStage < IstageGroups; iStage++)
+			{
+				N95maskNeed += MaskNeedICU * (VectorY[H(age, iStage, MedYES, ICU)] + VectorY[H(age, iStage, MedNO, ICU)])
+					+ MaskNeedNICU * (VectorY[H(age, iStage, MedYES, NICU)] + VectorY[H(age, iStage, MedNO, NICU)]);
+			}
+		}
+		//////
+
 	}
 }
 
@@ -1429,6 +1449,7 @@ void KfluStep()
 	{
 		inputy[i] = outputy[i] * 0.1 + InitY[i];
 	}
+	double aa = E(0, 0, 0);
 	for (day = 0.1; day < 10; day = day + (1.0 / TimeResolution))
 	{
 		Evaluation(day, inputy, outputy);
@@ -1436,14 +1457,6 @@ void KfluStep()
 		{
 			inputy[i] = outputy[i] * day + inputy[i];
 		}
-			//int E(int age, int risk, int eStages) {
-			//return Eoffset + (age * StageofRisk + risk) * EstageGroups + eStages;
-		
-		//ArrayforPlot(day);
-		/*std::cout << '\r';
-		for (int i = 0; i <= day*10; i++)
-			std::cout << PlotSusceptibles[1][i] << ' ';
-		*/
 	}
 }
 

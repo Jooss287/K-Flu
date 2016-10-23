@@ -23,6 +23,7 @@ int contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
 int contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
 
 /*output 관련 변수들*/
+int goal;
 int steps=0;
 int evals = 0;
 /**
@@ -101,26 +102,24 @@ void MainWindow::run(double goal) {
 void MainWindow::step() {
 	steps++;
 
-	double y[sizeof(OutputY)] = {};
+	double y[sizeof(OutputY)];
+	y = getInitialY();
 	//System.arraycopy(y, 0, yInVector, 0, y.length);
 
 	// k1
-	EvaluationY(day);
-	//dgl.eval(day, yInVector, k1);
+	Evaluation(day, yInVector, k1);
 	evals++;
 
 	// k2
 	for (int i = 0; i < sizeof(y); i++) yInVector[i] = y[i] + 0.5 * h * k1[i];
 
-	EvaluationY(day);
-	//dgl.eval(day + 0.5 * h, yInVector, k2);
+	Evaluation(day + 0.5 * h, yInVector, k2);
 	evals++;
 
 	// k3
 	for (int i = 0; i < sizeof(y); i++) yInVector[i] = y[i] + 0.5 * h * k2[i];
 
-	EvaluationY(day);
-	//dgl.eval(day + 0.5 * h, yInVector, k3);
+	Evaluation(day + 0.5 * h, yInVector, k3);
 	evals++;
 
 	// Calculate error
@@ -149,7 +148,7 @@ void MainWindow::step() {
 
 	// k4
 	for (int i = 0; i < sizeof(y); i++) yInVector[i] = y[i] + h * k3[i];
-	//dgl.eval(day + h, yInVector, k4);
+	Evaluation(day + h, yInVector, k4);
 	evals++;
 
 	// Update x and y
@@ -215,12 +214,12 @@ void MainWindow::makeInfectionPlot(){
 	ui->customPlot_infection->yAxis->setLabel(toKor("인구"));
 
 	// set axes ranges, so we see all data:
-	ui->customPlot_infection->xAxis->setRange(0, 180);
+	ui->customPlot_infection->xAxis->setRange(0, 210);
 	ui->customPlot_infection->yAxis->setRange(0, 10000000);
 
-	QVector<double> x(NumberofArray);
+	QVector<double> x(goal);
 
-	for (int i = 0; i<NumberofArray; i++) {
+	for (int i = 0; i<goal; i++) {
 
 		x[i] = i;
 	}
@@ -284,28 +283,28 @@ void MainWindow::makeInfectionPlot(){
 	ui->infectionTable->setColumnWidth(6,90);
 
 	//테이블 인풋 
-	ui->infectionTable->setRowCount(NumberofArray);
-	for (int i = 0; i < NumberofArray; i++) {
+	ui->infectionTable->setRowCount(goal);
+	for (int i = 0; i < goal; i++) {
 		ui->infectionTable->setItem(i, 0, new QTableWidgetItem(QString::number((double)SusceptibleArray[i], 'f')));
 	}
 
-	for (int i = 0; i < NumberofArray; i++) {
+	for (int i = 0; i < goal; i++) {
 		ui->infectionTable->setItem(i, 1, new QTableWidgetItem(QString::number(ExposedArray[i])));
 	}
 
-	for (int i = 0; i < NumberofArray; i++) {
+	for (int i = 0; i < goal; i++) {
 		ui->infectionTable->setItem(i, 2, new QTableWidgetItem(QString::number(AsymptomaticArray[i])));
 	}
 
-	for (int i = 0; i <NumberofArray; i++) {
+	for (int i = 0; i <goal; i++) {
 		ui->infectionTable->setItem(i, 3, new QTableWidgetItem(QString::number(ModerateArray[i])));
 	}
 
-	for (int i = 0; i < NumberofArray; i++) {
+	for (int i = 0; i <goal; i++) {
 		ui->infectionTable->setItem(i, 4, new QTableWidgetItem(QString::number(SevereArray[i])));
 	}
 
-	for (int i = 0; i < NumberofArray; i++) {
+	for (int i = 0; i < goal; i++) {
 		ui->infectionTable->setItem(i, 5, new QTableWidgetItem(QString::number(DeadArray[i])));
 	}
 
@@ -709,7 +708,7 @@ void MainWindow::on_areaSubmit_clicked()
 //출력화면 이동 버튼 클릭
 void MainWindow::on_outputPageBtn_clicked()
 {
-	run(200);
+	run(goal);
     ui->outputWidget->show();
     ui->outputWidget->activateWindow();
     ui->outputWidget->raise();

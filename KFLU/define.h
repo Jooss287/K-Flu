@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Eigen/Dense>
+#include <iostream>
 
 //**********************************************
 //System Define
@@ -425,7 +426,7 @@ double Susceptibles[StageofAgeGroups][StageofRisk];
 double delta; 
 
 //Average time after onset of symptoms when severe and extremely severe cases seek medical help[days].
-double consultationDelay = 1.0;
+double consultationDelay = changehour(MedicalHelp);
 
 //Average number of doctoral visits per severe case.
 double outpatientVisits = 1;
@@ -461,8 +462,8 @@ double hcwProphylaxisBegin = 0.0;
 //Day at which health care worker prophylaxis is terminated.
 double hcwProphylaxisEnd = 0.0;
 
-//Fraction of the population for which antiviral treatment is available.
-double antiviralRessource = 1.0;
+//Fraction of the population for which antiviral treatment is available.  /// 1.0
+double antiviralRessource = percentage(AntiviralsInjectionRate);
 
 //Treshold above which school closing is applied.
 double schoolClosingTreshold = 1.0;
@@ -480,6 +481,7 @@ double FractionofICU = 0.15;
 double infDurforICU = 10.0;
 
 
+double test[NumberofArray];
 //**********************************************
 //Function & Class
 //==============================================
@@ -563,16 +565,16 @@ public:
 			}
 		}
 		
-		/*
+		
 		for (int i = 0; i < StageofAgeGroups; i++)
 		{
 			for (int j = 0; j < StageofAgeGroups; j++)
 			{
 				std::cout.precision(4);
-				std::cout << std::fixed << nextGenerationMatrix[i][j] << '\t\t';
+				std::cout << std::fixed << nextGenerationMatrix[i][j] << 'kkk';
 			}
 			std::cout << std::endl;
-		}*/
+		}
 
 
 		Eigen::MatrixXd Ematirx(StageofAgeGroups, StageofAgeGroups);
@@ -811,10 +813,12 @@ void Initialize()
 			ageDistribution[age] = 0;
 	}
 
+	double kk = 0;
 	// Distribution of individuals (by age and risk group
 	for (int age = 0; age < StageofAgeGroups; age++) {
 		Susceptibles[age][LowRisk] = ageDistribution[age] * (1.0 - percentage(HighRiskRate[ageClass[age]]));
 		Susceptibles[age][HighRisk] = ageDistribution[age] * percentage(HighRiskRate[ageClass[age]]);
+		kk += Susceptibles[age][LowRisk] + Susceptibles[age][HighRisk];
 	}
 
 	//Initializae the contact matrix
@@ -988,6 +992,8 @@ void InitialY()
 			}
 		}
 	}
+	double kk1 = 0;
+	double kk2 = 0;
 	for (int age = 0; age < StageofAgeGroups; age++) {
 		double exposedLowRisk = (1.0 - percentage(HighRiskRate[ageClass[age]])) * eigenvector[age] / total; // potential division by zero!
 		InitY[S(age, LowRisk)] -= exposedLowRisk;
@@ -995,6 +1001,8 @@ void InitialY()
 		double exposedHighRisk = percentage(HighRiskRate[ageClass[age]]) * eigenvector[age] / total; // potential division by zero!
 		InitY[S(age, HighRisk)] -= exposedHighRisk;
 		InitY[E(age, HighRisk, Estage1)] = exposedHighRisk;
+		kk1 += InitY[S(age, LowRisk)] + InitY[S(age, HighRisk)];
+		kk2 += InitY[E(age, LowRisk, Estage1)] + InitY[E(age, HighRisk, Estage1)];
 	}
 }
 
@@ -1091,10 +1099,13 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 				generalFactor *= (1.0 - percentage(ContactReductionRate));
 			double temp = 0.0;
 			double tempHCW = 0.0;
+			int aa, bb;
 			for (int eStage = EstageGroups - prodromalStages; eStage < EstageGroups; eStage++) {
+				aa = E(ageInf, LowRisk, eStage);
+				bb = E(ageInf, HighRisk, eStage);
 				temp += (VectorY[E(ageInf, LowRisk, eStage)] + VectorY[E(ageInf, HighRisk, eStage)])  * eBeta[ageSus][ageInf] * cancellingFactor * susChildCareFactor * infChildCareFactor;
 			}
-
+			
 			for (int iStage = 0; iStage < IstageGroups; iStage++) {
 				temp += (VectorY[A(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeA][isolation] * cancellingFactor * susChildCareFactor * infChildCareFactor
 					+ VectorY[M(ageInf, iStage)] * beta[ageSus][ageInf][MedNO][ItypeM][isolation] * cancellingFactor * susChildCareFactor * infChildCareFactor
@@ -1125,7 +1136,7 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 			lambda[ageSus] += temp * generalFactor;
 		}
 	}
-
+	
 	if (doProphylaxis) {
 		lambda[HCW] *= (1.0 - treatEfficacySusceptiblilty);
 	}
@@ -1163,7 +1174,10 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 			for (int k = 0; k < EstageGroups; k++) {
 				if (k == Estage1)
 					OutputY[E(age, risk, k)] = lambda[age] * (1 - Vaccine) * VectorY[S(age, risk)] - delta * VectorY[E(age, risk, Estage1)];
-				OutputY[E(age, risk, k)] = delta * (VectorY[E(age, risk, k - 1)] - VectorY[E(age, risk, k)]);
+				else {
+					int aa = E(age, risk, k);
+					OutputY[E(age, risk, k)] = delta * (VectorY[E(age, risk, k - 1)] - VectorY[E(age, risk, k)]);
+				}
 			}
 
 			// Some of the individuals who have just passed through 
@@ -1409,9 +1423,13 @@ void KfluStep()
 	double inputy[NumberofArray];
 	double outputy[NumberofArray];
 
+	std::fill_n(inputy, OutputArray, 0);
+	std::fill_n(outputy, OutputArray, 0);
+
 	Initialize();
 	InitialY();
-	for (day = 0.0; day < Maximumday; day = day + (1.0 / TimeResolution))
+
+	for (day = 0.0; day < 10; day = day + (1.0 / TimeResolution))
 	{
 		Evaluation(day, InitY, outputy);
 		//ArrayforPlot(day);

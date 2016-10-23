@@ -83,31 +83,34 @@ MainWindow::~MainWindow()
 void MainWindow::run(double input) {
 
 
+	Initialize();
+	InitialY();
+
 	MainWindow::step();
 
-	//while (day + h < input) {
+	while (day + h < input) {
 
-	//	MainWindow::step();
-	//}
-	//double hold = h;
-	//while (abs((day - input) / input) > 1E-13) {
-	//	h = min(input - day, h);
+		MainWindow::step();
+	}
+	double hold = h;
+	while (abs((day - input) / input) > 1E-13) {
+		h = min(input - day, h);
 
-	//	MainWindow::step();
-	//}
+		MainWindow::step();
+	}
 
-	//h = hold;
+	h = hold;
 }
 void MainWindow::step() {
 
-	Initialize();
-	InitialY();
 
 	steps++;
 	for (int i = 0; i < OutputArray; i++) yInVector[i] = InitY[i];
 
+
 	// k1
 	Evaluation(day, yInVector, k1);
+	//double total = InitY[S(Age0to6, LowRisk)] + InitY[S(Age0to6, HighRisk)] + InitY[S(Age7to12, LowRisk)] + InitY[S(Age7to12, HighRisk)] + InitY[S(Age13to18, LowRisk)] + InitY[S(Age13to18, HighRisk)] + InitY[S(Age13to18, LowRisk)] + InitY[S(Age19to64, HighRisk)] + InitY[S(Age65toEnd, LowRisk)] + InitY[S(Age65toEnd, HighRisk)];
 
 	evals++;
 
@@ -119,10 +122,9 @@ void MainWindow::step() {
 
 	// k3
 	for (int i = 0; i < OutputArray; i++) yInVector[i] = InitY[i] + 0.5 * h * k2[i];
-
+	
 	Evaluation(day + 0.5 * h, yInVector, k3);
 	evals++;
-
 	// Calculate error
 	double normK = 0.0;
 	double max = 0.0;
@@ -155,18 +157,33 @@ void MainWindow::step() {
 	// Update x and y
 	day += h;
 	for (int i = 0; i < OutputArray; i++) InitY[i] += h*(k1[i] + 2 * (k2[i] + k3[i]) + k4[i]) / 6;
-
+	ExposedArray[day] = 0;
+	AsymptomaticArray[day] = 0;
+	ModerateArray[day] = 0;
+	SevereArray[day]=0;
 	if (AgeAll) {
-		SusceptibleArray[day] = InitY[S(Age0to6, LowRisk)] + InitY[S(Age0to6, HighRisk)]+ InitY[S(Age7to12, LowRisk)] + InitY[S(Age7to12, HighRisk)]+ InitY[S(Age13to18, LowRisk)] + InitY[S(Age13to18, HighRisk)] + InitY[S(Age13to18, LowRisk)] + InitY[S(Age19to64, HighRisk)] + InitY[S(Age65toEnd, LowRisk)] + InitY[S(Age65toEnd, HighRisk)];
+		SusceptibleArray[day] = total*(InitY[S(Age0to6, LowRisk)] + InitY[S(Age0to6, HighRisk)]+ InitY[S(Age7to12, LowRisk)] + InitY[S(Age7to12, HighRisk)]+ InitY[S(Age13to18, LowRisk)] + InitY[S(Age13to18, HighRisk)] + InitY[S(Age19to64, LowRisk)] + InitY[S(Age19to64, HighRisk)] + InitY[S(Age65toEnd, LowRisk)] + InitY[S(Age65toEnd, HighRisk)]);
 		for (int k = 0; k < EstageGroups; k++)
-			ExposedArray[day] += InitY[E(Age0to6, LowRisk,k)] + InitY[E(Age0to6, HighRisk, k)] + InitY[E(Age7to12, LowRisk, k)] + InitY[E(Age7to12, HighRisk, k)] + InitY[E(Age13to18, LowRisk, k)] + InitY[E(Age13to18, HighRisk, k)] + InitY[E(Age13to18, LowRisk, k)] + InitY[E(Age19to64, HighRisk, k)] + InitY[E(Age65toEnd, LowRisk, k)] + InitY[E(Age65toEnd, HighRisk, k)];
+			ExposedArray[day] += total*(InitY[E(Age0to6, LowRisk,k)] + InitY[E(Age0to6, HighRisk, k)] + InitY[E(Age7to12, LowRisk, k)] + InitY[E(Age7to12, HighRisk, k)] + InitY[E(Age13to18, LowRisk, k)] + InitY[E(Age13to18, HighRisk, k)] + InitY[E(Age19to64, LowRisk, k)] + InitY[E(Age19to64, HighRisk, k)] + InitY[E(Age65toEnd, LowRisk, k)] + InitY[E(Age65toEnd, HighRisk, k)]);
+			
+		//ExposedArray[day] = total*ExposedArray[day];
 		for (int k = 0; k < IstageGroups; k++) {
-			AsymptomaticArray[day] += InitY[A(Age0to6, k)]+ InitY[A(Age7to12, k)] + InitY[A(Age13to18, k)] + InitY[A(Age19to64, k)] + InitY[A(Age65toEnd, k)];
-			ModerateArray[day] += InitY[M(Age0to6, k)] + InitY[M(Age7to12, k)] + InitY[M(Age13to18, k)] + InitY[M(Age19to64, k)] + InitY[M(Age65toEnd, k)];
-			SevereArray[day] += InitY[S(Age0to6, k)] + InitY[S(Age7to12, k)] + InitY[S(Age13to18, k)] + InitY[S(Age19to64, k)] + InitY[S(Age65toEnd, k)];
+			AsymptomaticArray[day] += total*(InitY[A(Age0to6, k)]+ InitY[A(Age7to12, k)] + InitY[A(Age13to18, k)] + InitY[A(Age19to64, k)] + InitY[A(Age65toEnd, k)]);
+			ModerateArray[day] += total*( InitY[M(Age0to6, k)] + InitY[M(Age7to12, k)] + InitY[M(Age13to18, k)] + InitY[M(Age19to64, k)] + InitY[M(Age65toEnd, k)]);
+			SevereArray[day] += total*(InitY[V(Age0to6, k)] + InitY[V(Age7to12, k)] + InitY[V(Age13to18, k)] + InitY[V(Age19to64, k)] + InitY[V(Age65toEnd, k)]
+				+ InitY[X(Age0to6, k)] + InitY[X(Age7to12, k)] + InitY[X(Age13to18, k)] + InitY[X(Age19to64, k)] + InitY[X(Age65toEnd, k)]);
+			for (int m = 0; m < MedGroups; m++) {
+				SevereArray[day] += total*(InitY[W(Age0to6, k,m)] + InitY[W(Age7to12, k,m)] + InitY[W(Age13to18, k,m)] + InitY[W(Age19to64, k,m)] + InitY[W(Age65toEnd, k,m)]);
+				for (int c = 0; c< ICUGroups; c++) {
+					SevereArray[day] += total*(InitY[H(Age0to6, k, m,c)] + InitY[H(Age7to12, k, m,c)] + InitY[H(Age13to18, k, m,c)] + InitY[H(Age19to64, k, m,c)] + InitY[H(Age65toEnd, k, m,c)]);
+				}
+			}
 		}
-		DeadArray[day] = InitY[D(Age0to6)]+ InitY[D(Age7to12)]+ InitY[D(Age13to18)]+ InitY[D(Age19to64)]+ InitY[D(Age65toEnd)];
-		ImmuneArray[day] = InitY[I(Age0to6)] + InitY[I(Age7to12)] + InitY[I(Age13to18)] + InitY[I(Age19to64)] + InitY[I(Age65toEnd)];
+		//W(Age, k, MedNO)
+		DeadArray[day] = total*(InitY[D(Age0to6)]+ InitY[D(Age7to12)]+ InitY[D(Age13to18)]+ InitY[D(Age19to64)]+ InitY[D(Age65toEnd)]);
+		ImmuneArray[day] = total*(InitY[I(Age0to6)] + InitY[I(Age7to12)] + InitY[I(Age13to18)] + InitY[I(Age19to64)] + InitY[I(Age65toEnd)]);
+		double helpme = SusceptibleArray[day] + ExposedArray[day] + AsymptomaticArray[day] + ModerateArray[day] + SevereArray[day] + DeadArray[day] + ImmuneArray[day];
+		qDebug("%f", helpme);
 	}
 	else {
 		SusceptibleArray[day] = InitY[S(GraphAge, LowRisk)] + InitY[S(GraphAge, HighRisk)];
@@ -214,7 +231,7 @@ void MainWindow::makeInfectionPlot(){
 
 	// set axes ranges, so we see all data:
 	ui->customPlot_infection->xAxis->setRange(0, 210);
-	ui->customPlot_infection->yAxis->setRange(0, 10000000);
+	ui->customPlot_infection->yAxis->setRange(0, total);
 
 	QVector<double> x(goal);
 

@@ -182,8 +182,8 @@ double PlotCumHospitalNICU[StageofAgeGroups][NumberofArray];
 
 // ½ÇÁ¦ Output
 double InitY[OutputArray];
-double OutputY[OutputArray];
-double VectorY[OutputArray];
+//double OutputY[OutputArray];
+//double VectorY[OutputArray];
 
 
 //**********************************************
@@ -199,7 +199,7 @@ int M(int age, int iStage);
 int V(int age, int iStage);
 int W(int age, int iStage, int med);
 int X(int age, int iStage);
-int H(int age, int iStage, int med);
+int H(int age, int iStage, int med, int icu);
 int R(int age, int rStage);
 int D(int age);
 int I(int age);
@@ -930,7 +930,7 @@ void InitialY()
 /////////////////////////////////////////////////////====================================================================================================
 /////////////////////////////////////////////////////====================================================================================================
 
-void Evaluation(double time)
+void Evaluation(double time, double VectorY[], double OutputY[])
 {
 	// Initialize counters. 
 	
@@ -1016,6 +1016,9 @@ void Evaluation(double time)
 			double temp = 0.0;
 			double tempHCW = 0.0;
 			for (int eStage = EstageGroups - prodromalStages; eStage < EstageGroups; eStage++) {
+				double a = VectorY[E(ageInf, LowRisk, eStage)];
+				double b = VectorY[E(ageInf, HighRisk, eStage)];
+				double c = eBeta[ageSus][ageInf];
 				temp += (VectorY[E(ageInf, LowRisk, eStage)] + VectorY[E(ageInf, HighRisk, eStage)])  * eBeta[ageSus][ageInf] * cancellingFactor * susChildCareFactor * infChildCareFactor;
 			}
 
@@ -1331,13 +1334,15 @@ void Evaluation(double time)
 void KfluStep()
 {
 	double day;
-	
+	double inputy[NumberofArray];
+	double outputy[NumberofArray];
+
 	Initialize();
 	InitialY();
 	for (day = 0.0; day < Maximumday; day = day + (1.0 / TimeResolution))
 	{
-		Evaluation(day);
-		ArrayforPlot(day);
+		Evaluation(day, InitY, outputy);
+		//ArrayforPlot(day);
 		/*std::cout << '\r';
 		for (int i = 0; i <= day*10; i++)
 			std::cout << PlotSusceptibles[1][i] << ' ';
@@ -1345,6 +1350,7 @@ void KfluStep()
 	}
 }
 
+/*
 void ArrayforPlot(double m)
 {
 	int day_t = round(m*10);
@@ -1362,4 +1368,4 @@ void ArrayforPlot(double m)
 		PlotDead[age][day_t] = OutputY[D(age)];
 		PlotImmune[age][day_t] = OutputY[I(age)];
 	}
-}
+}*/

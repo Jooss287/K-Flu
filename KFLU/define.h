@@ -115,8 +115,20 @@
 #define APsize StageofAgeGroups
 #define CAPsize StageofAgeGroups
 #define CCIsize StageofAgeGroups
+
 //추가 리스트
+#define N95maskSize StageofAgeGroups
+#define RespiratorSize StageofAgeGroups
+#define AntiviralsSize StageofAgeGroups
+#define SpecimenSize StageofAgeGroups
+
 #define OutpatientsSize StageofAgeGroups
+#define HospitalICUSize StageofAgeGroups
+#define HospitalNICUSize StageofAgeGroups
+
+#define CumOutpatientsSize StageofAgeGroups
+#define CumHospitalICUSize StageofAgeGroups
+#define CumHospitalNICUSize StageofAgeGroups
 
 //ouput array list
 #define Soffset 0
@@ -132,22 +144,35 @@
 #define Ioffset (Doffset + Dsize)
 
 #define APoffset (Ioffset + Isize)
-#define CAPoffset (APoffset + APsize)
-#define CCIoffset (CAPoffset + CAPsize)
-
-#define Outpatients (CCIoffset + CCIsize)
-#define Antivirals (Outpatients + OutpatientsSize)
-#define Hospitalisation (Antivirals + 1)
+//#define CAPoffset (APoffset + APsize)
+//#define CCIoffset (CAPoffset + CAPsize)
 
 // 감염자 TAB : Susceptibles, exposed, asymptomatic, moderate, severe, dead, immune
 // 의료자원 TAB : N-95mask, respirator,  Antivirals
 // 검체수 TAB : Specimen
+
+#define N95mask (APoffset + APsize)
+#define Respirator (N95mask + N95maskSize)
+#define Antivirals (Respirator + RespiratorSize)
+#define Specimen (Antivirals + AntiviralsSize)
+
 // 일일 TAB : outpatients, HospitalICU, HospitalNICU
 // 누적 TAB : outpatients, HospitalICU, HospitalNICU
-#define InfectedC (Hospitalisation + 1)
-#define CasesC (InfectedC + 1)
-#define HCWWorkReduction (CasesC + 1)
-#define HCWReturnAntivirals (HCWWorkReduction + 1)
+#define Outpatients (Specimen + SpecimenSize)
+#define HospitalICU (Outpatients + OutpatientsSize)
+#define HospitalNICU (HospitalICU + HospitalICUSize)
+#define CumOutpatients (HospitalNICU + HospitalNICUSize)
+#define CumHospitalICU (CumOutpatients + CumOutpatientsSize)
+#define CumHospitalNICU (CumHospitalICU + CumHospitalICUSize)
+
+//#define Outpatients1 (CumHospitalNICU + CumHospitalNICUSize)
+//#define Antivirals1 (Outpatients + OutpatientsSize)
+#define Hospitalisation (CumHospitalNICU + CumHospitalNICUSize)
+
+//#define InfectedC (Hospitalisation + 1)
+//#define CasesC (InfectedC + 1)
+//#define HCWWorkReduction (CasesC + 1)
+#define HCWReturnAntivirals (Hospitalisation + 1)
 #define OutputArray (HCWReturnAntivirals + 1)
 
 //**********************************************
@@ -207,10 +232,22 @@ int AP(int age);
 int CPA(int age);
 int CIC(int age);
 
+int N95(int age);
+int Resp(int age);
+int AV(int age);
+int Spec(int age);
+
+
+int Op(int age); //Outpatients
+int HICU(int age);
+int HNICU(int age);
+int COp(int age);
+int CHICU(int age);
+int CHNICU(int age);
 
 void InitialY();
 void Initialize();
-void Evaluation(double day);
+void Evaluation(double time, double VectorY[], double OutputY[]);
 void KfluStep();
 void ArrayforPlot(double day);
 
@@ -702,17 +739,51 @@ int I(int age) {
 	return Ioffset + age;
 }
 
+int N95(int age) {
+	return N95mask + age;
+}
+int Resp(int age) {
+	return Respirator + age;
+}
+int AV(int age) {
+	return Antivirals + age;
+}
+int Spec(int age) {
+	return Specimen + age;
+}
+
+int Op(int age) {//Outpatients
+	return Outpatients + age;
+}
+int HICU(int age) {
+	return HospitalICU + age;
+}
+int HNICU(int age) {
+	return HospitalNICU + age;
+}
+
+int COp(int age) {
+	return CumOutpatients + age;
+}
+int CHICU(int age) {
+	return CumHospitalICU + age;
+}
+int CHNICU(int age) {
+	return CumHospitalNICU + age;
+}
+
+
 int AP(int age) {
 	return APoffset + age;
 }
-
+/*
 int CPA(int age) {
 	return CAPoffset + age;
 }
 
 int CIC(int age) {
 	return CCIoffset + age;
-}
+}*/
 /*Initialize function*/
 void Initialize()
 {
@@ -939,18 +1010,23 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 	// 검체수 TAB : 
 	// 일일 TAB : outpatients, HospitalICU, HospitalNICU
 	// 누적 TAB : outpatients, HospitalICU, HospitalNICU
-	OutputY[Outpatients] = 0.0;
-	OutputY[Antivirals] = 0.0;
+	for (int age = 0; age < StageofAgeGroups; age++)
+	{
+		OutputY[Op(age)] = 0.0;
+		OutputY[AV(age)] = 0.0;
+	}
 	OutputY[Hospitalisation] = 0.0;
 	OutputY[HCWReturnAntivirals] = 0.0;
 
-
+	double Antiviralstotal = 0.0;
+	for (int age = 0; age < StageofAgeGroups; age++)
+		Antiviralstotal = VectorY[AV(age)];
 
 	bool doProphylaxis = false;
 	if ((time >= hcwProphylaxisBegin) && (time<hcwProphylaxisEnd)) {
-		if (antiviralRessource>VectorY[Antivirals]) {
+		if (antiviralRessource>Antiviralstotal) {
 			doProphylaxis = true;
-			OutputY[Antivirals] += zeta * (healthCareWorkers / total - VectorY[D(HCW)] - VectorY[HCWReturnAntivirals]);
+			OutputY[HCW] = zeta * (healthCareWorkers / total - VectorY[D(HCW)] - VectorY[HCWReturnAntivirals]);
 		}
 	}
 	
@@ -1016,9 +1092,6 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 			double temp = 0.0;
 			double tempHCW = 0.0;
 			for (int eStage = EstageGroups - prodromalStages; eStage < EstageGroups; eStage++) {
-				double a = VectorY[E(ageInf, LowRisk, eStage)];
-				double b = VectorY[E(ageInf, HighRisk, eStage)];
-				double c = eBeta[ageSus][ageInf];
 				temp += (VectorY[E(ageInf, LowRisk, eStage)] + VectorY[E(ageInf, HighRisk, eStage)])  * eBeta[ageSus][ageInf] * cancellingFactor * susChildCareFactor * infChildCareFactor;
 			}
 
@@ -1061,14 +1134,14 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 	double todaySevereTreatFract = 0.0;
 	if ((time >= VerySickTreatRangeBegin) && (time<VerySickTreatRangeEnd)) {
 		todaySevereTreatFract = percentage(VerySickTreatRate);
-		if (antiviralRessource <= VectorY[Antivirals]) todaySevereTreatFract = 0.0;
+		if (antiviralRessource <= Antiviralstotal) todaySevereTreatFract = 0.0;
 	}
 
 	// Calculate what fraction of extremely severe cases are treated.
 	double todayExtremeTreatFract = 0.0;
 	if ((time >= ExtremelySickTreatRangeBegin) && (time<ExtremelySickTreatRangeEnd)) {
 		todayExtremeTreatFract = percentage(ExtremelySickTreatRate);
-		if (antiviralRessource <= VectorY[Antivirals]) todayExtremeTreatFract = 0.0;
+		if (antiviralRessource <= Antiviralstotal) todayExtremeTreatFract = 0.0;
 	}
 
 	// Susceptible individuals are infected.
@@ -1263,7 +1336,7 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 				+= gamma[HCW][MedNO][ItypeV][Non] * VectorY[V(HCW, IstageLast)]
 				+ gamma[HCW][MedNO][ItypeW][Non] * VectorY[W(HCW, IstageLast, MedNO)]
 				+ gamma[HCW][MedNO][ItypeX][Non] * VectorY[X(HCW, IstageLast)]
-				+ gamma[HCW][MedNO][ItypeH][ICU] * VectorY[H(HCW, IstageLast, MedNO, ICU)];
+				+ gamma[HCW][MedNO][ItypeH][ICU] * VectorY[H(HCW, IstageLast, MedNO, ICU)]
 				+ gamma[HCW][MedNO][ItypeH][NICU] * VectorY[H(HCW, IstageLast, MedNO, NICU)];
 		}
 
@@ -1290,16 +1363,15 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 
 		// Update the number of outpatient visits.
 		for (int iStage = 0; iStage < IstageGroups; iStage++) {
-			OutputY[Outpatients] += alpha  * (VectorY[V(age, iStage)] + VectorY[X(age, iStage)]);
-			OutputY[Outpatients] += alphaW[age] * (VectorY[W(age, iStage, MedNO)] + VectorY[W(age, iStage, MedYES)]);
+			OutputY[Op(age)] = alpha  * (VectorY[V(age, iStage)] + VectorY[X(age, iStage)]);
+			OutputY[Op(age)] = alphaW[age] * (VectorY[W(age, iStage, MedNO)] + VectorY[W(age, iStage, MedYES)]);
 		}
 
 		// Update the number of antiviral doses used.
 		for (int iStage = 0; iStage < maxTreatmentStage[age]; iStage++) {
-			double treated = alpha * (VectorY[V(age, iStage)] * todaySevereTreatFract + VectorY[X(age, iStage)] * todayExtremeTreatFract);
-			OutputY[Antivirals] += treated;
+			OutputY[AV(age)] = alpha * (VectorY[V(age, iStage)] * todaySevereTreatFract + VectorY[X(age, iStage)] * todayExtremeTreatFract);
 			if (age == HCW) {
-				OutputY[HCWReturnAntivirals] += treated;
+				OutputY[HCWReturnAntivirals] += alpha * (VectorY[V(age, iStage)] * todaySevereTreatFract + VectorY[X(age, iStage)] * todayExtremeTreatFract);
 			}
 		}
 
@@ -1322,11 +1394,11 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 				+ Courseofdisease[age][LowRisk][ItypeX] * VectorY[E(age, LowRisk, EstageLast)]
 				+ Courseofdisease[age][HighRisk][ItypeX] * VectorY[E(age, HighRisk, EstageLast)]);
 		recoveryIncidence += rho * VectorY[R(age, RstageLast)];
-		OutputY[CIC(age)] = caseIncidence;
+		//OutputY[CIC(age)] = caseIncidence;
 		OutputY[AP(age)] = caseIncidence - recoveryIncidence - dead;
 
 		//Update the cumulative absenteeism prevalence due to influenza.
-		OutputY[CPA(age)] = VectorY[AP(age)];
+		//OutputY[CPA(age)] = VectorY[AP(age)];
 	
 	}
 }

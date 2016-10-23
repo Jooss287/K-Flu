@@ -992,8 +992,6 @@ void InitialY()
 			}
 		}
 	}
-	double kk1 = 0;
-	double kk2 = 0;
 	for (int age = 0; age < StageofAgeGroups; age++) {
 		double exposedLowRisk = (1.0 - percentage(HighRiskRate[ageClass[age]])) * eigenvector[age] / total; // potential division by zero!
 		InitY[S(age, LowRisk)] -= exposedLowRisk;
@@ -1001,8 +999,6 @@ void InitialY()
 		double exposedHighRisk = percentage(HighRiskRate[ageClass[age]]) * eigenvector[age] / total; // potential division by zero!
 		InitY[S(age, HighRisk)] -= exposedHighRisk;
 		InitY[E(age, HighRisk, Estage1)] = exposedHighRisk;
-		kk1 += InitY[S(age, LowRisk)] + InitY[S(age, HighRisk)];
-		kk2 += InitY[E(age, LowRisk, Estage1)] + InitY[E(age, HighRisk, Estage1)];
 	}
 }
 
@@ -1175,7 +1171,6 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 				if (k == Estage1)
 					OutputY[E(age, risk, k)] = lambda[age] * (1 - Vaccine) * VectorY[S(age, risk)] - delta * VectorY[E(age, risk, Estage1)];
 				else {
-					int aa = E(age, risk, k);
 					OutputY[E(age, risk, k)] = delta * (VectorY[E(age, risk, k - 1)] - VectorY[E(age, risk, k)]);
 				}
 			}
@@ -1429,9 +1424,21 @@ void KfluStep()
 	Initialize();
 	InitialY();
 
-	for (day = 0.0; day < 10; day = day + (1.0 / TimeResolution))
+	Evaluation(0.0, InitY, outputy);
+	for (int i = 0; i < OutputArray; i++)
 	{
-		Evaluation(day, InitY, outputy);
+		inputy[i] = outputy[i] * 0.1 + InitY[i];
+	}
+	for (day = 0.1; day < 10; day = day + (1.0 / TimeResolution))
+	{
+		Evaluation(day, inputy, outputy);
+		for (int i = 0; i < OutputArray; i++)
+		{
+			inputy[i] = outputy[i] * day + inputy[i];
+		}
+			//int E(int age, int risk, int eStages) {
+			//return Eoffset + (age * StageofRisk + risk) * EstageGroups + eStages;
+		
 		//ArrayforPlot(day);
 		/*std::cout << '\r';
 		for (int i = 0; i <= day*10; i++)

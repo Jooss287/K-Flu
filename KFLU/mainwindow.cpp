@@ -23,23 +23,24 @@ int contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
 int contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
 
 /*output 관련 변수들*/
-int goal;
+int goal=200;
+double day = 0;
 int steps=0;
 int evals = 0;
 /**
 * The current x value.
 */
-double day;
-double y[sizeof(OutputY)];
+
+double y[OutputArray] = {};
 double h = 1;
 double maxError = 0.02;
 double minError = maxError / 4;
 
-QVector<double> yInVector;
-QVector<double> k1;
-QVector<double> k2;
-QVector<double> k3;
-QVector<double> k4;
+double yInVector[OutputArray] = {};
+double k1[OutputArray] = {};
+double k2[OutputArray] = {};
+double k3[OutputArray] = {};
+double k4[OutputArray] = {};
 
 int GraphAge = Age0to6; //default
 bool AgeAll = true;
@@ -79,45 +80,41 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::setStart(double startX) {
-	day = startX;
-	steps = 0;
-	evals = 0;
-}
+void MainWindow::run(double input) {
 
-void MainWindow::run(double goal) {
+	while (day + h < input) {
 
-	while (day + h < goal) {
-		step();
+		MainWindow::step();
 	}
 	double hold = h;
-	while (abs((day - goal) / goal) > 1E-13) {
-		h = min(goal - day, h);
+	while (abs((day - input) / input) > 1E-13) {
+		h = min(input - day, h);
 
-		step();
+		MainWindow::step();
 	}
 
 	h = hold;
 }
 void MainWindow::step() {
-	steps++;
 
-	double y[sizeof(OutputY)];
-	y = getInitialY();
-	//System.arraycopy(y, 0, yInVector, 0, y.length);
+	Initialize();
+	InitialY();
+
+	steps++;
+	for (int i = 0; i < OutputArray; i++) yInVector[i] = InitY[i];
 
 	// k1
 	Evaluation(day, yInVector, k1);
 	evals++;
 
 	// k2
-	for (int i = 0; i < sizeof(y); i++) yInVector[i] = y[i] + 0.5 * h * k1[i];
+	for (int i = 0; i < OutputArray; i++) yInVector[i] = InitY[i] + 0.5 * h * k1[i];
 
 	Evaluation(day + 0.5 * h, yInVector, k2);
 	evals++;
 
 	// k3
-	for (int i = 0; i < sizeof(y); i++) yInVector[i] = y[i] + 0.5 * h * k2[i];
+	for (int i = 0; i < OutputArray; i++) yInVector[i] = InitY[i] + 0.5 * h * k2[i];
 
 	Evaluation(day + 0.5 * h, yInVector, k3);
 	evals++;
@@ -126,7 +123,7 @@ void MainWindow::step() {
 	double normK = 0.0;
 	double max = 0.0;
 
-	for (int i = 0; i < sizeof(y); i++) {
+	for (int i = 0; i < OutputArray; i++) {
 		double diffK1K2 = k1[i] - k2[i];
 
 		normK += diffK1K2 * diffK1K2;
@@ -147,40 +144,38 @@ void MainWindow::step() {
 	}
 
 	// k4
-	for (int i = 0; i < sizeof(y); i++) yInVector[i] = y[i] + h * k3[i];
+	for (int i = 0; i < OutputArray; i++) yInVector[i] = InitY[i] + h * k3[i];
 	Evaluation(day + h, yInVector, k4);
 	evals++;
 
 	// Update x and y
 	day += h;
-	for (int i = 0; i < sizeof(y); i++) y[i] += h*(k1[i] + 2 * (k2[i] + k3[i]) + k4[i]) / 6;
-	
-	qDebug("%f",y[S(Age0to6, LowRisk)]);
+	for (int i = 0; i < OutputArray; i++) InitY[i] += h*(k1[i] + 2 * (k2[i] + k3[i]) + k4[i]) / 6;
 
 	if (AgeAll) {
-		SusceptibleArray[day] = y[S(Age0to6, LowRisk)] + y[S(Age0to6, HighRisk)]+ y[S(Age7to12, LowRisk)] + y[S(Age7to12, HighRisk)]+ y[S(Age13to18, LowRisk)] + y[S(Age13to18, HighRisk)] + y[S(Age13to18, LowRisk)] + y[S(Age19to64, HighRisk)] + y[S(Age65toEnd, LowRisk)] + y[S(Age65toEnd, HighRisk)];
+		SusceptibleArray[day] = InitY[S(Age0to6, LowRisk)] + InitY[S(Age0to6, HighRisk)]+ InitY[S(Age7to12, LowRisk)] + InitY[S(Age7to12, HighRisk)]+ InitY[S(Age13to18, LowRisk)] + InitY[S(Age13to18, HighRisk)] + InitY[S(Age13to18, LowRisk)] + InitY[S(Age19to64, HighRisk)] + InitY[S(Age65toEnd, LowRisk)] + InitY[S(Age65toEnd, HighRisk)];
 		for (int k = 0; k < EstageGroups; k++)
-			ExposedArray[day] += y[E(Age0to6, LowRisk,k)] + y[E(Age0to6, HighRisk, k)] + y[E(Age7to12, LowRisk, k)] + y[E(Age7to12, HighRisk, k)] + y[E(Age13to18, LowRisk, k)] + y[E(Age13to18, HighRisk, k)] + y[E(Age13to18, LowRisk, k)] + y[E(Age19to64, HighRisk, k)] + y[E(Age65toEnd, LowRisk, k)] + y[E(Age65toEnd, HighRisk, k)];
+			ExposedArray[day] += InitY[E(Age0to6, LowRisk,k)] + InitY[E(Age0to6, HighRisk, k)] + InitY[E(Age7to12, LowRisk, k)] + InitY[E(Age7to12, HighRisk, k)] + InitY[E(Age13to18, LowRisk, k)] + InitY[E(Age13to18, HighRisk, k)] + InitY[E(Age13to18, LowRisk, k)] + InitY[E(Age19to64, HighRisk, k)] + InitY[E(Age65toEnd, LowRisk, k)] + InitY[E(Age65toEnd, HighRisk, k)];
 		for (int k = 0; k < IstageGroups; k++) {
-			AsymptomaticArray[day] += OutputY[A(Age0to6, k)]+ OutputY[A(Age7to12, k)] + OutputY[A(Age13to18, k)] + OutputY[A(Age19to64, k)] + OutputY[A(Age65toEnd, k)];
-			ModerateArray[day] += OutputY[M(Age0to6, k)] + OutputY[M(Age7to12, k)] + OutputY[M(Age13to18, k)] + OutputY[M(Age19to64, k)] + OutputY[M(Age65toEnd, k)];
-			SevereArray[day] += OutputY[S(Age0to6, k)] + OutputY[S(Age7to12, k)] + OutputY[S(Age13to18, k)] + OutputY[S(Age19to64, k)] + OutputY[S(Age65toEnd, k)];
+			AsymptomaticArray[day] += InitY[A(Age0to6, k)]+ InitY[A(Age7to12, k)] + InitY[A(Age13to18, k)] + InitY[A(Age19to64, k)] + InitY[A(Age65toEnd, k)];
+			ModerateArray[day] += InitY[M(Age0to6, k)] + InitY[M(Age7to12, k)] + InitY[M(Age13to18, k)] + InitY[M(Age19to64, k)] + InitY[M(Age65toEnd, k)];
+			SevereArray[day] += InitY[S(Age0to6, k)] + InitY[S(Age7to12, k)] + InitY[S(Age13to18, k)] + InitY[S(Age19to64, k)] + InitY[S(Age65toEnd, k)];
 		}
-		DeadArray[day] = OutputY[D(Age0to6)]+ OutputY[D(Age7to12)]+ OutputY[D(Age13to18)]+ OutputY[D(Age19to64)]+ OutputY[D(Age65toEnd)];
-		ImmuneArray[day] = OutputY[I(Age0to6)] + OutputY[I(Age7to12)] + OutputY[I(Age13to18)] + OutputY[I(Age19to64)] + OutputY[I(Age65toEnd)];
+		DeadArray[day] = InitY[D(Age0to6)]+ InitY[D(Age7to12)]+ InitY[D(Age13to18)]+ InitY[D(Age19to64)]+ InitY[D(Age65toEnd)];
+		ImmuneArray[day] = InitY[I(Age0to6)] + InitY[I(Age7to12)] + InitY[I(Age13to18)] + InitY[I(Age19to64)] + InitY[I(Age65toEnd)];
 	}
 	else {
-		SusceptibleArray[day] = y[S(GraphAge, LowRisk)] + y[S(GraphAge, HighRisk)];
+		SusceptibleArray[day] = InitY[S(GraphAge, LowRisk)] + InitY[S(GraphAge, HighRisk)];
 		for (int k = 0; k < EstageGroups; k++)
-			ExposedArray[day] += y[E(GraphAge, LowRisk, k)] + y[E(GraphAge, HighRisk, k)];
+			ExposedArray[day] += InitY[E(GraphAge, LowRisk, k)] + InitY[E(GraphAge, HighRisk, k)];
 
 		for (int k = 0; k < IstageGroups; k++) {
-			AsymptomaticArray[day] += OutputY[A(GraphAge, k)];
-			ModerateArray[day] += OutputY[M(GraphAge, k)];
-			SevereArray[day] += OutputY[S(GraphAge, k)];
+			AsymptomaticArray[day] += InitY[A(GraphAge, k)];
+			ModerateArray[day] += InitY[M(GraphAge, k)];
+			SevereArray[day] += InitY[S(GraphAge, k)];
 		}
-		DeadArray[day] = OutputY[D(GraphAge)];
-		ImmuneArray[day] = OutputY[I(GraphAge)];
+		DeadArray[day] = InitY[D(GraphAge)];
+		ImmuneArray[day] = InitY[I(GraphAge)];
 	}
 
 
@@ -708,7 +703,7 @@ void MainWindow::on_areaSubmit_clicked()
 //출력화면 이동 버튼 클릭
 void MainWindow::on_outputPageBtn_clicked()
 {
-	run(goal);
+	MainWindow::run(goal);
     ui->outputWidget->show();
     ui->outputWidget->activateWindow();
     ui->outputWidget->raise();

@@ -1016,9 +1016,6 @@ void Evaluation(double time)
 			double temp = 0.0;
 			double tempHCW = 0.0;
 			for (int eStage = EstageGroups - prodromalStages; eStage < EstageGroups; eStage++) {
-				double a = VectorY[E(ageInf, LowRisk, eStage)];
-				double b = VectorY[E(ageInf, HighRisk, eStage)];
-				double c = eBeta[ageSus][ageInf];
 				temp += (VectorY[E(ageInf, LowRisk, eStage)] + VectorY[E(ageInf, HighRisk, eStage)])  * eBeta[ageSus][ageInf] * cancellingFactor * susChildCareFactor * infChildCareFactor;
 			}
 
@@ -1275,9 +1272,10 @@ void Evaluation(double time)
 		// Update the number of cases who died.
 		double dead = 0;
 		for (int iStage = 0; iStage < IstageGroups; iStage++) {
-			dead += tau[age] * (VectorY[X(age, iStage)] + VectorY[H(age, iStage, MedNO)] + VectorY[H(age, iStage, MedYES)]);
+			dead += tau[age] * (VectorY[X(age, iStage)] + VectorY[H(age, iStage, MedNO, ICU)] + VectorY[H(age, iStage, MedNO, NICU)]
+								+ VectorY[H(age, iStage, MedYES, ICU)] + VectorY[H(age, iStage, MedNO, NICU)]);
 			if (age == HCW) {
-				OutputY[HCWReturnAntivirals] -= tau[HCW] * VectorY[H(HCW, iStage, MedYES)];
+				OutputY[HCWReturnAntivirals] -= tau[HCW] * VectorY[H(HCW, iStage, MedYES, ICU)] + VectorY[H(HCW, iStage, MedYES, NICU)];
 			}
 		}
 		OutputY[D(age)] += dead;

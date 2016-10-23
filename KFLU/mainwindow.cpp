@@ -82,18 +82,21 @@ MainWindow::~MainWindow()
 }
 void MainWindow::run(double input) {
 
-	while (day + h < input) {
 
-		MainWindow::step();
-	}
-	double hold = h;
-	while (abs((day - input) / input) > 1E-13) {
-		h = min(input - day, h);
+	MainWindow::step();
 
-		MainWindow::step();
-	}
+	//while (day + h < input) {
 
-	h = hold;
+	//	MainWindow::step();
+	//}
+	//double hold = h;
+	//while (abs((day - input) / input) > 1E-13) {
+	//	h = min(input - day, h);
+
+	//	MainWindow::step();
+	//}
+
+	//h = hold;
 }
 void MainWindow::step() {
 
@@ -105,6 +108,7 @@ void MainWindow::step() {
 
 	// k1
 	Evaluation(day, yInVector, k1);
+
 	evals++;
 
 	// k2

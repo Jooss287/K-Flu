@@ -103,9 +103,18 @@ void MainWindow::run(double input) {
 }
 void MainWindow::step() {
 
-
 	steps++;
+	for (int i = 0; i < OutputArray; i++) {
+		yInVector[i] = 0;
+		k1[i] = 0;
+		k2[i] = 0;
+		k3[i] = 0;
+		k4[i] = 0;
+	}
 	for (int i = 0; i < OutputArray; i++) yInVector[i] = InitY[i];
+
+
+	qDebug(" %f", yInVector[A(2, IstageLast)]);
 
 
 	// k1
@@ -155,7 +164,7 @@ void MainWindow::step() {
 
 	// Update x and y
 	day += h;
-	for (int i = 0; i < OutputArray; i++) InitY[i] += h*(k1[i] + 2 * (k2[i] + k3[i]) + k4[i]) / 6;
+	for (int i = 0; i < OutputArray; i++) InitY[i] += h*(k1[i] + 2 * (k2[i] + k3[i]) + k4[i])/6 ;
 
 	// Increase h, if error was very small
 	if (error < minError) h *= 2;
@@ -172,30 +181,58 @@ void MainWindow::step() {
 
 		for (int age = 0; age < StageofAgeGroups; age++) {
 			SusceptibleArray[day] += total*(InitY[S(age, LowRisk)] + InitY[S(age, HighRisk)]);
+			if (day >= 20 && age == 2) {
+				//qDebug("day:%f, susceptible, age:%d, low: %f, high: %f", day, age, total*(InitY[S(age, LowRisk)]), total*InitY[S(age, HighRisk)]);
+			}
 
-			for (int k = 0; k < EstageGroups; k++) 
+			for (int k = 0; k < EstageGroups; k++) {
 				ExposedArray[day] += total*(InitY[E(age, LowRisk, k)] + InitY[E(age, HighRisk, k)]);
-
+				if (day >= 20 && age==2) {
+					//qDebug("day:%f, exposed, age:%d, estage:%d, low: %f, high: %f", day, age, k, total*(InitY[E(age, LowRisk, k)]), total*(InitY[E(age, HighRisk, k)]));
+				}
+			}
 
 			for (int k = 0; k < IstageGroups; k++) {
 				AsymptomaticArray[day] += total*(InitY[A(age, k)]);
 
 				ModerateArray[day] += total*(InitY[M(age, k)]);
+				if (day >= 20 && age == 2) {
+					//qDebug("day:%f, untreatd asmyptomatic gamma, age:%d, istage:%d, %f", day, age, k, gamma[age][MedNO][ItypeA]);
+					//qDebug("day:%f, Asymptomatic, age:%d, istage:%d, %f", day, age, k, total*(InitY[A(age, k)]));
+					//qDebug("day:%f, untreatd moderate gamma, age:%d, istage:%d, %f", day, age, k, gamma[age][MedNO][ItypeM]);
+					//qDebug("day:%f, Moderate, age:%d, istage:%d, %f", day, age, k, total*(InitY[M(age, k)]));
 
+				}
 
 				SevereArray[day] += total*(InitY[V(age, k)] + InitY[X(age, k)]);
+				if (day >= 20 && age == 2) {
+
+					//qDebug("day:%f, Severe V, age:%d, istage:%d, %f", day, age, k, total*(InitY[V(age, k)]));
+					//qDebug("day:%f, Severe X, age:%d, istage:%d, %f", day, age, k, total*(InitY[X(age, k)]));
+				}
 
 
 				for (int m = 0; m < MedGroups; m++) {
 					SevereArray[day] += total*(InitY[W(age, k, m)]);
 
-						SevereArray[day] += total*(InitY[H(age, k, m)]);
-						//qDebug("day:%f, age:%d, istage:%d, med:%d, icu:%d %f", day, age, k,m,c, gamma[age][m][k][c]);
+					SevereArray[day] += total*(InitY[H(age, k, m)]);				
+						if (day >= 20 && age == 2) {
+
+						//qDebug("day:%f, Severe W, age:%d, istage:%d, med:%d, %f", day, age, k, m, total*(InitY[W(age, k, m)]));
+						//qDebug("day:%f, Severe H, age:%d, istage:%d, med:%d, %f", day, age, k, m, total*(InitY[H(age, k, m)]));
+						}
 				}
 			}
 
 			DeadArray[day] += total*(InitY[D(age)]);
 			ImmuneArray[day] += total*(InitY[I(age)]);
+
+			if (day >= 20 && age == 2) {
+				//qDebug("day:%f, dead, age:%d, %f ", day, age, total*(k4[D(age)]));
+				//qDebug("day:%f, immune, age:%d, %f ", day, age, total*(k4[I(age)]));
+			}
+
+
 		}
 
 	}

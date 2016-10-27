@@ -20,7 +20,7 @@ int contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age
 int contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
 int contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
 
-int contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
+double contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
 
 /*output 관련 변수들*/
 int goal=200;
@@ -31,7 +31,7 @@ int evals = 0;
 * The current x value.
 */
 double h = 1;
-double maxError = 0.02;
+double maxError = 0.3;
 double minError = maxError / 4;
 double yInVector[OutputArray] = {};
 double k1[OutputArray] = {};
@@ -89,6 +89,10 @@ void MainWindow::run(double input) {
 	ImmuneArray.resize(Age65toEnd + 2);
 	RArray.resize(Age65toEnd + 2);
 
+	MaskArray.resize(Age65toEnd + 2);
+	RespArray.resize(Age65toEnd + 2);
+	SpecimenArray.resize(Age65toEnd + 2);
+
 	for (int r = 0; r < Age65toEnd + 2; r++) {
 		SusceptibleArray[r].resize(NumberofArray);
 		ExposedArray[r].resize(NumberofArray);
@@ -98,6 +102,10 @@ void MainWindow::run(double input) {
 		DeadArray[r].resize(NumberofArray);
 		ImmuneArray[r].resize(NumberofArray);
 		RArray[r].resize(NumberofArray);
+
+		MaskArray[r].resize(NumberofArray);
+		RespArray[r].resize(NumberofArray);
+		SpecimenArray[r].resize(NumberofArray);
 
 	}
 
@@ -184,6 +192,9 @@ void MainWindow::step() {
 		ImmuneArray[i][day] = 0;
 		RArray[i][day] = 0;
 
+		MaskArray[i][day] = 0;
+		RespArray[i][day] = 0;
+		SpecimenArray[i][day] = 0;
 	}
 
 	for (int age = 0; age < StageofAgeGroups; age++) {
@@ -209,17 +220,28 @@ void MainWindow::step() {
 				SevereArray[age][day] += total*(InitY[W(age, k, m)]);
 				SevereArray[Age65toEnd + 1][day] += total*(InitY[W(age, k, m)]);
 
-				SevereArray[age][day] += total*(InitY[H(age, k, m)]);
-				SevereArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m)]);
+				for (int c = 1; c < ICUGroups; c++) {
+					SevereArray[age][day] += total*(InitY[H(age, k, m, c)]);
+					SevereArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
+				}
 			}
 		}
 
 		DeadArray[age][day] = total*(InitY[D(age)]);
-
 		DeadArray[Age65toEnd + 1][day] += total*(InitY[D(age)]);
 
 		ImmuneArray[age][day] = total*(InitY[I(age)]);
 		ImmuneArray[Age65toEnd + 1][day] += total*(InitY[I(age)]);
+
+		MaskArray[age][day] = N95(age);
+		MaskArray[Age65toEnd + 1][day] += N95(age);
+
+		RespArray[age][day] = Resp(age);
+		RespArray[Age65toEnd + 1][day] += Resp(age);
+
+		SpecimenArray[age][day] = Spec(age);
+		SpecimenArray[Age65toEnd + 1][day] += Spec(age);
+
 
 		for (int rStage = Rstage1; rStage < RstageGroups; rStage++) {
 			RArray[age][day] += total*(InitY[R(age, rStage)]);
@@ -627,6 +649,31 @@ void MainWindow::makeCumulativePlot(){
 void MainWindow::setDefault()
 {
     /*인구 tab 기본값 세팅*/
+	ui->input_Age0to6->setText(QString::number(Population[0]));
+	ui->input_Age7to12->setText(QString::number(Population[1]));
+	ui->input_Age13to18->setText(QString::number(Population[2]));
+	ui->input_Age19to64->setText(QString::number(Population[3]));
+	ui->input_Age65toEnd->setText(QString::number(Population[4]));
+
+	ui->input_contact_1_1->setText(QString::number(ContactMatrix[0][0]));
+	ui->input_contact_1_2->setText(QString::number(ContactMatrix[0][1]));
+	ui->input_contact_1_3->setText(QString::number(ContactMatrix[0][2]));
+	ui->input_contact_1_4->setText(QString::number(ContactMatrix[0][3]));
+	ui->input_contact_1_5->setText(QString::number(ContactMatrix[0][4]));
+
+	ui->input_contact_2_2->setText(QString::number(ContactMatrix[1][1]));
+	ui->input_contact_2_3->setText(QString::number(ContactMatrix[1][2]));
+	ui->input_contact_2_4->setText(QString::number(ContactMatrix[1][3]));
+	ui->input_contact_2_5->setText(QString::number(ContactMatrix[1][4]));
+
+	ui->input_contact_3_3->setText(QString::number(ContactMatrix[2][2]));
+	ui->input_contact_3_4->setText(QString::number(ContactMatrix[2][3]));
+	ui->input_contact_3_5->setText(QString::number(ContactMatrix[2][4]));
+
+	ui->input_contact_4_4->setText(QString::number(ContactMatrix[3][3]));
+	ui->input_contact_4_5->setText(QString::number(ContactMatrix[3][4]));
+
+	ui->input_contact_5_5->setText(QString::number(ContactMatrix[4][4]));
 
     ui->input_SchoolRatio0to6->setText(QString::number(SchoolContactRate[0]));
     ui->input_SchoolRatio7to12->setText(QString::number(SchoolContactRate[1])); 
@@ -888,7 +935,6 @@ void MainWindow::on_outputPageBtn_clicked()
 
 	RespiratorNeedRate = (double)ui->input_respRate->text().toDouble();
 
-
 	/*검체 탭*/
 	ReinspectionRate = (double)ui->input_reinspect->text().toDouble();
 	OutpatientSpecimenTesting = (double)ui->input_outpatient->text().toDouble();
@@ -900,6 +946,12 @@ void MainWindow::on_outputPageBtn_clicked()
 		k3[i] = 0;
 		k4[i] = 0;
 	}
+	day = 0;
+	steps = 0;
+	evals = 0;
+	h = 1;
+	maxError = 0.3;
+	minError = maxError / 4;
 
 	MainWindow::run(goal);
     ui->outputWidget->show();
@@ -908,9 +960,9 @@ void MainWindow::on_outputPageBtn_clicked()
 
 	MainWindow::makeInfectionPlot();
 	MainWindow::makeResourcePlot();
-	MainWindow::makeSpecimenPlot();
-	MainWindow::makeDailyPlot();
-	MainWindow::makeCumulativePlot();
+	//MainWindow::makeSpecimenPlot();
+	//MainWindow::makeDailyPlot();
+	//MainWindow::makeCumulativePlot();
 }
 //입력화면 이동 버튼 클릭
 void MainWindow::on_inputPageBtn_clicked()
@@ -924,42 +976,42 @@ void MainWindow::on_inputPageBtn_clicked()
 void MainWindow::on_input_Age0to6_textChanged(const QString &arg1)
 {
 	
-    Population[Age0to6] = arg1.toInt();
+    Population[Age0to6] = ui->input_Age0to6->text().toDouble();
     PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
     ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
 void MainWindow::on_input_Age7to12_textChanged(const QString &arg1)
 {
-    Population[Age7to12] = arg1.toInt();
+    Population[Age7to12] = ui->input_Age7to12->text().toDouble();
     PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
     ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
 void MainWindow::on_input_Age13to18_textChanged(const QString &arg1)
 {
-    Population[Age13to18] = arg1.toInt();
+    Population[Age13to18] = ui->input_Age13to18->text().toDouble();
     PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
     ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
 void MainWindow::on_input_Age19to64_textChanged(const QString &arg1)
 {
-    Population[Age19to64] = arg1.toInt();
+    Population[Age19to64] = ui->input_Age19to64->text().toDouble();
     PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
     ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
 void MainWindow::on_input_Age65toEnd_textChanged(const QString &arg1)
 {
-    Population[Age65toEnd] = arg1.toInt();
+    Population[Age65toEnd] = ui->input_Age65toEnd->text().toDouble();
     PopulationTotal =Population[Age0to6]+Population[Age7to12]+Population[Age13to18]+Population[Age19to64]+Population[Age65toEnd];
     ui->input_AgeTotal->setText(QString::number(PopulationTotal));
 }
 
 void MainWindow::on_input_contact_1_1_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age0to6][Age0to6] = arg1.toInt();
+    ContactMatrix[Age0to6][Age0to6] = ui->input_contact_1_1->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
@@ -968,7 +1020,7 @@ void MainWindow::on_input_contact_1_1_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_1_2_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age0to6][Age7to12] = arg1.toInt();
+    ContactMatrix[Age0to6][Age7to12] = ui->input_contact_1_2->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
@@ -977,7 +1029,7 @@ void MainWindow::on_input_contact_1_2_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_1_3_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age0to6][Age13to18] = arg1.toInt();
+    ContactMatrix[Age0to6][Age13to18] = ui->input_contact_1_3->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
@@ -986,7 +1038,7 @@ void MainWindow::on_input_contact_1_3_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_1_4_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age0to6][Age19to64] = arg1.toInt();
+    ContactMatrix[Age0to6][Age19to64] = ui->input_contact_1_4->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
@@ -995,7 +1047,7 @@ void MainWindow::on_input_contact_1_4_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_1_5_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age0to6][Age65toEnd] = arg1.toInt();
+    ContactMatrix[Age0to6][Age65toEnd] = ui->input_contact_1_5->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
@@ -1005,7 +1057,7 @@ void MainWindow::on_input_contact_1_5_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_2_2_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age7to12][Age7to12] = arg1.toInt();
+    ContactMatrix[Age7to12][Age7to12] = ui->input_contact_2_2->text().toDouble();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
@@ -1014,7 +1066,7 @@ void MainWindow::on_input_contact_2_2_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_2_3_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age7to12][Age13to18] = arg1.toInt();
+    ContactMatrix[Age7to12][Age13to18] = ui->input_contact_2_3->text().toDouble();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
@@ -1023,7 +1075,7 @@ void MainWindow::on_input_contact_2_3_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_2_4_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age7to12][Age19to64] = arg1.toInt();
+    ContactMatrix[Age7to12][Age19to64] = ui->input_contact_2_4->text().toDouble();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
@@ -1032,7 +1084,7 @@ void MainWindow::on_input_contact_2_4_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_2_5_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age7to12][Age65toEnd] = arg1.toInt();
+    ContactMatrix[Age7to12][Age65toEnd] = ui->input_contact_2_5->text().toDouble();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
@@ -1041,7 +1093,7 @@ void MainWindow::on_input_contact_2_5_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_3_3_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age13to18][Age13to18] = arg1.toInt();
+    ContactMatrix[Age13to18][Age13to18] = ui->input_contact_3_3->text().toDouble();
     contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total13to18->setText(QString::number(contactTotal13to18));
@@ -1050,7 +1102,7 @@ void MainWindow::on_input_contact_3_3_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_3_4_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age13to18][Age19to64] = arg1.toInt();
+    ContactMatrix[Age13to18][Age19to64] = ui->input_contact_3_4->text().toDouble();
     contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total13to18->setText(QString::number(contactTotal13to18));
@@ -1059,7 +1111,7 @@ void MainWindow::on_input_contact_3_4_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_3_5_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age13to18][Age65toEnd] = arg1.toInt();
+    ContactMatrix[Age13to18][Age65toEnd] = ui->input_contact_3_5->text().toDouble();
     contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total13to18->setText(QString::number(contactTotal13to18));
@@ -1068,7 +1120,7 @@ void MainWindow::on_input_contact_3_5_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_4_4_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age19to64][Age19to64] = arg1.toInt();
+    ContactMatrix[Age19to64][Age19to64] = ui->input_contact_4_4->text().toDouble();
     contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total19to64->setText(QString::number(contactTotal19to64));
@@ -1077,7 +1129,7 @@ void MainWindow::on_input_contact_4_4_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_4_5_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age19to64][Age65toEnd] = arg1.toInt();
+    ContactMatrix[Age19to64][Age65toEnd] = ui->input_contact_4_5->text().toDouble();
     contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total19to64->setText(QString::number(contactTotal19to64));
@@ -1086,7 +1138,7 @@ void MainWindow::on_input_contact_4_5_textChanged(const QString &arg1)
 
 void MainWindow::on_input_contact_5_5_textChanged(const QString &arg1)
 {
-    ContactMatrix[Age65toEnd][Age65toEnd] = arg1.toInt();
+    ContactMatrix[Age65toEnd][Age65toEnd] = ui->input_contact_5_5->text().toDouble();
     contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
     ui->input_contact_total65toEnd->setText(QString::number(contactTotal65toEnd));
@@ -1244,4 +1296,9 @@ void MainWindow::on_csvSubmit_clicked()
 	}
 	fclose(fp);
     ui->csvWidget->hide();
+}
+
+void MainWindow::on_saveBtn_clicked()
+{
+
 }

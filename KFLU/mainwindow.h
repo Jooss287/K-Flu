@@ -113,6 +113,8 @@ private slots:
 
 	void on_input_contact_5_5_textChanged(const QString &arg1);
 
+    void on_saveBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 

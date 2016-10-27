@@ -45,7 +45,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QTabBar::tab {font-family:'맑은 고딕'; height: 30px; width:70px; }</string>
+      <string notr="true">QTabBar::tab {font-size:10px;font-family:'맑은 고딕'; height: 30px; width:80px; }</string>
      </property>
      <property name="tabPosition">
       <enum>QTabWidget::North</enum>
@@ -2497,7 +2497,7 @@ p, li { white-space: pre-wrap; }
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
-       <string>전염병</string>
+       <string>감염성</string>
       </attribute>
       <widget class="QScrollArea" name="scrollArea_2">
        <property name="geometry">
@@ -2552,7 +2552,7 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="geometry">
           <rect>
-           <x>9</x>
+           <x>10</x>
            <y>9</y>
            <width>851</width>
            <height>41</height>
@@ -5438,7 +5438,7 @@ p, li { white-space: pre-wrap; }
         </font>
        </property>
        <property name="text">
-        <string>농촌형</string>
+        <string>광역(도)</string>
        </property>
       </widget>
       <widget class="QRadioButton" name="radioButton_5">
@@ -5459,7 +5459,7 @@ p, li { white-space: pre-wrap; }
         </font>
        </property>
        <property name="text">
-        <string>지방도시형</string>
+        <string>광역(시)</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_6">
@@ -5472,7 +5472,7 @@ p, li { white-space: pre-wrap; }
         </rect>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;K-Flu는 지역사회 내 인플루엔자 전파 양상을 예측하기 위한 프로그램으로 서울형, 지방도시형, 농촌형 세 가지 지역사회 유형 중 한가지 유형을 선택할 수 있습니다.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;K-Flu는 지역사회 내 인플루엔자 전파 양상을 예측하기 위한 프로그램으로 서울형, 광역(시), 광역(도) 세 가지 지역사회 유형 중 한가지 유형을 선택할 수 있습니다.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="scaledContents">
         <bool>false</bool>
@@ -5534,6 +5534,7 @@ p, li { white-space: pre-wrap; }
     <zorder>tabWidget</zorder>
     <zorder>outputPageBtn</zorder>
     <zorder>areaButton</zorder>
+    <zorder>closeWidget</zorder>
    </widget>
    <widget class="QWidget" name="outputWidget" native="true">
     <property name="geometry">
@@ -5563,7 +5564,7 @@ p, li { white-space: pre-wrap; }
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QTabBar::tab {font-family:'맑은 고딕'; height: 30px; width:70px; }</string>
+      <string notr="true">QTabBar::tab {font-size:10px;font-family:'맑은 고딕'; height: 30px; width:90px; }</string>
      </property>
      <property name="tabPosition">
       <enum>QTabWidget::North</enum>
@@ -5992,31 +5993,11 @@ p, li { white-space: pre-wrap; }
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>230</y>
-       <width>131</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>36</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>K-Flu</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="startButton">
      <property name="geometry">
       <rect>
-       <x>730</x>
-       <y>530</y>
+       <x>710</x>
+       <y>500</y>
        <width>161</width>
        <height>61</height>
       </rect>
@@ -6026,26 +6007,118 @@ p, li { white-space: pre-wrap; }
        <pointsize>12</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font-color:rgb(155, 187, 89);</string>
+     </property>
      <property name="text">
       <string>시작</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QTextEdit" name="textEdit_8">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
-       <x>460</x>
-       <y>300</y>
-       <width>47</width>
-       <height>13</height>
+       <x>50</x>
+       <y>290</y>
+       <width>781</width>
+       <height>71</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
+     <property name="styleSheet">
+      <string notr="true">border:0;</string>
      </property>
-     <property name="text">
-      <string>Ver 1.0</string>
+     <property name="readOnly">
+      <bool>false</bool>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:11pt; color:#595959;&quot;&gt;Korea Influenza Simulator &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:11pt; color:#595959;&quot;&gt;KISIM 는 지역사회 내 인플루엔자 전파 양상을 예측하기 위한 프로그램으로 서울, 광역(시), 광역(도) 세 가지 지역사회 유형 중 한가지 유형을 선택할 수 있습니다.&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_9">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>220</y>
+       <width>301</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent; border:0;</string>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:40pt; font-weight:600; color:#000000;&quot;&gt;KISIM&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_10">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>260</y>
+       <width>104</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent; border:0;</string>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:11pt; font-weight:600; color:#595959;&quot;&gt;Ver 1.0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_11">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>440</y>
+       <width>251</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent; border:0;</string>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'맑은 고딕'; font-size:11pt; font-weight:600; color:#595959;&quot;&gt;현재버전: 2016년 10월 22일&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_12">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>480</y>
+       <width>321</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent; border:0;</string>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'굴림'; font-size:9pt; color:#4e4f50;&quot;&gt;“&lt;/span&gt;&lt;span style=&quot; font-family:'돋움'; font-size:9pt; color:#4e4f50;&quot;&gt;본 연구는 보건복지부 보건의료연구개발사업의 하나인 신종인플루엔자 범 부처 사업의 지원에 의하여 이루어진 것임&lt;/span&gt;&lt;span style=&quot; font-family:'굴림'; font-size:9pt; color:#4e4f50;&quot;&gt;.(&lt;/span&gt;&lt;span style=&quot; font-family:'돋움'; font-size:9pt; color:#4e4f50;&quot;&gt;과제고유번호 &lt;/span&gt;&lt;span style=&quot; font-family:'굴림'; font-size:9pt; color:#4e4f50;&quot;&gt;: A103001)&amp;quot;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
@@ -6212,8 +6285,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="csvWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>170</y>
+      <x>20</x>
+      <y>190</y>
       <width>851</width>
       <height>201</height>
      </rect>
@@ -6293,71 +6366,185 @@ p, li { white-space: pre-wrap; }
         <x>30</x>
         <y>110</y>
         <width>70</width>
-        <height>17</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="text">
        <string>감염자</string>
       </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <property name="autoRepeat">
+       <bool>true</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>false</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_3</string>
+      </attribute>
      </widget>
      <widget class="QCheckBox" name="checkBox_7">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>130</x>
+        <y>110</y>
+        <width>191</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>필요 병상 수 및 외래환자 수(일일)</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="autoRepeat">
+       <bool>true</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>false</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_3</string>
+      </attribute>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_8">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
         <y>110</y>
         <width>70</width>
-        <height>17</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="text">
        <string>의료자원</string>
       </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_3</string>
+      </attribute>
      </widget>
-     <widget class="QCheckBox" name="checkBox_8">
+     <widget class="QCheckBox" name="checkBox_11">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>360</x>
+        <y>110</y>
+        <width>191</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>필요 병상 수 및 외래환자 수(누적)</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_3</string>
+      </attribute>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_9">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
         <y>110</y>
         <width>70</width>
-        <height>17</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="text">
        <string>검체수</string>
       </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup_3</string>
+      </attribute>
      </widget>
-     <widget class="QCheckBox" name="checkBox_9">
+    </widget>
+   </widget>
+   <widget class="QWidget" name="closeWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>240</y>
+      <width>855</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:white; font-family:'맑은 고딕';</string>
+    </property>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>855</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>110</y>
-        <width>70</width>
-        <height>17</height>
+        <x>10</x>
+        <y>40</y>
+        <width>831</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="text">
-       <string>일일</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;저장 후 종료 하시겠습니까?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_10">
+     <widget class="QPushButton" name="closeBtn">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>110</y>
-        <width>70</width>
-        <height>17</height>
+        <x>730</x>
+        <y>130</y>
+        <width>111</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>누적</string>
+       <string>아니오</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="saveBtn">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>130</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>예</string>
       </property>
      </widget>
     </widget>
    </widget>
    <zorder>csvWidget</zorder>
+   <zorder>closeWidget</zorder>
    <zorder>jpgWidget</zorder>
-   <zorder>introWidget</zorder>
    <zorder>outputWidget</zorder>
+   <zorder>introWidget</zorder>
    <zorder>inputWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -6383,6 +6570,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="menu_2"/>
+    <addaction name="action"/>
    </widget>
    <widget class="QMenu" name="menuFdddd">
     <property name="title">
@@ -6396,7 +6584,7 @@ p, li { white-space: pre-wrap; }
   </widget>
   <action name="actionOpen">
    <property name="text">
-    <string>새로운 파일열기</string>
+    <string>기존 파일열기</string>
    </property>
   </action>
   <action name="actionSave">
@@ -6424,6 +6612,11 @@ p, li { white-space: pre-wrap; }
     <string>CSV파일로 변환하기</string>
    </property>
   </action>
+  <action name="action">
+   <property name="text">
+    <string>종료하기</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -6437,11 +6630,12 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_2">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_3"/>
  </buttongroups>
 </ui>

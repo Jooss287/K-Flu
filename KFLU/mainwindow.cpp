@@ -91,6 +91,8 @@ void MainWindow::run(double input) {
 
 	MaskArray.resize(Age65toEnd + 2);
 	RespArray.resize(Age65toEnd + 2);
+	AntiviralsArray.resize(Age65toEnd + 2);
+
 	SpecimenArray.resize(Age65toEnd + 2);
 
 	for (int r = 0; r < Age65toEnd + 2; r++) {
@@ -105,6 +107,8 @@ void MainWindow::run(double input) {
 
 		MaskArray[r].resize(NumberofArray);
 		RespArray[r].resize(NumberofArray);
+		AntiviralsArray[r].resize(NumberofArray);
+
 		SpecimenArray[r].resize(NumberofArray);
 
 	}
@@ -194,6 +198,8 @@ void MainWindow::step() {
 
 		MaskArray[i][day] = 0;
 		RespArray[i][day] = 0;
+		AntiviralsArray[i][day] = 0;
+
 		SpecimenArray[i][day] = 0;
 	}
 
@@ -233,14 +239,17 @@ void MainWindow::step() {
 		ImmuneArray[age][day] = total*(InitY[I(age)]);
 		ImmuneArray[Age65toEnd + 1][day] += total*(InitY[I(age)]);
 
-		MaskArray[age][day] = N95(age);
-		MaskArray[Age65toEnd + 1][day] += N95(age);
+		MaskArray[age][day] = InitY[N95(age)];
+		MaskArray[Age65toEnd + 1][day] += InitY[N95(age)];
 
-		RespArray[age][day] = Resp(age);
-		RespArray[Age65toEnd + 1][day] += Resp(age);
+		RespArray[age][day] = InitY[Resp(age)];
+		RespArray[Age65toEnd + 1][day] += InitY[Resp(age)];
 
-		SpecimenArray[age][day] = Spec(age);
-		SpecimenArray[Age65toEnd + 1][day] += Spec(age);
+		AntiviralsArray[age][day] = InitY[AV(age)];
+		AntiviralsArray[Age65toEnd + 1][day] += InitY[AV(age)];
+
+		SpecimenArray[age][day] = InitY[Spec(age)];
+		SpecimenArray[Age65toEnd + 1][day] += InitY[Spec(age)];
 
 
 		for (int rStage = Rstage1; rStage < RstageGroups; rStage++) {

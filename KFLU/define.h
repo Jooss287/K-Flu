@@ -1395,29 +1395,20 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 		*/
 
 		////////
-		for (int age = 0; age < StageofAgeGroups; age++)
+		for (int iStage = 0; iStage < IstageGroups; iStage++)
 		{
-			for (int iStage = 0; iStage < IstageGroups; iStage++)
-			{
-				OutputY[Resp(age)] += percentage(RespiratorNeedRate) * (VectorY[H(age, iStage, MedYES, ICU)] + VectorY[H(age, iStage, MedNO, ICU)]);
-			}
+			OutputY[Resp(age)] += percentage(RespiratorNeedRate) * (VectorY[H(age, iStage, MedYES, ICU)] + VectorY[H(age, iStage, MedNO, ICU)]);
 		}
 
 		////////
-		for (int age = 0; age < StageofAgeGroups; age++)
-		{
-			OutputY[Spec(age)] += (1 + percentage(ReinspectionRate)) * (VectorY[H(age, Istage1, MedYES, ICU)] + VectorY[H(age, Istage1, MedNO, ICU)] + VectorY[H(age, Istage1, MedYES, NICU)] + VectorY[H(age, Istage1, MedNO, NICU)])
-				+ percentage(OutpatientSpecimenTesting) * (VectorY[W(age, Istage1, MedYES)] + VectorY[W(age, Istage1, MedNO)]);
-		}
+		OutputY[Spec(age)] += (1 + percentage(ReinspectionRate)) * (VectorY[H(age, Istage1, MedYES, ICU)] + VectorY[H(age, Istage1, MedNO, ICU)] + VectorY[H(age, Istage1, MedYES, NICU)] + VectorY[H(age, Istage1, MedNO, NICU)])
+			+ percentage(OutpatientSpecimenTesting) * (VectorY[W(age, Istage1, MedYES)] + VectorY[W(age, Istage1, MedNO)]);
 
 		//////
-		for (int age = 0; age < StageofAgeGroups; age++)
+		for (int iStage = 0; iStage < IstageGroups; iStage++)
 		{
-			for (int iStage = 0; iStage < IstageGroups; iStage++)
-			{
-				OutputY[N95(age)] += MaskNeedICU * (VectorY[H(age, iStage, MedYES, ICU)] + VectorY[H(age, iStage, MedNO, ICU)])
-					+ MaskNeedNICU * (VectorY[H(age, iStage, MedYES, NICU)] + VectorY[H(age, iStage, MedNO, NICU)]);
-			}
+			OutputY[N95(age)] += MaskNeedICU * (VectorY[H(age, iStage, MedYES, ICU)] + VectorY[H(age, iStage, MedNO, ICU)])
+				+ MaskNeedNICU * (VectorY[H(age, iStage, MedYES, NICU)] + VectorY[H(age, iStage, MedNO, NICU)]);
 		}
 		//////
 	}

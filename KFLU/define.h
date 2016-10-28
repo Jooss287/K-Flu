@@ -13,7 +13,7 @@ double kk;
 //**********************************************
 //System Define
 //==============================================
-#define Maximumday 200
+#define Maximumday 300
 #define TimeResolution 10
 #define NumberofArray Maximumday*TimeResolution
 //**********************************************
@@ -26,7 +26,7 @@ double kk;
 #define Age19to64 3
 #define Age65toEnd 4
 //#define HCW 5
-//#define AgeTotal 5	//ContactMatrix 합계 Part
+#define AgeTotal 5	//Output 전용 Define
 #define StageofAgeGroups 5
 //#define StageofAgeWithoutHCW 5
 #define ChildClass 3

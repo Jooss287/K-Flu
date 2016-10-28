@@ -5,7 +5,7 @@
 #include <define.h>
 #include <algorithm>  
 #include <sstream>
-
+#include <time.h>
 #include <qstring.h>
 
 using namespace std;
@@ -31,7 +31,7 @@ int evals = 0;
 * The current x value.
 */
 double h = 1;
-double maxError = 0.3;
+double maxError = 0.5;
 double minError = maxError / 4;
 double yInVector[OutputArray] = {};
 double k1[OutputArray] = {};
@@ -95,6 +95,14 @@ void MainWindow::run(double input) {
 
 	SpecimenArray.resize(Age65toEnd + 2);
 
+	DailyOutpatientArray.resize(Age65toEnd + 2);
+	DailyICUArray.resize(Age65toEnd + 2);
+	DailyNICUArray.resize(Age65toEnd + 2);
+
+	CumulOutpatientArray.resize(Age65toEnd + 2);
+	CumulICUArray.resize(Age65toEnd + 2);
+	CumulNICUArray.resize(Age65toEnd + 2);
+
 	for (int r = 0; r < Age65toEnd + 2; r++) {
 		SusceptibleArray[r].resize(NumberofArray);
 		ExposedArray[r].resize(NumberofArray);
@@ -111,6 +119,13 @@ void MainWindow::run(double input) {
 
 		SpecimenArray[r].resize(NumberofArray);
 
+		DailyOutpatientArray[r].resize(NumberofArray);
+		DailyICUArray[r].resize(NumberofArray);
+		DailyNICUArray[r].resize(NumberofArray);
+
+		CumulOutpatientArray[r].resize(NumberofArray);
+		CumulICUArray[r].resize(NumberofArray);
+		CumulNICUArray[r].resize(NumberofArray);
 	}
 
 	Initialize();
@@ -201,9 +216,22 @@ void MainWindow::step() {
 		AntiviralsArray[i][day] = 0;
 
 		SpecimenArray[i][day] = 0;
+
+		DailyOutpatientArray[i][day] = 0;
+		DailyICUArray[i][day] = 0;
+		DailyNICUArray[i][day] = 0;
+
+		CumulOutpatientArray[i][day] = 0;
+		CumulICUArray[i][day] = 0;
+		CumulNICUArray[i][day] = 0;
 	}
+	CumulICUArray[Age65toEnd + 1][day] = CumulICUArray[Age65toEnd + 1][day - 1];
+	CumulNICUArray[Age65toEnd + 1][day] = CumulICUArray[Age65toEnd + 1][day - 1];
 
 	for (int age = 0; age < StageofAgeGroups; age++) {
+		CumulICUArray[age][day] = CumulICUArray[age][day - 1];
+		CumulNICUArray[age][day] = CumulNICUArray[age][day - 1];
+
 		SusceptibleArray[age][day] = total*(InitY[S(age, LowRisk)] + InitY[S(age, HighRisk)]);
 		SusceptibleArray[Age65toEnd+1][day] += total*(InitY[S(age, LowRisk)] + InitY[S(age, HighRisk)]);
 
@@ -229,6 +257,22 @@ void MainWindow::step() {
 				for (int c = 1; c < ICUGroups; c++) {
 					SevereArray[age][day] += total*(InitY[H(age, k, m, c)]);
 					SevereArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
+
+					if (c == 1) {
+						DailyICUArray[age][day] += total*(InitY[H(age, k, m, c)]);
+						DailyICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
+
+						CumulICUArray[age][day] += total*(InitY[H(age, k, m, c)]);
+						CumulICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
+					}
+					else if (c == 2) {
+						DailyNICUArray[age][day] += total*(InitY[H(age, k, m, c)]);
+						DailyNICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
+
+						CumulNICUArray[age][day] +=total*(InitY[H(age, k, m, c)]);
+						CumulNICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
+					}
+
 				}
 			}
 		}
@@ -239,17 +283,23 @@ void MainWindow::step() {
 		ImmuneArray[age][day] = total*(InitY[I(age)]);
 		ImmuneArray[Age65toEnd + 1][day] += total*(InitY[I(age)]);
 
-		MaskArray[age][day] = InitY[N95(age)];
-		MaskArray[Age65toEnd + 1][day] += InitY[N95(age)];
+		MaskArray[age][day] = total*(InitY[N95(age)]);
+		MaskArray[Age65toEnd + 1][day] += total*(InitY[N95(age)]);
 
-		RespArray[age][day] = InitY[Resp(age)];
-		RespArray[Age65toEnd + 1][day] += InitY[Resp(age)];
+		RespArray[age][day] = total*(InitY[Resp(age)]);
+		RespArray[Age65toEnd + 1][day] += total*(InitY[Resp(age)]);
 
-		AntiviralsArray[age][day] = InitY[AV(age)];
-		AntiviralsArray[Age65toEnd + 1][day] += InitY[AV(age)];
+		AntiviralsArray[age][day] = total*(InitY[AV(age)]);
+		AntiviralsArray[Age65toEnd + 1][day] += total*(InitY[AV(age)]);
 
-		SpecimenArray[age][day] = InitY[Spec(age)];
-		SpecimenArray[Age65toEnd + 1][day] += InitY[Spec(age)];
+		SpecimenArray[age][day] = total*(InitY[Spec(age)]);
+		SpecimenArray[Age65toEnd + 1][day] += total*(InitY[Spec(age)]);
+
+		DailyOutpatientArray[age][day] = total*(InitY[Op(age)]);
+		DailyOutpatientArray[Age65toEnd + 1][day] += total*(InitY[Op(age)]);
+
+		CumulOutpatientArray[age][day] = CumulOutpatientArray[age][day-1]+total*(InitY[Op(age)]);
+		CumulOutpatientArray[Age65toEnd + 1][day] += CumulOutpatientArray[age][day - 1] + total*(InitY[Op(age)]);
 
 
 		for (int rStage = Rstage1; rStage < RstageGroups; rStage++) {
@@ -411,7 +461,7 @@ void MainWindow::makeResourcePlot(){
 
 	// set axes ranges, so we see all data:
 	ui->customPlot_resource->xAxis->setRange(0, 210);
-	ui->customPlot_resource->yAxis->setRange(0, 50000);
+	ui->customPlot_resource->yAxis->setRange(0, total);
 
 	QVector<double> x(goal);
 
@@ -480,7 +530,7 @@ void MainWindow::makeSpecimenPlot(){
 
 	// set axes ranges, so we see all data:
 	ui->customPlot_specimen->xAxis->setRange(0, 210);
-	ui->customPlot_specimen->yAxis->setRange(0, 500000);
+	ui->customPlot_specimen->yAxis->setRange(0, total);
 
 	QVector<double> x(goal);
 
@@ -530,11 +580,11 @@ void MainWindow::makeDailyPlot(){
 
 	// set axes ranges, so we see all data:
 	ui->customPlot_daily->xAxis->setRange(0, 210);
-	ui->customPlot_daily->yAxis->setRange(0, 500000);
+	ui->customPlot_daily->yAxis->setRange(0, total/10);
 
-	QVector<double> x(NumberofArray);
+	QVector<double> x(goal);
 
-	for (int i = 0; i<NumberofArray; i++) {
+	for (int i = 0; i<goal; i++) {
 		x[i] = i;
 	}
 
@@ -573,11 +623,11 @@ void MainWindow::makeDailyPlot(){
 	}
 
 	for (int i = 0; i < 200; i++) {
-		ui->dailyTable->setItem(i, 1, new QTableWidgetItem(QString::number(DailyICUArray[GraphAge][i])));
+		ui->dailyTable->setItem(i, 1, new QTableWidgetItem(QString::number((double) DailyICUArray[GraphAge][i], 'f')));
 	}
 
 	for (int i = 0; i < 200; i++) {
-		ui->dailyTable->setItem(i, 2, new QTableWidgetItem(QString::number(DailyNICUArray[GraphAge][i])));
+		ui->dailyTable->setItem(i, 2, new QTableWidgetItem(QString::number((double)DailyNICUArray[GraphAge][i], 'f')));
 	}
 }
 
@@ -603,11 +653,11 @@ void MainWindow::makeCumulativePlot(){
 
 	// set axes ranges, so we see all data:
 	ui->customPlot_cumulative->xAxis->setRange(0, 210);
-	ui->customPlot_cumulative->yAxis->setRange(0, 500000);
+	ui->customPlot_cumulative->yAxis->setRange(0, total);
 
-	QVector<double> x(NumberofArray);
+	QVector<double> x(goal);
 
-	for (int i = 0; i<NumberofArray; i++) {
+	for (int i = 0; i<goal; i++) {
 		x[i] = i;
 	}
 
@@ -646,11 +696,11 @@ void MainWindow::makeCumulativePlot(){
 	}
 
 	for (int i = 0; i < 200; i++) {
-		ui->cumulativeTable->setItem(i, 1, new QTableWidgetItem(QString::number(CumulICUArray[GraphAge][i])));
+		ui->cumulativeTable->setItem(i, 1, new QTableWidgetItem(QString::number((double)CumulICUArray[GraphAge][i], 'f')));
 	}
 
 	for (int i = 0; i < 200; i++) {
-		ui->cumulativeTable->setItem(i, 2, new QTableWidgetItem(QString::number(CumulNICUArray[GraphAge][i])));
+		ui->cumulativeTable->setItem(i, 2, new QTableWidgetItem(QString::number((double) CumulNICUArray[GraphAge][i], 'f')));
 	}
 }
 
@@ -759,11 +809,8 @@ void MainWindow::setDefault()
     ui->input_contactReductStart->setText(QString::number(ContactReductionRangeBegin));
     ui->input_contactReductEnd->setText(QString::number(ContactReductionRangeEnd));
 
-    ui->input_SchoolCloseStart->setText(QString::number(SchoolCloseRangeBegin));
-    ui->input_SchoolCloseEnd->setText(QString::number(SchoolCloseRangeEnd));
-    ui->input_SchoolCloseContact0to6->setText(QString::number(SchoolCloseContactRatio[0]));
-	ui->input_SchoolCloseContact7to12->setText(QString::number(SchoolCloseContactRatio[1]));
-	ui->input_SchoolCloseContact13to18->setText(QString::number(SchoolCloseContactRatio[2]));
+    ui->input_schoolCloseRangeStart->setText(QString::number(SchoolCloseRangeBegin));
+    ui->input_schoolCloseRangeEnd->setText(QString::number(SchoolCloseRangeEnd));
 
     ui->input_gatheringCancel->setText(QString::number(GatheringCancelReductionRate));
     ui->input_gatheringCancelStart->setText(QString::number(GatheringCancleRangeBegin));
@@ -827,13 +874,9 @@ void MainWindow::on_areaSubmit_clicked()
 void MainWindow::on_outputPageBtn_clicked()
 {
 	/*인구 탭*/
-	SchoolContactRate[0] = (double)ui->input_SchoolCloseContact0to6->text().toDouble();
-	SchoolContactRate[1] = (double)ui->input_SchoolCloseContact7to12->text().toDouble();
-	SchoolContactRate[2] = (double)ui->input_SchoolCloseContact13to18->text().toDouble();
-
-	AbsenceContactRatio[0] = (double)ui->input_AbsentRatio0to6->text().toDouble();
-	AbsenceContactRatio[1] = (double)ui->input_AbsentRatio7to12->text().toDouble();
-	AbsenceContactRatio[2] = (double)ui->input_AbsentRatio13to18->text().toDouble();
+	SchoolContactRate[0] = (double)ui->input_SchoolRatio0to6->text().toDouble();
+	SchoolContactRate[1] = (double)ui->input_SchoolRatio7to12->text().toDouble();
+	SchoolContactRate[2] = (double)ui->input_SchoolRatio13to18->text().toDouble();
 
 	/*질병 탭*/
 
@@ -907,12 +950,9 @@ void MainWindow::on_outputPageBtn_clicked()
 	ContactReductionRangeBegin = (double)ui->input_contactReductStart->text().toDouble();
 	ContactReductionRangeEnd = (double)ui->input_contactReductEnd->text().toDouble();
 
-	SchoolCloseRangeBegin = (double)ui ->input_SchoolCloseStart->text().toDouble();
-	SchoolCloseRangeEnd = (double)ui->input_SchoolCloseEnd->text().toDouble();
-	
-	SchoolCloseContactRatio[0] = (double)ui->input_SchoolCloseContact0to6->text().toDouble();
-	SchoolCloseContactRatio[1] = (double)ui->input_SchoolCloseContact7to12->text().toDouble();
-	SchoolCloseContactRatio[2] = (double)ui->input_SchoolCloseContact13to18->text().toDouble();
+	SchoolCloseRangeBegin = (double)ui ->input_schoolCloseRangeStart->text().toDouble();
+	SchoolCloseRangeEnd = (double)ui->input_schoolCloseRangeEnd->text().toDouble();
+
 
 	GatheringCancelReductionRate = (double)ui->input_gatheringCancel->text().toDouble();
 	GatheringCancleRangeBegin = (double)ui->input_gatheringCancelStart->text().toDouble();
@@ -959,7 +999,7 @@ void MainWindow::on_outputPageBtn_clicked()
 	steps = 0;
 	evals = 0;
 	h = 1;
-	maxError = 0.3;
+	maxError = 0.5;
 	minError = maxError / 4;
 
 	MainWindow::run(goal);
@@ -969,9 +1009,9 @@ void MainWindow::on_outputPageBtn_clicked()
 
 	MainWindow::makeInfectionPlot();
 	MainWindow::makeResourcePlot();
-	//MainWindow::makeSpecimenPlot();
-	//MainWindow::makeDailyPlot();
-	//MainWindow::makeCumulativePlot();
+	MainWindow::makeSpecimenPlot();
+	MainWindow::makeDailyPlot();
+	MainWindow::makeCumulativePlot();
 }
 //입력화면 이동 버튼 클릭
 void MainWindow::on_inputPageBtn_clicked()
@@ -1232,6 +1272,26 @@ void MainWindow::on_actionOpen_triggered()
 
 void MainWindow::on_actionSave_triggered()
 {
+	time_t     now = time(0);
+	struct tm  tstruct;
+	char       buf[80];
+	tstruct = *localtime(&now);
+	strftime(buf, sizeof(buf), "%Y-%m-%d-%H%M%S.kclm", &tstruct);
+
+	QString filename = QFileDialog::getSaveFileName(this, "저장하기", buf, ".kcim");
+
+	if (! filename.isNull()) {
+		QFile f(filename);
+		f.open(QIODevice::WriteOnly);
+		// store data in f
+		f.close();
+
+		FILE* fp = fopen(&filename.toStdString()[0], "w+");
+		for (int i = 0; i < StageofAgeGroups; i++) {
+			fprintf(fp, "%f \n", Population[i]);
+		}
+		fclose(fp);
+	}
 
 }
 
@@ -1266,16 +1326,23 @@ void MainWindow::on_actionCSV_triggered()
 
 void MainWindow::on_jpgSubmit_clicked()
 {
-	QString filename = QFileDialog::getSaveFileName(this, "Export to jpg", "graph.jpg", ".jpg");
+	time_t     now = time(0);
+	struct tm  tstruct;
+	char       buf[80];
+	tstruct = *localtime(&now);
+	strftime(buf, sizeof(buf), "graph-%Y-%m-%d-%H%M%S.jpg", &tstruct);
 
-	QFile f(filename);
-	f.open(QIODevice::WriteOnly);
-	// store data in f
+	QString filename = QFileDialog::getSaveFileName(this, "Export to jpg", buf, ".jpg");
 
-	ui->customPlot_infection->saveJpg(filename, 0, 0, 1.0, -1  );
+	if (!filename.isNull()) {
 
-	f.close();
+		QFile f(filename);
+		f.open(QIODevice::WriteOnly);
 
+		ui->customPlot_infection->saveJpg(filename, 0, 0, 1.0, -1);
+
+		f.close();
+	}
     ui->jpgWidget->hide();
 }
 
@@ -1288,22 +1355,30 @@ const char* ConvertDoubleToString(double value) {
 
 void MainWindow::on_csvSubmit_clicked()
 {
-	QString filename = QFileDialog::getSaveFileName(this,"Export to csv","result.csv",".csv");
+	time_t     now = time(0);
+	struct tm  tstruct;
+	char       buf[80];
+	tstruct = *localtime(&now);
+	strftime(buf, sizeof(buf), "table-%Y-%m-%d-%H%M%S.csv", &tstruct);
 
-	QFile f(filename);
-	f.open(QIODevice::WriteOnly);
-	// store data in f
-	f.close();
+	QString filename = QFileDialog::getSaveFileName(this, "Export to csv", buf, ".csv");
 
-	FILE* fp = fopen(&filename.toStdString()[0], "w+");
-	fprintf(fp, "KFLU Output,\n");
-	fprintf(fp, "Susceptible,exposed,Asymptomatic,Moderate,Severe,dead,Immune,r,total\n");
+	if (!filename.isNull()) {
+		QFile f(filename);
+		f.open(QIODevice::WriteOnly);
+		// store data in f
+		f.close();
 
-	for (int i = 0; i < 500; i++) {
-		double helpme = SusceptibleArray[Age65toEnd+1][i] + ExposedArray[Age65toEnd + 1][i] + AsymptomaticArray[Age65toEnd + 1][i] + ModerateArray[Age65toEnd + 1][i] + SevereArray[Age65toEnd + 1][i] + DeadArray[Age65toEnd + 1][i] + ImmuneArray[Age65toEnd + 1][i]+RArray[Age65toEnd + 1][i];
-		fprintf(fp, "%f,%f,%f,%f,%f,%f,%f,%f,%f,\n",SusceptibleArray[Age65toEnd + 1][i], ExposedArray[Age65toEnd + 1][i], AsymptomaticArray[Age65toEnd + 1][i], ModerateArray[Age65toEnd + 1][i], SevereArray[Age65toEnd + 1][i], DeadArray[Age65toEnd + 1][i], ImmuneArray[Age65toEnd + 1][i],RArray[Age65toEnd + 1][i],helpme);
+		FILE* fp = fopen(&filename.toStdString()[0], "w+");
+		fprintf(fp, "KFLU Output,\n");
+		fprintf(fp, "Susceptible,exposed,Asymptomatic,Moderate,Severe,dead,Immune,r,total\n");
+
+		for (int i = 0; i < 500; i++) {
+			double helpme = SusceptibleArray[Age65toEnd + 1][i] + ExposedArray[Age65toEnd + 1][i] + AsymptomaticArray[Age65toEnd + 1][i] + ModerateArray[Age65toEnd + 1][i] + SevereArray[Age65toEnd + 1][i] + DeadArray[Age65toEnd + 1][i] + ImmuneArray[Age65toEnd + 1][i] + RArray[Age65toEnd + 1][i];
+			fprintf(fp, "%f,%f,%f,%f,%f,%f,%f,%f,%f,\n", SusceptibleArray[Age65toEnd + 1][i], ExposedArray[Age65toEnd + 1][i], AsymptomaticArray[Age65toEnd + 1][i], ModerateArray[Age65toEnd + 1][i], SevereArray[Age65toEnd + 1][i], DeadArray[Age65toEnd + 1][i], ImmuneArray[Age65toEnd + 1][i], RArray[Age65toEnd + 1][i], helpme);
+		}
+		fclose(fp);
 	}
-	fclose(fp);
     ui->csvWidget->hide();
 }
 

@@ -41,6 +41,7 @@ public:
     QAction *actionContact;
     QAction *actionJPG;
     QAction *actionCSV;
+    QAction *action;
     QWidget *mainWidget;
     QWidget *inputWidget;
     QTabWidget *tabWidget;
@@ -110,7 +111,6 @@ public:
     QWidget *tab_2;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QTextEdit *textEdit_57;
     QTextEdit *textEdit_55;
     QTextEdit *textEdit_58;
     QTextEdit *textEdit_60;
@@ -160,6 +160,18 @@ public:
     QLineEdit *input_infDuration_2_3;
     QLineEdit *input_returnToWork;
     QLineEdit *input_MildRate;
+    QTextEdit *textEdit_65;
+    QTextEdit *textEdit_67;
+    QTextEdit *textEdit_71;
+    QTextEdit *textEdit_75;
+    QTextEdit *textEdit_76;
+    QTextEdit *textEdit_77;
+    QTextEdit *textEdit_78;
+    QTextEdit *textEdit_79;
+    QTextEdit *textEdit_81;
+    QTextEdit *textEdit_84;
+    QTextEdit *textEdit_85;
+    QTextEdit *textEdit_87;
     QWidget *tab_3;
     QScrollArea *scrollArea_2;
     QWidget *scrollAreaWidgetContents_2;
@@ -188,6 +200,17 @@ public:
     QLineEdit *input_isolStart;
     QLineEdit *input_isolRange_2;
     QLineEdit *input_isolEnd;
+    QTextEdit *textEdit_107;
+    QTextEdit *textEdit_110;
+    QTextEdit *textEdit_113;
+    QTextEdit *textEdit_116;
+    QTextEdit *textEdit_117;
+    QTextEdit *textEdit_119;
+    QTextEdit *textEdit_123;
+    QTextEdit *textEdit_124;
+    QTextEdit *textEdit_128;
+    QTextEdit *textEdit_129;
+    QTextEdit *textEdit_130;
     QWidget *tab_4;
     QScrollArea *scrollArea_3;
     QWidget *scrollAreaWidgetContents_3;
@@ -222,6 +245,16 @@ public:
     QLineEdit *input_extreamlySickTreatStart;
     QLineEdit *input_isolRange_4;
     QLineEdit *input_extreamlySickTreatEnd;
+    QTextEdit *textEdit_134;
+    QTextEdit *textEdit_138;
+    QTextEdit *textEdit_139;
+    QTextEdit *textEdit_140;
+    QTextEdit *textEdit_146;
+    QTextEdit *textEdit_149;
+    QTextEdit *textEdit_151;
+    QTextEdit *textEdit_153;
+    QTextEdit *textEdit_155;
+    QTextEdit *textEdit_157;
     QWidget *tab_5;
     QScrollArea *scrollArea_4;
     QWidget *scrollAreaWidgetContents_4;
@@ -229,37 +262,37 @@ public:
     QTextEdit *textEdit_145;
     QTextEdit *textEdit_147;
     QTextEdit *textEdit_148;
-    QTextEdit *textEdit_162;
     QTextEdit *textEdit_168;
     QTextEdit *textEdit_169;
     QTextEdit *textEdit_170;
     QTextEdit *textEdit_178;
     QLineEdit *input_contactReduct;
-    QLineEdit *input_SchoolCloseContact0to6;
     QLineEdit *input_gatheringCancel;
     QWidget *widget_4;
     QLineEdit *input_contactReductStart;
     QLineEdit *input_isolRange_5;
     QLineEdit *input_contactReductEnd;
-    QWidget *widget_6;
-    QLineEdit *input_SchoolCloseStart;
-    QLineEdit *input_isolRange_8;
-    QLineEdit *input_SchoolCloseEnd;
     QWidget *widget_7;
     QLineEdit *input_gatheringCancelStart;
     QLineEdit *input_isolRange_9;
     QLineEdit *input_gatheringCancelEnd;
-    QTextEdit *textEdit_24;
-    QTextEdit *textEdit_27;
-    QTextEdit *textEdit_29;
-    QLineEdit *input_SchoolCloseContact7to12;
-    QLineEdit *input_SchoolCloseContact13to18;
+    QTextEdit *textEdit_160;
+    QTextEdit *textEdit_161;
+    QTextEdit *textEdit_163;
+    QTextEdit *textEdit_167;
+    QTextEdit *textEdit_171;
+    QWidget *widget_8;
+    QLineEdit *input_schoolCloseRangeStart;
+    QLineEdit *input_isolRange_10;
+    QLineEdit *input_schoolCloseRangeEnd;
     QWidget *tab_6;
     QTextEdit *textEdit_150;
     QTextEdit *textEdit_152;
     QTextEdit *textEdit_154;
     QLineEdit *input_NICU;
     QLineEdit *input_ICU;
+    QTextEdit *textEdit_162;
+    QTextEdit *textEdit_172;
     QWidget *tab_7;
     QScrollArea *scrollArea_5;
     QWidget *scrollAreaWidgetContents_5;
@@ -271,7 +304,6 @@ public:
     QTextEdit *textEdit_186;
     QTextEdit *textEdit_188;
     QTextEdit *textEdit_180;
-    QTextEdit *textEdit_181;
     QTextEdit *textEdit_204;
     QTextEdit *textEdit_211;
     QTextEdit *textEdit_206;
@@ -291,6 +323,19 @@ public:
     QLineEdit *input_vaccineEffect_5;
     QLineEdit *input_antibodyRange;
     QLineEdit *input_vaccineStart;
+    QTextEdit *textEdit_173;
+    QTextEdit *textEdit_175;
+    QTextEdit *textEdit_176;
+    QTextEdit *textEdit_177;
+    QTextEdit *textEdit_183;
+    QTextEdit *textEdit_185;
+    QTextEdit *textEdit_187;
+    QTextEdit *textEdit_191;
+    QTextEdit *textEdit_194;
+    QTextEdit *textEdit_195;
+    QTextEdit *textEdit_198;
+    QTextEdit *textEdit_200;
+    QTextEdit *textEdit_202;
     QWidget *tab_8;
     QScrollArea *scrollArea_6;
     QWidget *scrollAreaWidgetContents_6;
@@ -302,12 +347,17 @@ public:
     QLineEdit *input_mask_NICU;
     QLineEdit *input_mask_ICU;
     QLineEdit *input_respRate;
+    QTextEdit *textEdit_349;
+    QTextEdit *textEdit_350;
+    QTextEdit *textEdit_351;
     QWidget *tab_9;
     QTextEdit *textEdit_197;
     QTextEdit *textEdit_199;
     QTextEdit *textEdit_201;
     QLineEdit *input_reinspect;
     QLineEdit *input_outpatient;
+    QTextEdit *textEdit_352;
+    QTextEdit *textEdit_353;
     QPushButton *outputPageBtn;
     QPushButton *areaButton;
     QWidget *areaWidget;
@@ -323,18 +373,18 @@ public:
     QWidget *tab_10;
     QCustomPlot *customPlot_infection;
     QTableWidget *infectionTable;
-    QWidget *tab_11;
-    QCustomPlot *customPlot_resource;
-    QTableWidget *resourceTable;
-    QWidget *tab_12;
-    QTableWidget *specimenTable;
-    QCustomPlot *customPlot_specimen;
     QWidget *tab_13;
     QCustomPlot *customPlot_daily;
     QTableWidget *dailyTable;
     QWidget *tab_14;
     QTableWidget *cumulativeTable;
     QCustomPlot *customPlot_cumulative;
+    QWidget *tab_11;
+    QCustomPlot *customPlot_resource;
+    QTableWidget *resourceTable;
+    QWidget *tab_12;
+    QTableWidget *specimenTable;
+    QCustomPlot *customPlot_specimen;
     QPushButton *inputPageBtn;
     QCheckBox *age_checkBox5;
     QCheckBox *age_checkBox3;
@@ -344,9 +394,12 @@ public:
     QCheckBox *age_checkBox4;
     QCheckBox *age_checkBox6;
     QWidget *introWidget;
-    QLabel *label;
     QPushButton *startButton;
-    QLabel *label_2;
+    QTextEdit *textEdit_8;
+    QTextEdit *textEdit_9;
+    QTextEdit *textEdit_10;
+    QTextEdit *textEdit_11;
+    QTextEdit *textEdit_12;
     QWidget *jpgWidget;
     QGroupBox *groupBox_3;
     QLabel *label_9;
@@ -365,12 +418,18 @@ public:
     QCheckBox *checkBox_6;
     QCheckBox *checkBox_7;
     QCheckBox *checkBox_8;
+    QCheckBox *checkBox_11;
     QCheckBox *checkBox_9;
-    QCheckBox *checkBox_10;
+    QWidget *closeWidget;
+    QGroupBox *groupBox_2;
+    QLabel *label_7;
+    QPushButton *closeBtn;
+    QPushButton *saveBtn;
     QMenuBar *menuBar;
     QMenu *menuAaa;
     QMenu *menu_2;
     QMenu *menuFdddd;
+    QButtonGroup *buttonGroup_3;
     QButtonGroup *buttonGroup;
     QButtonGroup *buttonGroup_2;
 
@@ -378,7 +437,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(910, 626);
+        MainWindow->resize(950, 626);
         actionOpen = new QAction(MainWindow);
         actionOpen->setObjectName(QStringLiteral("actionOpen"));
         actionSave = new QAction(MainWindow);
@@ -391,18 +450,24 @@ public:
         actionJPG->setObjectName(QStringLiteral("actionJPG"));
         actionCSV = new QAction(MainWindow);
         actionCSV->setObjectName(QStringLiteral("actionCSV"));
+        action = new QAction(MainWindow);
+        action->setObjectName(QStringLiteral("action"));
         mainWidget = new QWidget(MainWindow);
         mainWidget->setObjectName(QStringLiteral("mainWidget"));
         inputWidget = new QWidget(mainWidget);
         inputWidget->setObjectName(QStringLiteral("inputWidget"));
-        inputWidget->setGeometry(QRect(0, 0, 910, 601));
+        inputWidget->setGeometry(QRect(0, 0, 950, 601));
         inputWidget->setAutoFillBackground(true);
         inputWidget->setStyleSheet(QString::fromUtf8("font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225';"));
         tabWidget = new QTabWidget(inputWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(10, 20, 895, 581));
+        tabWidget->setGeometry(QRect(5, 30, 945, 581));
         tabWidget->setMinimumSize(QSize(0, 541));
-        tabWidget->setStyleSheet(QString::fromUtf8("QTabBar::tab {font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; height: 30px; width:70px; }"));
+        QFont font;
+        font.setFamily(QString::fromUtf8("\353\247\221\354\235\200 \352\263\240\353\224\225"));
+        font.setPointSize(10);
+        tabWidget->setFont(font);
+        tabWidget->setStyleSheet(QStringLiteral(""));
         tabWidget->setTabPosition(QTabWidget::North);
         tabWidget->setTabShape(QTabWidget::Rounded);
         tabWidget->setIconSize(QSize(30, 16));
@@ -774,244 +839,287 @@ public:
         tab_2->setAutoFillBackground(true);
         scrollArea = new QScrollArea(tab_2);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setGeometry(QRect(0, 0, 885, 541));
+        scrollArea->setGeometry(QRect(0, 0, 935, 541));
         scrollArea->setFrameShape(QFrame::NoFrame);
         scrollArea->setFrameShadow(QFrame::Sunken);
         scrollArea->setLineWidth(0);
         scrollArea->setWidgetResizable(false);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 865, 900));
-        textEdit_57 = new QTextEdit(scrollAreaWidgetContents);
-        textEdit_57->setObjectName(QStringLiteral("textEdit_57"));
-        textEdit_57->setEnabled(false);
-        textEdit_57->setGeometry(QRect(10, 50, 181, 31));
+        scrollAreaWidgetContents->setGeometry(QRect(0, -479, 865, 1020));
         textEdit_55 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_55->setObjectName(QStringLiteral("textEdit_55"));
         textEdit_55->setEnabled(false);
-        textEdit_55->setGeometry(QRect(10, 9, 851, 41));
+        textEdit_55->setGeometry(QRect(10, 9, 851, 31));
         textEdit_55->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_58 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_58->setObjectName(QStringLiteral("textEdit_58"));
         textEdit_58->setEnabled(false);
-        textEdit_58->setGeometry(QRect(10, 140, 181, 41));
+        textEdit_58->setGeometry(QRect(10, 140, 151, 61));
         textEdit_60 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_60->setObjectName(QStringLiteral("textEdit_60"));
         textEdit_60->setEnabled(false);
-        textEdit_60->setGeometry(QRect(10, 100, 851, 41));
+        textEdit_60->setGeometry(QRect(10, 110, 851, 31));
         textEdit_60->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_66 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_66->setObjectName(QStringLiteral("textEdit_66"));
         textEdit_66->setEnabled(false);
-        textEdit_66->setGeometry(QRect(10, 280, 851, 41));
+        textEdit_66->setGeometry(QRect(10, 480, 851, 31));
         textEdit_66->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_61 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_61->setObjectName(QStringLiteral("textEdit_61"));
         textEdit_61->setEnabled(false);
-        textEdit_61->setGeometry(QRect(10, 180, 181, 41));
+        textEdit_61->setGeometry(QRect(10, 200, 150, 61));
         textEdit_62 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_62->setObjectName(QStringLiteral("textEdit_62"));
         textEdit_62->setEnabled(false);
-        textEdit_62->setGeometry(QRect(10, 220, 181, 41));
+        textEdit_62->setGeometry(QRect(10, 260, 150, 61));
         textEdit_63 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_63->setObjectName(QStringLiteral("textEdit_63"));
         textEdit_63->setEnabled(false);
-        textEdit_63->setGeometry(QRect(190, 140, 231, 41));
+        textEdit_63->setGeometry(QRect(160, 140, 121, 61));
         textEdit_73 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_73->setObjectName(QStringLiteral("textEdit_73"));
         textEdit_73->setEnabled(false);
-        textEdit_73->setGeometry(QRect(420, 140, 221, 41));
+        textEdit_73->setGeometry(QRect(280, 140, 121, 61));
         textEdit_74 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_74->setObjectName(QStringLiteral("textEdit_74"));
         textEdit_74->setEnabled(false);
-        textEdit_74->setGeometry(QRect(640, 140, 221, 41));
+        textEdit_74->setGeometry(QRect(400, 140, 121, 61));
         textEdit_64 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_64->setObjectName(QStringLiteral("textEdit_64"));
         textEdit_64->setEnabled(false);
-        textEdit_64->setGeometry(QRect(10, 320, 181, 31));
+        textEdit_64->setGeometry(QRect(10, 510, 181, 61));
         textEdit_68 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_68->setObjectName(QStringLiteral("textEdit_68"));
         textEdit_68->setEnabled(false);
-        textEdit_68->setGeometry(QRect(10, 410, 181, 41));
+        textEdit_68->setGeometry(QRect(10, 370, 181, 41));
         textEdit_69 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_69->setObjectName(QStringLiteral("textEdit_69"));
         textEdit_69->setEnabled(false);
-        textEdit_69->setGeometry(QRect(10, 370, 851, 41));
+        textEdit_69->setGeometry(QRect(10, 340, 851, 31));
         textEdit_69->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_70 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_70->setObjectName(QStringLiteral("textEdit_70"));
         textEdit_70->setEnabled(false);
-        textEdit_70->setGeometry(QRect(10, 450, 181, 41));
+        textEdit_70->setGeometry(QRect(10, 410, 181, 51));
         textEdit_72 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_72->setObjectName(QStringLiteral("textEdit_72"));
         textEdit_72->setEnabled(false);
-        textEdit_72->setGeometry(QRect(10, 640, 181, 41));
+        textEdit_72->setGeometry(QRect(10, 740, 141, 41));
         textEdit_80 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_80->setObjectName(QStringLiteral("textEdit_80"));
         textEdit_80->setEnabled(false);
-        textEdit_80->setGeometry(QRect(190, 540, 231, 41));
+        textEdit_80->setGeometry(QRect(150, 620, 151, 61));
         textEdit_82 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_82->setObjectName(QStringLiteral("textEdit_82"));
         textEdit_82->setEnabled(false);
-        textEdit_82->setGeometry(QRect(420, 540, 221, 41));
+        textEdit_82->setGeometry(QRect(300, 620, 151, 61));
         textEdit_83 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_83->setObjectName(QStringLiteral("textEdit_83"));
         textEdit_83->setEnabled(false);
-        textEdit_83->setGeometry(QRect(10, 580, 181, 61));
+        textEdit_83->setGeometry(QRect(10, 680, 141, 61));
         textEdit_86 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_86->setObjectName(QStringLiteral("textEdit_86"));
         textEdit_86->setEnabled(false);
-        textEdit_86->setGeometry(QRect(10, 540, 181, 41));
+        textEdit_86->setGeometry(QRect(10, 620, 141, 61));
         textEdit_88 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_88->setObjectName(QStringLiteral("textEdit_88"));
         textEdit_88->setEnabled(false);
-        textEdit_88->setGeometry(QRect(10, 510, 851, 31));
+        textEdit_88->setGeometry(QRect(10, 590, 851, 31));
         textEdit_88->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_90 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_90->setObjectName(QStringLiteral("textEdit_90"));
         textEdit_90->setEnabled(false);
-        textEdit_90->setGeometry(QRect(640, 540, 221, 41));
+        textEdit_90->setGeometry(QRect(450, 620, 151, 61));
         textEdit_93 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_93->setObjectName(QStringLiteral("textEdit_93"));
         textEdit_93->setEnabled(false);
-        textEdit_93->setGeometry(QRect(10, 680, 181, 41));
+        textEdit_93->setGeometry(QRect(10, 780, 141, 41));
         textEdit_96 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_96->setObjectName(QStringLiteral("textEdit_96"));
         textEdit_96->setEnabled(false);
-        textEdit_96->setGeometry(QRect(10, 780, 181, 41));
+        textEdit_96->setGeometry(QRect(10, 870, 141, 51));
         textEdit_97 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_97->setObjectName(QStringLiteral("textEdit_97"));
         textEdit_97->setEnabled(false);
-        textEdit_97->setGeometry(QRect(10, 740, 851, 41));
+        textEdit_97->setGeometry(QRect(10, 840, 851, 31));
         textEdit_97->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_100 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_100->setObjectName(QStringLiteral("textEdit_100"));
         textEdit_100->setEnabled(false);
-        textEdit_100->setGeometry(QRect(10, 820, 181, 61));
+        textEdit_100->setGeometry(QRect(10, 920, 141, 61));
         textEdit_101 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_101->setObjectName(QStringLiteral("textEdit_101"));
         textEdit_101->setEnabled(false);
-        textEdit_101->setGeometry(QRect(640, 780, 221, 41));
+        textEdit_101->setGeometry(QRect(450, 870, 151, 51));
         textEdit_103 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_103->setObjectName(QStringLiteral("textEdit_103"));
         textEdit_103->setEnabled(false);
-        textEdit_103->setGeometry(QRect(190, 780, 231, 41));
+        textEdit_103->setGeometry(QRect(150, 870, 151, 51));
         textEdit_104 = new QTextEdit(scrollAreaWidgetContents);
         textEdit_104->setObjectName(QStringLiteral("textEdit_104"));
         textEdit_104->setEnabled(false);
-        textEdit_104->setGeometry(QRect(420, 780, 221, 41));
+        textEdit_104->setGeometry(QRect(300, 870, 151, 51));
         input_SevereRate = new QLineEdit(scrollAreaWidgetContents);
         input_SevereRate->setObjectName(QStringLiteral("input_SevereRate"));
-        input_SevereRate->setGeometry(QRect(190, 450, 671, 41));
+        input_SevereRate->setGeometry(QRect(190, 410, 331, 51));
         input_SevereRate->setMaxLength(20);
         input_SevereRate->setAlignment(Qt::AlignCenter);
         input_high_1_1 = new QLineEdit(scrollAreaWidgetContents);
         input_high_1_1->setObjectName(QStringLiteral("input_high_1_1"));
-        input_high_1_1->setGeometry(QRect(190, 580, 231, 61));
+        input_high_1_1->setGeometry(QRect(150, 680, 151, 61));
         input_high_1_1->setMaxLength(20);
         input_high_1_1->setAlignment(Qt::AlignCenter);
         input_high_1_2 = new QLineEdit(scrollAreaWidgetContents);
         input_high_1_2->setObjectName(QStringLiteral("input_high_1_2"));
-        input_high_1_2->setGeometry(QRect(420, 580, 221, 61));
+        input_high_1_2->setGeometry(QRect(300, 680, 151, 61));
         input_high_1_2->setMaxLength(20);
         input_high_1_2->setAlignment(Qt::AlignCenter);
         input_high_1_3 = new QLineEdit(scrollAreaWidgetContents);
         input_high_1_3->setObjectName(QStringLiteral("input_high_1_3"));
-        input_high_1_3->setGeometry(QRect(640, 580, 221, 61));
+        input_high_1_3->setGeometry(QRect(450, 680, 151, 61));
         input_high_1_3->setMaxLength(20);
         input_high_1_3->setAlignment(Qt::AlignCenter);
         input_high_2_1 = new QLineEdit(scrollAreaWidgetContents);
         input_high_2_1->setObjectName(QStringLiteral("input_high_2_1"));
-        input_high_2_1->setGeometry(QRect(190, 640, 231, 41));
+        input_high_2_1->setGeometry(QRect(150, 740, 151, 41));
         input_high_2_1->setMaxLength(20);
         input_high_2_1->setAlignment(Qt::AlignCenter);
         input_high_2_2 = new QLineEdit(scrollAreaWidgetContents);
         input_high_2_2->setObjectName(QStringLiteral("input_high_2_2"));
-        input_high_2_2->setGeometry(QRect(420, 640, 221, 41));
+        input_high_2_2->setGeometry(QRect(300, 740, 151, 41));
         input_high_2_2->setMaxLength(20);
         input_high_2_2->setAlignment(Qt::AlignCenter);
         input_high_2_3 = new QLineEdit(scrollAreaWidgetContents);
         input_high_2_3->setObjectName(QStringLiteral("input_high_2_3"));
-        input_high_2_3->setGeometry(QRect(640, 640, 221, 41));
+        input_high_2_3->setGeometry(QRect(450, 740, 151, 41));
         input_high_2_3->setMaxLength(20);
         input_high_2_3->setAlignment(Qt::AlignCenter);
         input_high_3_1 = new QLineEdit(scrollAreaWidgetContents);
         input_high_3_1->setObjectName(QStringLiteral("input_high_3_1"));
-        input_high_3_1->setGeometry(QRect(190, 680, 231, 41));
+        input_high_3_1->setGeometry(QRect(150, 780, 151, 41));
         input_high_3_1->setMaxLength(20);
         input_high_3_1->setAlignment(Qt::AlignCenter);
         input_high_3_2 = new QLineEdit(scrollAreaWidgetContents);
         input_high_3_2->setObjectName(QStringLiteral("input_high_3_2"));
-        input_high_3_2->setGeometry(QRect(420, 680, 221, 41));
+        input_high_3_2->setGeometry(QRect(300, 780, 151, 41));
         input_high_3_2->setMaxLength(20);
         input_high_3_2->setAlignment(Qt::AlignCenter);
         input_high_3_3 = new QLineEdit(scrollAreaWidgetContents);
         input_high_3_3->setObjectName(QStringLiteral("input_high_3_3"));
-        input_high_3_3->setGeometry(QRect(640, 680, 221, 41));
+        input_high_3_3->setGeometry(QRect(450, 780, 151, 41));
         input_high_3_3->setMaxLength(20);
         input_high_3_3->setAlignment(Qt::AlignCenter);
         input_dead_1 = new QLineEdit(scrollAreaWidgetContents);
         input_dead_1->setObjectName(QStringLiteral("input_dead_1"));
-        input_dead_1->setGeometry(QRect(190, 820, 231, 61));
+        input_dead_1->setGeometry(QRect(150, 920, 151, 61));
         input_dead_1->setMaxLength(20);
         input_dead_1->setAlignment(Qt::AlignCenter);
         input_dead_2 = new QLineEdit(scrollAreaWidgetContents);
         input_dead_2->setObjectName(QStringLiteral("input_dead_2"));
-        input_dead_2->setGeometry(QRect(420, 820, 221, 61));
+        input_dead_2->setGeometry(QRect(300, 920, 151, 61));
         input_dead_2->setMaxLength(20);
         input_dead_2->setAlignment(Qt::AlignCenter);
         input_dead_3 = new QLineEdit(scrollAreaWidgetContents);
         input_dead_3->setObjectName(QStringLiteral("input_dead_3"));
-        input_dead_3->setGeometry(QRect(640, 820, 221, 61));
+        input_dead_3->setGeometry(QRect(450, 920, 151, 61));
         input_dead_3->setMaxLength(20);
         input_dead_3->setAlignment(Qt::AlignCenter);
         input_LatentPeriod = new QLineEdit(scrollAreaWidgetContents);
         input_LatentPeriod->setObjectName(QStringLiteral("input_LatentPeriod"));
-        input_LatentPeriod->setGeometry(QRect(190, 50, 671, 31));
+        input_LatentPeriod->setGeometry(QRect(10, 40, 511, 61));
         input_LatentPeriod->setMaxLength(20);
         input_LatentPeriod->setAlignment(Qt::AlignCenter);
         input_infDuration_1_1 = new QLineEdit(scrollAreaWidgetContents);
         input_infDuration_1_1->setObjectName(QStringLiteral("input_infDuration_1_1"));
-        input_infDuration_1_1->setGeometry(QRect(190, 180, 231, 41));
+        input_infDuration_1_1->setGeometry(QRect(160, 200, 121, 61));
         input_infDuration_1_1->setMaxLength(20);
         input_infDuration_1_1->setAlignment(Qt::AlignCenter);
         input_infDuration_1_2 = new QLineEdit(scrollAreaWidgetContents);
         input_infDuration_1_2->setObjectName(QStringLiteral("input_infDuration_1_2"));
-        input_infDuration_1_2->setGeometry(QRect(420, 180, 221, 41));
+        input_infDuration_1_2->setGeometry(QRect(280, 200, 121, 61));
         input_infDuration_1_2->setMaxLength(20);
         input_infDuration_1_2->setAlignment(Qt::AlignCenter);
         input_infDuration_1_3 = new QLineEdit(scrollAreaWidgetContents);
         input_infDuration_1_3->setObjectName(QStringLiteral("input_infDuration_1_3"));
-        input_infDuration_1_3->setGeometry(QRect(640, 180, 221, 41));
+        input_infDuration_1_3->setGeometry(QRect(400, 200, 121, 61));
         input_infDuration_1_3->setMaxLength(20);
         input_infDuration_1_3->setAlignment(Qt::AlignCenter);
         input_infDuration_2_1 = new QLineEdit(scrollAreaWidgetContents);
         input_infDuration_2_1->setObjectName(QStringLiteral("input_infDuration_2_1"));
-        input_infDuration_2_1->setGeometry(QRect(190, 220, 231, 41));
+        input_infDuration_2_1->setGeometry(QRect(160, 260, 121, 61));
         input_infDuration_2_1->setMaxLength(20);
         input_infDuration_2_1->setAlignment(Qt::AlignCenter);
         input_infDuration_2_2 = new QLineEdit(scrollAreaWidgetContents);
         input_infDuration_2_2->setObjectName(QStringLiteral("input_infDuration_2_2"));
-        input_infDuration_2_2->setGeometry(QRect(420, 220, 221, 41));
+        input_infDuration_2_2->setGeometry(QRect(280, 260, 121, 61));
         input_infDuration_2_2->setMaxLength(20);
         input_infDuration_2_2->setAlignment(Qt::AlignCenter);
         input_infDuration_2_3 = new QLineEdit(scrollAreaWidgetContents);
         input_infDuration_2_3->setObjectName(QStringLiteral("input_infDuration_2_3"));
-        input_infDuration_2_3->setGeometry(QRect(640, 220, 221, 41));
+        input_infDuration_2_3->setGeometry(QRect(400, 260, 121, 61));
         input_infDuration_2_3->setMaxLength(20);
         input_infDuration_2_3->setAlignment(Qt::AlignCenter);
         input_returnToWork = new QLineEdit(scrollAreaWidgetContents);
         input_returnToWork->setObjectName(QStringLiteral("input_returnToWork"));
-        input_returnToWork->setGeometry(QRect(190, 320, 671, 31));
+        input_returnToWork->setGeometry(QRect(190, 510, 331, 61));
         input_returnToWork->setMaxLength(20);
         input_returnToWork->setAlignment(Qt::AlignCenter);
         input_MildRate = new QLineEdit(scrollAreaWidgetContents);
         input_MildRate->setObjectName(QStringLiteral("input_MildRate"));
-        input_MildRate->setGeometry(QRect(190, 410, 671, 41));
+        input_MildRate->setGeometry(QRect(190, 370, 331, 41));
         input_MildRate->setMaxLength(20);
         input_MildRate->setAlignment(Qt::AlignCenter);
+        textEdit_65 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_65->setObjectName(QStringLiteral("textEdit_65"));
+        textEdit_65->setEnabled(false);
+        textEdit_65->setGeometry(QRect(520, 40, 341, 61));
+        textEdit_67 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_67->setObjectName(QStringLiteral("textEdit_67"));
+        textEdit_67->setEnabled(false);
+        textEdit_67->setGeometry(QRect(520, 140, 341, 61));
+        textEdit_71 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_71->setObjectName(QStringLiteral("textEdit_71"));
+        textEdit_71->setEnabled(false);
+        textEdit_71->setGeometry(QRect(520, 200, 341, 61));
+        textEdit_75 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_75->setObjectName(QStringLiteral("textEdit_75"));
+        textEdit_75->setEnabled(false);
+        textEdit_75->setGeometry(QRect(520, 260, 341, 61));
+        textEdit_76 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_76->setObjectName(QStringLiteral("textEdit_76"));
+        textEdit_76->setEnabled(false);
+        textEdit_76->setGeometry(QRect(520, 370, 341, 41));
+        textEdit_77 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_77->setObjectName(QStringLiteral("textEdit_77"));
+        textEdit_77->setEnabled(false);
+        textEdit_77->setGeometry(QRect(520, 410, 341, 51));
+        textEdit_78 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_78->setObjectName(QStringLiteral("textEdit_78"));
+        textEdit_78->setEnabled(false);
+        textEdit_78->setGeometry(QRect(520, 510, 341, 61));
+        textEdit_79 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_79->setObjectName(QStringLiteral("textEdit_79"));
+        textEdit_79->setEnabled(false);
+        textEdit_79->setGeometry(QRect(600, 620, 261, 61));
+        textEdit_81 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_81->setObjectName(QStringLiteral("textEdit_81"));
+        textEdit_81->setEnabled(false);
+        textEdit_81->setGeometry(QRect(600, 680, 261, 61));
+        textEdit_84 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_84->setObjectName(QStringLiteral("textEdit_84"));
+        textEdit_84->setEnabled(false);
+        textEdit_84->setGeometry(QRect(600, 740, 261, 41));
+        textEdit_85 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_85->setObjectName(QStringLiteral("textEdit_85"));
+        textEdit_85->setEnabled(false);
+        textEdit_85->setGeometry(QRect(600, 780, 261, 41));
+        textEdit_87 = new QTextEdit(scrollAreaWidgetContents);
+        textEdit_87->setObjectName(QStringLiteral("textEdit_87"));
+        textEdit_87->setEnabled(false);
+        textEdit_87->setGeometry(QRect(600, 870, 261, 111));
         scrollArea->setWidget(scrollAreaWidgetContents);
-        textEdit_57->raise();
         textEdit_55->raise();
         textEdit_58->raise();
         textEdit_60->raise();
@@ -1039,329 +1147,493 @@ public:
         textEdit_103->raise();
         textEdit_104->raise();
         textEdit_96->raise();
-        input_SevereRate->raise();
         input_high_1_1->raise();
         input_high_1_2->raise();
-        input_high_1_3->raise();
         input_high_2_1->raise();
         input_high_2_2->raise();
-        input_high_2_3->raise();
         input_high_3_1->raise();
         input_high_3_2->raise();
-        input_high_3_3->raise();
         input_dead_1->raise();
         input_dead_2->raise();
-        input_dead_3->raise();
-        input_LatentPeriod->raise();
+        textEdit_65->raise();
         input_infDuration_1_1->raise();
-        input_infDuration_1_2->raise();
-        input_infDuration_1_3->raise();
         input_infDuration_2_1->raise();
+        input_infDuration_1_2->raise();
         input_infDuration_2_2->raise();
-        input_infDuration_2_3->raise();
-        input_returnToWork->raise();
+        input_LatentPeriod->raise();
+        textEdit_67->raise();
+        textEdit_71->raise();
+        textEdit_75->raise();
+        textEdit_76->raise();
+        textEdit_77->raise();
         input_MildRate->raise();
+        input_SevereRate->raise();
+        textEdit_78->raise();
+        input_returnToWork->raise();
+        textEdit_79->raise();
+        textEdit_81->raise();
+        textEdit_84->raise();
+        textEdit_85->raise();
+        textEdit_87->raise();
+        input_infDuration_2_3->raise();
+        input_infDuration_1_3->raise();
+        input_dead_3->raise();
+        input_high_3_3->raise();
+        input_high_2_3->raise();
+        input_high_1_3->raise();
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
         scrollArea_2 = new QScrollArea(tab_3);
         scrollArea_2->setObjectName(QStringLiteral("scrollArea_2"));
-        scrollArea_2->setGeometry(QRect(0, 0, 885, 541));
+        scrollArea_2->setGeometry(QRect(0, 0, 935, 541));
         scrollArea_2->setFrameShape(QFrame::NoFrame);
         scrollArea_2->setLineWidth(0);
         scrollArea_2->setWidgetResizable(false);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 865, 630));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 865, 700));
         textEdit_105 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_105->setObjectName(QStringLiteral("textEdit_105"));
         textEdit_105->setEnabled(false);
-        textEdit_105->setGeometry(QRect(9, 50, 181, 31));
+        textEdit_105->setGeometry(QRect(10, 40, 181, 61));
         textEdit_106 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_106->setObjectName(QStringLiteral("textEdit_106"));
         textEdit_106->setEnabled(false);
-        textEdit_106->setGeometry(QRect(9, 9, 851, 41));
+        textEdit_106->setGeometry(QRect(10, 9, 851, 31));
         textEdit_106->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_125 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_125->setObjectName(QStringLiteral("textEdit_125"));
         textEdit_125->setEnabled(false);
-        textEdit_125->setGeometry(QRect(10, 260, 181, 41));
+        textEdit_125->setGeometry(QRect(10, 280, 181, 61));
         textEdit_126 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_126->setObjectName(QStringLiteral("textEdit_126"));
         textEdit_126->setEnabled(false);
-        textEdit_126->setGeometry(QRect(10, 200, 851, 61));
+        textEdit_126->setGeometry(QRect(10, 250, 341, 31));
         textEdit_126->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_127 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_127->setObjectName(QStringLiteral("textEdit_127"));
         textEdit_127->setEnabled(false);
-        textEdit_127->setGeometry(QRect(10, 300, 181, 41));
+        textEdit_127->setGeometry(QRect(10, 340, 181, 61));
         textEdit_108 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_108->setObjectName(QStringLiteral("textEdit_108"));
         textEdit_108->setEnabled(false);
-        textEdit_108->setGeometry(QRect(10, 140, 181, 41));
+        textEdit_108->setGeometry(QRect(10, 150, 181, 61));
         textEdit_109 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_109->setObjectName(QStringLiteral("textEdit_109"));
         textEdit_109->setEnabled(false);
-        textEdit_109->setGeometry(QRect(10, 99, 851, 41));
+        textEdit_109->setGeometry(QRect(10, 120, 851, 31));
         textEdit_109->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_156 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_156->setObjectName(QStringLiteral("textEdit_156"));
         textEdit_156->setEnabled(false);
-        textEdit_156->setGeometry(QRect(10, 340, 181, 41));
+        textEdit_156->setGeometry(QRect(10, 400, 181, 61));
         textEdit_158 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_158->setObjectName(QStringLiteral("textEdit_158"));
         textEdit_158->setEnabled(false);
-        textEdit_158->setGeometry(QRect(10, 520, 181, 41));
+        textEdit_158->setGeometry(QRect(10, 570, 181, 31));
         textEdit_131 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_131->setObjectName(QStringLiteral("textEdit_131"));
         textEdit_131->setEnabled(false);
-        textEdit_131->setGeometry(QRect(10, 400, 851, 41));
+        textEdit_131->setGeometry(QRect(10, 480, 341, 31));
         textEdit_131->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_132 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_132->setObjectName(QStringLiteral("textEdit_132"));
         textEdit_132->setEnabled(false);
-        textEdit_132->setGeometry(QRect(10, 440, 181, 41));
+        textEdit_132->setGeometry(QRect(10, 510, 181, 31));
         textEdit_133 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_133->setObjectName(QStringLiteral("textEdit_133"));
         textEdit_133->setEnabled(false);
-        textEdit_133->setGeometry(QRect(10, 480, 181, 41));
+        textEdit_133->setGeometry(QRect(10, 540, 181, 31));
         textEdit_159 = new QTextEdit(scrollAreaWidgetContents_2);
         textEdit_159->setObjectName(QStringLiteral("textEdit_159"));
         textEdit_159->setEnabled(false);
-        textEdit_159->setGeometry(QRect(10, 560, 181, 41));
+        textEdit_159->setGeometry(QRect(10, 600, 181, 31));
         input_lastLatent = new QLineEdit(scrollAreaWidgetContents_2);
         input_lastLatent->setObjectName(QStringLiteral("input_lastLatent"));
-        input_lastLatent->setGeometry(QRect(190, 260, 671, 41));
+        input_lastLatent->setGeometry(QRect(190, 280, 161, 61));
         input_lastLatent->setMaxLength(20);
         input_lastLatent->setAlignment(Qt::AlignCenter);
         input_asymptomatic = new QLineEdit(scrollAreaWidgetContents_2);
         input_asymptomatic->setObjectName(QStringLiteral("input_asymptomatic"));
-        input_asymptomatic->setGeometry(QRect(190, 300, 671, 41));
+        input_asymptomatic->setGeometry(QRect(190, 340, 161, 61));
         input_asymptomatic->setMaxLength(20);
         input_asymptomatic->setAlignment(Qt::AlignCenter);
         input_moderate = new QLineEdit(scrollAreaWidgetContents_2);
         input_moderate->setObjectName(QStringLiteral("input_moderate"));
-        input_moderate->setGeometry(QRect(190, 340, 671, 41));
+        input_moderate->setGeometry(QRect(190, 400, 161, 61));
         input_moderate->setMaxLength(20);
         input_moderate->setAlignment(Qt::AlignCenter);
         input_isolModerate = new QLineEdit(scrollAreaWidgetContents_2);
         input_isolModerate->setObjectName(QStringLiteral("input_isolModerate"));
-        input_isolModerate->setGeometry(QRect(190, 440, 671, 41));
+        input_isolModerate->setGeometry(QRect(190, 510, 161, 31));
         input_isolModerate->setMaxLength(20);
         input_isolModerate->setAlignment(Qt::AlignCenter);
         input_isolSevereHome = new QLineEdit(scrollAreaWidgetContents_2);
         input_isolSevereHome->setObjectName(QStringLiteral("input_isolSevereHome"));
-        input_isolSevereHome->setGeometry(QRect(190, 480, 671, 41));
+        input_isolSevereHome->setGeometry(QRect(190, 540, 161, 31));
         input_isolSevereHome->setMaxLength(20);
         input_isolSevereHome->setAlignment(Qt::AlignCenter);
         input_isolSevereHospital = new QLineEdit(scrollAreaWidgetContents_2);
         input_isolSevereHospital->setObjectName(QStringLiteral("input_isolSevereHospital"));
-        input_isolSevereHospital->setGeometry(QRect(190, 520, 671, 41));
+        input_isolSevereHospital->setGeometry(QRect(190, 570, 161, 31));
         input_isolSevereHospital->setMaxLength(20);
         input_isolSevereHospital->setAlignment(Qt::AlignCenter);
         input_halfInfectiosRate = new QLineEdit(scrollAreaWidgetContents_2);
         input_halfInfectiosRate->setObjectName(QStringLiteral("input_halfInfectiosRate"));
-        input_halfInfectiosRate->setGeometry(QRect(190, 140, 671, 41));
+        input_halfInfectiosRate->setGeometry(QRect(190, 150, 161, 61));
         input_halfInfectiosRate->setMaxLength(20);
         input_halfInfectiosRate->setAlignment(Qt::AlignCenter);
         input_R0 = new QLineEdit(scrollAreaWidgetContents_2);
         input_R0->setObjectName(QStringLiteral("input_R0"));
-        input_R0->setGeometry(QRect(190, 50, 671, 31));
+        input_R0->setGeometry(QRect(190, 40, 161, 61));
         input_R0->setMaxLength(20);
         input_R0->setAlignment(Qt::AlignCenter);
         widget = new QWidget(scrollAreaWidgetContents_2);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(190, 560, 671, 41));
-        widget->setStyleSheet(QStringLiteral("background-color:white; border:1px solid black;"));
+        widget->setGeometry(QRect(190, 600, 161, 31));
+        widget->setStyleSheet(QStringLiteral("background-color:white; border:1px solid;"));
         input_isolStart = new QLineEdit(widget);
         input_isolStart->setObjectName(QStringLiteral("input_isolStart"));
-        input_isolStart->setGeometry(QRect(280, 0, 50, 41));
+        input_isolStart->setGeometry(QRect(20, 0, 50, 31));
         input_isolStart->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_isolStart->setMaxLength(20);
         input_isolStart->setAlignment(Qt::AlignCenter);
         input_isolRange_2 = new QLineEdit(widget);
         input_isolRange_2->setObjectName(QStringLiteral("input_isolRange_2"));
         input_isolRange_2->setEnabled(false);
-        input_isolRange_2->setGeometry(QRect(330, 0, 20, 41));
+        input_isolRange_2->setGeometry(QRect(70, 0, 20, 31));
         input_isolRange_2->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_isolRange_2->setMaxLength(20);
         input_isolRange_2->setAlignment(Qt::AlignCenter);
         input_isolEnd = new QLineEdit(widget);
         input_isolEnd->setObjectName(QStringLiteral("input_isolEnd"));
-        input_isolEnd->setGeometry(QRect(350, 0, 50, 41));
+        input_isolEnd->setGeometry(QRect(90, 0, 50, 31));
         input_isolEnd->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_isolEnd->setMaxLength(20);
         input_isolEnd->setAlignment(Qt::AlignCenter);
+        textEdit_107 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_107->setObjectName(QStringLiteral("textEdit_107"));
+        textEdit_107->setEnabled(false);
+        textEdit_107->setGeometry(QRect(350, 40, 511, 61));
+        textEdit_110 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_110->setObjectName(QStringLiteral("textEdit_110"));
+        textEdit_110->setEnabled(false);
+        textEdit_110->setGeometry(QRect(350, 150, 511, 61));
+        textEdit_113 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_113->setObjectName(QStringLiteral("textEdit_113"));
+        textEdit_113->setEnabled(false);
+        textEdit_113->setGeometry(QRect(350, 250, 511, 31));
+        textEdit_116 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_116->setObjectName(QStringLiteral("textEdit_116"));
+        textEdit_116->setEnabled(false);
+        textEdit_116->setGeometry(QRect(350, 280, 511, 61));
+        textEdit_117 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_117->setObjectName(QStringLiteral("textEdit_117"));
+        textEdit_117->setEnabled(false);
+        textEdit_117->setGeometry(QRect(350, 340, 511, 61));
+        textEdit_119 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_119->setObjectName(QStringLiteral("textEdit_119"));
+        textEdit_119->setEnabled(false);
+        textEdit_119->setGeometry(QRect(350, 400, 511, 61));
+        textEdit_123 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_123->setObjectName(QStringLiteral("textEdit_123"));
+        textEdit_123->setEnabled(false);
+        textEdit_123->setGeometry(QRect(350, 480, 511, 31));
+        textEdit_124 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_124->setObjectName(QStringLiteral("textEdit_124"));
+        textEdit_124->setEnabled(false);
+        textEdit_124->setGeometry(QRect(350, 510, 511, 31));
+        textEdit_128 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_128->setObjectName(QStringLiteral("textEdit_128"));
+        textEdit_128->setEnabled(false);
+        textEdit_128->setGeometry(QRect(350, 540, 511, 31));
+        textEdit_129 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_129->setObjectName(QStringLiteral("textEdit_129"));
+        textEdit_129->setEnabled(false);
+        textEdit_129->setGeometry(QRect(350, 570, 511, 31));
+        textEdit_130 = new QTextEdit(scrollAreaWidgetContents_2);
+        textEdit_130->setObjectName(QStringLiteral("textEdit_130"));
+        textEdit_130->setEnabled(false);
+        textEdit_130->setGeometry(QRect(350, 600, 511, 31));
         scrollArea_2->setWidget(scrollAreaWidgetContents_2);
+        textEdit_105->raise();
+        textEdit_106->raise();
+        textEdit_125->raise();
+        textEdit_126->raise();
+        textEdit_127->raise();
+        textEdit_108->raise();
+        textEdit_109->raise();
+        textEdit_156->raise();
+        textEdit_158->raise();
+        textEdit_131->raise();
+        textEdit_132->raise();
+        textEdit_133->raise();
+        textEdit_159->raise();
+        textEdit_107->raise();
+        input_R0->raise();
+        textEdit_110->raise();
+        input_halfInfectiosRate->raise();
+        textEdit_113->raise();
+        textEdit_116->raise();
+        input_lastLatent->raise();
+        textEdit_117->raise();
+        input_asymptomatic->raise();
+        textEdit_119->raise();
+        input_moderate->raise();
+        textEdit_123->raise();
+        textEdit_124->raise();
+        textEdit_128->raise();
+        textEdit_129->raise();
+        textEdit_130->raise();
+        input_isolModerate->raise();
+        input_isolSevereHome->raise();
+        input_isolSevereHospital->raise();
+        widget->raise();
         tabWidget->addTab(tab_3, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QStringLiteral("tab_4"));
         scrollArea_3 = new QScrollArea(tab_4);
         scrollArea_3->setObjectName(QStringLiteral("scrollArea_3"));
-        scrollArea_3->setGeometry(QRect(0, 0, 885, 541));
+        scrollArea_3->setGeometry(QRect(0, 0, 935, 541));
         scrollArea_3->setFrameShape(QFrame::NoFrame);
         scrollArea_3->setWidgetResizable(false);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 865, 590));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 865, 620));
         textEdit_111 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_111->setObjectName(QStringLiteral("textEdit_111"));
         textEdit_111->setEnabled(false);
-        textEdit_111->setGeometry(QRect(10, 50, 180, 31));
+        textEdit_111->setGeometry(QRect(10, 40, 180, 61));
         textEdit_112 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_112->setObjectName(QStringLiteral("textEdit_112"));
         textEdit_112->setEnabled(false);
-        textEdit_112->setGeometry(QRect(10, 9, 850, 41));
+        textEdit_112->setGeometry(QRect(10, 9, 851, 31));
         textEdit_112->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_114 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_114->setObjectName(QStringLiteral("textEdit_114"));
         textEdit_114->setEnabled(false);
-        textEdit_114->setGeometry(QRect(10, 140, 181, 31));
+        textEdit_114->setGeometry(QRect(10, 150, 181, 31));
         textEdit_115 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_115->setObjectName(QStringLiteral("textEdit_115"));
         textEdit_115->setEnabled(false);
-        textEdit_115->setGeometry(QRect(10, 99, 850, 41));
+        textEdit_115->setGeometry(QRect(10, 119, 851, 31));
         textEdit_115->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_164 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_164->setObjectName(QStringLiteral("textEdit_164"));
         textEdit_164->setEnabled(false);
-        textEdit_164->setGeometry(QRect(10, 530, 181, 31));
+        textEdit_164->setGeometry(QRect(10, 540, 181, 31));
         textEdit_141 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_141->setObjectName(QStringLiteral("textEdit_141"));
         textEdit_141->setEnabled(false);
-        textEdit_141->setGeometry(QRect(10, 440, 850, 31));
+        textEdit_141->setGeometry(QRect(10, 450, 851, 31));
         textEdit_141->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_142 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_142->setObjectName(QStringLiteral("textEdit_142"));
         textEdit_142->setEnabled(false);
-        textEdit_142->setGeometry(QRect(10, 470, 181, 31));
+        textEdit_142->setGeometry(QRect(10, 480, 181, 31));
         textEdit_143 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_143->setObjectName(QStringLiteral("textEdit_143"));
         textEdit_143->setEnabled(false);
-        textEdit_143->setGeometry(QRect(10, 500, 181, 31));
+        textEdit_143->setGeometry(QRect(10, 510, 181, 31));
         textEdit_118 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_118->setObjectName(QStringLiteral("textEdit_118"));
         textEdit_118->setEnabled(false);
-        textEdit_118->setGeometry(QRect(10, 170, 181, 31));
+        textEdit_118->setGeometry(QRect(10, 180, 181, 31));
         textEdit_120 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_120->setObjectName(QStringLiteral("textEdit_120"));
         textEdit_120->setEnabled(false);
-        textEdit_120->setGeometry(QRect(10, 250, 181, 31));
+        textEdit_120->setGeometry(QRect(10, 260, 181, 31));
         textEdit_121 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_121->setObjectName(QStringLiteral("textEdit_121"));
         textEdit_121->setEnabled(false);
-        textEdit_121->setGeometry(QRect(10, 280, 181, 31));
+        textEdit_121->setGeometry(QRect(10, 290, 181, 31));
         textEdit_122 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_122->setObjectName(QStringLiteral("textEdit_122"));
         textEdit_122->setEnabled(false);
-        textEdit_122->setGeometry(QRect(10, 219, 850, 31));
+        textEdit_122->setGeometry(QRect(10, 229, 851, 31));
         textEdit_122->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_135 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_135->setObjectName(QStringLiteral("textEdit_135"));
         textEdit_135->setEnabled(false);
-        textEdit_135->setGeometry(QRect(10, 360, 181, 31));
+        textEdit_135->setGeometry(QRect(10, 370, 181, 31));
         textEdit_136 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_136->setObjectName(QStringLiteral("textEdit_136"));
         textEdit_136->setEnabled(false);
-        textEdit_136->setGeometry(QRect(10, 329, 850, 31));
+        textEdit_136->setGeometry(QRect(10, 339, 851, 31));
         textEdit_136->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_137 = new QTextEdit(scrollAreaWidgetContents_3);
         textEdit_137->setObjectName(QStringLiteral("textEdit_137"));
         textEdit_137->setEnabled(false);
-        textEdit_137->setGeometry(QRect(10, 390, 181, 31));
+        textEdit_137->setGeometry(QRect(10, 400, 181, 31));
         input_antiviralsRate = new QLineEdit(scrollAreaWidgetContents_3);
         input_antiviralsRate->setObjectName(QStringLiteral("input_antiviralsRate"));
-        input_antiviralsRate->setGeometry(QRect(190, 50, 670, 31));
+        input_antiviralsRate->setGeometry(QRect(190, 40, 161, 61));
         input_antiviralsRate->setMaxLength(20);
         input_antiviralsRate->setAlignment(Qt::AlignCenter);
         input_medicalHelp = new QLineEdit(scrollAreaWidgetContents_3);
         input_medicalHelp->setObjectName(QStringLiteral("input_medicalHelp"));
-        input_medicalHelp->setGeometry(QRect(190, 140, 670, 31));
+        input_medicalHelp->setGeometry(QRect(190, 150, 161, 31));
         input_medicalHelp->setMaxLength(20);
         input_medicalHelp->setAlignment(Qt::AlignCenter);
         input_antiviralsHelp = new QLineEdit(scrollAreaWidgetContents_3);
         input_antiviralsHelp->setObjectName(QStringLiteral("input_antiviralsHelp"));
-        input_antiviralsHelp->setGeometry(QRect(190, 170, 670, 31));
+        input_antiviralsHelp->setGeometry(QRect(190, 180, 161, 31));
         input_antiviralsHelp->setMaxLength(20);
         input_antiviralsHelp->setAlignment(Qt::AlignCenter);
         input_verySickTreat = new QLineEdit(scrollAreaWidgetContents_3);
         input_verySickTreat->setObjectName(QStringLiteral("input_verySickTreat"));
-        input_verySickTreat->setGeometry(QRect(190, 250, 670, 31));
+        input_verySickTreat->setGeometry(QRect(190, 260, 161, 31));
         input_verySickTreat->setMaxLength(20);
         input_verySickTreat->setAlignment(Qt::AlignCenter);
         input_extreamlySickTreat = new QLineEdit(scrollAreaWidgetContents_3);
         input_extreamlySickTreat->setObjectName(QStringLiteral("input_extreamlySickTreat"));
-        input_extreamlySickTreat->setGeometry(QRect(190, 360, 670, 31));
+        input_extreamlySickTreat->setGeometry(QRect(190, 370, 161, 31));
         input_extreamlySickTreat->setMaxLength(20);
         input_extreamlySickTreat->setAlignment(Qt::AlignCenter);
         input_contagiousnessReduct = new QLineEdit(scrollAreaWidgetContents_3);
         input_contagiousnessReduct->setObjectName(QStringLiteral("input_contagiousnessReduct"));
-        input_contagiousnessReduct->setGeometry(QRect(190, 470, 670, 31));
+        input_contagiousnessReduct->setGeometry(QRect(190, 480, 161, 31));
         input_contagiousnessReduct->setMaxLength(20);
         input_contagiousnessReduct->setAlignment(Qt::AlignCenter);
         input_durationReduct = new QLineEdit(scrollAreaWidgetContents_3);
         input_durationReduct->setObjectName(QStringLiteral("input_durationReduct"));
-        input_durationReduct->setGeometry(QRect(190, 500, 670, 31));
+        input_durationReduct->setGeometry(QRect(190, 510, 161, 31));
         input_durationReduct->setMaxLength(20);
         input_durationReduct->setAlignment(Qt::AlignCenter);
         input_HospitailizationReduct = new QLineEdit(scrollAreaWidgetContents_3);
         input_HospitailizationReduct->setObjectName(QStringLiteral("input_HospitailizationReduct"));
-        input_HospitailizationReduct->setGeometry(QRect(190, 530, 670, 31));
+        input_HospitailizationReduct->setGeometry(QRect(190, 540, 161, 31));
         input_HospitailizationReduct->setMaxLength(20);
         input_HospitailizationReduct->setAlignment(Qt::AlignCenter);
         widget_2 = new QWidget(scrollAreaWidgetContents_3);
         widget_2->setObjectName(QStringLiteral("widget_2"));
-        widget_2->setGeometry(QRect(190, 280, 671, 31));
+        widget_2->setGeometry(QRect(190, 290, 161, 31));
         widget_2->setStyleSheet(QStringLiteral("background-color:white; border:1px solid black;"));
         input_verySickTreatStart = new QLineEdit(widget_2);
         input_verySickTreatStart->setObjectName(QStringLiteral("input_verySickTreatStart"));
-        input_verySickTreatStart->setGeometry(QRect(280, 0, 50, 31));
+        input_verySickTreatStart->setGeometry(QRect(20, 0, 50, 31));
         input_verySickTreatStart->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_verySickTreatStart->setMaxLength(20);
         input_verySickTreatStart->setAlignment(Qt::AlignCenter);
         input_isolRange_3 = new QLineEdit(widget_2);
         input_isolRange_3->setObjectName(QStringLiteral("input_isolRange_3"));
         input_isolRange_3->setEnabled(false);
-        input_isolRange_3->setGeometry(QRect(330, 0, 20, 31));
+        input_isolRange_3->setGeometry(QRect(70, 0, 20, 31));
         input_isolRange_3->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_isolRange_3->setMaxLength(20);
         input_isolRange_3->setAlignment(Qt::AlignCenter);
         input_verySickTreatEnd = new QLineEdit(widget_2);
         input_verySickTreatEnd->setObjectName(QStringLiteral("input_verySickTreatEnd"));
-        input_verySickTreatEnd->setGeometry(QRect(350, 0, 50, 31));
+        input_verySickTreatEnd->setGeometry(QRect(90, 0, 50, 31));
         input_verySickTreatEnd->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_verySickTreatEnd->setMaxLength(20);
         input_verySickTreatEnd->setAlignment(Qt::AlignCenter);
         widget_3 = new QWidget(scrollAreaWidgetContents_3);
         widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setGeometry(QRect(190, 390, 671, 31));
+        widget_3->setGeometry(QRect(190, 400, 161, 31));
         widget_3->setStyleSheet(QStringLiteral("background-color:white; border:1px solid black;"));
         input_extreamlySickTreatStart = new QLineEdit(widget_3);
         input_extreamlySickTreatStart->setObjectName(QStringLiteral("input_extreamlySickTreatStart"));
-        input_extreamlySickTreatStart->setGeometry(QRect(280, 0, 50, 31));
+        input_extreamlySickTreatStart->setGeometry(QRect(20, 0, 50, 31));
         input_extreamlySickTreatStart->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_extreamlySickTreatStart->setMaxLength(20);
         input_extreamlySickTreatStart->setAlignment(Qt::AlignCenter);
         input_isolRange_4 = new QLineEdit(widget_3);
         input_isolRange_4->setObjectName(QStringLiteral("input_isolRange_4"));
         input_isolRange_4->setEnabled(false);
-        input_isolRange_4->setGeometry(QRect(330, 0, 20, 31));
+        input_isolRange_4->setGeometry(QRect(70, 0, 20, 31));
         input_isolRange_4->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_isolRange_4->setMaxLength(20);
         input_isolRange_4->setAlignment(Qt::AlignCenter);
         input_extreamlySickTreatEnd = new QLineEdit(widget_3);
         input_extreamlySickTreatEnd->setObjectName(QStringLiteral("input_extreamlySickTreatEnd"));
-        input_extreamlySickTreatEnd->setGeometry(QRect(350, 0, 50, 31));
+        input_extreamlySickTreatEnd->setGeometry(QRect(90, 0, 50, 31));
         input_extreamlySickTreatEnd->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_extreamlySickTreatEnd->setMaxLength(20);
         input_extreamlySickTreatEnd->setAlignment(Qt::AlignCenter);
+        textEdit_134 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_134->setObjectName(QStringLiteral("textEdit_134"));
+        textEdit_134->setEnabled(false);
+        textEdit_134->setGeometry(QRect(350, 40, 511, 61));
+        textEdit_138 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_138->setObjectName(QStringLiteral("textEdit_138"));
+        textEdit_138->setEnabled(false);
+        textEdit_138->setGeometry(QRect(350, 150, 511, 31));
+        textEdit_139 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_139->setObjectName(QStringLiteral("textEdit_139"));
+        textEdit_139->setEnabled(false);
+        textEdit_139->setGeometry(QRect(350, 180, 511, 31));
+        textEdit_140 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_140->setObjectName(QStringLiteral("textEdit_140"));
+        textEdit_140->setEnabled(false);
+        textEdit_140->setGeometry(QRect(350, 260, 511, 31));
+        textEdit_146 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_146->setObjectName(QStringLiteral("textEdit_146"));
+        textEdit_146->setEnabled(false);
+        textEdit_146->setGeometry(QRect(350, 290, 511, 31));
+        textEdit_149 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_149->setObjectName(QStringLiteral("textEdit_149"));
+        textEdit_149->setEnabled(false);
+        textEdit_149->setGeometry(QRect(350, 370, 511, 31));
+        textEdit_151 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_151->setObjectName(QStringLiteral("textEdit_151"));
+        textEdit_151->setEnabled(false);
+        textEdit_151->setGeometry(QRect(350, 400, 511, 31));
+        textEdit_153 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_153->setObjectName(QStringLiteral("textEdit_153"));
+        textEdit_153->setEnabled(false);
+        textEdit_153->setGeometry(QRect(350, 480, 511, 31));
+        textEdit_155 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_155->setObjectName(QStringLiteral("textEdit_155"));
+        textEdit_155->setEnabled(false);
+        textEdit_155->setGeometry(QRect(350, 510, 511, 31));
+        textEdit_157 = new QTextEdit(scrollAreaWidgetContents_3);
+        textEdit_157->setObjectName(QStringLiteral("textEdit_157"));
+        textEdit_157->setEnabled(false);
+        textEdit_157->setGeometry(QRect(350, 540, 511, 31));
         scrollArea_3->setWidget(scrollAreaWidgetContents_3);
+        textEdit_111->raise();
+        textEdit_112->raise();
+        textEdit_114->raise();
+        textEdit_115->raise();
+        textEdit_164->raise();
+        textEdit_141->raise();
+        textEdit_142->raise();
+        textEdit_143->raise();
+        textEdit_118->raise();
+        textEdit_120->raise();
+        textEdit_121->raise();
+        textEdit_122->raise();
+        textEdit_135->raise();
+        textEdit_136->raise();
+        textEdit_137->raise();
+        textEdit_134->raise();
+        input_antiviralsRate->raise();
+        textEdit_138->raise();
+        textEdit_139->raise();
+        input_medicalHelp->raise();
+        input_antiviralsHelp->raise();
+        textEdit_140->raise();
+        textEdit_146->raise();
+        input_verySickTreat->raise();
+        widget_2->raise();
+        textEdit_149->raise();
+        textEdit_151->raise();
+        input_extreamlySickTreat->raise();
+        widget_3->raise();
+        textEdit_153->raise();
+        textEdit_155->raise();
+        textEdit_157->raise();
+        input_contagiousnessReduct->raise();
+        input_durationReduct->raise();
+        input_HospitailizationReduct->raise();
         tabWidget->addTab(tab_4, QString());
         tab_5 = new QWidget();
         tab_5->setObjectName(QStringLiteral("tab_5"));
         scrollArea_4 = new QScrollArea(tab_5);
         scrollArea_4->setObjectName(QStringLiteral("scrollArea_4"));
-        scrollArea_4->setGeometry(QRect(0, 0, 885, 541));
+        scrollArea_4->setGeometry(QRect(0, 0, 935, 541));
         scrollArea_4->setFrameShape(QFrame::NoFrame);
         scrollArea_4->setWidgetResizable(false);
         scrollAreaWidgetContents_4 = new QWidget();
@@ -1370,169 +1642,156 @@ public:
         textEdit_144 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_144->setObjectName(QStringLiteral("textEdit_144"));
         textEdit_144->setEnabled(false);
-        textEdit_144->setGeometry(QRect(10, 50, 181, 31));
+        textEdit_144->setGeometry(QRect(10, 40, 181, 31));
         textEdit_145 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_145->setObjectName(QStringLiteral("textEdit_145"));
         textEdit_145->setEnabled(false);
-        textEdit_145->setGeometry(QRect(10, 9, 851, 41));
+        textEdit_145->setGeometry(QRect(10, 9, 851, 31));
         textEdit_145->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_147 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_147->setObjectName(QStringLiteral("textEdit_147"));
         textEdit_147->setEnabled(false);
-        textEdit_147->setGeometry(QRect(10, 190, 181, 31));
+        textEdit_147->setGeometry(QRect(10, 160, 181, 31));
         textEdit_148 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_148->setObjectName(QStringLiteral("textEdit_148"));
         textEdit_148->setEnabled(false);
-        textEdit_148->setGeometry(QRect(10, 130, 851, 61));
+        textEdit_148->setGeometry(QRect(10, 130, 851, 31));
         textEdit_148->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
-        textEdit_162 = new QTextEdit(scrollAreaWidgetContents_4);
-        textEdit_162->setObjectName(QStringLiteral("textEdit_162"));
-        textEdit_162->setEnabled(false);
-        textEdit_162->setGeometry(QRect(10, 220, 181, 61));
         textEdit_168 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_168->setObjectName(QStringLiteral("textEdit_168"));
         textEdit_168->setEnabled(false);
-        textEdit_168->setGeometry(QRect(10, 340, 181, 31));
+        textEdit_168->setGeometry(QRect(10, 240, 181, 31));
         textEdit_169 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_169->setObjectName(QStringLiteral("textEdit_169"));
         textEdit_169->setEnabled(false);
-        textEdit_169->setGeometry(QRect(10, 370, 181, 31));
+        textEdit_169->setGeometry(QRect(10, 270, 181, 31));
         textEdit_170 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_170->setObjectName(QStringLiteral("textEdit_170"));
         textEdit_170->setEnabled(false);
-        textEdit_170->setGeometry(QRect(10, 299, 851, 41));
+        textEdit_170->setGeometry(QRect(10, 210, 851, 31));
         textEdit_170->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_178 = new QTextEdit(scrollAreaWidgetContents_4);
         textEdit_178->setObjectName(QStringLiteral("textEdit_178"));
         textEdit_178->setEnabled(false);
-        textEdit_178->setGeometry(QRect(10, 80, 181, 31));
+        textEdit_178->setGeometry(QRect(10, 70, 181, 31));
         input_contactReduct = new QLineEdit(scrollAreaWidgetContents_4);
         input_contactReduct->setObjectName(QStringLiteral("input_contactReduct"));
-        input_contactReduct->setGeometry(QRect(190, 50, 671, 31));
+        input_contactReduct->setGeometry(QRect(190, 40, 161, 31));
         input_contactReduct->setMaxLength(20);
         input_contactReduct->setAlignment(Qt::AlignCenter);
-        input_SchoolCloseContact0to6 = new QLineEdit(scrollAreaWidgetContents_4);
-        input_SchoolCloseContact0to6->setObjectName(QStringLiteral("input_SchoolCloseContact0to6"));
-        input_SchoolCloseContact0to6->setGeometry(QRect(190, 250, 221, 31));
-        input_SchoolCloseContact0to6->setMaxLength(20);
-        input_SchoolCloseContact0to6->setAlignment(Qt::AlignCenter);
         input_gatheringCancel = new QLineEdit(scrollAreaWidgetContents_4);
         input_gatheringCancel->setObjectName(QStringLiteral("input_gatheringCancel"));
-        input_gatheringCancel->setGeometry(QRect(190, 340, 671, 31));
+        input_gatheringCancel->setGeometry(QRect(190, 240, 161, 31));
         input_gatheringCancel->setMaxLength(20);
         input_gatheringCancel->setAlignment(Qt::AlignCenter);
         widget_4 = new QWidget(scrollAreaWidgetContents_4);
         widget_4->setObjectName(QStringLiteral("widget_4"));
-        widget_4->setGeometry(QRect(190, 80, 671, 31));
+        widget_4->setGeometry(QRect(190, 70, 161, 31));
         widget_4->setStyleSheet(QStringLiteral("background-color:white; border:1px solid black;"));
         input_contactReductStart = new QLineEdit(widget_4);
         input_contactReductStart->setObjectName(QStringLiteral("input_contactReductStart"));
-        input_contactReductStart->setGeometry(QRect(280, 0, 50, 31));
+        input_contactReductStart->setGeometry(QRect(20, 0, 50, 31));
         input_contactReductStart->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_contactReductStart->setMaxLength(20);
         input_contactReductStart->setAlignment(Qt::AlignCenter);
         input_isolRange_5 = new QLineEdit(widget_4);
         input_isolRange_5->setObjectName(QStringLiteral("input_isolRange_5"));
         input_isolRange_5->setEnabled(false);
-        input_isolRange_5->setGeometry(QRect(330, 0, 20, 31));
+        input_isolRange_5->setGeometry(QRect(70, 0, 20, 31));
         input_isolRange_5->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_isolRange_5->setMaxLength(20);
         input_isolRange_5->setAlignment(Qt::AlignCenter);
         input_contactReductEnd = new QLineEdit(widget_4);
         input_contactReductEnd->setObjectName(QStringLiteral("input_contactReductEnd"));
-        input_contactReductEnd->setGeometry(QRect(350, 0, 50, 31));
+        input_contactReductEnd->setGeometry(QRect(90, 0, 50, 31));
         input_contactReductEnd->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_contactReductEnd->setMaxLength(20);
         input_contactReductEnd->setAlignment(Qt::AlignCenter);
-        widget_6 = new QWidget(scrollAreaWidgetContents_4);
-        widget_6->setObjectName(QStringLiteral("widget_6"));
-        widget_6->setGeometry(QRect(190, 190, 671, 31));
-        widget_6->setStyleSheet(QStringLiteral("background-color:white; border:1px solid black;"));
-        input_SchoolCloseStart = new QLineEdit(widget_6);
-        input_SchoolCloseStart->setObjectName(QStringLiteral("input_SchoolCloseStart"));
-        input_SchoolCloseStart->setGeometry(QRect(280, 0, 50, 31));
-        input_SchoolCloseStart->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
-        input_SchoolCloseStart->setMaxLength(20);
-        input_SchoolCloseStart->setAlignment(Qt::AlignCenter);
-        input_isolRange_8 = new QLineEdit(widget_6);
-        input_isolRange_8->setObjectName(QStringLiteral("input_isolRange_8"));
-        input_isolRange_8->setEnabled(false);
-        input_isolRange_8->setGeometry(QRect(330, 0, 20, 31));
-        input_isolRange_8->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
-        input_isolRange_8->setMaxLength(20);
-        input_isolRange_8->setAlignment(Qt::AlignCenter);
-        input_SchoolCloseEnd = new QLineEdit(widget_6);
-        input_SchoolCloseEnd->setObjectName(QStringLiteral("input_SchoolCloseEnd"));
-        input_SchoolCloseEnd->setGeometry(QRect(350, 0, 50, 31));
-        input_SchoolCloseEnd->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
-        input_SchoolCloseEnd->setMaxLength(20);
-        input_SchoolCloseEnd->setAlignment(Qt::AlignCenter);
         widget_7 = new QWidget(scrollAreaWidgetContents_4);
         widget_7->setObjectName(QStringLiteral("widget_7"));
-        widget_7->setGeometry(QRect(190, 370, 671, 31));
+        widget_7->setGeometry(QRect(190, 270, 161, 31));
         widget_7->setStyleSheet(QStringLiteral("background-color:white; border:1px solid black;"));
         input_gatheringCancelStart = new QLineEdit(widget_7);
         input_gatheringCancelStart->setObjectName(QStringLiteral("input_gatheringCancelStart"));
-        input_gatheringCancelStart->setGeometry(QRect(280, 0, 50, 31));
+        input_gatheringCancelStart->setGeometry(QRect(20, 0, 50, 31));
         input_gatheringCancelStart->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_gatheringCancelStart->setMaxLength(20);
         input_gatheringCancelStart->setAlignment(Qt::AlignCenter);
         input_isolRange_9 = new QLineEdit(widget_7);
         input_isolRange_9->setObjectName(QStringLiteral("input_isolRange_9"));
         input_isolRange_9->setEnabled(false);
-        input_isolRange_9->setGeometry(QRect(330, 0, 20, 31));
+        input_isolRange_9->setGeometry(QRect(70, 0, 20, 31));
         input_isolRange_9->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_isolRange_9->setMaxLength(20);
         input_isolRange_9->setAlignment(Qt::AlignCenter);
         input_gatheringCancelEnd = new QLineEdit(widget_7);
         input_gatheringCancelEnd->setObjectName(QStringLiteral("input_gatheringCancelEnd"));
-        input_gatheringCancelEnd->setGeometry(QRect(350, 0, 50, 31));
+        input_gatheringCancelEnd->setGeometry(QRect(90, 0, 50, 31));
         input_gatheringCancelEnd->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
         input_gatheringCancelEnd->setMaxLength(20);
         input_gatheringCancelEnd->setAlignment(Qt::AlignCenter);
-        textEdit_24 = new QTextEdit(scrollAreaWidgetContents_4);
-        textEdit_24->setObjectName(QStringLiteral("textEdit_24"));
-        textEdit_24->setEnabled(false);
-        textEdit_24->setGeometry(QRect(190, 220, 221, 31));
-        textEdit_27 = new QTextEdit(scrollAreaWidgetContents_4);
-        textEdit_27->setObjectName(QStringLiteral("textEdit_27"));
-        textEdit_27->setEnabled(false);
-        textEdit_27->setGeometry(QRect(410, 220, 231, 31));
-        textEdit_29 = new QTextEdit(scrollAreaWidgetContents_4);
-        textEdit_29->setObjectName(QStringLiteral("textEdit_29"));
-        textEdit_29->setEnabled(false);
-        textEdit_29->setGeometry(QRect(640, 220, 221, 31));
-        input_SchoolCloseContact7to12 = new QLineEdit(scrollAreaWidgetContents_4);
-        input_SchoolCloseContact7to12->setObjectName(QStringLiteral("input_SchoolCloseContact7to12"));
-        input_SchoolCloseContact7to12->setGeometry(QRect(410, 250, 231, 31));
-        input_SchoolCloseContact7to12->setMaxLength(20);
-        input_SchoolCloseContact7to12->setAlignment(Qt::AlignCenter);
-        input_SchoolCloseContact13to18 = new QLineEdit(scrollAreaWidgetContents_4);
-        input_SchoolCloseContact13to18->setObjectName(QStringLiteral("input_SchoolCloseContact13to18"));
-        input_SchoolCloseContact13to18->setGeometry(QRect(640, 250, 221, 31));
-        input_SchoolCloseContact13to18->setMaxLength(20);
-        input_SchoolCloseContact13to18->setAlignment(Qt::AlignCenter);
+        textEdit_160 = new QTextEdit(scrollAreaWidgetContents_4);
+        textEdit_160->setObjectName(QStringLiteral("textEdit_160"));
+        textEdit_160->setEnabled(false);
+        textEdit_160->setGeometry(QRect(350, 40, 511, 31));
+        textEdit_161 = new QTextEdit(scrollAreaWidgetContents_4);
+        textEdit_161->setObjectName(QStringLiteral("textEdit_161"));
+        textEdit_161->setEnabled(false);
+        textEdit_161->setGeometry(QRect(350, 70, 511, 31));
+        textEdit_163 = new QTextEdit(scrollAreaWidgetContents_4);
+        textEdit_163->setObjectName(QStringLiteral("textEdit_163"));
+        textEdit_163->setEnabled(false);
+        textEdit_163->setGeometry(QRect(350, 160, 511, 31));
+        textEdit_167 = new QTextEdit(scrollAreaWidgetContents_4);
+        textEdit_167->setObjectName(QStringLiteral("textEdit_167"));
+        textEdit_167->setEnabled(false);
+        textEdit_167->setGeometry(QRect(350, 240, 511, 31));
+        textEdit_171 = new QTextEdit(scrollAreaWidgetContents_4);
+        textEdit_171->setObjectName(QStringLiteral("textEdit_171"));
+        textEdit_171->setEnabled(false);
+        textEdit_171->setGeometry(QRect(350, 270, 511, 31));
+        widget_8 = new QWidget(scrollAreaWidgetContents_4);
+        widget_8->setObjectName(QStringLiteral("widget_8"));
+        widget_8->setGeometry(QRect(190, 160, 161, 31));
+        widget_8->setStyleSheet(QStringLiteral("background-color:white; border:1px solid black;"));
+        input_schoolCloseRangeStart = new QLineEdit(widget_8);
+        input_schoolCloseRangeStart->setObjectName(QStringLiteral("input_schoolCloseRangeStart"));
+        input_schoolCloseRangeStart->setGeometry(QRect(20, 0, 50, 31));
+        input_schoolCloseRangeStart->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
+        input_schoolCloseRangeStart->setMaxLength(20);
+        input_schoolCloseRangeStart->setAlignment(Qt::AlignCenter);
+        input_isolRange_10 = new QLineEdit(widget_8);
+        input_isolRange_10->setObjectName(QStringLiteral("input_isolRange_10"));
+        input_isolRange_10->setEnabled(false);
+        input_isolRange_10->setGeometry(QRect(70, 0, 20, 31));
+        input_isolRange_10->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
+        input_isolRange_10->setMaxLength(20);
+        input_isolRange_10->setAlignment(Qt::AlignCenter);
+        input_schoolCloseRangeEnd = new QLineEdit(widget_8);
+        input_schoolCloseRangeEnd->setObjectName(QStringLiteral("input_schoolCloseRangeEnd"));
+        input_schoolCloseRangeEnd->setGeometry(QRect(90, 0, 50, 31));
+        input_schoolCloseRangeEnd->setStyleSheet(QStringLiteral("background-color:transparent; border:0px;"));
+        input_schoolCloseRangeEnd->setMaxLength(20);
+        input_schoolCloseRangeEnd->setAlignment(Qt::AlignCenter);
         scrollArea_4->setWidget(scrollAreaWidgetContents_4);
+        textEdit_163->raise();
         textEdit_144->raise();
         textEdit_145->raise();
         textEdit_147->raise();
         textEdit_148->raise();
-        textEdit_162->raise();
         textEdit_168->raise();
         textEdit_169->raise();
         textEdit_170->raise();
         textEdit_178->raise();
+        textEdit_160->raise();
+        textEdit_161->raise();
         input_contactReduct->raise();
-        input_gatheringCancel->raise();
         widget_4->raise();
+        textEdit_167->raise();
+        input_gatheringCancel->raise();
+        textEdit_171->raise();
         widget_7->raise();
-        textEdit_24->raise();
-        textEdit_27->raise();
-        textEdit_29->raise();
-        widget_6->raise();
-        input_SchoolCloseContact0to6->raise();
-        input_SchoolCloseContact7to12->raise();
-        input_SchoolCloseContact13to18->raise();
+        widget_8->raise();
         tabWidget->addTab(tab_5, QString());
         tab_6 = new QWidget();
         tab_6->setObjectName(QStringLiteral("tab_6"));
@@ -1540,32 +1799,47 @@ public:
         textEdit_150 = new QTextEdit(tab_6);
         textEdit_150->setObjectName(QStringLiteral("textEdit_150"));
         textEdit_150->setEnabled(false);
-        textEdit_150->setGeometry(QRect(10, 9, 851, 41));
+        textEdit_150->setGeometry(QRect(10, 9, 851, 31));
         textEdit_150->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_152 = new QTextEdit(tab_6);
         textEdit_152->setObjectName(QStringLiteral("textEdit_152"));
         textEdit_152->setEnabled(false);
-        textEdit_152->setGeometry(QRect(10, 50, 181, 31));
+        textEdit_152->setGeometry(QRect(10, 40, 181, 31));
         textEdit_154 = new QTextEdit(tab_6);
         textEdit_154->setObjectName(QStringLiteral("textEdit_154"));
         textEdit_154->setEnabled(false);
-        textEdit_154->setGeometry(QRect(10, 80, 181, 31));
+        textEdit_154->setGeometry(QRect(10, 70, 181, 31));
         input_NICU = new QLineEdit(tab_6);
         input_NICU->setObjectName(QStringLiteral("input_NICU"));
-        input_NICU->setGeometry(QRect(190, 50, 671, 31));
+        input_NICU->setGeometry(QRect(190, 40, 161, 31));
         input_NICU->setMaxLength(20);
         input_NICU->setAlignment(Qt::AlignCenter);
         input_ICU = new QLineEdit(tab_6);
         input_ICU->setObjectName(QStringLiteral("input_ICU"));
-        input_ICU->setGeometry(QRect(190, 80, 671, 31));
+        input_ICU->setGeometry(QRect(190, 70, 161, 31));
         input_ICU->setMaxLength(20);
         input_ICU->setAlignment(Qt::AlignCenter);
+        textEdit_162 = new QTextEdit(tab_6);
+        textEdit_162->setObjectName(QStringLiteral("textEdit_162"));
+        textEdit_162->setEnabled(false);
+        textEdit_162->setGeometry(QRect(350, 40, 511, 31));
+        textEdit_172 = new QTextEdit(tab_6);
+        textEdit_172->setObjectName(QStringLiteral("textEdit_172"));
+        textEdit_172->setEnabled(false);
+        textEdit_172->setGeometry(QRect(350, 70, 511, 31));
         tabWidget->addTab(tab_6, QString());
+        textEdit_150->raise();
+        textEdit_152->raise();
+        textEdit_154->raise();
+        textEdit_162->raise();
+        textEdit_172->raise();
+        input_NICU->raise();
+        input_ICU->raise();
         tab_7 = new QWidget();
         tab_7->setObjectName(QStringLiteral("tab_7"));
         scrollArea_5 = new QScrollArea(tab_7);
         scrollArea_5->setObjectName(QStringLiteral("scrollArea_5"));
-        scrollArea_5->setGeometry(QRect(0, 0, 885, 541));
+        scrollArea_5->setGeometry(QRect(0, 0, 935, 541));
         scrollArea_5->setFrameShape(QFrame::NoFrame);
         scrollArea_5->setWidgetResizable(false);
         scrollAreaWidgetContents_5 = new QWidget();
@@ -1574,138 +1848,226 @@ public:
         textEdit_165 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_165->setObjectName(QStringLiteral("textEdit_165"));
         textEdit_165->setEnabled(false);
-        textEdit_165->setGeometry(QRect(10, 50, 181, 31));
+        textEdit_165->setGeometry(QRect(10, 40, 181, 31));
         textEdit_166 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_166->setObjectName(QStringLiteral("textEdit_166"));
         textEdit_166->setEnabled(false);
-        textEdit_166->setGeometry(QRect(10, 9, 851, 41));
+        textEdit_166->setGeometry(QRect(10, 9, 851, 31));
         textEdit_166->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_174 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_174->setObjectName(QStringLiteral("textEdit_174"));
         textEdit_174->setEnabled(false);
-        textEdit_174->setGeometry(QRect(10, 430, 851, 41));
+        textEdit_174->setGeometry(QRect(10, 410, 851, 31));
         textEdit_174->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_179 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_179->setObjectName(QStringLiteral("textEdit_179"));
         textEdit_179->setEnabled(false);
-        textEdit_179->setGeometry(QRect(10, 80, 181, 31));
+        textEdit_179->setGeometry(QRect(10, 70, 181, 31));
         textEdit_184 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_184->setObjectName(QStringLiteral("textEdit_184"));
         textEdit_184->setEnabled(false);
-        textEdit_184->setGeometry(QRect(10, 110, 181, 31));
+        textEdit_184->setGeometry(QRect(10, 100, 181, 31));
         textEdit_186 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_186->setObjectName(QStringLiteral("textEdit_186"));
         textEdit_186->setEnabled(false);
-        textEdit_186->setGeometry(QRect(10, 140, 181, 31));
+        textEdit_186->setGeometry(QRect(10, 130, 181, 31));
         textEdit_188 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_188->setObjectName(QStringLiteral("textEdit_188"));
         textEdit_188->setEnabled(false);
-        textEdit_188->setGeometry(QRect(10, 170, 181, 31));
+        textEdit_188->setGeometry(QRect(10, 160, 181, 31));
         textEdit_180 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_180->setObjectName(QStringLiteral("textEdit_180"));
         textEdit_180->setEnabled(false);
-        textEdit_180->setGeometry(QRect(10, 520, 851, 41));
+        textEdit_180->setGeometry(QRect(10, 490, 851, 31));
         textEdit_180->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
-        textEdit_181 = new QTextEdit(scrollAreaWidgetContents_5);
-        textEdit_181->setObjectName(QStringLiteral("textEdit_181"));
-        textEdit_181->setEnabled(false);
-        textEdit_181->setGeometry(QRect(10, 560, 181, 31));
         textEdit_204 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_204->setObjectName(QStringLiteral("textEdit_204"));
         textEdit_204->setEnabled(false);
-        textEdit_204->setGeometry(QRect(10, 290, 181, 31));
+        textEdit_204->setGeometry(QRect(10, 270, 181, 31));
         textEdit_211 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_211->setObjectName(QStringLiteral("textEdit_211"));
         textEdit_211->setEnabled(false);
-        textEdit_211->setGeometry(QRect(10, 260, 181, 31));
+        textEdit_211->setGeometry(QRect(10, 240, 181, 31));
         textEdit_206 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_206->setObjectName(QStringLiteral("textEdit_206"));
         textEdit_206->setEnabled(false);
-        textEdit_206->setGeometry(QRect(10, 320, 181, 31));
+        textEdit_206->setGeometry(QRect(10, 300, 181, 31));
         textEdit_209 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_209->setObjectName(QStringLiteral("textEdit_209"));
         textEdit_209->setEnabled(false);
-        textEdit_209->setGeometry(QRect(10, 350, 181, 31));
+        textEdit_209->setGeometry(QRect(10, 330, 181, 31));
         textEdit_205 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_205->setObjectName(QStringLiteral("textEdit_205"));
         textEdit_205->setEnabled(false);
-        textEdit_205->setGeometry(QRect(10, 219, 851, 41));
+        textEdit_205->setGeometry(QRect(10, 210, 851, 31));
         textEdit_205->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_210 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_210->setObjectName(QStringLiteral("textEdit_210"));
         textEdit_210->setEnabled(false);
-        textEdit_210->setGeometry(QRect(10, 380, 181, 31));
+        textEdit_210->setGeometry(QRect(10, 360, 181, 31));
         textEdit_182 = new QTextEdit(scrollAreaWidgetContents_5);
         textEdit_182->setObjectName(QStringLiteral("textEdit_182"));
         textEdit_182->setEnabled(false);
-        textEdit_182->setGeometry(QRect(10, 470, 181, 31));
+        textEdit_182->setGeometry(QRect(10, 440, 181, 31));
         input_vaccine_1 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccine_1->setObjectName(QStringLiteral("input_vaccine_1"));
-        input_vaccine_1->setGeometry(QRect(190, 50, 671, 31));
+        input_vaccine_1->setGeometry(QRect(190, 40, 161, 31));
         input_vaccine_1->setMaxLength(20);
         input_vaccine_1->setAlignment(Qt::AlignCenter);
         input_vaccine_2 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccine_2->setObjectName(QStringLiteral("input_vaccine_2"));
-        input_vaccine_2->setGeometry(QRect(190, 80, 671, 31));
+        input_vaccine_2->setGeometry(QRect(190, 70, 161, 31));
         input_vaccine_2->setMaxLength(20);
         input_vaccine_2->setAlignment(Qt::AlignCenter);
         input_vaccine_3 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccine_3->setObjectName(QStringLiteral("input_vaccine_3"));
-        input_vaccine_3->setGeometry(QRect(190, 110, 671, 31));
+        input_vaccine_3->setGeometry(QRect(190, 100, 161, 31));
         input_vaccine_3->setMaxLength(20);
         input_vaccine_3->setAlignment(Qt::AlignCenter);
         input_vaccine_4 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccine_4->setObjectName(QStringLiteral("input_vaccine_4"));
-        input_vaccine_4->setGeometry(QRect(190, 140, 671, 31));
+        input_vaccine_4->setGeometry(QRect(190, 130, 161, 31));
         input_vaccine_4->setMaxLength(20);
         input_vaccine_4->setAlignment(Qt::AlignCenter);
         input_vaccine_5 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccine_5->setObjectName(QStringLiteral("input_vaccine_5"));
-        input_vaccine_5->setGeometry(QRect(190, 170, 671, 31));
+        input_vaccine_5->setGeometry(QRect(190, 160, 161, 31));
         input_vaccine_5->setMaxLength(20);
         input_vaccine_5->setAlignment(Qt::AlignCenter);
         input_vaccineEffect_1 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccineEffect_1->setObjectName(QStringLiteral("input_vaccineEffect_1"));
-        input_vaccineEffect_1->setGeometry(QRect(190, 260, 671, 31));
+        input_vaccineEffect_1->setGeometry(QRect(190, 240, 161, 31));
         input_vaccineEffect_1->setMaxLength(20);
         input_vaccineEffect_1->setAlignment(Qt::AlignCenter);
         input_vaccineEffect_2 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccineEffect_2->setObjectName(QStringLiteral("input_vaccineEffect_2"));
-        input_vaccineEffect_2->setGeometry(QRect(190, 290, 671, 31));
+        input_vaccineEffect_2->setGeometry(QRect(190, 270, 161, 31));
         input_vaccineEffect_2->setMaxLength(20);
         input_vaccineEffect_2->setAlignment(Qt::AlignCenter);
         input_vaccineEffect_3 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccineEffect_3->setObjectName(QStringLiteral("input_vaccineEffect_3"));
-        input_vaccineEffect_3->setGeometry(QRect(190, 320, 671, 31));
+        input_vaccineEffect_3->setGeometry(QRect(190, 300, 161, 31));
         input_vaccineEffect_3->setMaxLength(20);
         input_vaccineEffect_3->setAlignment(Qt::AlignCenter);
         input_vaccineEffect_4 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccineEffect_4->setObjectName(QStringLiteral("input_vaccineEffect_4"));
-        input_vaccineEffect_4->setGeometry(QRect(190, 350, 671, 31));
+        input_vaccineEffect_4->setGeometry(QRect(190, 330, 161, 31));
         input_vaccineEffect_4->setMaxLength(20);
         input_vaccineEffect_4->setAlignment(Qt::AlignCenter);
         input_vaccineEffect_5 = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccineEffect_5->setObjectName(QStringLiteral("input_vaccineEffect_5"));
-        input_vaccineEffect_5->setGeometry(QRect(190, 380, 671, 31));
+        input_vaccineEffect_5->setGeometry(QRect(190, 360, 161, 31));
         input_vaccineEffect_5->setMaxLength(20);
         input_vaccineEffect_5->setAlignment(Qt::AlignCenter);
         input_antibodyRange = new QLineEdit(scrollAreaWidgetContents_5);
         input_antibodyRange->setObjectName(QStringLiteral("input_antibodyRange"));
-        input_antibodyRange->setGeometry(QRect(190, 470, 671, 31));
+        input_antibodyRange->setGeometry(QRect(190, 440, 161, 31));
         input_antibodyRange->setMaxLength(20);
         input_antibodyRange->setAlignment(Qt::AlignCenter);
         input_vaccineStart = new QLineEdit(scrollAreaWidgetContents_5);
         input_vaccineStart->setObjectName(QStringLiteral("input_vaccineStart"));
-        input_vaccineStart->setGeometry(QRect(190, 560, 671, 31));
+        input_vaccineStart->setGeometry(QRect(190, 520, 161, 31));
         input_vaccineStart->setMaxLength(20);
         input_vaccineStart->setAlignment(Qt::AlignCenter);
+        textEdit_173 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_173->setObjectName(QStringLiteral("textEdit_173"));
+        textEdit_173->setEnabled(false);
+        textEdit_173->setGeometry(QRect(350, 40, 511, 31));
+        textEdit_175 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_175->setObjectName(QStringLiteral("textEdit_175"));
+        textEdit_175->setEnabled(false);
+        textEdit_175->setGeometry(QRect(350, 70, 511, 31));
+        textEdit_176 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_176->setObjectName(QStringLiteral("textEdit_176"));
+        textEdit_176->setEnabled(false);
+        textEdit_176->setGeometry(QRect(350, 100, 511, 31));
+        textEdit_177 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_177->setObjectName(QStringLiteral("textEdit_177"));
+        textEdit_177->setEnabled(false);
+        textEdit_177->setGeometry(QRect(350, 130, 511, 31));
+        textEdit_183 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_183->setObjectName(QStringLiteral("textEdit_183"));
+        textEdit_183->setEnabled(false);
+        textEdit_183->setGeometry(QRect(350, 160, 511, 31));
+        textEdit_185 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_185->setObjectName(QStringLiteral("textEdit_185"));
+        textEdit_185->setEnabled(false);
+        textEdit_185->setGeometry(QRect(350, 240, 511, 31));
+        textEdit_187 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_187->setObjectName(QStringLiteral("textEdit_187"));
+        textEdit_187->setEnabled(false);
+        textEdit_187->setGeometry(QRect(350, 270, 511, 31));
+        textEdit_191 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_191->setObjectName(QStringLiteral("textEdit_191"));
+        textEdit_191->setEnabled(false);
+        textEdit_191->setGeometry(QRect(350, 300, 511, 31));
+        textEdit_194 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_194->setObjectName(QStringLiteral("textEdit_194"));
+        textEdit_194->setEnabled(false);
+        textEdit_194->setGeometry(QRect(350, 330, 511, 31));
+        textEdit_195 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_195->setObjectName(QStringLiteral("textEdit_195"));
+        textEdit_195->setEnabled(false);
+        textEdit_195->setGeometry(QRect(350, 360, 511, 31));
+        textEdit_198 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_198->setObjectName(QStringLiteral("textEdit_198"));
+        textEdit_198->setEnabled(false);
+        textEdit_198->setGeometry(QRect(350, 440, 511, 31));
+        textEdit_200 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_200->setObjectName(QStringLiteral("textEdit_200"));
+        textEdit_200->setEnabled(false);
+        textEdit_200->setGeometry(QRect(10, 520, 181, 31));
+        textEdit_202 = new QTextEdit(scrollAreaWidgetContents_5);
+        textEdit_202->setObjectName(QStringLiteral("textEdit_202"));
+        textEdit_202->setEnabled(false);
+        textEdit_202->setGeometry(QRect(350, 520, 511, 31));
         scrollArea_5->setWidget(scrollAreaWidgetContents_5);
+        textEdit_165->raise();
+        textEdit_166->raise();
+        textEdit_174->raise();
+        textEdit_179->raise();
+        textEdit_184->raise();
+        textEdit_186->raise();
+        textEdit_188->raise();
+        textEdit_180->raise();
+        textEdit_204->raise();
+        textEdit_211->raise();
+        textEdit_206->raise();
+        textEdit_209->raise();
+        textEdit_205->raise();
+        textEdit_210->raise();
+        textEdit_182->raise();
+        textEdit_173->raise();
+        textEdit_175->raise();
+        textEdit_176->raise();
+        textEdit_177->raise();
+        textEdit_183->raise();
+        input_vaccine_1->raise();
+        input_vaccine_2->raise();
+        input_vaccine_3->raise();
+        input_vaccine_4->raise();
+        input_vaccine_5->raise();
+        textEdit_185->raise();
+        textEdit_187->raise();
+        textEdit_191->raise();
+        textEdit_194->raise();
+        textEdit_195->raise();
+        input_vaccineEffect_1->raise();
+        input_vaccineEffect_2->raise();
+        input_vaccineEffect_3->raise();
+        input_vaccineEffect_4->raise();
+        input_vaccineEffect_5->raise();
+        textEdit_198->raise();
+        input_antibodyRange->raise();
+        textEdit_200->raise();
+        textEdit_202->raise();
+        input_vaccineStart->raise();
         tabWidget->addTab(tab_7, QString());
         tab_8 = new QWidget();
         tab_8->setObjectName(QStringLiteral("tab_8"));
         scrollArea_6 = new QScrollArea(tab_8);
         scrollArea_6->setObjectName(QStringLiteral("scrollArea_6"));
-        scrollArea_6->setGeometry(QRect(0, 0, 885, 541));
+        scrollArea_6->setGeometry(QRect(0, 0, 935, 541));
         scrollArea_6->setFrameShape(QFrame::NoFrame);
         scrollArea_6->setWidgetResizable(false);
         scrollAreaWidgetContents_6 = new QWidget();
@@ -1714,41 +2076,64 @@ public:
         textEdit_189 = new QTextEdit(scrollAreaWidgetContents_6);
         textEdit_189->setObjectName(QStringLiteral("textEdit_189"));
         textEdit_189->setEnabled(false);
-        textEdit_189->setGeometry(QRect(10, 50, 181, 31));
+        textEdit_189->setGeometry(QRect(10, 40, 181, 31));
         textEdit_190 = new QTextEdit(scrollAreaWidgetContents_6);
         textEdit_190->setObjectName(QStringLiteral("textEdit_190"));
         textEdit_190->setEnabled(false);
-        textEdit_190->setGeometry(QRect(10, 9, 851, 41));
+        textEdit_190->setGeometry(QRect(10, 9, 851, 31));
         textEdit_190->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_192 = new QTextEdit(scrollAreaWidgetContents_6);
         textEdit_192->setObjectName(QStringLiteral("textEdit_192"));
         textEdit_192->setEnabled(false);
-        textEdit_192->setGeometry(QRect(10, 170, 181, 41));
+        textEdit_192->setGeometry(QRect(10, 150, 181, 61));
         textEdit_193 = new QTextEdit(scrollAreaWidgetContents_6);
         textEdit_193->setObjectName(QStringLiteral("textEdit_193"));
         textEdit_193->setEnabled(false);
-        textEdit_193->setGeometry(QRect(10, 130, 851, 41));
+        textEdit_193->setGeometry(QRect(10, 120, 851, 31));
         textEdit_193->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_196 = new QTextEdit(scrollAreaWidgetContents_6);
         textEdit_196->setObjectName(QStringLiteral("textEdit_196"));
         textEdit_196->setEnabled(false);
-        textEdit_196->setGeometry(QRect(10, 80, 181, 31));
+        textEdit_196->setGeometry(QRect(10, 70, 181, 31));
         input_mask_NICU = new QLineEdit(scrollAreaWidgetContents_6);
         input_mask_NICU->setObjectName(QStringLiteral("input_mask_NICU"));
-        input_mask_NICU->setGeometry(QRect(190, 50, 671, 31));
+        input_mask_NICU->setGeometry(QRect(190, 40, 161, 31));
         input_mask_NICU->setMaxLength(20);
         input_mask_NICU->setAlignment(Qt::AlignCenter);
         input_mask_ICU = new QLineEdit(scrollAreaWidgetContents_6);
         input_mask_ICU->setObjectName(QStringLiteral("input_mask_ICU"));
-        input_mask_ICU->setGeometry(QRect(190, 80, 671, 31));
+        input_mask_ICU->setGeometry(QRect(190, 70, 161, 31));
         input_mask_ICU->setMaxLength(20);
         input_mask_ICU->setAlignment(Qt::AlignCenter);
         input_respRate = new QLineEdit(scrollAreaWidgetContents_6);
         input_respRate->setObjectName(QStringLiteral("input_respRate"));
-        input_respRate->setGeometry(QRect(190, 170, 671, 41));
+        input_respRate->setGeometry(QRect(190, 150, 161, 61));
         input_respRate->setMaxLength(20);
         input_respRate->setAlignment(Qt::AlignCenter);
+        textEdit_349 = new QTextEdit(scrollAreaWidgetContents_6);
+        textEdit_349->setObjectName(QStringLiteral("textEdit_349"));
+        textEdit_349->setEnabled(false);
+        textEdit_349->setGeometry(QRect(350, 40, 511, 31));
+        textEdit_350 = new QTextEdit(scrollAreaWidgetContents_6);
+        textEdit_350->setObjectName(QStringLiteral("textEdit_350"));
+        textEdit_350->setEnabled(false);
+        textEdit_350->setGeometry(QRect(350, 70, 511, 31));
+        textEdit_351 = new QTextEdit(scrollAreaWidgetContents_6);
+        textEdit_351->setObjectName(QStringLiteral("textEdit_351"));
+        textEdit_351->setEnabled(false);
+        textEdit_351->setGeometry(QRect(350, 150, 511, 61));
         scrollArea_6->setWidget(scrollAreaWidgetContents_6);
+        textEdit_189->raise();
+        textEdit_190->raise();
+        textEdit_192->raise();
+        textEdit_193->raise();
+        textEdit_196->raise();
+        input_respRate->raise();
+        textEdit_349->raise();
+        textEdit_350->raise();
+        input_mask_NICU->raise();
+        input_mask_ICU->raise();
+        textEdit_351->raise();
         tabWidget->addTab(tab_8, QString());
         tab_9 = new QWidget();
         tab_9->setObjectName(QStringLiteral("tab_9"));
@@ -1756,54 +2141,74 @@ public:
         textEdit_197 = new QTextEdit(tab_9);
         textEdit_197->setObjectName(QStringLiteral("textEdit_197"));
         textEdit_197->setEnabled(false);
-        textEdit_197->setGeometry(QRect(10, 9, 851, 41));
+        textEdit_197->setGeometry(QRect(10, 9, 851, 31));
         textEdit_197->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         textEdit_199 = new QTextEdit(tab_9);
         textEdit_199->setObjectName(QStringLiteral("textEdit_199"));
         textEdit_199->setEnabled(false);
-        textEdit_199->setGeometry(QRect(10, 80, 181, 41));
+        textEdit_199->setGeometry(QRect(10, 70, 181, 31));
         textEdit_201 = new QTextEdit(tab_9);
         textEdit_201->setObjectName(QStringLiteral("textEdit_201"));
         textEdit_201->setEnabled(false);
-        textEdit_201->setGeometry(QRect(10, 50, 181, 31));
+        textEdit_201->setGeometry(QRect(10, 40, 181, 31));
         input_reinspect = new QLineEdit(tab_9);
         input_reinspect->setObjectName(QStringLiteral("input_reinspect"));
-        input_reinspect->setGeometry(QRect(190, 50, 671, 31));
+        input_reinspect->setGeometry(QRect(190, 40, 161, 31));
         input_reinspect->setMaxLength(20);
         input_reinspect->setAlignment(Qt::AlignCenter);
         input_outpatient = new QLineEdit(tab_9);
         input_outpatient->setObjectName(QStringLiteral("input_outpatient"));
-        input_outpatient->setGeometry(QRect(190, 80, 671, 41));
+        input_outpatient->setGeometry(QRect(190, 70, 161, 31));
         input_outpatient->setMaxLength(20);
         input_outpatient->setAlignment(Qt::AlignCenter);
+        textEdit_352 = new QTextEdit(tab_9);
+        textEdit_352->setObjectName(QStringLiteral("textEdit_352"));
+        textEdit_352->setEnabled(false);
+        textEdit_352->setGeometry(QRect(350, 40, 511, 31));
+        textEdit_353 = new QTextEdit(tab_9);
+        textEdit_353->setObjectName(QStringLiteral("textEdit_353"));
+        textEdit_353->setEnabled(false);
+        textEdit_353->setGeometry(QRect(350, 70, 511, 31));
         tabWidget->addTab(tab_9, QString());
+        textEdit_197->raise();
+        textEdit_199->raise();
+        textEdit_201->raise();
+        textEdit_352->raise();
+        textEdit_353->raise();
+        input_reinspect->raise();
+        input_outpatient->raise();
         outputPageBtn = new QPushButton(inputWidget);
         outputPageBtn->setObjectName(QStringLiteral("outputPageBtn"));
-        outputPageBtn->setGeometry(QRect(810, 20, 91, 23));
+        outputPageBtn->setGeometry(QRect(790, 10, 151, 31));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\353\247\221\354\235\200 \352\263\240\353\224\225"));
+        font1.setPointSize(7);
+        outputPageBtn->setFont(font1);
         areaButton = new QPushButton(inputWidget);
         areaButton->setObjectName(QStringLiteral("areaButton"));
-        areaButton->setGeometry(QRect(730, 20, 75, 23));
+        areaButton->setGeometry(QRect(660, 10, 121, 31));
+        areaButton->setFont(font1);
         areaWidget = new QWidget(inputWidget);
         areaWidget->setObjectName(QStringLiteral("areaWidget"));
-        areaWidget->setGeometry(QRect(20, 200, 851, 201));
+        areaWidget->setGeometry(QRect(20, 200, 870, 201));
         areaWidget->setAutoFillBackground(false);
         areaWidget->setStyleSheet(QString::fromUtf8("background-color:white; font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225';"));
         groupBox = new QGroupBox(areaWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(0, 0, 851, 201));
+        groupBox->setGeometry(QRect(0, 0, 870, 201));
         groupBox->setAutoFillBackground(false);
         groupBox->setStyleSheet(QStringLiteral(""));
         radioButton_6 = new QRadioButton(groupBox);
         radioButton_6->setObjectName(QStringLiteral("radioButton_6"));
         radioButton_6->setGeometry(QRect(600, 120, 111, 17));
-        QFont font;
-        font.setFamily(QString::fromUtf8("\353\247\221\354\235\200 \352\263\240\353\224\225"));
-        radioButton_6->setFont(font);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("\353\247\221\354\235\200 \352\263\240\353\224\225"));
+        radioButton_6->setFont(font2);
         radioButton_5 = new QRadioButton(groupBox);
         radioButton_5->setObjectName(QStringLiteral("radioButton_5"));
         radioButton_5->setEnabled(true);
         radioButton_5->setGeometry(QRect(360, 120, 121, 17));
-        radioButton_5->setFont(font);
+        radioButton_5->setFont(font2);
         label_6 = new QLabel(groupBox);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(10, 40, 831, 61));
@@ -1818,7 +2223,7 @@ public:
         radioButton_4 = new QRadioButton(groupBox);
         radioButton_4->setObjectName(QStringLiteral("radioButton_4"));
         radioButton_4->setGeometry(QRect(100, 120, 186, 17));
-        radioButton_4->setFont(font);
+        radioButton_4->setFont(font2);
         radioButton_4->setChecked(true);
         areaWidget->raise();
         tabWidget->raise();
@@ -1826,13 +2231,17 @@ public:
         areaButton->raise();
         outputWidget = new QWidget(mainWidget);
         outputWidget->setObjectName(QStringLiteral("outputWidget"));
-        outputWidget->setGeometry(QRect(0, 0, 910, 620));
+        outputWidget->setGeometry(QRect(0, 0, 950, 601));
         outputWidget->setAutoFillBackground(true);
         output_tab = new QTabWidget(outputWidget);
         output_tab->setObjectName(QStringLiteral("output_tab"));
-        output_tab->setGeometry(QRect(10, 20, 895, 581));
-        output_tab->setMinimumSize(QSize(0, 541));
-        output_tab->setStyleSheet(QString::fromUtf8("QTabBar::tab {font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; height: 30px; width:70px; }"));
+        output_tab->setGeometry(QRect(10, 30, 950, 581));
+        output_tab->setMinimumSize(QSize(950, 581));
+        output_tab->setBaseSize(QSize(150, 40));
+        QFont font3;
+        font3.setPointSize(10);
+        output_tab->setFont(font3);
+        output_tab->setStyleSheet(QStringLiteral(""));
         output_tab->setTabPosition(QTabWidget::North);
         output_tab->setTabShape(QTabWidget::Rounded);
         output_tab->setIconSize(QSize(30, 16));
@@ -1842,7 +2251,7 @@ public:
         tab_10->setAutoFillBackground(true);
         customPlot_infection = new QCustomPlot(tab_10);
         customPlot_infection->setObjectName(QStringLiteral("customPlot_infection"));
-        customPlot_infection->setGeometry(QRect(20, 90, 851, 281));
+        customPlot_infection->setGeometry(QRect(20, 100, 851, 271));
         infectionTable = new QTableWidget(tab_10);
         if (infectionTable->columnCount() < 7)
             infectionTable->setColumnCount(7);
@@ -1861,144 +2270,153 @@ public:
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
         infectionTable->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         infectionTable->setObjectName(QStringLiteral("infectionTable"));
-        infectionTable->setGeometry(QRect(20, 370, 851, 171));
+        infectionTable->setGeometry(QRect(20, 380, 851, 161));
         output_tab->addTab(tab_10, QString());
-        tab_11 = new QWidget();
-        tab_11->setObjectName(QStringLiteral("tab_11"));
-        tab_11->setAutoFillBackground(true);
-        customPlot_resource = new QCustomPlot(tab_11);
-        customPlot_resource->setObjectName(QStringLiteral("customPlot_resource"));
-        customPlot_resource->setGeometry(QRect(20, 90, 851, 281));
-        resourceTable = new QTableWidget(tab_11);
-        if (resourceTable->columnCount() < 3)
-            resourceTable->setColumnCount(3);
-        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
-        resourceTable->setHorizontalHeaderItem(0, __qtablewidgetitem7);
-        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
-        resourceTable->setHorizontalHeaderItem(1, __qtablewidgetitem8);
-        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
-        resourceTable->setHorizontalHeaderItem(2, __qtablewidgetitem9);
-        resourceTable->setObjectName(QStringLiteral("resourceTable"));
-        resourceTable->setGeometry(QRect(20, 370, 851, 171));
-        output_tab->addTab(tab_11, QString());
-        tab_12 = new QWidget();
-        tab_12->setObjectName(QStringLiteral("tab_12"));
-        specimenTable = new QTableWidget(tab_12);
-        if (specimenTable->columnCount() < 1)
-            specimenTable->setColumnCount(1);
-        QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
-        specimenTable->setHorizontalHeaderItem(0, __qtablewidgetitem10);
-        specimenTable->setObjectName(QStringLiteral("specimenTable"));
-        specimenTable->setGeometry(QRect(20, 370, 851, 171));
-        customPlot_specimen = new QCustomPlot(tab_12);
-        customPlot_specimen->setObjectName(QStringLiteral("customPlot_specimen"));
-        customPlot_specimen->setGeometry(QRect(20, 90, 851, 281));
-        output_tab->addTab(tab_12, QString());
-        customPlot_specimen->raise();
-        specimenTable->raise();
         tab_13 = new QWidget();
         tab_13->setObjectName(QStringLiteral("tab_13"));
         customPlot_daily = new QCustomPlot(tab_13);
         customPlot_daily->setObjectName(QStringLiteral("customPlot_daily"));
-        customPlot_daily->setGeometry(QRect(20, 90, 851, 281));
+        customPlot_daily->setGeometry(QRect(20, 100, 851, 271));
         dailyTable = new QTableWidget(tab_13);
         if (dailyTable->columnCount() < 3)
             dailyTable->setColumnCount(3);
-        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
-        dailyTable->setHorizontalHeaderItem(0, __qtablewidgetitem11);
-        QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
-        dailyTable->setHorizontalHeaderItem(1, __qtablewidgetitem12);
-        QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
-        dailyTable->setHorizontalHeaderItem(2, __qtablewidgetitem13);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        dailyTable->setHorizontalHeaderItem(0, __qtablewidgetitem7);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        dailyTable->setHorizontalHeaderItem(1, __qtablewidgetitem8);
+        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        dailyTable->setHorizontalHeaderItem(2, __qtablewidgetitem9);
         dailyTable->setObjectName(QStringLiteral("dailyTable"));
-        dailyTable->setGeometry(QRect(20, 370, 851, 171));
+        dailyTable->setGeometry(QRect(20, 380, 851, 161));
         output_tab->addTab(tab_13, QString());
         tab_14 = new QWidget();
         tab_14->setObjectName(QStringLiteral("tab_14"));
         cumulativeTable = new QTableWidget(tab_14);
         if (cumulativeTable->columnCount() < 3)
             cumulativeTable->setColumnCount(3);
-        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
-        cumulativeTable->setHorizontalHeaderItem(0, __qtablewidgetitem14);
-        QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
-        cumulativeTable->setHorizontalHeaderItem(1, __qtablewidgetitem15);
-        QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
-        cumulativeTable->setHorizontalHeaderItem(2, __qtablewidgetitem16);
+        QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
+        cumulativeTable->setHorizontalHeaderItem(0, __qtablewidgetitem10);
+        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
+        cumulativeTable->setHorizontalHeaderItem(1, __qtablewidgetitem11);
+        QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
+        cumulativeTable->setHorizontalHeaderItem(2, __qtablewidgetitem12);
         cumulativeTable->setObjectName(QStringLiteral("cumulativeTable"));
-        cumulativeTable->setGeometry(QRect(20, 370, 851, 171));
+        cumulativeTable->setGeometry(QRect(20, 380, 851, 161));
         customPlot_cumulative = new QCustomPlot(tab_14);
         customPlot_cumulative->setObjectName(QStringLiteral("customPlot_cumulative"));
-        customPlot_cumulative->setGeometry(QRect(20, 90, 851, 281));
+        customPlot_cumulative->setGeometry(QRect(20, 100, 851, 271));
         output_tab->addTab(tab_14, QString());
         customPlot_cumulative->raise();
         cumulativeTable->raise();
+        tab_11 = new QWidget();
+        tab_11->setObjectName(QStringLiteral("tab_11"));
+        tab_11->setAutoFillBackground(true);
+        customPlot_resource = new QCustomPlot(tab_11);
+        customPlot_resource->setObjectName(QStringLiteral("customPlot_resource"));
+        customPlot_resource->setGeometry(QRect(20, 100, 851, 271));
+        resourceTable = new QTableWidget(tab_11);
+        if (resourceTable->columnCount() < 3)
+            resourceTable->setColumnCount(3);
+        QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
+        resourceTable->setHorizontalHeaderItem(0, __qtablewidgetitem13);
+        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
+        resourceTable->setHorizontalHeaderItem(1, __qtablewidgetitem14);
+        QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
+        resourceTable->setHorizontalHeaderItem(2, __qtablewidgetitem15);
+        resourceTable->setObjectName(QStringLiteral("resourceTable"));
+        resourceTable->setGeometry(QRect(20, 380, 851, 161));
+        output_tab->addTab(tab_11, QString());
+        tab_12 = new QWidget();
+        tab_12->setObjectName(QStringLiteral("tab_12"));
+        specimenTable = new QTableWidget(tab_12);
+        if (specimenTable->columnCount() < 1)
+            specimenTable->setColumnCount(1);
+        QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
+        specimenTable->setHorizontalHeaderItem(0, __qtablewidgetitem16);
+        specimenTable->setObjectName(QStringLiteral("specimenTable"));
+        specimenTable->setGeometry(QRect(20, 380, 851, 161));
+        customPlot_specimen = new QCustomPlot(tab_12);
+        customPlot_specimen->setObjectName(QStringLiteral("customPlot_specimen"));
+        customPlot_specimen->setGeometry(QRect(20, 100, 851, 271));
+        output_tab->addTab(tab_12, QString());
+        customPlot_specimen->raise();
+        specimenTable->raise();
         inputPageBtn = new QPushButton(outputWidget);
         inputPageBtn->setObjectName(QStringLiteral("inputPageBtn"));
-        inputPageBtn->setGeometry(QRect(810, 20, 91, 23));
+        inputPageBtn->setGeometry(QRect(790, 12, 151, 31));
         age_checkBox5 = new QCheckBox(outputWidget);
         buttonGroup = new QButtonGroup(MainWindow);
         buttonGroup->setObjectName(QStringLiteral("buttonGroup"));
         buttonGroup->addButton(age_checkBox5);
         age_checkBox5->setObjectName(QStringLiteral("age_checkBox5"));
-        age_checkBox5->setGeometry(QRect(580, 100, 95, 40));
-        QFont font1;
-        font1.setPointSize(12);
-        age_checkBox5->setFont(font1);
+        age_checkBox5->setGeometry(QRect(580, 120, 95, 40));
+        QFont font4;
+        font4.setPointSize(12);
+        age_checkBox5->setFont(font4);
         age_checkBox3 = new QCheckBox(outputWidget);
         buttonGroup->addButton(age_checkBox3);
         age_checkBox3->setObjectName(QStringLiteral("age_checkBox3"));
-        age_checkBox3->setGeometry(QRect(330, 100, 95, 40));
-        age_checkBox3->setFont(font1);
+        age_checkBox3->setGeometry(QRect(330, 120, 95, 40));
+        age_checkBox3->setFont(font4);
         age_checkBox1 = new QCheckBox(outputWidget);
         buttonGroup->addButton(age_checkBox1);
         age_checkBox1->setObjectName(QStringLiteral("age_checkBox1"));
-        age_checkBox1->setGeometry(QRect(100, 100, 95, 40));
-        age_checkBox1->setFont(font1);
+        age_checkBox1->setGeometry(QRect(100, 120, 95, 40));
+        age_checkBox1->setFont(font4);
         age_checkBox1->setIconSize(QSize(30, 30));
         age_checkBox1->setChecked(false);
         age_checkBox2 = new QCheckBox(outputWidget);
         buttonGroup->addButton(age_checkBox2);
         age_checkBox2->setObjectName(QStringLiteral("age_checkBox2"));
-        age_checkBox2->setGeometry(QRect(210, 100, 95, 40));
-        age_checkBox2->setFont(font1);
+        age_checkBox2->setGeometry(QRect(210, 120, 95, 40));
+        age_checkBox2->setFont(font4);
         textEdit_213 = new QTextEdit(outputWidget);
         textEdit_213->setObjectName(QStringLiteral("textEdit_213"));
         textEdit_213->setEnabled(false);
-        textEdit_213->setGeometry(QRect(30, 60, 851, 41));
+        textEdit_213->setGeometry(QRect(30, 60, 851, 61));
         textEdit_213->setStyleSheet(QStringLiteral("background-color: rgb(199, 199, 199);"));
         age_checkBox4 = new QCheckBox(outputWidget);
         buttonGroup->addButton(age_checkBox4);
         age_checkBox4->setObjectName(QStringLiteral("age_checkBox4"));
-        age_checkBox4->setGeometry(QRect(460, 100, 95, 40));
-        age_checkBox4->setFont(font1);
+        age_checkBox4->setGeometry(QRect(460, 120, 95, 40));
+        age_checkBox4->setFont(font4);
         age_checkBox6 = new QCheckBox(outputWidget);
         buttonGroup->addButton(age_checkBox6);
         age_checkBox6->setObjectName(QStringLiteral("age_checkBox6"));
-        age_checkBox6->setGeometry(QRect(710, 100, 95, 40));
-        age_checkBox6->setFont(font1);
+        age_checkBox6->setGeometry(QRect(710, 120, 95, 40));
+        age_checkBox6->setFont(font4);
         age_checkBox6->setChecked(true);
         introWidget = new QWidget(mainWidget);
         introWidget->setObjectName(QStringLiteral("introWidget"));
         introWidget->setGeometry(QRect(0, -10, 910, 620));
         introWidget->setAutoFillBackground(true);
-        label = new QLabel(introWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(370, 230, 131, 71));
-        QFont font2;
-        font2.setPointSize(36);
-        font2.setBold(true);
-        font2.setWeight(75);
-        label->setFont(font2);
         startButton = new QPushButton(introWidget);
         startButton->setObjectName(QStringLiteral("startButton"));
-        startButton->setGeometry(QRect(730, 530, 161, 61));
-        startButton->setFont(font1);
-        label_2 = new QLabel(introWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(460, 300, 47, 13));
-        QFont font3;
-        font3.setPointSize(10);
-        label_2->setFont(font3);
+        startButton->setGeometry(QRect(710, 500, 161, 61));
+        startButton->setFont(font4);
+        startButton->setStyleSheet(QStringLiteral("font-color:rgb(155, 187, 89);"));
+        textEdit_8 = new QTextEdit(introWidget);
+        textEdit_8->setObjectName(QStringLiteral("textEdit_8"));
+        textEdit_8->setEnabled(false);
+        textEdit_8->setGeometry(QRect(50, 290, 781, 71));
+        textEdit_8->setStyleSheet(QStringLiteral("border:0;"));
+        textEdit_8->setReadOnly(false);
+        textEdit_9 = new QTextEdit(introWidget);
+        textEdit_9->setObjectName(QStringLiteral("textEdit_9"));
+        textEdit_9->setGeometry(QRect(50, 220, 301, 81));
+        textEdit_9->setStyleSheet(QStringLiteral("background-color:transparent; border:0;"));
+        textEdit_10 = new QTextEdit(introWidget);
+        textEdit_10->setObjectName(QStringLiteral("textEdit_10"));
+        textEdit_10->setGeometry(QRect(210, 260, 104, 31));
+        textEdit_10->setStyleSheet(QStringLiteral("background-color:transparent; border:0;"));
+        textEdit_11 = new QTextEdit(introWidget);
+        textEdit_11->setObjectName(QStringLiteral("textEdit_11"));
+        textEdit_11->setGeometry(QRect(40, 440, 251, 41));
+        textEdit_11->setStyleSheet(QStringLiteral("background-color:transparent; border:0;"));
+        textEdit_12 = new QTextEdit(introWidget);
+        textEdit_12->setObjectName(QStringLiteral("textEdit_12"));
+        textEdit_12->setGeometry(QRect(40, 480, 321, 71));
+        textEdit_12->setStyleSheet(QStringLiteral("background-color:transparent; border:0;"));
         jpgWidget = new QWidget(mainWidget);
         jpgWidget->setObjectName(QStringLiteral("jpgWidget"));
         jpgWidget->setGeometry(QRect(30, 170, 851, 201));
@@ -2045,12 +2463,12 @@ public:
         checkBox_5->setGeometry(QRect(660, 110, 70, 17));
         csvWidget = new QWidget(mainWidget);
         csvWidget->setObjectName(QStringLiteral("csvWidget"));
-        csvWidget->setGeometry(QRect(30, 170, 851, 201));
+        csvWidget->setGeometry(QRect(20, 190, 870, 201));
         csvWidget->setAutoFillBackground(false);
         csvWidget->setStyleSheet(QString::fromUtf8("background-color:white; font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225';"));
         groupBox_4 = new QGroupBox(csvWidget);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
-        groupBox_4->setGeometry(QRect(0, 0, 851, 201));
+        groupBox_4->setGeometry(QRect(0, 0, 870, 201));
         groupBox_4->setAutoFillBackground(false);
         groupBox_4->setStyleSheet(QStringLiteral(""));
         label_11 = new QLabel(groupBox_4);
@@ -2065,29 +2483,64 @@ public:
         csvSubmit->setObjectName(QStringLiteral("csvSubmit"));
         csvSubmit->setGeometry(QRect(730, 160, 111, 31));
         checkBox_6 = new QCheckBox(groupBox_4);
+        buttonGroup_3 = new QButtonGroup(MainWindow);
+        buttonGroup_3->setObjectName(QStringLiteral("buttonGroup_3"));
+        buttonGroup_3->addButton(checkBox_6);
         checkBox_6->setObjectName(QStringLiteral("checkBox_6"));
-        checkBox_6->setGeometry(QRect(30, 110, 70, 17));
+        checkBox_6->setGeometry(QRect(30, 110, 70, 20));
+        checkBox_6->setChecked(true);
+        checkBox_6->setAutoRepeat(true);
+        checkBox_6->setAutoExclusive(false);
         checkBox_7 = new QCheckBox(groupBox_4);
+        buttonGroup_3->addButton(checkBox_7);
         checkBox_7->setObjectName(QStringLiteral("checkBox_7"));
-        checkBox_7->setGeometry(QRect(180, 110, 70, 17));
+        checkBox_7->setGeometry(QRect(130, 110, 191, 20));
+        checkBox_7->setChecked(false);
+        checkBox_7->setAutoRepeat(true);
+        checkBox_7->setAutoExclusive(false);
         checkBox_8 = new QCheckBox(groupBox_4);
+        buttonGroup_3->addButton(checkBox_8);
         checkBox_8->setObjectName(QStringLiteral("checkBox_8"));
-        checkBox_8->setGeometry(QRect(340, 110, 70, 17));
+        checkBox_8->setGeometry(QRect(600, 110, 70, 20));
+        checkBox_11 = new QCheckBox(groupBox_4);
+        buttonGroup_3->addButton(checkBox_11);
+        checkBox_11->setObjectName(QStringLiteral("checkBox_11"));
+        checkBox_11->setGeometry(QRect(360, 110, 191, 20));
         checkBox_9 = new QCheckBox(groupBox_4);
+        buttonGroup_3->addButton(checkBox_9);
         checkBox_9->setObjectName(QStringLiteral("checkBox_9"));
-        checkBox_9->setGeometry(QRect(500, 110, 70, 17));
-        checkBox_10 = new QCheckBox(groupBox_4);
-        checkBox_10->setObjectName(QStringLiteral("checkBox_10"));
-        checkBox_10->setGeometry(QRect(660, 110, 70, 17));
+        checkBox_9->setGeometry(QRect(720, 110, 70, 20));
+        closeWidget = new QWidget(mainWidget);
+        closeWidget->setObjectName(QStringLiteral("closeWidget"));
+        closeWidget->setGeometry(QRect(20, 240, 870, 201));
+        closeWidget->setAutoFillBackground(false);
+        closeWidget->setStyleSheet(QString::fromUtf8("background-color:white; font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225';"));
+        groupBox_2 = new QGroupBox(closeWidget);
+        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        groupBox_2->setGeometry(QRect(0, 0, 870, 201));
+        groupBox_2->setAutoFillBackground(false);
+        groupBox_2->setStyleSheet(QStringLiteral(""));
+        label_7 = new QLabel(groupBox_2);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(10, 40, 831, 61));
+        label_7->setScaledContents(false);
+        label_7->setWordWrap(true);
+        closeBtn = new QPushButton(groupBox_2);
+        closeBtn->setObjectName(QStringLiteral("closeBtn"));
+        closeBtn->setGeometry(QRect(730, 130, 111, 31));
+        saveBtn = new QPushButton(groupBox_2);
+        saveBtn->setObjectName(QStringLiteral("saveBtn"));
+        saveBtn->setGeometry(QRect(610, 130, 111, 31));
         MainWindow->setCentralWidget(mainWidget);
         csvWidget->raise();
+        closeWidget->raise();
         jpgWidget->raise();
         introWidget->raise();
         outputWidget->raise();
         inputWidget->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 910, 21));
+        menuBar->setGeometry(QRect(0, 0, 950, 21));
         menuAaa = new QMenu(menuBar);
         menuAaa->setObjectName(QStringLiteral("menuAaa"));
         menu_2 = new QMenu(menuAaa);
@@ -2101,6 +2554,7 @@ public:
         menuAaa->addAction(actionOpen);
         menuAaa->addAction(actionSave);
         menuAaa->addAction(menu_2->menuAction());
+        menuAaa->addAction(action);
         menu_2->addAction(actionJPG);
         menu_2->addAction(actionCSV);
         menuFdddd->addAction(actionK_flu);
@@ -2118,17 +2572,18 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "K-Flu", 0));
-        actionOpen->setText(QApplication::translate("MainWindow", "\354\203\210\353\241\234\354\232\264 \355\214\214\354\235\274\354\227\264\352\270\260", 0));
+        actionOpen->setText(QApplication::translate("MainWindow", "\352\270\260\354\241\264 \355\214\214\354\235\274\354\227\264\352\270\260", 0));
         actionSave->setText(QApplication::translate("MainWindow", "\354\240\200\354\236\245\355\225\230\352\270\260", 0));
         actionK_flu->setText(QApplication::translate("MainWindow", "K flu \354\204\244\353\252\205\354\204\234", 0));
         actionContact->setText(QApplication::translate("MainWindow", "\354\227\260\353\235\275\354\262\230", 0));
         actionJPG->setText(QApplication::translate("MainWindow", "JPG\355\214\214\354\235\274\353\241\234 \353\263\200\355\231\230\355\225\230\352\270\260", 0));
         actionCSV->setText(QApplication::translate("MainWindow", "CSV\355\214\214\354\235\274\353\241\234 \353\263\200\355\231\230\355\225\230\352\270\260", 0));
+        action->setText(QApplication::translate("MainWindow", "\354\242\205\353\243\214\355\225\230\352\270\260", 0));
         textEdit->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\353\214\200\353\217\204\354\213\234\355\230\225 \354\227\260\353\240\271\353\263\204 \353\266\204\355\217\254</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\353\214\200\353\217\204\354\213\234\355\230\225 \354\227\260\353\240\271\353\263\204 \353\266\204\355\217\254</span></p></body></html>", 0));
         textEdit_2->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2139,57 +2594,57 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
         textEdit_4->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
         textEdit_5->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
         textEdit_6->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">19\354\204\270-64\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">19\354\204\270-64\354\204\270</span></p></body></html>", 0));
         textEdit_7->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201</span></p></body></html>", 0));
         textEdit_13->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
         textEdit_15->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\240\221\354\264\211 \355\232\237\354\210\230</span><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\240\221\354\264\211\353\247\244\355\212\270\353\246\255\354\212\244)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\240\221\354\264\211 \355\232\237\354\210\230(\354\240\221\354\264\211\353\247\244\355\212\270\353\246\255\354\212\244)</span></p></body></html>", 0));
         textEdit_17->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201</span></p></body></html>", 0));
         textEdit_20->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
         textEdit_22->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">19\354\204\270-64\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">19\354\204\270-64\354\204\270</span></p></body></html>", 0));
         textEdit_23->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
         textEdit_25->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2199,44 +2654,44 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
         textEdit_28->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
         textEdit_33->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
         textEdit_39->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">19\354\204\270-64\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">19\354\204\270-64\354\204\270</span></p></body></html>", 0));
         textEdit_45->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201</span></p></body></html>", 0));
         textEdit_50->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">18\354\204\270 \354\235\264\355\225\230 \354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204 \352\260\204 \354\240\221\354\264\211 \355\231\225\353\245\240</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">18\354\204\270 \354\235\264\355\225\230 \354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204 \352\260\204 \354\240\221\354\264\211 \355\231\225\353\245\240</span></p></body></html>", 0));
         textEdit_52->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\355\225\231\352\265\220 \353\202\264 \354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204 \352\260\204 \354\240\221\354\264\211\355\225\240 \355\231\225\353\245\240(%)</span></p></body></html>", 0));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\355\225\231\352\265\220 \353\202\264 \354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204 \352\260\204 \354\240\221\354\264\211\355\225\240 \355\231\225\353\245\240(%)</span></p></body></html>", 0));
         textEdit_53->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\353\217\205\352\260\220\354\234\274\353\241\234 \354\235\270\355\225\234 \352\262\260\354\204\235\354\234\274\353\241\234 \355\225\231\352\265\220\352\260\200 \354\225\204\353\213\214 \353\213\244\353\245\270 \352\263\263\354\227\220 \354\236\210\354\235\204 \353\225\214 \354\226\264\353\245\270\352\263\274\354\235\230 \354\240\221\354\264\211\354\235\264 \352\260\225\355\231\224\353\220\230\353\212\224 \354\240\225\353\217\204</span><span style=\" font-family:'MS Shell Dl"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\353\217\205\352\260\220\354\234\274\353\241\234 \354\235\270\355\225\234 \352\262\260\354\204\235\354\234\274\353\241\234 \355\225\231\352\265\220\352\260\200 \354\225\204\353\213\214 \353\213\244\353\245\270 \352\263\263\354\227\220 \354\236\210\354\235\204 \353\225\214 \354\226\264\353\245\270\352\263\274\354\235\230 \354\240\221\354\264\211\354\235\264 \352\260\225\355\231\224\353\220\230\353\212\224 \354\240\225\353\217\204</span><span style=\" font-family:'MS Shell Dl"
                         "g 2'; font-size:8pt;\"> </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(1\354\235\200 \355\217\211\354\206\214\354\231\200 \352\260\231\354\235\200 \354\240\221\354\264\211 \354\240\225\353\217\204\353\245\274 \354\235\230\353\257\270\355\225\250)</span></p></body></html>", 0));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(1\354\235\200 \355\217\211\354\206\214\354\231\200 \352\260\231\354\235\200 \354\240\221\354\264\211 \354\240\225\353\217\204\353\245\274 \354\235\230\353\257\270\355\225\250)</span></p></body></html>", 0));
         input_Age0to6->setText(QString());
         input_Age7to12->setText(QString());
         input_Age13to18->setText(QString());
@@ -2263,7 +2718,7 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">\355\225\251\352\263\204</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\355\225\251\352\263\204</span></p></body></html>", 0));
         input_contact_total0to6->setText(QString());
         input_contact_total7to12->setText(QString());
         input_contact_total13to18->setText(QString());
@@ -2274,145 +2729,130 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">\355\225\251\352\263\204</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\355\225\251\352\263\204</span></p></body></html>", 0));
         textEdit_51->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271</span></p></body></html>", 0));
         textEdit_54->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
         textEdit_56->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
         textEdit_59->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
         input_SchoolRatio7to12->setText(QString());
         input_SchoolRatio13to18->setText(QString());
         textEdit_21->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">\355\225\251\352\263\204</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\355\225\251\352\263\204</span></p></body></html>", 0));
         input_AgeTotal->setText(QString());
         input_AbsentRatio7to12->setText(QString());
         input_AbsentRatio13to18->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "\354\235\270\352\265\254", 0));
-        textEdit_57->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\240\204 \354\227\260\353\240\271\354\270\265\354\227\220 \353\214\200\355\225\234 \354\236\240\353\263\265\352\270\260(\354\235\274)</span></p></body></html>", 0));
         textEdit_55->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\240\204 \354\227\260\353\240\271\354\227\220 \353\214\200\355\225\234 \354\236\240\353\263\265\352\270\260 </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\352\260\220\354\227\274 \354\213\234\354\240\220\353\266\200\355\204\260 \354\246\235\354\203\201 \353\260\234\355"
-                        "\230\204\352\271\214\354\247\200 \352\261\270\353\246\254\353\212\224 \354\213\234\352\260\204\354\235\264\353\251\260 \354\235\264\353\212\224 \354\264\235 7\353\213\250\352\263\204\353\241\234 \353\202\230\353\211\230\354\226\264\354\240\270 \354\236\210\354\235\214)</span><span style=\" font-size:8pt;\"> </span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\240\204 \354\227\260\353\240\271\354\227\220 \353\214\200\355\225\234 \354\236\240\353\263\265\352\270\260 (\354\235\274)</span></p></body></html>", 0));
         textEdit_58->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\227\260\353\240\271\352\265\254\353\266\204</span></p></body></html>", 0));
         textEdit_60->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\236\240\353\263\265\352\270\260 \354\235\264\355\233\204 \355\217\211\352\267\240 \352\260\220\354\227\274 \352\260\200\353\212\245 \352\270\260\352\260\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color"
-                        ":#7f7f7f;\">(\354\236\240\353\263\265\352\270\260 \354\235\264\355\233\204 \355\203\200\354\235\270\354\227\220\352\262\214 \354\240\204\355\214\214\352\260\200 \352\260\200\353\212\245\355\225\234 \354\213\234\352\260\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\236\240\353\263\265\352\270\260 \354\235\264\355\233\204 \355\217\211\352\267\240 \352\260\220\354\227\274 \352\260\200\353\212\245 \352\270\260\352\260\204</span></p></body></html>", 0));
         textEdit_66->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\227\205\353\254\264 \353\263\265\352\267\200\354\227\220 \352\261\270\353\246\254\353\212\224 \355\217\211\352\267\240 \354\213\234\352\260\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(20\354\204\270~64\354\204\270 \354\247"
-                        "\201\354\236\245\354\235\270\354\235\264 \353\217\205\352\260\220\354\234\274\353\241\234 \354\235\270\355\225\230\354\227\254 \352\262\260\352\267\274\355\225\230\354\230\200\354\235\204 \354\213\234 \353\217\205\352\260\220\354\235\204 \355\232\214\353\263\265\355\225\230\352\263\240 \354\227\205\353\254\264\354\227\220 \353\263\265\352\267\200\355\225\230\353\212\224\353\215\260 \352\271\214\354\247\200 \352\261\270\353\246\254\353\212\224 \354\213\234\352\260\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\227\205\353\254\264 \353\263\265\352\267\200\354\227\220 \352\261\270\353\246\254\353\212\224 \355\217\211\352\267\240 \354\213\234\352\260\204</span></p></body></html>", 0));
         textEdit_61->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\353\254\264\354\246\235\354\203\201 \353\260\217 \354\246\235\354\203\201\354\235\264 \352\260\200\353\262\274\354\232\270 \352\262\275\354\232\260 (\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\353\254\264\354\246\235\354\203\201 \353\260\217 \354\246\235\354\203\201\354\235\264 \352\260\200\353\262\274\354\232\270 \352\262\275\354\232\260 (\354\235\274)</span></p></body></html>", 0));
         textEdit_62->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\246\235\354\203\201\354\235\264 \354\213\254\355\225\240 \352\262\275\354\232\260(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\246\235\354\203\201\354\235\264 \354\213\254\355\225\240 \352\262\275\354\232\260(\354\235\274)</span></p></body></html>", 0));
         textEdit_63->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(0\354\204\270-18\354\204\270)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(0\354\204\270-18\354\204\270)</span></p></body></html>", 0));
         textEdit_73->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\247\201\354\236\245\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(20\354\204\270-64\354\204\270)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\247\201\354\236\245\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(20\354\204\270-64\354\204\270)</span></p></body></html>", 0));
         textEdit_74->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\353\205\270\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(65\354\204\270 \354\235\264\354\203\201)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\353\205\270\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(65\354\204\270 \354\235\264\354\203\201)</span></p></body></html>", 0));
         textEdit_64->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\227\205\353\254\264\353\263\265\352\267\200 \355\217\211\352\267\240\354\213\234\352\260\204(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\227\205\353\254\264\353\263\265\352\267\200 \355\217\211\352\267\240\354\213\234\352\260\204(\354\235\274)</span></p></body></html>", 0));
         textEdit_68->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\353\254\264\354\246\235\354\203\201\354\235\270 \352\262\275\354\232\260(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\353\254\264\354\246\235\354\203\201\354\235\270 \352\262\275\354\232\260(%)</span></p></body></html>", 0));
         textEdit_69->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\353\217\205\352\260\220 \354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260, \354\244\221\352\260\204"
-                        "\354\235\270 \352\262\275\354\232\260 \353\260\217 \353\202\256\354\235\200 \352\262\275\354\232\260\354\235\230 \353\271\204\354\234\250)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204</span></p></body></html>", 0));
         textEdit_70->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\246\235\354\203\201\354\236\220 \354\244\221 \354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\246\235\354\203\201\354\236\220 \354\244\221 \354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260(%)</span></p></body></html>", 0));
         textEdit_72->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\240\200\354\234\204\355\227\230\352\265\260 \354\244\221 </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\236\205\354\233\220 \355\231\225\353\245\240(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\240\200\354\234\204\355\227\230\352\265\260 \354\244\221 </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\236\205\354\233\220 \355\231\225\353\245\240(%)</span></p></body></html>", 0));
         textEdit_80->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(0\354\204\270-18\354\204\270)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(0\354\204\270-18\354\204\270)</span></p></body></html>", 0));
         textEdit_82->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\247\201\354\236\245\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(20\354\204\270-64\354\204\270)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\247\201\354\236\245\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(20\354\204\270-64\354\204\270)</span></p></body></html>", 0));
         textEdit_83->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\227\260\353\240\271\353\263\204 </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\235\270\355\224\214\353\243\250\354\227\224\354\236\220 </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span st"
-                        "yle=\" font-size:9pt; color:#000000;\">\352\263\240\354\234\204\355\227\230\352\265\260 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\235\270\355\224\214\353\243\250\354\227\224\354\236\220 </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\352\263\240\354\234\204\355\227\230\352\265\260 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_86->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2422,19 +2862,19 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\234\274\353\251\264\354\204\234 \354\271\230\353\243\214\355\225\230\354\247\200 \354\225\212\354\225\230\354\235\204 \352\262\275\354\232\260\354\235\230 \354\227\260\353\240\271\353\263\204 \354\236\205\354\233\220 \353\271\204\354\234\250</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\234\274\353\251\264\354\204\234 \354\271\230\353\243\214\355\225\230\354\247\200 \354\225\212\354\225\230\354\235\204 \352\262\275\354\232\260\354\235\230 \354\227\260\353\240\271\353\263\204 \354\236\205\354\233\220 \353\271\204\354\234\250</span></p></body></html>", 0));
         textEdit_90->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\353\205\270\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(65\354\204\270 \354\235\264\354\203\201)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\353\205\270\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(65\354\204\270 \354\235\264\354\203\201)</span></p></body></html>", 0));
         textEdit_93->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\240\200\354\234\204\355\227\230\352\265\260 \354\244\221 </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\236\205\354\233\220 \355\231\225\353\245\240(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\240\200\354\234\204\355\227\230\352\265\260 \354\244\221 </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\236\205\354\233\220 \355\231\225\353\245\240(%)</span></p></body></html>", 0));
         textEdit_96->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2444,35 +2884,31 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\234\274\353\251\264\354\204\234 \354\271\230\353\243\214\353\260\233\354\247\200 \354\225\212\354\235\200 \352\262\275\354\232\260\354\235\230 \354\271\230\354\202\254\354\234\250</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span"
-                        " style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\353\217\205\352\260\220\354\234\274\353\241\234 \354\235\270\355\225\230\354\227\254 \354\202\254\353\247\235\355\225\240 \355\231\225\353\245\240)</span><span style=\" font-size:8pt;\"> </span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\234\274\353\251\264\354\204\234 \354\271\230\353\243\214\353\260\233\354\247\200 \354\225\212\354\235\200 \352\262\275\354\232\260\354\235\230 \354\271\230\354\202\254\354\234\250</span></p></body></html>", 0));
         textEdit_100->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\227\260\353\240\271\353\263\204 </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\235\270\355\224\214\353\243\250\354\227\224\354\236\220 </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span st"
-                        "yle=\" font-size:9pt; color:#000000;\">\352\263\240\354\234\204\355\227\230\352\265\260 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\235\270\355\224\214\353\243\250\354\227\224\354\236\220 </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\352\263\240\354\234\204\355\227\230\352\265\260 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_101->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\353\205\270\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(65\354\204\270 \354\235\264\354\203\201)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\353\205\270\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(65\354\204\270 \354\235\264\354\203\201)</span></p></body></html>", 0));
         textEdit_103->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(0\354\204\270-18\354\204\270)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(0\354\204\270-18\354\204\270)</span></p></body></html>", 0));
         textEdit_104->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\247\201\354\236\245\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(20\354\204\270-64\354\204\270)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\247\201\354\236\245\354\235\270</span><span style=\" font-size:8pt;\"> </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(20\354\204\270-64\354\204\270)</span></p></body></html>", 0));
         input_SevereRate->setText(QString());
         input_high_1_1->setText(QString());
         input_high_1_2->setText(QString());
@@ -2495,83 +2931,134 @@ public:
         input_infDuration_2_3->setText(QString());
         input_returnToWork->setText(QString());
         input_MildRate->setText(QString());
+        textEdit_65->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\352\260\220\354\227\274 \354\213\234\354\240\220\353\266\200\355\204\260 \354\246\235\354\203\201 \353\260\234\355\230\204\352\271\214\354\247\200 \352\261\270\353\246\254\353\212\224 \355\217\211\352\267\240 \352\270\260\352\260\204\354\235\204 \354\235\230\353\257\270\355\225\230\353\251\260 \354\235\264 \352\270\260\352\260\204\354\235\200 \302\240\354\264\235 7\353\213\250\352\263\204\353\241\234 \353\202\230\353\211\230\354\226\264\354\240\270 \354\236"
+                        "\210\354\235\214</span><span style=\" font-size:8pt;\"> </span></p></body></html>", 0));
+        textEdit_67->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\227\260\353\240\271\353\263\204\353\241\234 \354\236\240\353\263\265\352\270\260 \354\235\264\355\233\204 \355\203\200\354\235\270\354\227\220\352\262\214 \354\240\204\355\214\214\352\260\200 \352\260\200\353\212\245\355\225\234 \355\217\211\352\267\240 \352\260\220\354\227\274 \352\260\200\353\212\245 \352\270\260\352\260\204(\354\235\274)\354\235\204 \354\235\230\353\257\270\355\225\250</span></p></body></html>", 0));
+        textEdit_71->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\353\254\264\354\246\235\354\203\201\352\260\220\354\227\274\354\236\220 \353\260\217 \354\246\235\354\203\201\354\235\264 \352\260\200\353\262\274\354\232\264 \352\260\220\354\227\274\354\236\220\354\235\270 \352\262\275\354\232\260 \355\203\200\354\235\270\354\234\274\353\241\234\354\235\230 \355\217\211\352\267\240 \352\260\220\354\227\274 \352\260\200\353\212\245 \352\270\260\352\260\204</span></p></body></html>", 0));
+        textEdit_75->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\246\235\354\203\201\354\235\264 \354\213\254\355\225\234 \352\260\220\354\227\274\354\236\220\354\235\270 \352\262\275\354\232\260 \355\203\200\354\235\270\354\234\274\353\241\234\354\235\230 \355\217\211\352\267\240 \352\260\220\354\227\274 \352\260\200\353\212\245 \352\270\260\352\260\204</span></p></body></html>", 0));
+        textEdit_76->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\353\254\264\354\246\235\354\203\201 \352\260\220\354\227\274\354\236\220\354\235\230 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_77->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\246\235\354\203\201\354\236\220 \354\244\221\354\227\220\354\204\234 \354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\260\220\354\227\274\354\236\220\354\235\230 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_78->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">20\354\204\270~64\354\204\270 \354\247\201\354\236\245\354\235\270\354\235\264 \353\217\205\352\260\220\354\234\274\353\241\234 \354\235\270\355\225\230\354\227\254 \352\262\260\352\267\274\355\225\230\354\230\200\354\235\204 \354\213\234 \353\217\205\352\260\220\354\235\204 \355\232\214\353\263\265\355\225\230\352\263\240 \354\227\205\353\254\264\354\227\220 \353\263\265\352\267\200\355\225\230\353\212\224\353\215\260 \352\271\214\354\247\200"
+                        " \352\261\270\353\246\254\353\212\224 \354\213\234\352\260\204</span></p></body></html>", 0));
+        textEdit_79->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\352\263\240 \354\271\230\353\243\214 \355\225\230\354\247\200 \354\225\212\354\225\230\354\235\204 \352\262\275\354\232\260(\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254 \354\225\210\355\225\250) \354\236\205\354\233\220 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_81->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\352\260\201 \354\227\260\353\240\271\353\263\204 \352\263\240\354\234\204\355\227\230\352\265\260 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_84->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\352\260\201 \354\227\260\353\240\271\353\263\204 \354\240\200\354\234\204\355\227\230\352\265\260 \354\244\221 \354\236\205\354\233\220 \355\231\225\353\245\240</span></p></body></html>", 0));
+        textEdit_85->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\352\260\201 \354\227\260\353\240\271\353\263\204 \352\263\240\354\234\204\355\227\230\352\265\260 \354\244\221 \354\236\205\354\233\220 \355\231\225\353\245\240</span></p></body></html>", 0));
+        textEdit_87->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\227\260\353\240\271\353\263\204 \353\217\205\352\260\220\354\234\274\353\241\234 \354\235\270\355\225\230\354\227\254 \354\202\254\353\247\235\355\225\240 \355\231\225\353\245\240</span></p></body></html>", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "\354\247\210\353\263\221", 0));
         textEdit_105->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\352\270\260\354\264\210\352\260\220\354\227\274\354\236\254\354\203\235\354\202\260\354\210\230(R0)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\352\270\260\354\264\210\352\260\220\354\227\274\354\236\254\354\203\235\354\202\260\354\210\230(R0)</span></p></body></html>", 0));
         textEdit_106->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#595959;\">\352\270\260\354\264\210\352\260\220\354\227\274\354\236\254\354\203\235\354\202\260\354\210\230</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\353\252\250\353\223\240 \354\235\270\352\265\254\352\260\200 \352\260\220\354\227\274 \352"
-                        "\260\200\353\212\245\354\204\261\354\235\264 \354\236\210\354\235\204 \353\225\214 1\353\252\205\354\235\230 \352\260\220\354\227\274\353\263\221 \355\231\230\354\236\220\352\260\200 \352\260\220\354\227\274 \352\260\200\353\212\245\352\270\260\352\260\204 \353\217\231\354\225\210 \354\247\201\354\240\221 \352\260\220\354\227\274\354\213\234\355\202\244\353\212\224 \355\217\211\352\267\240 \354\235\270\354\233\220 \354\210\230)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#595959;\">\352\270\260\354\264\210\352\260\220\354\227\274\354\236\254\354\203\235\354\202\260\354\210\230</span></p></body></html>", 0));
         textEdit_125->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\236\240\353\263\265\352\270\260\354\235\230 \353\247\210\354\247\200\353\247\211 \353\213\250\352\263\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\236\240\353\263\265\352\270\260\354\235\230 \353\247\210\354\247\200\353\247\211 \353\213\250\352\263\204</span><span style=\" font-size:8pt;\"> </span><span style=\" font-size:8pt; color:#000000;\">(%)</span></p></body></html>", 0));
         textEdit_126->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260\354\231\200 \353\271\204\352\265\220\355\226\210\354\235\204 \353\225\214 \354\203\201\353\214\200\354\240\201 \354\240\204\354\227\274\354\204\261</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><spa"
-                        "n style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\236\240\353\263\265\352\270\260\354\235\230 \353\247\210\354\247\200\353\247\211 \353\213\250\352\263\204(\353\213\250\352\263\204 6, \353\213\250\352\263\2047)\354\235\274 \352\262\275\354\232\260, \353\254\264\354\246\235\354\203\201\354\235\274 \352\262\275\354\232\260, \354\244\221\354\246\235\353\217\204\352\260\200 \354\244\221\352\260\204\354\235\274 \352\262\275\354\232\260 \354\240\204\354\227\274\354\204\261\354\235\264 \354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260\354\231\200 \353\271\204\352\265\220\355\226\210\354\235\204 \353\225\214 \354\226\264\353\212\220 \354\240\225\353\217\204\354\235\270\354\247\200 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\203\204 )</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260\354\231\200 \353\271\204\352\265\220\355\226\210\354\235\204 \353\225\214 \354\203\201\353\214\200\354\240\201 \352\260\220\354\227\274\353\240\245</span></p></body></html>", 0));
         textEdit_127->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\353\254\264\354\246\235\354\203\201\354\235\274 \352\262\275\354\232\260(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\353\254\264\354\246\235\354\203\201\354\235\274 \352\262\275\354\232\260(%)</span></p></body></html>", 0));
         textEdit_108->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\353\271\204\354\234\250</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\353\271\204\354\234\250</span><span style=\" font-size:8pt;\"> </span><span style=\" font-size:8pt; color:#000000;\">(%)</span></p></body></html>", 0));
         textEdit_109->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\264\235 \352\260\220\354\227\274\352\260\200\353\212\245 \352\270\260\352\260\204 \354\244\221 \354\240\210\353\260\230 \352\270\260\352\260\204 \353\217\231\354\225\210 \352\260\226\353\212\224 \354\240\204\354\227\274\354\204\261 \353\271\204\354\234\250</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-ind"
-                        "ent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\264\235 \352\260\220\354\227\274\352\260\200\353\212\245\352\270\260\352\260\204\354\235\204 7\354\235\274 \354\235\264\353\235\274\352\263\240 \355\226\210\354\235\204 \353\225\214 \354\262\253 3.5 \354\235\274\352\260\204 \354\240\204\354\227\274\354\204\261\354\235\264 \353\202\230\354\244\221 3.5\354\235\274\352\260\204 \354\240\204\354\227\274\354\204\261\354\227\220 \353\271\204\355\225\264 \354\226\274\353\247\210\353\202\230 \352\260\225\355\225\234\354\247\200 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\203\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\264\235 \352\260\220\354\227\274\352\260\200\353\212\245 \352\270\260\352\260\204 \354\244\221 \354\264\210\352\270\260 \354\240\210\353\260\230 \352\270\260\352\260\204 \353\217\231\354\225\210\354\235\230 \354\240\204\355\214\214 \353\271\204\354\234\250</span></p></body></html>", 0));
         textEdit_156->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \354\244\221\352\260\204\354\235\274 \352\262\275\354\232\260</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \354\244\221\352\260\204\354\235\274 \352\262\275\354\232\260</span><span style=\" font-size:8pt;\"> </span><span style=\" font-size:8pt; color:#000000;\">(%)</span></p></body></html>", 0));
         textEdit_158->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\204 \352\262\275\354\232\260(\353\263\221\354\233\220)(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\204 \352\262\275\354\232\260(\353\263\221\354\233\220)(%)</span></p></body></html>", 0));
         textEdit_131->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\353\266\200\353\266\204\352\262\251\353\246\254</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\352\262\251\353\246\254\355\226\210\354\235\204 \354\213\234 \354\244\221\354\246\235\353\217\204\353\263\204, \354\236\245\354\206\214\353"
-                        "\263\204 \354\240\221\354\264\211\354\235\264 \352\260\220\354\206\214\355\225\230\353\212\224 \354\240\225\353\217\204\353\245\274 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\203\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\353\266\200\353\266\204\352\262\251\353\246\254</span></p></body></html>", 0));
         textEdit_132->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \354\244\221\352\260\204\354\235\274 \352\262\275\354\232\260(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \354\244\221\352\260\204\354\235\274 \352\262\275\354\232\260(%)</span></p></body></html>", 0));
         textEdit_133->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\204 \352\262\275\354\232\260(\354\247\221)(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\204 \352\262\275\354\232\260(\354\247\221)(%)</span></p></body></html>", 0));
         textEdit_159->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\352\262\251\353\246\254\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\352\262\251\353\246\254\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
         input_lastLatent->setText(QString());
         input_asymptomatic->setText(QString());
         input_moderate->setText(QString());
@@ -2583,7 +3070,67 @@ public:
         input_isolStart->setText(QString());
         input_isolRange_2->setText(QApplication::translate("MainWindow", "-", 0));
         input_isolEnd->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "\354\240\204\354\227\274\353\263\221", 0));
+        textEdit_107->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\353\252\250\353\223\240 \354\235\270\352\265\254\352\260\200 \352\260\220\354\227\274 \352\260\200\353\212\245\354\204\261\354\235\264 \354\236\210\354\235\204 \353\225\214 1\353\252\205\354\235\230 \352\260\220\354\227\274\353\263\221 \355\231\230\354\236\220\352\260\200 \352\260\220\354\227\274 \352\260\200\353\212\245\352\270\260\352\260\204 \353\217\231\354\225\210 \354\247\201\354\240\221 \352\260\220\354\227\274\354\213\234\355\202\244"
+                        "\353\212\224 \355\217\211\352\267\240 \354\235\270\354\233\220 \354\210\230</span></p></body></html>", 0));
+        textEdit_110->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\264\235 \352\260\220\354\227\274\352\260\200\353\212\245\352\270\260\352\260\204\354\235\204 7\354\235\274 \354\235\264\353\235\274\352\263\240 \355\226\210\354\235\204 \353\225\214 \354\262\253 3.5 \354\235\274\352\260\204 \354\240\204\354\227\274\354\204\261\354\235\264 \353\202\230\354\244\221 3.5\354\235\274\352\260\204 \354\240\204\354\227\274\354\204\261\354\227\220 \353\271\204\355\225\264 \354\226\274\353\247\210\353\202\230 \352"
+                        "\260\225\355\225\234\354\247\200 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\203\204</span></p></body></html>", 0));
+        textEdit_113->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260\354\231\200 \353\271\204\352\265\220\355\225\230\354\227\254 \354\203\201\353\214\200\354\240\201\354\235\270 \352\260\220\354\227\274\353\240\245\354\235\204 \353\202\230\355\203\200\353\203\204</span></p></body></html>", 0));
+        textEdit_116->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\236\240\353\263\265\352\270\260\354\235\230 \353\247\210\354\247\200\353\247\211 \353\213\250\352\263\204(\353\213\250\352\263\204 6, \353\213\250\352\263\2047)\354\235\274 \352\262\275\354\232\260 \352\260\220\354\227\274\354\204\261\354\235\264 \354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260\354\231\200 \353\271\204\352\265\220\355\226\210\354\235\204 \353\225\214 \354\226\264\353\212"
+                        "\220 \354\240\225\353\217\204\354\235\270\354\247\200 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\203\204</span></p></body></html>", 0));
+        textEdit_117->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\353\254\264\354\246\235\354\203\201\354\235\274 \352\262\275\354\232\260 \352\260\220\354\227\274\354\204\261\354\235\264 \354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260\354\231\200 \353\271\204\352\265\220\355\226\210\354\235\204 \353\225\214 \354\226\264\353\212\220 \354\240\225\353\217\204\354\235\270\354\247\200 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\203\204<"
+                        "/span></p></body></html>", 0));
+        textEdit_119->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\354\246\235\353\217\204\352\260\200 \354\244\221\352\260\204\354\235\274 \352\262\275\354\232\260 \352\260\220\354\227\274\354\204\261\354\235\264 \354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260\354\231\200 \353\271\204\352\265\220\355\226\210\354\235\204 \353\225\214 \354\226\264\353\212\220 \354\240\225\353\217\204\354\235\270\354\247\200 \353\271\204\354\234\250\353\241\234 "
+                        "\353\202\230\355\203\200\353\203\204</span></p></body></html>", 0));
+        textEdit_123->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\352\262\251\353\246\254\355\226\210\354\235\204 \354\213\234 \354\244\221\354\246\235\353\217\204\353\263\204, \354\236\245\354\206\214\353\263\204 \354\240\221\354\264\211\354\235\264 \352\260\220\354\206\214\355\225\230\353\212\224 \354\240\225\353\217\204\353\245\274 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\203\204</span></p></body></html>", 0));
+        textEdit_124->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\354\246\235\353\217\204\352\260\200 \354\244\221\352\260\204\354\235\270 \352\262\275\354\232\260 \352\262\251\353\246\254 \354\213\234 \354\240\221\354\264\211\354\235\264 \352\260\220\354\206\214\355\225\230\353\212\224 \354\240\225\353\217\204</span></p></body></html>", 0));
+        textEdit_128->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\204 \352\262\275\354\232\260 \352\262\251\353\246\254\353\220\230\353\212\224 \353\217\231\354\225\210 \354\247\221\354\227\220 \354\236\210\354\235\204 \354\213\234 \354\240\221\354\264\211\354\235\264 \352\260\220\354\206\214\355\225\230\353\212\224 \354\240\225\353\217\204</span></p></body></html>", 0));
+        textEdit_129->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\204 \352\262\275\354\232\260 \352\262\251\353\246\254\353\220\230\353\212\224 \353\217\231\354\225\210 \354\236\205\354\233\220 \355\226\210\354\235\204 \354\213\234 \354\240\221\354\264\211\354\235\264 \352\260\220\354\206\214\355\225\230\353\212\224 \354\240\225\353\217\204</span></p></body></html>", 0));
+        textEdit_130->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\352\262\251\353\246\254\355\225\230\353\212\224 \352\270\260\352\260\204\354\235\204 \353\252\205\354\213\234\355\225\250</span></p></body></html>", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "\352\260\220\354\227\274\354\204\261", 0));
         textEdit_111->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2593,9 +3140,7 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254 \352\260\200\353\212\245 \353\271\204\354\234\250</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\240\204\354\262\264 \354\235\270\352"
-                        "\265\254\354\227\220\354\204\234 \355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234\353\245\274 \355\210\254\354\227\254\355\225\240 \354\210\230 \354\236\210\353\212\224 \353\271\204\354\234\250. \353\247\214\354\225\275 10%\353\235\274\353\251\264 \354\235\270\352\265\254 10\353\247\214\353\252\205\353\213\271 1\353\247\214 dose \355\210\254\354\227\254 \352\260\200\353\212\245\355\225\230\353\213\244\353\212\224 \354\235\230\353\257\270)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254 \352\260\200\353\212\245 \353\271\204\354\234\250</span></p></body></html>", 0));
         textEdit_114->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2605,30 +3150,27 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\235\230\353\243\214\354\204\234\353\271\204\354\212\244 \354\235\264\354\232\251 \354\213\234\352\260\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\246\235\354\203\201\353\260\234\355\230\204 \355\233\204 \354\235\230\353"
-                        "\243\214 \354\204\234\353\271\204\354\212\244\353\245\274 \353\260\233\353\212\224\353\215\260 \352\271\214\354\247\200 \352\261\270\353\246\254\353\212\224 \354\213\234\352\260\204\352\263\274 \355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254\352\271\214\354\247\200 \352\261\270\353\246\254\353\212\224 \354\213\234\352\260\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\235\230\353\243\214\354\204\234\353\271\204\354\212\244 \353\214\200\352\270\260 \354\213\234\352\260\204</span></p></body></html>", 0));
         textEdit_164->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\236\205\354\233\220 \352\260\220\354\206\214 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\236\205\354\233\220 \352\260\220\354\206\214 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_141->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\271\230\353\243\214\355\232\250\352\263\274</span><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254\353\245\274 \355\206\265\355\225\264 \354\240\204\354\227\274\354\204\261, \354\234\240\353\263\221\352\270\260\352\260\204, \354\236\205\354\233\220\354\235\264 \354\226\264\353\212\220 \354\240\225\353\217\204 \352\260\220\354"
-                        "\206\214\355\225\230\353\212\224\354\247\200 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\203\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\271\230\353\243\214\355\232\250\352\263\274</span></p></body></html>", 0));
         textEdit_142->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\240\204\354\227\274\354\204\261 \352\260\220\354\206\214 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\240\204\354\227\274\354\204\261 \352\260\220\354\206\214 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_143->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\234\240\353\263\221 \352\270\260\352\260\204 \352\260\220\354\206\214 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\234\240\353\263\221 \352\270\260\352\260\204 \352\260\220\354\206\214 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_118->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2638,34 +3180,32 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\271\230\353\243\214\353\245\274 \353\260\233\353\212\224 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\271\230\353\243\214\353\245\274 \353\260\233\353\212\224 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_121->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
         textEdit_122->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260 \354\271\230\353\243\214(\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254 \355\230\271\354\235\200 \354\247\221\354\227\220\354\204\234 \354\274\200\354\226\264)\353\245\274 \353\260\233\353\212\224 \353\271\204\354\234\250\352\263\274 \355\225\255\353\260\224\354\235\264\353\237\254\354\212\244"
-                        "\354\240\234 \354\202\254\354\232\251 \352\260\200\353\212\245 \352\270\260\352\260\204</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204 \353\206\222\354\235\200 \352\262\275\354\232\260(Very Sick) \355\225\255 \353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254\353\245\274 \355\225\230\353\212\224 \353\271\204\354\234\250\352\263\274 \352\267\270 \352\270\260\352\260\204</span></p></body></html>", 0));
         textEdit_135->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\271\230\353\243\214\353\245\274 \353\260\233\353\212\224 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\271\230\353\243\214\353\245\274 \353\260\233\353\212\224 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_136->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \354\203\201\353\213\271\355\236\210 \353\206\222\354\235\200 \352\262\275\354\232\260 \354\271\230\353\243\214(\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254 \355\230\271\354\235\200 \354\236\205\354\233\220)\353\245\274 \355\225\204\354\232\224\353\241\234 \355\225\230\353\212\224 \353\271\204\354\234\250\352\263\274 \355\225\255\353\260\224"
-                        "\354\235\264\353\237\254\354\212\244\354\240\234 \354\202\254\354\232\251 \352\260\200\353\212\245 \352\270\260\352\260\204</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\247\244\354\232\260 \353\206\222\354\235\200 \352\262\275\354\232\260(Extremely Sick) \355\225\255 \353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254\353\245\274 \355\225\230\353\212\224 \353\271\204\354\234\250\352\263\274 \352\267\270 \352\270\260\352\260\204</span></p></body></html>", 0));
         textEdit_137->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
         input_antiviralsRate->setText(QString());
         input_medicalHelp->setText(QString());
         input_antiviralsHelp->setText(QString());
@@ -2680,197 +3220,239 @@ public:
         input_extreamlySickTreatStart->setText(QString());
         input_isolRange_4->setText(QApplication::translate("MainWindow", "-", 0));
         input_extreamlySickTreatEnd->setText(QString());
+        textEdit_134->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\240\204\354\262\264 \354\235\270\352\265\254\354\227\220\354\204\234 \355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234\353\245\274 \355\210\254\354\227\254\355\225\240 \354\210\230 \354\236\210\353\212\224 \353\271\204\354\234\250. </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; "
+                        "font-weight:600; color:#7f7f7f;\">\353\247\214\354\225\275 10%\353\235\274\352\263\240 \354\236\205\353\240\245\354\235\264 \353\220\230\354\226\264\354\236\210\352\263\240 \354\240\204\354\262\264 \354\235\270\352\265\254\352\260\200 10\353\247\214\353\252\205 \354\235\264\353\235\274\353\251\264 \354\264\235 1\353\247\214 dose \355\210\254\354\227\254 \352\260\200\353\212\245\355\225\230\353\213\244\353\212\224 \354\235\230\353\257\270</span></p></body></html>", 0));
+        textEdit_138->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\246\235\354\203\201 \353\260\234\355\230\204 \355\233\204 \354\235\230\353\243\214\354\247\200\354\233\220\354\235\204 \353\260\233\352\270\260\352\271\214\354\247\200 \352\261\270\353\246\254\353\212\224 \354\213\234\352\260\204</span></p></body></html>", 0));
+        textEdit_139->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\246\235\354\203\201 \353\260\234\355\230\204 \355\233\204 \355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254\353\245\274 \355\225\230\352\270\260\352\271\214\354\247\200 \352\261\270\353\246\254\353\212\224 \354\213\234\352\260\204</span></p></body></html>", 0));
+        textEdit_140->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260 \355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234\353\245\274 \355\210\254\354\227\254 \353\260\233\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_146->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \354\271\230\353\243\214\352\260\200 \352\260\200\353\212\245\355\225\234 \352\270\260\352\260\204\354\235\204 \353\252\205\354\213\234</span></p></body></html>", 0));
+        textEdit_149->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\354\246\235\353\217\204\352\260\200 \353\206\222\354\235\200 \352\262\275\354\232\260 \355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234\353\245\274 \355\210\254\354\227\254 \353\260\233\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_151->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \354\271\230\353\243\214\352\260\200 \352\260\200\353\212\245\355\225\234 \352\270\260\352\260\204\354\235\204 \353\252\205\354\213\234</span></p></body></html>", 0));
+        textEdit_153->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254\353\245\274 \355\206\265\355\225\234 \352\260\220\354\227\274\354\204\261 \352\260\220\354\206\214 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_155->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254\353\245\274 \355\206\265\355\225\234 \354\234\240\353\263\221\352\270\260\352\260\204 \352\260\220\354\206\214 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_157->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234 \355\210\254\354\227\254\353\245\274 \355\206\265\355\225\234 \354\236\205\354\233\220 \352\260\220\354\206\214 \353\271\204\354\232\270</span></p></body></html>", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "\354\271\230\353\243\214", 0));
         textEdit_144->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\240\221\354\264\211 \352\260\220\354\206\214 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\240\221\354\264\211 \352\260\220\354\206\214 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_145->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\235\274\353\260\230\354\240\221\354\264\211 \352\260\220\354\206\214 \353\271\204\354\234\250 \353\260\217 \352\270\260\352\260\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\240\204\354\262\264 \354\235\270\352\265\254"
-                        "\354\227\220\354\204\234 \354\235\274\353\260\230\354\240\201\354\235\270 \354\240\221\354\264\211\354\235\204 \352\260\220\354\206\214\354\213\234\355\202\244\353\212\224 \353\271\204\354\234\250\352\263\274 \354\240\221\354\264\211\354\235\204 \352\260\220\354\206\214\354\213\234\355\202\244\353\212\224 \352\270\260\352\260\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\235\274\353\260\230\354\240\221\354\264\211 \352\260\220\354\206\214 \353\271\204\354\234\250 \353\260\217 \352\270\260\352\260\204</span></p></body></html>", 0));
         textEdit_147->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\355\234\264\352\265\220\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\355\234\264\352\265\220\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
         textEdit_148->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\355\234\264\352\265\220 \352\270\260\352\260\204 \353\260\217 \354\226\264\353\245\270\352\263\274\354\235\230 \354\240\221\354\264\211 \354\210\230\354\244\200 \352\260\225\355\231\224 \354\240\225\353\217\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weig"
-                        "ht:600; color:#7f7f7f;\">(18\354\204\270 \354\235\264\355\225\230 \354\226\264\353\246\260\354\235\264 \353\260\217 \354\262\255\354\206\214\353\205\204\354\235\230 \352\262\275\354\232\260 \355\234\264\352\265\220\354\227\220 \354\235\230\355\225\264\354\204\234 \354\240\221\354\264\211\354\235\264 \352\260\220\354\206\214\353\220\230\353\212\224 \353\271\204\354\234\250\352\263\274 \355\234\264\352\265\220 \354\213\234 \354\247\221 \353\223\261\354\227\220\354\204\234 \354\226\264\353\245\270\352\263\274 \354\240\221\354\264\211 \354\210\230\354\244\200\354\235\264 \352\260\225\355\231\224\353\220\230\353\212\224 \354\240\225\353\217\204\353\245\274 \353\202\230\355\203\200\353\203\204. \354\240\221\354\264\211 \352\260\225\355\231\224 \354\240\225\353\217\204\352\260\200 1\354\235\270 \352\262\275\354\232\260\353\212\224 \355\217\211\354\206\214\354\231\200 \354\240\221\354\264\211 \354\240\225\353\217\204\352\260\200 \353\271\204\354\212\267\355\225\234 \352\262\203\354\235\204 \354\235\230\353\257\270\355"
-                        "\225\250.)</span></p></body></html>", 0));
-        textEdit_162->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\240\221\354\264\211 \354\210\230\354\244\200 \352\260\225\355\231\224</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\355\234\264\352\265\220 \352\270\260\352\260\204 \353\260\217 \354\226\264\353\245\270\352\263\274\354\235\230 \354\240\221\354\264\211 \354\210\230\354\244\200 \352\260\225\355\231\224 \354\240\225\353\217\204</span></p></body></html>", 0));
         textEdit_168->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\271\230\353\243\214\353\245\274 \353\260\233\353\212\224 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\271\230\353\243\214\353\245\274 \353\260\233\353\212\224 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_169->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
         textEdit_170->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\353\214\200\354\244\221\354\247\221\355\232\214 \354\267\250\354\206\214\354\227\220 \353\224\260\353\245\270 \354\240\221\354\264\211 \352\260\220\354\206\214 \353\260\217 \352\270\260\352\260\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color"
-                        ":#7f7f7f;\">(\354\212\244\355\217\254\354\270\240 \352\262\275\352\270\260\352\264\200\353\236\214, \353\214\200\352\267\234\353\252\250 \355\226\211\354\202\254 \353\223\261\354\235\230 \353\214\200\354\244\221\354\247\221\355\232\214 \354\267\250\354\206\214\353\245\274 \355\206\265\355\225\264 \354\240\221\354\264\211\354\235\264 \354\226\274\353\247\210\353\202\230 \352\260\220\354\206\214\353\220\230\353\212\224\354\247\200\353\245\274 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\202\264\352\263\240 \354\267\250\354\206\214\355\225\230\353\212\224 \352\270\260\352\260\204\354\235\204 \353\202\230\355\203\200\353\203\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\353\214\200\354\244\221\354\247\221\355\232\214 \354\267\250\354\206\214\354\227\220 \353\224\260\353\245\270 \354\240\221\354\264\211 \352\260\220\354\206\214 \353\260\217 \352\270\260\352\260\204</span></p></body></html>", 0));
         textEdit_178->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\240\221\354\264\211 \352\260\220\354\206\214 \352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\240\221\354\264\211 \352\260\220\354\206\214 \352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
         input_contactReduct->setText(QString());
-        input_SchoolCloseContact0to6->setText(QString());
         input_gatheringCancel->setText(QString());
         input_contactReductStart->setText(QString());
         input_isolRange_5->setText(QApplication::translate("MainWindow", "-", 0));
         input_contactReductEnd->setText(QString());
-        input_SchoolCloseStart->setText(QString());
-        input_isolRange_8->setText(QApplication::translate("MainWindow", "-", 0));
-        input_SchoolCloseEnd->setText(QString());
         input_gatheringCancelStart->setText(QString());
         input_isolRange_9->setText(QApplication::translate("MainWindow", "-", 0));
         input_gatheringCancelEnd->setText(QString());
-        textEdit_24->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        textEdit_160->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">0\354\204\270-6\354\204\270</span></p></body></html>", 0));
-        textEdit_27->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\240\204\354\262\264 \354\235\270\352\265\254\354\227\220\354\204\234 \354\235\274\353\260\230\354\240\201\354\235\270 \354\240\221\354\264\211\354\235\204 \352\260\220\354\206\214\354\213\234\355\202\244\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_161->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">7\354\204\270-12\354\204\270</span></p></body></html>", 0));
-        textEdit_29->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\240\204\354\262\264 \354\235\270\352\265\254\354\227\220\354\204\234 \354\235\274\353\260\230\354\240\201\354\235\270 \354\240\221\354\264\211\354\235\204 \352\260\220\354\206\214\354\213\234\355\202\244\353\212\224 \354\213\234\352\260\204</span></p></body></html>", 0));
+        textEdit_163->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#000000;\">13\354\204\270-18\354\204\270</span></p></body></html>", 0));
-        input_SchoolCloseContact7to12->setText(QString());
-        input_SchoolCloseContact13to18->setText(QString());
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\355\234\264\352\265\220\353\245\274 \355\225\230\353\212\224 \352\270\260\352\260\204\354\235\204 \354\235\230\353\257\270\355\225\250</span></p></body></html>", 0));
+        textEdit_167->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\212\244\355\217\254\354\270\240 \352\262\275\352\270\260\352\264\200\353\236\214 \353\260\217 \353\214\200\352\267\234\353\252\250 \355\226\211\354\202\254 \353\223\261\354\235\230 \353\214\200\354\244\221\354\247\221\355\232\214 \354\267\250\354\206\214\353\245\274 \355\206\265\355\225\264 \354\240\221\354\264\211\354\235\264 \352\260\220\354\206\214\353\220\230\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_171->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\212\244\355\217\254\354\270\240 \352\262\275\352\270\260\352\264\200\353\246\274 \353\260\217 \353\214\200\352\267\234\353\252\250 \355\226\211\354\202\254 \353\223\261\354\235\230 \353\214\200\354\244\221\354\247\221\355\232\214 \354\267\250\354\206\214\353\245\274 \355\225\230\353\212\224 \352\270\260\352\260\204</span></p></body></html>", 0));
+        input_schoolCloseRangeStart->setText(QString());
+        input_isolRange_10->setText(QApplication::translate("MainWindow", "-", 0));
+        input_schoolCloseRangeEnd->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "\352\262\251\353\246\254", 0));
         textEdit_150->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\355\217\211\352\267\240 \354\236\254\354\233\220\352\270\260\352\260\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\353\217\205\352\260\220\354\234\274\353\241\234 \354\235\270\355\225\230\354\227\254 \354\235\274\353\260\230\353"
-                        "\263\221\354\213\244\352\263\274 \354\244\221\355\231\230\354\236\220\354\213\244\354\227\220 \354\236\205\354\233\220\355\225\230\352\262\214 \353\220\230\353\212\224 \355\217\211\352\267\240 \352\270\260\352\260\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\355\217\211\352\267\240 \354\236\254\354\233\220\352\270\260\352\260\204</span></p></body></html>", 0));
         textEdit_152->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\235\274\353\260\230\353\263\221\354\213\244(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\235\274\353\260\230\353\263\221\354\213\244(\354\235\274)</span></p></body></html>", 0));
         textEdit_154->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\244\221\355\231\230\354\236\220\354\213\244(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\244\221\355\231\230\354\236\220\354\213\244(\354\235\274)</span></p></body></html>", 0));
         input_NICU->setText(QString());
         input_ICU->setText(QString());
+        textEdit_162->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\353\217\205\352\260\220\354\234\274\353\241\234 \354\235\270\355\225\264 \354\235\274\353\260\230\353\263\221\354\213\244\354\227\220 \354\236\205\354\233\220 \355\225\230\353\212\224 \355\217\211\352\267\240 \352\270\260\352\260\204</span></p></body></html>", 0));
+        textEdit_172->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\353\217\205\352\260\220\354\234\274\353\241\234 \354\235\270\355\225\264 \354\244\221\355\231\230\354\236\220\354\213\244\354\227\220 \354\236\205\354\233\220 \355\225\230\353\212\224 \355\217\211\352\267\240 \352\270\260\352\260\204</span></p></body></html>", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("MainWindow", "\354\236\205\354\233\220", 0));
         textEdit_165->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">0\354\204\270-6\354\204\270(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">0\354\204\270-6\354\204\270(%)</span></p></body></html>", 0));
         textEdit_166->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \353\260\261\354\213\240 \354\240\221\354\242\205\353\245\240</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\227\260\353\240\271\353\263\204\353\241\234 \353\260\261\354\213\240\354\235\204 \354"
-                        "\226\274\353\247\210\353\202\230 \354\240\221\354\242\205\355\225\230\353\212\224\354\247\200 \353\271\204\354\234\250\353\241\234 \353\202\230\355\203\200\353\203\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \353\260\261\354\213\240 \354\240\221\354\242\205\353\245\240</span></p></body></html>", 0));
         textEdit_174->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\355\225\255\354\262\264 \354\203\235\354\204\261 \352\270\260\352\260\204</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\353\260\261\354\213\240 \354\240\221\354\242\205 \354\235\264\355\233\204 \355\225\255\354\262\264\352\260\200"
-                        " \354\203\235\354\204\261\353\220\230\353\212\224\353\215\260 \352\271\214\354\247\200 \352\261\270\353\246\254\353\212\224 \354\213\234\352\260\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\355\225\255\354\262\264 \354\203\235\354\204\261 \352\270\260\352\260\204</span></p></body></html>", 0));
         textEdit_179->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">7\354\204\270-12\354\204\270(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">7\354\204\270-12\354\204\270(%)</span></p></body></html>", 0));
         textEdit_184->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">13\354\204\270-18\354\204\270(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">13\354\204\270-18\354\204\270(%)</span></p></body></html>", 0));
         textEdit_186->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">19\354\204\270-64\354\204\270(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">19\354\204\270-64\354\204\270(%)</span></p></body></html>", 0));
         textEdit_188->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201(%)</span></p></body></html>", 0));
         textEdit_180->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\353\260\261\354\213\240 \354\240\221\354\242\205 \354\213\234\352\270\260</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\353\260\261\354\213\240 \354\240\221\354\242\205\354\235\204 \355\225\230\352\262\214 \353\220\230\353\212\224"
-                        " \354\235\274\354\235\204 \354\236\205\353\240\245\355\225\250)</span></p></body></html>", 0));
-        textEdit_181->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\353\260\261\354\213\240 \354\240\221\354\242\205 \354\213\234\352\270\260(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\353\260\261\354\213\240 \354\240\221\354\242\205 \354\213\234\352\270\260</span></p></body></html>", 0));
         textEdit_204->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">7\354\204\270-12\354\204\270(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">7\354\204\270-12\354\204\270(%)</span></p></body></html>", 0));
         textEdit_211->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">0\354\204\270-6\354\204\270(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">0\354\204\270-6\354\204\270(%)</span></p></body></html>", 0));
         textEdit_206->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">13\354\204\270-18\354\204\270(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">13\354\204\270-18\354\204\270(%)</span></p></body></html>", 0));
         textEdit_209->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">19\354\204\270-64\354\204\270(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">19\354\204\270-64\354\204\270(%)</span></p></body></html>", 0));
         textEdit_205->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \353\260\261\354\213\240 \354\240\221\354\242\205 \355\232\250\352\263\274</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\227\260\353\240\271\353\263\204\353\241\234 \353\260\261\354\213\240\354"
-                        "\234\274\353\241\234 \354\235\270\355\225\234 \355\225\255\354\262\264\352\260\200 \354\203\235\352\262\250\354\204\234 \353\251\264\354\227\255\354\235\264 \353\220\230\353\212\224 \354\235\270\352\265\254\354\235\230 \353\271\204\354\234\250)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \353\260\261\354\213\240 \354\240\221\354\242\205 \355\232\250\352\263\274</span></p></body></html>", 0));
         textEdit_210->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">65\354\204\270 \354\235\264\354\203\201(%)</span></p></body></html>", 0));
         textEdit_182->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\355\225\255\354\262\264 \354\203\235\354\204\261 \352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\355\225\255\354\262\264 \354\203\235\354\204\261 \352\270\260\352\260\204(\354\235\274)</span></p></body></html>", 0));
         input_vaccine_1->setText(QString());
         input_vaccine_2->setText(QString());
         input_vaccine_3->setText(QString());
@@ -2883,68 +3465,151 @@ public:
         input_vaccineEffect_5->setText(QString());
         input_antibodyRange->setText(QString());
         input_vaccineStart->setText(QString());
+        textEdit_173->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">0\354\204\270-6\354\204\270 \354\227\260\353\240\271\352\265\260\354\235\230 \353\260\261\354\213\240 \354\240\221\354\242\205 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_175->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">7\354\204\270-12\354\204\270 \354\227\260\353\240\271\352\265\260\354\235\230 \353\260\261\354\213\240 \354\240\221\354\242\205 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_176->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">13\354\204\270-18\354\204\270 \354\227\260\353\240\271\352\265\260\354\235\230 \353\260\261\354\213\240 \354\240\221\354\242\205 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_177->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">19\354\204\270-64\354\204\270 \354\227\260\353\240\271\352\265\260\354\235\230 \353\260\261\354\213\240 \354\240\221\354\242\205 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_183->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">65\354\204\270 \354\235\264\354\203\201 \354\227\260\353\240\271\352\265\260\354\235\230 \353\260\261\354\213\240 \354\240\221\354\242\205 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_185->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">0\354\204\270-6\354\204\270 \354\227\260\353\240\271\352\265\260\354\227\220\354\204\234 \353\260\261\354\213\240\354\234\274\353\241\234 \354\235\270\355\225\264 \355\225\255\354\262\264\352\260\200 \354\203\235\352\262\250 \353\251\264\354\227\255\354\235\264 \353\220\230\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_187->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">7\354\204\270-12\354\204\270 \354\227\260\353\240\271\352\265\260\354\227\220\354\204\234 \353\260\261\354\213\240\354\234\274\353\241\234 \354\235\270\355\225\264 \355\225\255\354\262\264\352\260\200 \354\203\235\352\262\250 \353\251\264\354\227\255\354\235\264 \353\220\230\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_191->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">13\354\204\270-18\354\204\270 \354\227\260\353\240\271\352\265\260\354\227\220\354\204\234 \353\260\261\354\213\240\354\234\274\353\241\234 \354\235\270\355\225\264 \355\225\255\354\262\264\352\260\200 \354\203\235\352\262\250 \353\251\264\354\227\255\354\235\264 \353\220\230\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_194->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">16\354\204\270-64\354\204\270 \354\227\260\353\240\271\352\265\260\354\227\220\354\204\234 \353\260\261\354\213\240\354\234\274\353\241\234 \354\235\270\355\225\264 \355\225\255\354\262\264\352\260\200 \354\203\235\352\262\250 \353\251\264\354\227\255\354\235\264 \353\220\230\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_195->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">65\354\204\270 \354\235\264\354\203\201 \354\227\260\353\240\271\352\265\260\354\227\220\354\204\234 \353\260\261\354\213\240\354\234\274\353\241\234 \354\235\270\355\225\264 \355\225\255\354\262\264\352\260\200 \354\203\235\352\262\250 \353\251\264\354\227\255\354\235\264 \353\220\230\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_198->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\353\260\261\354\213\240 \354\240\221\354\242\205 \354\235\264\355\233\204 \355\225\255\354\262\264\352\260\200 \354\203\235\354\204\261\353\220\230\353\212\224\353\215\260 \352\271\214\354\247\200 \352\261\270\353\246\254\353\212\224 \354\213\234\352\260\204</span></p></body></html>", 0));
+        textEdit_200->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\353\260\261\354\213\240 \354\240\221\354\242\205 \354\213\234\352\270\260(\354\235\274)</span></p></body></html>", 0));
+        textEdit_202->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\353\260\261\354\213\240 \354\240\221\354\242\205\354\235\204 \355\225\230\352\262\214 \353\220\230\353\212\224 \354\235\274\354\235\204 \354\236\205\353\240\245\355\225\250</span></p></body></html>", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_7), QApplication::translate("MainWindow", "\353\260\261\354\213\240", 0));
         textEdit_189->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\235\274\353\260\230\353\263\221\353\217\231(\352\260\234/\355\231\230\354\236\220,\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\235\274\353\260\230\353\263\221\353\217\231(\352\260\234/\355\231\230\354\236\220,\354\235\274)</span></p></body></html>", 0));
         textEdit_190->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">N-95 \353\247\210\354\212\244\355\201\254</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\235\274\353\260\230\353\263\221\353\217\231, \354\244\221\355\231\230\354\236\220\354\213\244\354\227\220\354\204\234 \354\202\254\354\232\251"
-                        "\353\220\230\353\212\224 N-95 \353\247\210\354\212\244\355\201\254\354\235\230 \352\260\234\354\210\230\353\245\274 \355\231\230\354\236\2201\353\252\205, 1\354\235\274\353\213\271\354\234\274\353\241\234 \353\202\230\355\203\200\353\203\204)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">N-95 \353\247\210\354\212\244\355\201\254</span></p></body></html>", 0));
         textEdit_192->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\235\270\352\263\265\355\230\270\355\235\241\352\270\260 </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\202\254\354\232\251\353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\235\270\352\263\265\355\230\270\355\235\241\352\270\260 \354\202\254\354\232\251\353\271\204\354\234\250</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">(%)</span></p></body></html>", 0));
         textEdit_193->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\354\235\270\352\263\265\355\230\270\355\235\241\352\270\260</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\244\221\355\231\230\354\236\220\354\213\244 \354\236\205\354\233\220 \355\231\230\354\236\220 \354\244\221 \354\235\270\352"
-                        "\263\265\355\230\270\355\235\241\352\270\260\353\245\274 \354\202\254\354\232\251\355\225\230\354\227\254\354\225\274 \355\225\230\353\212\224 \353\271\204\354\234\250)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\354\235\270\352\263\265\355\230\270\355\235\241\352\270\260</span></p></body></html>", 0));
         textEdit_196->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\244\221\355\231\230\354\236\220\354\213\244(\352\260\234/\355\231\230\354\236\220,\354\235\274)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\244\221\355\231\230\354\236\220\354\213\244(\352\260\234/\355\231\230\354\236\220,\354\235\274)</span></p></body></html>", 0));
         input_mask_NICU->setText(QString());
         input_mask_ICU->setText(QString());
         input_respRate->setText(QString());
+        textEdit_349->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\235\274\353\260\230\353\263\221\353\217\231\354\227\220\354\204\234 \354\202\254\354\232\251\353\220\230\353\212\224 N-95 \353\247\210\354\212\244\355\201\254\354\235\230 \352\260\234\354\210\230\353\245\274 \355\231\230\354\236\2201\353\252\205, 1\354\235\274\353\213\271\354\234\274\353\241\234 \353\202\230\355\203\200\353\203\204</span></p></body></html>", 0));
+        textEdit_350->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\355\231\230\354\236\220\354\213\244\354\227\220\354\204\234 \354\202\254\354\232\251\353\220\230\353\212\224 N-95 \353\247\210\354\212\244\355\201\254\354\235\230 \352\260\234\354\210\230\353\245\274 \355\231\230\354\236\2201\353\252\205, 1\354\235\274\353\213\271\354\234\274\353\241\234 \353\202\230\355\203\200\353\203\204</span></p></body></html>", 0));
+        textEdit_351->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\244\221\355\231\230\354\236\220\354\213\244 \354\236\205\354\233\220 \355\231\230\354\236\220 \354\244\221 \354\235\270\352\263\265\355\230\270\355\235\241\352\270\260\353\245\274 \354\202\254\354\232\251\355\225\230\354\227\254\354\225\274 \355\225\230\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_8), QApplication::translate("MainWindow", "\354\236\220\354\233\220", 0));
         textEdit_197->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#000000;\">\352\262\200\354\262\264 \354\236\254\352\262\200\354\234\250, \354\231\270\353\236\230\355\231\230\354\236\220 \352\262\200\354\262\264\353\271\204\354\234\250</span><span style=\" font-size:8pt;\"> </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\231\270\353\236\230\355"
-                        "\231\230\354\236\220\354\227\220 \353\214\200\355\225\264\354\204\234 \352\262\200\354\262\264 \354\261\204\354\267\250 \355\233\204 \352\262\200\354\202\254\355\225\230\353\212\224 \353\271\204\354\234\250\352\263\274 \354\236\205\354\233\220\355\231\230\354\236\220\354\231\200 \354\231\270\353\236\230\355\231\230\354\236\220\354\235\230 \352\262\200\354\262\264 \352\262\200\354\202\254\353\245\274 \353\213\244\354\213\234 \355\225\230\352\262\214 \353\220\230\353\212\224 \354\236\254\352\262\200\354\234\250)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#000000;\">\352\262\200\354\262\264 \354\236\254\352\262\200\354\234\250, \354\231\270\353\236\230\355\231\230\354\236\220 \352\262\200\354\262\264\353\271\204\354\234\250</span></p></body></html>", 0));
         textEdit_199->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\231\270\353\236\230\355\231\230\354\236\220 </span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\352\262\200\354\262\264\352\262\200\354\202\254 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\231\270\353\236\230\355\231\230\354\236\220 \352\262\200\354\262\264\352\262\200\354\202\254 \353\271\204\354\234\250(%)</span></p></body></html>", 0));
         textEdit_201->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">\354\236\254\352\262\200\354\234\250(%)</span></p></body></html>", 0));
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; color:#000000;\">\354\236\254\352\262\200\354\234\250(%)</span></p></body></html>", 0));
         input_reinspect->setText(QString());
         input_outpatient->setText(QString());
+        textEdit_352->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\231\270\353\236\230\355\231\230\354\236\220\354\227\220 \353\214\200\355\225\264\354\204\234 \352\262\200\354\262\264 \354\261\204\354\267\250 \355\233\204 \353\213\244\354\213\234 \352\262\200\354\202\254\355\225\230\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
+        textEdit_353->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt; font-weight:600; color:#7f7f7f;\">\354\236\205\354\233\220\355\231\230\354\236\220\354\227\220 \353\214\200\355\225\264\354\204\234 \352\262\200\354\262\264 \354\261\204\354\267\250 \355\233\204 \353\213\244\354\213\234 \352\262\200\354\202\254\355\225\230\353\212\224 \353\271\204\354\234\250</span></p></body></html>", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_9), QApplication::translate("MainWindow", "\352\262\200\354\262\264", 0));
         outputPageBtn->setText(QApplication::translate("MainWindow", "\354\266\234\353\240\245\355\231\224\353\251\264 \354\235\264\353\217\231", 0));
         areaButton->setText(QApplication::translate("MainWindow", "\354\247\200\354\227\255 \354\234\240\355\230\225", 0));
         groupBox->setTitle(QString());
-        radioButton_6->setText(QApplication::translate("MainWindow", "\353\206\215\354\264\214\355\230\225", 0));
-        radioButton_5->setText(QApplication::translate("MainWindow", "\354\247\200\353\260\251\353\217\204\354\213\234\355\230\225", 0));
-        label_6->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">K-Flu\353\212\224 \354\247\200\354\227\255\354\202\254\355\232\214 \353\202\264 \354\235\270\355\224\214\353\243\250\354\227\224\354\236\220 \354\240\204\355\214\214 \354\226\221\354\203\201\354\235\204 \354\230\210\354\270\241\355\225\230\352\270\260 \354\234\204\355\225\234 \355\224\204\353\241\234\352\267\270\353\236\250\354\234\274\353\241\234 \354\204\234\354\232\270\355\230\225, \354\247\200\353\260\251\353\217\204\354\213\234\355\230\225, \353\206\215\354\264\214\355\230\225 \354\204\270 \352\260\200\354\247\200 \354\247\200\354\227\255\354\202\254\355\232\214 \354\234\240\355\230\225 \354\244\221 \355\225\234\352\260\200\354\247\200 \354\234\240\355\230\225\354\235\204 \354\204\240\355\203\235\355\225\240 \354\210\230 \354\236\210\354\212\265\353\213\210\353\213\244.</span></p></body></html>", 0));
+        radioButton_6->setText(QApplication::translate("MainWindow", "\352\264\221\354\227\255(\353\217\204)", 0));
+        radioButton_5->setText(QApplication::translate("MainWindow", "\352\264\221\354\227\255(\354\213\234)", 0));
+        label_6->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">K-Flu\353\212\224 \354\247\200\354\227\255\354\202\254\355\232\214 \353\202\264 \354\235\270\355\224\214\353\243\250\354\227\224\354\236\220 \354\240\204\355\214\214 \354\226\221\354\203\201\354\235\204 \354\230\210\354\270\241\355\225\230\352\270\260 \354\234\204\355\225\234 \355\224\204\353\241\234\352\267\270\353\236\250\354\234\274\353\241\234 \354\204\234\354\232\270\355\230\225, \352\264\221\354\227\255(\354\213\234), \352\264\221\354\227\255(\353\217\204) \354\204\270 \352\260\200\354\247\200 \354\247\200\354\227\255\354\202\254\355\232\214 \354\234\240\355\230\225 \354\244\221 \355\225\234\352\260\200\354\247\200 \354\234\240\355\230\225\354\235\204 \354\204\240\355\203\235\355\225\240 \354\210\230 \354\236\210\354\212\265\353\213\210\353\213\244.</span></p></body></html>", 0));
         label_5->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">\354\247\200\354\227\255 \354\234\240\355\230\225\354\235\204 \354\204\240\355\203\235\355\225\230\354\204\270\354\232\224</span></p></body></html>", 0));
         areaSubmit->setText(QApplication::translate("MainWindow", "\354\240\201\354\232\251", 0));
         radioButton_4->setText(QApplication::translate("MainWindow", "\354\204\234\354\232\270\355\230\225", 0));
@@ -2963,30 +3628,30 @@ public:
         QTableWidgetItem *___qtablewidgetitem6 = infectionTable->horizontalHeaderItem(6);
         ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "\355\232\214\353\263\265\355\225\234 \354\202\254\353\236\214", 0));
         output_tab->setTabText(output_tab->indexOf(tab_10), QApplication::translate("MainWindow", "\352\260\220\354\227\274\354\236\220", 0));
-        QTableWidgetItem *___qtablewidgetitem7 = resourceTable->horizontalHeaderItem(0);
-        ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "N-95 \353\247\210\354\212\244\355\201\254", 0));
-        QTableWidgetItem *___qtablewidgetitem8 = resourceTable->horizontalHeaderItem(1);
-        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow", "\354\235\270\352\263\265\355\230\270\355\235\241\352\270\260", 0));
-        QTableWidgetItem *___qtablewidgetitem9 = resourceTable->horizontalHeaderItem(2);
-        ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234", 0));
+        QTableWidgetItem *___qtablewidgetitem7 = dailyTable->horizontalHeaderItem(0);
+        ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "\354\231\270\353\236\230\355\231\230\354\236\220 \354\210\230", 0));
+        QTableWidgetItem *___qtablewidgetitem8 = dailyTable->horizontalHeaderItem(1);
+        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow", "\354\244\221\355\231\230\354\236\220\354\213\244 \353\263\221\354\203\201 \354\210\230", 0));
+        QTableWidgetItem *___qtablewidgetitem9 = dailyTable->horizontalHeaderItem(2);
+        ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "\354\235\274\353\260\230 \353\263\221\354\203\201 \354\210\230", 0));
+        output_tab->setTabText(output_tab->indexOf(tab_13), QApplication::translate("MainWindow", "\354\235\274\354\235\274 \354\231\270\353\236\230\355\231\230\354\236\220 \353\260\217 \355\225\204\354\232\224\353\263\221\354\203\201\354\210\230", 0));
+        QTableWidgetItem *___qtablewidgetitem10 = cumulativeTable->horizontalHeaderItem(0);
+        ___qtablewidgetitem10->setText(QApplication::translate("MainWindow", "\354\231\270\353\236\230\355\231\230\354\236\220 \354\210\230(\353\210\204\354\240\201)", 0));
+        QTableWidgetItem *___qtablewidgetitem11 = cumulativeTable->horizontalHeaderItem(1);
+        ___qtablewidgetitem11->setText(QApplication::translate("MainWindow", "\354\244\221\355\231\230\354\236\220\354\213\244 \355\231\230\354\236\220 \354\210\230(\353\210\204\354\240\201)", 0));
+        QTableWidgetItem *___qtablewidgetitem12 = cumulativeTable->horizontalHeaderItem(2);
+        ___qtablewidgetitem12->setText(QApplication::translate("MainWindow", "\354\235\274\353\260\230 \353\263\221\354\203\201 \354\210\230(\353\210\204\354\240\201)", 0));
+        output_tab->setTabText(output_tab->indexOf(tab_14), QApplication::translate("MainWindow", "\353\210\204\354\240\201 \354\231\270\353\236\230\355\231\230\354\236\220 \353\260\217 \355\225\204\354\232\224\353\263\221\354\203\201\354\210\230", 0));
+        QTableWidgetItem *___qtablewidgetitem13 = resourceTable->horizontalHeaderItem(0);
+        ___qtablewidgetitem13->setText(QApplication::translate("MainWindow", "N-95 \353\247\210\354\212\244\355\201\254", 0));
+        QTableWidgetItem *___qtablewidgetitem14 = resourceTable->horizontalHeaderItem(1);
+        ___qtablewidgetitem14->setText(QApplication::translate("MainWindow", "\354\235\270\352\263\265\355\230\270\355\235\241\352\270\260", 0));
+        QTableWidgetItem *___qtablewidgetitem15 = resourceTable->horizontalHeaderItem(2);
+        ___qtablewidgetitem15->setText(QApplication::translate("MainWindow", "\355\225\255\353\260\224\354\235\264\353\237\254\354\212\244\354\240\234", 0));
         output_tab->setTabText(output_tab->indexOf(tab_11), QApplication::translate("MainWindow", "\354\235\230\353\243\214\354\236\220\354\233\220", 0));
-        QTableWidgetItem *___qtablewidgetitem10 = specimenTable->horizontalHeaderItem(0);
-        ___qtablewidgetitem10->setText(QApplication::translate("MainWindow", "\352\262\200\354\262\264 \354\210\230", 0));
+        QTableWidgetItem *___qtablewidgetitem16 = specimenTable->horizontalHeaderItem(0);
+        ___qtablewidgetitem16->setText(QApplication::translate("MainWindow", "\352\262\200\354\262\264 \354\210\230", 0));
         output_tab->setTabText(output_tab->indexOf(tab_12), QApplication::translate("MainWindow", "\352\262\200\354\262\264\354\210\230", 0));
-        QTableWidgetItem *___qtablewidgetitem11 = dailyTable->horizontalHeaderItem(0);
-        ___qtablewidgetitem11->setText(QApplication::translate("MainWindow", "\354\231\270\353\236\230\355\231\230\354\236\220 \354\210\230", 0));
-        QTableWidgetItem *___qtablewidgetitem12 = dailyTable->horizontalHeaderItem(1);
-        ___qtablewidgetitem12->setText(QApplication::translate("MainWindow", "\354\244\221\355\231\230\354\236\220\354\213\244 \353\263\221\354\203\201 \354\210\230", 0));
-        QTableWidgetItem *___qtablewidgetitem13 = dailyTable->horizontalHeaderItem(2);
-        ___qtablewidgetitem13->setText(QApplication::translate("MainWindow", "\354\235\274\353\260\230 \353\263\221\354\203\201 \354\210\230", 0));
-        output_tab->setTabText(output_tab->indexOf(tab_13), QApplication::translate("MainWindow", "\354\235\274\354\235\274", 0));
-        QTableWidgetItem *___qtablewidgetitem14 = cumulativeTable->horizontalHeaderItem(0);
-        ___qtablewidgetitem14->setText(QApplication::translate("MainWindow", "\354\231\270\353\236\230\355\231\230\354\236\220 \354\210\230(\353\210\204\354\240\201)", 0));
-        QTableWidgetItem *___qtablewidgetitem15 = cumulativeTable->horizontalHeaderItem(1);
-        ___qtablewidgetitem15->setText(QApplication::translate("MainWindow", "\354\244\221\355\231\230\354\236\220\354\213\244 \355\231\230\354\236\220 \354\210\230(\353\210\204\354\240\201)", 0));
-        QTableWidgetItem *___qtablewidgetitem16 = cumulativeTable->horizontalHeaderItem(2);
-        ___qtablewidgetitem16->setText(QApplication::translate("MainWindow", "\354\235\274\353\260\230 \353\263\221\354\203\201 \354\210\230(\353\210\204\354\240\201)", 0));
-        output_tab->setTabText(output_tab->indexOf(tab_14), QApplication::translate("MainWindow", "\353\210\204\354\240\201", 0));
         inputPageBtn->setText(QApplication::translate("MainWindow", "\354\236\205\353\240\245\355\231\224\353\251\264 \354\235\264\353\217\231", 0));
         age_checkBox5->setText(QApplication::translate("MainWindow", "65\354\204\270 \354\235\264\354\203\201", 0));
         age_checkBox3->setText(QApplication::translate("MainWindow", "13\354\204\270-18\354\204\270", 0));
@@ -2996,14 +3661,40 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\204\240\355\203\235</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:9pt; font-weight:600; color:#7f7f7f;\">(\354\227\260\353\240\271\353\263\204\353\241\234 \352\262\260\352\263"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8pt; font-weight:600; color:#000000;\">\354\227\260\353\240\271\353\263\204 \354\204\240\355\203\235</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:8pt; font-weight:600; color:#7f7f7f;\">(\354\227\260\353\240\271\353\263\204\353\241\234 \352\262\260\352\263"
                         "\274 \355\231\225\354\235\270 \352\260\200\353\212\245)</span></p></body></html>", 0));
         age_checkBox4->setText(QApplication::translate("MainWindow", "19\354\204\270-64\354\204\270", 0));
         age_checkBox6->setText(QApplication::translate("MainWindow", "\354\240\204\354\262\264 \354\227\260\353\240\271", 0));
-        label->setText(QApplication::translate("MainWindow", "K-Flu", 0));
         startButton->setText(QApplication::translate("MainWindow", "\354\213\234\354\236\221", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Ver 1.0", 0));
+        textEdit_8->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:11pt; color:#595959;\">Korea Influenza Simulator </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:11pt; color:#595959;\">KISIM \353\212\224 \354\247\200\354\227\255\354\202\254\355\232\214 \353\202\264 \354\235\270\355\224\214\353\243\250\354\227\224\354\236\220 \354\240\204\355\214\214 \354"
+                        "\226\221\354\203\201\354\235\204 \354\230\210\354\270\241\355\225\230\352\270\260 \354\234\204\355\225\234 \355\224\204\353\241\234\352\267\270\353\236\250\354\234\274\353\241\234 \354\204\234\354\232\270, \352\264\221\354\227\255(\354\213\234), \352\264\221\354\227\255(\353\217\204) \354\204\270 \352\260\200\354\247\200 \354\247\200\354\227\255\354\202\254\355\232\214 \354\234\240\355\230\225 \354\244\221 \355\225\234\352\260\200\354\247\200 \354\234\240\355\230\225\354\235\204 \354\204\240\355\203\235\355\225\240 \354\210\230 \354\236\210\354\212\265\353\213\210\353\213\244.</span><span style=\" font-size:11pt;\"> </span></p></body></html>", 0));
+        textEdit_9->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:40pt; font-weight:600; color:#000000;\">KISIM</span></p></body></html>", 0));
+        textEdit_10->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:11pt; font-weight:600; color:#595959;\">Ver 1.0</span></p></body></html>", 0));
+        textEdit_11->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\353\247\221\354\235\200 \352\263\240\353\224\225'; font-size:11pt; font-weight:600; color:#595959;\">\355\230\204\354\236\254\353\262\204\354\240\204: 2016\353\205\204 10\354\233\224 22\354\235\274</span></p></body></html>", 0));
+        textEdit_12->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\352\265\264\353\246\274'; font-size:9pt; color:#4e4f50;\">\342\200\234</span><span style=\" font-family:'\353\217\213\354\233\200'; font-size:9pt; color:#4e4f50;\">\353\263\270 \354\227\260\352\265\254\353\212\224 \353\263\264\352\261\264\353\263\265\354\247\200\353\266\200 \353\263\264\352\261\264\354\235\230\353\243\214\354\227\260\352\265\254\352\260\234\353\260\234\354\202\254\354\227\205\354\235\230 \355\225\230\353\202\230\354\235\270 \354\213\240\354\242\205\354\235\270\355\224\214\353\243\250\354\227\224\354\236\220 \353"
+                        "\262\224 \353\266\200\354\262\230 \354\202\254\354\227\205\354\235\230 \354\247\200\354\233\220\354\227\220 \354\235\230\355\225\230\354\227\254 \354\235\264\353\243\250\354\226\264\354\247\204 \352\262\203\354\236\204</span><span style=\" font-family:'\352\265\264\353\246\274'; font-size:9pt; color:#4e4f50;\">.(</span><span style=\" font-family:'\353\217\213\354\233\200'; font-size:9pt; color:#4e4f50;\">\352\263\274\354\240\234\352\263\240\354\234\240\353\262\210\355\230\270\302\240</span><span style=\" font-family:'\352\265\264\353\246\274'; font-size:9pt; color:#4e4f50;\">: A103001)&quot;</span></p></body></html>", 0));
         groupBox_3->setTitle(QString());
         label_9->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">\352\262\260\352\263\274\353\254\274\354\235\230 \352\267\270\353\236\230\355\224\204\353\245\274 JPG \355\214\214\354\235\274\353\241\234 \354\240\200\354\236\245\355\225\230\354\213\244 \354\210\230 \354\236\210\354\212\265\353\213\210\353\213\244. </span></p></body></html>", 0));
         label_10->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">JPG \355\214\214\354\235\274\353\241\234 \353\263\200\355\231\230\355\225\240 \352\262\260\352\263\274\353\254\274\354\235\204 \354\204\240\355\203\235\355\225\230\354\204\270\354\232\224</span></p></body></html>", 0));
@@ -3018,10 +3709,14 @@ public:
         label_12->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">CSV \355\214\214\354\235\274\353\241\234 \353\263\200\355\231\230\355\225\240 \352\262\260\352\263\274\353\254\274\354\235\204 \354\204\240\355\203\235\355\225\230\354\204\270\354\232\224</span></p></body></html>", 0));
         csvSubmit->setText(QApplication::translate("MainWindow", "\354\240\201\354\232\251", 0));
         checkBox_6->setText(QApplication::translate("MainWindow", "\352\260\220\354\227\274\354\236\220", 0));
-        checkBox_7->setText(QApplication::translate("MainWindow", "\354\235\230\353\243\214\354\236\220\354\233\220", 0));
-        checkBox_8->setText(QApplication::translate("MainWindow", "\352\262\200\354\262\264\354\210\230", 0));
-        checkBox_9->setText(QApplication::translate("MainWindow", "\354\235\274\354\235\274", 0));
-        checkBox_10->setText(QApplication::translate("MainWindow", "\353\210\204\354\240\201", 0));
+        checkBox_7->setText(QApplication::translate("MainWindow", "\355\225\204\354\232\224 \353\263\221\354\203\201 \354\210\230 \353\260\217 \354\231\270\353\236\230\355\231\230\354\236\220 \354\210\230(\354\235\274\354\235\274)", 0));
+        checkBox_8->setText(QApplication::translate("MainWindow", "\354\235\230\353\243\214\354\236\220\354\233\220", 0));
+        checkBox_11->setText(QApplication::translate("MainWindow", "\355\225\204\354\232\224 \353\263\221\354\203\201 \354\210\230 \353\260\217 \354\231\270\353\236\230\355\231\230\354\236\220 \354\210\230(\353\210\204\354\240\201)", 0));
+        checkBox_9->setText(QApplication::translate("MainWindow", "\352\262\200\354\262\264\354\210\230", 0));
+        groupBox_2->setTitle(QString());
+        label_7->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">\354\240\200\354\236\245 \355\233\204 \354\242\205\353\243\214 \355\225\230\354\213\234\352\262\240\354\212\265\353\213\210\352\271\214?</span></p></body></html>", 0));
+        closeBtn->setText(QApplication::translate("MainWindow", "\354\225\204\353\213\210\354\230\244", 0));
+        saveBtn->setText(QApplication::translate("MainWindow", "\354\230\210", 0));
         menuAaa->setTitle(QApplication::translate("MainWindow", "\355\214\214\354\235\274", 0));
         menu_2->setTitle(QApplication::translate("MainWindow", "\353\213\244\353\245\270 \355\214\214\354\235\274\353\241\234 \353\263\200\355\231\230\355\225\230\352\270\260", 0));
         menuFdddd->setTitle(QApplication::translate("MainWindow", "\353\217\204\354\233\200\353\247\220", 0));

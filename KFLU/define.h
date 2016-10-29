@@ -13,7 +13,7 @@ double kk;
 //**********************************************
 //System Define
 //==============================================
-#define Maximumday 300
+#define Maximumday 200
 #define TimeResolution 10
 #define NumberofArray Maximumday*TimeResolution
 //**********************************************
@@ -299,7 +299,7 @@ double ModerateCaseIsolation = 0.0;		/*percentage 함수 필요*/
 double SevereHomeCaseIsolation = 0.0;		/*percentage 함수 필요*/
 double SevereHospitalCaseIsolation = 0.0;		/*percentage 함수 필요*/
 unsigned int RangeofIsolationBegin = 0;
-unsigned int RangeofIsolationEnd = 200;
+unsigned int RangeofIsolationEnd = Maximumday;
 
 //--치료 TAB
 //항바이러스제 투여 가능 비율
@@ -310,11 +310,11 @@ double AntiviralsHelp = 48.0;		//maxTreatmentDelay day로 환산
 //Very Sick Case 치료
 double VerySickTreatRate = 0;		/*percentage 함수 필요*/
 unsigned int  VerySickTreatRangeBegin = 0;
-unsigned int  VerySickTreatRangeEnd = 200;
+unsigned int  VerySickTreatRangeEnd = Maximumday;
 //Extremely Sick Case 치료
 double ExtremelySickTreatRate = 0;		/*percentage 함수 필요*/
 unsigned int  ExtremelySickTreatRangeBegin = 0;
-unsigned int  ExtremelySickTreatRangeEnd = 200;
+unsigned int  ExtremelySickTreatRangeEnd = Maximumday;
 //치료 효과
 double ContagiousnessReduction = 80.0;		/*percentage 함수 필요*/
 double DiseaseDurationReduction = 25.0;		/*percentage 함수 필요*/
@@ -324,15 +324,15 @@ double HospitalizationReduction = 50.0;		/*percentage 함수 필요*/
 //일반접촉 감소 비율 및 기간
 double ContactReductionRate = 0.0;		/*percentage 함수 필요*/
 unsigned int  ContactReductionRangeBegin = 0;
-unsigned int  ContactReductionRangeEnd = 200;
+unsigned int  ContactReductionRangeEnd = Maximumday;
 //휴교 및 그에 따른 접촉 수준 변동
 unsigned int  SchoolCloseRangeBegin = 0;
-unsigned int  SchoolCloseRangeEnd = 200;
+unsigned int  SchoolCloseRangeEnd = Maximumday;
 double SchoolCloseContactRatio[ChildClass] = { 75.0, 50.0, 25.0 };
 //대중집회 취소 및 그에 따른 접촉 수준 변동
 double GatheringCancelReductionRate = 0.0;		/*percentage 함수 필요*/
 unsigned int  GatheringCancleRangeBegin = 0;
-unsigned int  GatheringCancleRangeEnd = 200;
+unsigned int  GatheringCancleRangeEnd = Maximumday;
 
 //--입원 TAB
 //평균 재원기간
@@ -347,7 +347,7 @@ double VaccineEffectAgeRate[StageofAgeGroups] = { 0.0, 0.0, 0.0, 0.0, 0.0 };		/*
 //항체생성기간
 double AntibodyCreateRange = 14;
 //백신 접종 시기
-double VaccineStart = 200;
+double VaccineStart = Maximumday;
 
 //--자원 TAB
 //N-95마스크(1명, 1일당 개수)
@@ -421,9 +421,9 @@ double eigenvector[StageofAgeGroups];
 //Force of infection.
 double lambda[StageofAgeGroups];
 
-bool doSchoolClosure0to6[2000];
-bool doSchoolClosure7to12[2000];
-bool doSchoolClosure13to18[2000];
+bool doSchoolClosure0to6[NumberofArray*10];
+bool doSchoolClosure7to12[NumberofArray * 10];
+bool doSchoolClosure13to18[NumberofArray * 10];
 
 
 double Susceptibles[StageofAgeGroups][StageofRisk];
@@ -484,6 +484,7 @@ double FractionofICU = 0.15;
 
 //ICU 입원 시 Sojourn time
 double infDurforICU = 10.0;
+
 
 //**********************************************
 //Function & Class
@@ -1033,13 +1034,6 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 	for (int age = 0; age < StageofAgeGroups; age++)
 		Antiviralstotal = VectorY[AV(age)];
 
-	bool doProphylaxis = false;
-	if ((time >= hcwProphylaxisBegin) && (time<hcwProphylaxisEnd)) {
-		if (antiviralRessource>Antiviralstotal) {
-			doProphylaxis = true;
-			OutputY[Antivirals] = zeta;
-		}
-	}
 	//고려
 	if (SchoolCloseRangeBegin == SchoolCloseRangeEnd) {
 		if (VectorY[AP(Age0to6)] * total / Individuals[Age0to6] > schoolClosingTreshold)
@@ -1328,12 +1322,6 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 			+ gamma[age][MedYES][ItypeH][NICU] * VectorY[H(age, IstageLast, MedYES, NICU)]
 			- rho * VectorY[R(age, Rstage1)];													//수정
 
-		//if (time == 0.01171875)
-		//	OutputY[R(Age19to64, Rstage2)] = 0.0;
-		//if (time == 0.015625)
-		//	OutputY[R(Age19to64, Rstage2)] = 0.0;
-		//if (VectorY[R(age,Rstage1)] - VectorY[R(age,Rstage2)] < 1.0e-15)
-		//	OutputY[R(Age19to64, Rstage2)] = 0.0;
 		// Progress during the reconvalescent period.
 		for (int rStage = Rstage2; rStage < RstageGroups; rStage++) {
 			if ((rStage != Rstage2) && (age != Age19to64))
@@ -1360,8 +1348,8 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 		
 		// Update the number of outpatient visits.
 		for (int iStage = 0; iStage < IstageGroups; iStage++) {
-			OutputY[Op(age)] = alpha  * (VectorY[V(age, iStage)] + VectorY[X(age, iStage)]);
-			OutputY[Op(age)] = alphaW[age] * (VectorY[W(age, iStage, MedNO)] + VectorY[W(age, iStage, MedYES)]);
+			OutputY[Op(age)] = alpha  * (VectorY[V(age, iStage)] + VectorY[X(age, iStage)])
+				+ alphaW[age] * (VectorY[W(age, iStage, MedNO)] + VectorY[W(age, iStage, MedYES)]);
 		}
 
 		// Update the number of antiviral doses used.
@@ -1370,14 +1358,15 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 		}
 
 		// Update the number of hospitalizations.
+		double Hospitalizationfraction = 0;
 		for (int iStage = 0; iStage < maxTreatmentStage[age]; iStage++) {
-			OutputY[Hospitalisation] += alpha
-				* (1.0 - todayExtremeTreatFract + todayExtremeTreatFract * (1.0 - hospPrevTreat)) * VectorY[X(age, iStage)];
+			Hospitalizationfraction += (alpha * (1.0 - todayExtremeTreatFract + todayExtremeTreatFract * (1.0 - hospPrevTreat)) * VectorY[X(age, iStage)]);
 		}
 		for (int iStage = maxTreatmentStage[age]; iStage < IstageGroups; iStage++) {
-			OutputY[Hospitalisation] += alpha * VectorY[X(age, iStage)];
+			Hospitalizationfraction += alpha * VectorY[X(age, iStage)];
 		}
-
+		OutputY[HICU(age)] = FractionofICU * Hospitalizationfraction;
+		OutputY[HNICU(age)] = (1 - FractionofICU) * Hospitalizationfraction;
 
 		// Update the cumulative cases incidence and absenteeism prevalence due to influenza.
 		double caseIncidence = 0.0;
@@ -1390,25 +1379,18 @@ void Evaluation(double time, double VectorY[], double OutputY[])
 		recoveryIncidence += rho * VectorY[R(age, RstageLast)];
 		//OutputY[CIC(age)] = caseIncidence;
 		OutputY[AP(age)] = caseIncidence - recoveryIncidence - dead;
-
-		//Update the cumulative absenteeism prevalence due to influenza.
-		//OutputY[CPA(age)] = VectorY[AP(age)];
 	
-/*
-		int N95(int age);
-		int Resp(int age);
-		int AV(int age);
-		int Spec(int age);
-		*/
 
 		////////
+		double Respirate = 0;
 		for (int iStage = 0; iStage < IstageGroups; iStage++)
 		{
-			OutputY[Resp(age)] += percentage(RespiratorNeedRate) * (VectorY[H(age, iStage, MedYES, ICU)] + VectorY[H(age, iStage, MedNO, ICU)]);
+			Respirate += percentage(RespiratorNeedRate) * (VectorY[H(age, iStage, MedYES, ICU)] + VectorY[H(age, iStage, MedNO, ICU)]);
 		}
+		OutputY[Resp(age)] = Respirate;
 
 		////////
-		OutputY[Spec(age)] += (1 + percentage(ReinspectionRate)) * (VectorY[H(age, Istage1, MedYES, ICU)] + VectorY[H(age, Istage1, MedNO, ICU)] + VectorY[H(age, Istage1, MedYES, NICU)] + VectorY[H(age, Istage1, MedNO, NICU)])
+		OutputY[Spec(age)] = (1 + percentage(ReinspectionRate)) * (VectorY[H(age, Istage1, MedYES, ICU)] + VectorY[H(age, Istage1, MedNO, ICU)] + VectorY[H(age, Istage1, MedYES, NICU)] + VectorY[H(age, Istage1, MedNO, NICU)])
 			+ percentage(OutpatientSpecimenTesting) * (VectorY[W(age, Istage1, MedYES)] + VectorY[W(age, Istage1, MedNO)]);
 
 		//////

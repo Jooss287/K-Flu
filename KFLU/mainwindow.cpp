@@ -31,7 +31,7 @@ int evals = 0;
 * The current x value.
 */
 double h = 1;
-double maxError = 0.5;
+double maxError = 0.02;
 double minError = maxError / 4;
 double yInVector[OutputArray] = {};
 double k1[OutputArray] = {};
@@ -59,11 +59,6 @@ QVector<QVector <double> > SpecimenArray((NumberofArray));
 QVector<QVector <double> > DailyOutpatientArray((NumberofArray));
 QVector<QVector <double> > DailyICUArray((NumberofArray));
 QVector<QVector <double> > DailyNICUArray((NumberofArray));
-
-QVector<QVector <double> > CumulOutpatientArray((NumberofArray));
-QVector<QVector <double> > CumulICUArray((NumberofArray));
-QVector<QVector <double> > CumulNICUArray((NumberofArray));
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -99,9 +94,6 @@ void MainWindow::run(double input) {
 	DailyICUArray.resize(Age65toEnd + 2);
 	DailyNICUArray.resize(Age65toEnd + 2);
 
-	CumulOutpatientArray.resize(Age65toEnd + 2);
-	CumulICUArray.resize(Age65toEnd + 2);
-	CumulNICUArray.resize(Age65toEnd + 2);
 
 	for (int r = 0; r < Age65toEnd + 2; r++) {
 		SusceptibleArray[r].resize(NumberofArray);
@@ -123,9 +115,6 @@ void MainWindow::run(double input) {
 		DailyICUArray[r].resize(NumberofArray);
 		DailyNICUArray[r].resize(NumberofArray);
 
-		CumulOutpatientArray[r].resize(NumberofArray);
-		CumulICUArray[r].resize(NumberofArray);
-		CumulNICUArray[r].resize(NumberofArray);
 	}
 
 	Initialize();
@@ -221,17 +210,8 @@ void MainWindow::step() {
 		DailyICUArray[i][day] = 0;
 		DailyNICUArray[i][day] = 0;
 
-		CumulOutpatientArray[i][day] = 0;
-		CumulICUArray[i][day] = 0;
-		CumulNICUArray[i][day] = 0;
 	}
-	CumulICUArray[Age65toEnd + 1][day] = CumulICUArray[Age65toEnd + 1][day - 1];
-	CumulNICUArray[Age65toEnd + 1][day] = CumulICUArray[Age65toEnd + 1][day - 1];
-
 	for (int age = 0; age < StageofAgeGroups; age++) {
-		CumulICUArray[age][day] = CumulICUArray[age][day - 1];
-		CumulNICUArray[age][day] = CumulNICUArray[age][day - 1];
-
 		SusceptibleArray[age][day] = total*(InitY[S(age, LowRisk)] + InitY[S(age, HighRisk)]);
 		SusceptibleArray[Age65toEnd+1][day] += total*(InitY[S(age, LowRisk)] + InitY[S(age, HighRisk)]);
 
@@ -247,6 +227,23 @@ void MainWindow::step() {
 			ModerateArray[age][day] += total*(InitY[M(age, k)]);
 			ModerateArray[Age65toEnd + 1][day] += total*(InitY[M(age, k)]);
 
+			MaskArray[age][day] = total*(MaskNeedICU * (InitY[H(age, k, MedYES, ICU)] + InitY[H(age, k, MedNO, ICU)])
+				+ MaskNeedNICU * (InitY[H(age, k, MedYES, NICU)] + InitY[H(age, k, MedNO, NICU)]));
+			MaskArray[Age65toEnd + 1][day] += total*(MaskNeedICU * (InitY[H(age, k, MedYES, ICU)] + InitY[H(age, k, MedNO, ICU)])
+				+ MaskNeedNICU * (InitY[H(age, k, MedYES, NICU)] + InitY[H(age, k, MedNO, NICU)]));
+
+
+
+			RespArray[age][day] = total*(percentage(RespiratorNeedRate) * (InitY[H(age, k, MedYES, ICU)] + InitY[H(age, k, MedNO, ICU)]));
+			RespArray[Age65toEnd + 1][day] += total*(percentage(RespiratorNeedRate) * (InitY[H(age, k, MedYES, ICU)] + InitY[H(age, k, MedNO, ICU)]));
+
+
+			DailyOutpatientArray[age][day] = total*(alpha  * (InitY[V(age, k)] + InitY[X(age, k)])
+				+ alphaW[age] * (InitY[W(age, k, MedNO)] + InitY[W(age, k, MedYES)]));
+
+			DailyOutpatientArray[Age65toEnd + 1][day] += total*(alpha  * (InitY[V(age, k)] + InitY[X(age, k)])
+				+ alphaW[age] * (InitY[W(age, k, MedNO)] + InitY[W(age, k, MedYES)]));
+
 			SevereArray[age][day] += total*(InitY[V(age, k)] + InitY[X(age, k)]);
 			SevereArray[Age65toEnd + 1][day] += total*(InitY[V(age, k)] + InitY[X(age, k)]);
 
@@ -259,18 +256,14 @@ void MainWindow::step() {
 					SevereArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
 
 					if (c == 1) {
-						DailyICUArray[age][day] += total*(InitY[H(age, k, m, c)]);
-						DailyICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
-
-						CumulICUArray[age][day] += total*(InitY[H(age, k, m, c)]);
-						CumulICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
-					}
-					else if (c == 2) {
 						DailyNICUArray[age][day] += total*(InitY[H(age, k, m, c)]);
 						DailyNICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
 
-						CumulNICUArray[age][day] +=total*(InitY[H(age, k, m, c)]);
-						CumulNICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
+					}
+					else if (c == 2) {
+						DailyICUArray[age][day] += total*(InitY[H(age, k, m, c)]);
+						DailyICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
+
 					}
 
 				}
@@ -283,23 +276,12 @@ void MainWindow::step() {
 		ImmuneArray[age][day] = total*(InitY[I(age)]);
 		ImmuneArray[Age65toEnd + 1][day] += total*(InitY[I(age)]);
 
-		MaskArray[age][day] = total*(InitY[N95(age)]);
-		MaskArray[Age65toEnd + 1][day] += total*(InitY[N95(age)]);
-
-		RespArray[age][day] = total*(InitY[Resp(age)]);
-		RespArray[Age65toEnd + 1][day] += total*(InitY[Resp(age)]);
-
 		AntiviralsArray[age][day] = total*(InitY[AV(age)]);
 		AntiviralsArray[Age65toEnd + 1][day] += total*(InitY[AV(age)]);
 
 		SpecimenArray[age][day] = total*(InitY[Spec(age)]);
 		SpecimenArray[Age65toEnd + 1][day] += total*(InitY[Spec(age)]);
 
-		DailyOutpatientArray[age][day] = total*(InitY[Op(age)]);
-		DailyOutpatientArray[Age65toEnd + 1][day] += total*(InitY[Op(age)]);
-
-		CumulOutpatientArray[age][day] = CumulOutpatientArray[age][day-1]+total*(InitY[Op(age)]);
-		CumulOutpatientArray[Age65toEnd + 1][day] += CumulOutpatientArray[age][day - 1] + total*(InitY[Op(age)]);
 
 
 		for (int rStage = Rstage1; rStage < RstageGroups; rStage++) {
@@ -344,35 +326,35 @@ void MainWindow::makeInfectionPlot(){
 	//감수성기 그래프
 	ui->customPlot_infection->addGraph();
     ui->customPlot_infection->graph(0)->setData(x, SusceptibleArray[GraphAge]);
-	ui->customPlot_infection->graph(0)->setName(toKor("감수성기에 있는 사람"));
+	ui->customPlot_infection->graph(0)->setName(toKor("감수성자"));
 	ui->customPlot_infection->graph(0)->setPen(QColor(255, 0, 0, 255));
     ui->customPlot_infection->replot();
 
 	//잠복기 그래프
 	ui->customPlot_infection->addGraph();
 	ui->customPlot_infection->graph(1)->setData(x, ExposedArray[GraphAge]);
-	ui->customPlot_infection->graph(1)->setName(toKor("잠복기에 있는 사람"));
+	ui->customPlot_infection->graph(1)->setName(toKor("잠복기 감염자"));
 	ui->customPlot_infection->graph(1)->setPen(QColor(0, 0, 255, 255));
 	ui->customPlot_infection->replot();
 
 	//무증상자 그래프
 	ui->customPlot_infection->addGraph();
 	ui->customPlot_infection->graph(2)->setData(x, AsymptomaticArray[GraphAge]);
-	ui->customPlot_infection->graph(2)->setName(toKor("무증상자"));
+	ui->customPlot_infection->graph(2)->setName(toKor("무증상 감염자"));
 	ui->customPlot_infection->graph(2)->setPen(QColor(0, 255, 0, 255));
 	ui->customPlot_infection->replot();
 
 	//중증도 중간 그래프
 	ui->customPlot_infection->addGraph();
 	ui->customPlot_infection->graph(3)->setData(x, ModerateArray[GraphAge]);
-	ui->customPlot_infection->graph(3)->setName(toKor("중증도가 중간인 사람"));
+	ui->customPlot_infection->graph(3)->setName(toKor("환자 (치료 불필요)"));
 	ui->customPlot_infection->graph(3)->setPen(QColor(255, 228, 0, 255));
 	ui->customPlot_infection->replot();
 
 	//중증도 높음 그래프
 	ui->customPlot_infection->addGraph();
 	ui->customPlot_infection->graph(4)->setData(x, SevereArray[GraphAge]);
-	ui->customPlot_infection->graph(4)->setName(toKor("중증도가 높은 사람"));
+	ui->customPlot_infection->graph(4)->setName(toKor("환자 (치료 필요)"));
 	ui->customPlot_infection->graph(4)->setPen(QColor(255, 0, 221, 255));
 	ui->customPlot_infection->replot();
 
@@ -386,14 +368,14 @@ void MainWindow::makeInfectionPlot(){
 	//회복중 그래프
 	ui->customPlot_infection->addGraph();
 	ui->customPlot_infection->graph(6)->setData(x, DeadArray[GraphAge]);
-	ui->customPlot_infection->graph(6)->setName(toKor("회복중인 사람"));
+	ui->customPlot_infection->graph(6)->setName(toKor("회복기 환자"));
 	ui->customPlot_infection->graph(6)->setPen(QColor(50, 216, 50, 255));
 	ui->customPlot_infection->replot();
 
 	//회복 그래프
 	ui->customPlot_infection->addGraph();
 	ui->customPlot_infection->graph(7)->setData(x, ImmuneArray[GraphAge]);
-	ui->customPlot_infection->graph(7)->setName(toKor("회복한 사람"));
+	ui->customPlot_infection->graph(7)->setName(toKor("회복자"));
 	ui->customPlot_infection->graph(7)->setPen(QColor(255, 94, 0, 255));
 	ui->customPlot_infection->replot();
 
@@ -406,6 +388,7 @@ void MainWindow::makeInfectionPlot(){
 	ui->infectionTable->setColumnWidth(4,130);
 	ui->infectionTable->setColumnWidth(5,90);
 	ui->infectionTable->setColumnWidth(6,90);
+	
 
 	//테이블 인풋 
 	ui->infectionTable->setRowCount(goal);
@@ -434,8 +417,12 @@ void MainWindow::makeInfectionPlot(){
 		ui->infectionTable->setItem(i, 5, new QTableWidgetItem(QString::number((double)DeadArray[GraphAge][i], 'f')));
 	}
 
-	for (int i = 0; i < 200; i++) {
-		ui->infectionTable->setItem(i, 6, new QTableWidgetItem(QString::number((double)ImmuneArray[GraphAge][i], 'f')));
+	for (int i = 0; i < goal; i++) {
+		ui->infectionTable->setItem(i, 6, new QTableWidgetItem(QString::number((double)RArray[GraphAge][i], 'f')));
+	}
+
+	for (int i = 0; i < goal; i++) {
+		ui->infectionTable->setItem(i, 7, new QTableWidgetItem(QString::number((double)ImmuneArray[GraphAge][i], 'f')));
 	}
 }
 
@@ -461,7 +448,7 @@ void MainWindow::makeResourcePlot(){
 
 	// set axes ranges, so we see all data:
 	ui->customPlot_resource->xAxis->setRange(0, 210);
-	ui->customPlot_resource->yAxis->setRange(0, total);
+	ui->customPlot_resource->yAxis->setRange(0, total/10);
 
 	QVector<double> x(goal);
 
@@ -551,8 +538,8 @@ void MainWindow::makeSpecimenPlot(){
 
 
 	//테이블 인풋 
-	ui->specimenTable->setRowCount(200);
-	for (int i = 0; i < 200; i++) {
+	ui->specimenTable->setRowCount(goal);
+	for (int i = 0; i < goal; i++) {
 		ui->specimenTable->setItem(i, 0, new QTableWidgetItem(QString::number((double)SpecimenArray[GraphAge][i], 'f')));
 	}
 }
@@ -591,21 +578,21 @@ void MainWindow::makeDailyPlot(){
 	//외래환자 그래프
 	ui->customPlot_daily->addGraph();
 	ui->customPlot_daily->graph(0)->setData(x, DailyOutpatientArray[GraphAge]);
-	ui->customPlot_daily->graph(0)->setName(toKor("외래환자 수"));
+	ui->customPlot_daily->graph(0)->setName(toKor("외래환자 수(일일)"));
 	ui->customPlot_daily->graph(0)->setPen(QColor(255, 0, 0, 255));
 	ui->customPlot_daily->replot();
 
 	//중환자실 병상 그래프
 	ui->customPlot_daily->addGraph();
-	ui->customPlot_daily->graph(1)->setData(x, DailyICUArray[GraphAge]);
-	ui->customPlot_daily->graph(1)->setName(toKor("중환자실 병상 수"));
+	ui->customPlot_daily->graph(1)->setData(x, DailyNICUArray[GraphAge]);
+	ui->customPlot_daily->graph(1)->setName(toKor("일반병상수(일일)"));
 	ui->customPlot_daily->graph(1)->setPen(QColor(0, 0, 255, 255));
 	ui->customPlot_daily->replot();
 
 	//일반 병상 그래프
 	ui->customPlot_daily->addGraph();
-	ui->customPlot_daily->graph(2)->setData(x, DailyNICUArray[GraphAge]);
-	ui->customPlot_daily->graph(2)->setName(toKor("일반 병상 수"));
+	ui->customPlot_daily->graph(2)->setData(x, DailyICUArray[GraphAge]);
+	ui->customPlot_daily->graph(2)->setName(toKor("중환자실병상수(일일)"));
 	ui->customPlot_daily->graph(2)->setPen(QColor(0, 255, 0, 255));
 	ui->customPlot_daily->replot();
 
@@ -617,93 +604,19 @@ void MainWindow::makeDailyPlot(){
 
 
 	//테이블 인풋 
-	ui->dailyTable->setRowCount(200);
-	for (int i = 0; i < 200; i++) {
+	ui->dailyTable->setRowCount(goal);
+	for (int i = 0; i < goal; i++) {
 		ui->dailyTable->setItem(i, 0, new QTableWidgetItem(QString::number((double) DailyOutpatientArray[GraphAge][i], 'f')));
 	}
 
-	for (int i = 0; i < 200; i++) {
-		ui->dailyTable->setItem(i, 1, new QTableWidgetItem(QString::number((double) DailyICUArray[GraphAge][i], 'f')));
+	for (int i = 0; i < goal; i++) {
+		ui->dailyTable->setItem(i, 1, new QTableWidgetItem(QString::number((double) DailyNICUArray[GraphAge][i], 'f')));
 	}
 
-	for (int i = 0; i < 200; i++) {
-		ui->dailyTable->setItem(i, 2, new QTableWidgetItem(QString::number((double)DailyNICUArray[GraphAge][i], 'f')));
-	}
-}
-
-
-void MainWindow::makeCumulativePlot(){
-	for (int i = 2; i > -1; i--) {
-		ui->customPlot_cumulative->removeGraph(i);
-	}
-
-
-	ui->customPlot_cumulative->setLocale(QLocale(QLocale::Korean));
-
-	ui->customPlot_cumulative->legend->setVisible(true);
-	ui->customPlot_cumulative->legend->setBrush(QBrush(QColor(255, 255, 255, 230)));
-
-	ui->customPlot_cumulative->axisRect()->setAutoMargins(QCP::msLeft | QCP::msTop | QCP::msBottom);
-	ui->customPlot_cumulative->axisRect()->setMargins(QMargins(20, 0, 140, 0));
-	ui->customPlot_cumulative->axisRect()->insetLayout()->setInsetPlacement(0, QCPLayoutInset::ipFree);
-	ui->customPlot_cumulative->axisRect()->insetLayout()->setInsetRect(0, QRectF(1.0, 0, 0.2, 0.2));
-	ui->customPlot_cumulative->xAxis->setLabel(toKor("일"));
-	ui->customPlot_cumulative->yAxis->setLabel(toKor("인구"));
-
-
-	// set axes ranges, so we see all data:
-	ui->customPlot_cumulative->xAxis->setRange(0, 210);
-	ui->customPlot_cumulative->yAxis->setRange(0, total);
-
-	QVector<double> x(goal);
-
-	for (int i = 0; i<goal; i++) {
-		x[i] = i;
-	}
-
-	//외래환자 그래프
-	ui->customPlot_cumulative->addGraph();
-	ui->customPlot_cumulative->graph(0)->setData(x, CumulOutpatientArray[GraphAge]);
-	ui->customPlot_cumulative->graph(0)->setName(toKor("외래환자 수(누적)"));
-	ui->customPlot_cumulative->graph(0)->setPen(QColor(255, 0, 0, 255));
-	ui->customPlot_cumulative->replot();
-
-	//중환자실 환자 그래프
-	ui->customPlot_cumulative->addGraph();
-	ui->customPlot_cumulative->graph(1)->setData(x, CumulICUArray[GraphAge]);
-	ui->customPlot_cumulative->graph(1)->setName(toKor("중환자실 환자 수(누적)"));
-	ui->customPlot_cumulative->graph(1)->setPen(QColor(0, 0, 255, 255));
-	ui->customPlot_cumulative->replot();
-
-	//일반환자 그래프
-	ui->customPlot_cumulative->addGraph();
-	ui->customPlot_cumulative->graph(2)->setData(x, CumulNICUArray[GraphAge]);
-	ui->customPlot_cumulative->graph(2)->setName(toKor("일반 환자 수(누적)"));
-	ui->customPlot_cumulative->graph(2)->setPen(QColor(0, 255, 0, 255));
-	ui->customPlot_cumulative->replot();
-
-
-	//테이블 크기 조절
-	ui->cumulativeTable->setColumnWidth(0, 150);
-	ui->cumulativeTable->setColumnWidth(1, 150);
-	ui->cumulativeTable->setColumnWidth(2, 150);
-
-
-	//테이블 인풋 
-	ui->cumulativeTable->setRowCount(200);
-	for (int i = 0; i < 200; i++) {
-		ui->cumulativeTable->setItem(i, 0, new QTableWidgetItem(QString::number((double)CumulOutpatientArray[GraphAge][i], 'f')));
-	}
-
-	for (int i = 0; i < 200; i++) {
-		ui->cumulativeTable->setItem(i, 1, new QTableWidgetItem(QString::number((double)CumulICUArray[GraphAge][i], 'f')));
-	}
-
-	for (int i = 0; i < 200; i++) {
-		ui->cumulativeTable->setItem(i, 2, new QTableWidgetItem(QString::number((double) CumulNICUArray[GraphAge][i], 'f')));
+	for (int i = 0; i < goal; i++) {
+		ui->dailyTable->setItem(i, 2, new QTableWidgetItem(QString::number((double)DailyICUArray[GraphAge][i], 'f')));
 	}
 }
-
 
 void MainWindow::setDefault()
 {
@@ -738,9 +651,6 @@ void MainWindow::setDefault()
     ui->input_SchoolRatio7to12->setText(QString::number(SchoolContactRate[1])); 
     ui->input_SchoolRatio13to18->setText(QString::number(SchoolContactRate[2]));
 
-    ui->input_AbsentRatio0to6->setText(QString::number(AbsenceContactRatio[0]));
-	ui->input_AbsentRatio7to12->setText(QString::number(AbsenceContactRatio[1]));
-	ui->input_AbsentRatio13to18->setText(QString::number(AbsenceContactRatio[2]));
 
     /*질병 tab 기본값 세팅*/
     ui->input_LatentPeriod->setText(QString::number(LatentPeriod));
@@ -870,9 +780,8 @@ void MainWindow::on_areaSubmit_clicked()
     ui->areaWidget->hide();
 }
 
-//출력화면 이동 버튼 클릭
-void MainWindow::on_outputPageBtn_clicked()
-{
+void MainWindow::saveInput() {
+
 	/*인구 탭*/
 	SchoolContactRate[0] = (double)ui->input_SchoolRatio0to6->text().toDouble();
 	SchoolContactRate[1] = (double)ui->input_SchoolRatio7to12->text().toDouble();
@@ -921,14 +830,15 @@ void MainWindow::on_outputPageBtn_clicked()
 	ModerateCase = (double)ui->input_moderate->text().toDouble();
 
 	ModerateCaseIsolation = (double)ui->input_isolModerate->text().toDouble();
-	SevereHomeCaseIsolation = (double)ui ->input_isolSevereHome->text().toDouble();
+	SevereHomeCaseIsolation = (double)ui->input_isolSevereHome->text().toDouble();
 	SevereHospitalCaseIsolation = (double)ui->input_isolSevereHospital->text().toDouble();
 
 	RangeofIsolationBegin = (int)ui->input_isolStart->text().toInt();
 	RangeofIsolationEnd = (int)ui->input_isolEnd->text().toInt();
-	
+
 	/*치료 탭*/
 	AntiviralsInjectionRate = (double)ui->input_antiviralsRate->text().toDouble();
+	antiviralRessource = percentage(AntiviralsInjectionRate);
 
 	MedicalHelp = (double)ui->input_medicalHelp->text().toDouble();
 	AntiviralsHelp = (double)ui->input_antiviralsHelp->text().toDouble();
@@ -950,7 +860,7 @@ void MainWindow::on_outputPageBtn_clicked()
 	ContactReductionRangeBegin = (double)ui->input_contactReductStart->text().toDouble();
 	ContactReductionRangeEnd = (double)ui->input_contactReductEnd->text().toDouble();
 
-	SchoolCloseRangeBegin = (double)ui ->input_schoolCloseRangeStart->text().toDouble();
+	SchoolCloseRangeBegin = (double)ui->input_schoolCloseRangeStart->text().toDouble();
 	SchoolCloseRangeEnd = (double)ui->input_schoolCloseRangeEnd->text().toDouble();
 
 
@@ -963,7 +873,7 @@ void MainWindow::on_outputPageBtn_clicked()
 	HospitalizationICU = (double)ui->input_ICU->text().toDouble();
 
 	/*백신 탭*/
-	VaccineAgeRate[0]= (double)ui->input_vaccine_1->text().toDouble();
+	VaccineAgeRate[0] = (double)ui->input_vaccine_1->text().toDouble();
 	VaccineAgeRate[1] = (double)ui->input_vaccine_2->text().toDouble();
 	VaccineAgeRate[2] = (double)ui->input_vaccine_3->text().toDouble();
 	VaccineAgeRate[3] = (double)ui->input_vaccine_4->text().toDouble();
@@ -987,6 +897,12 @@ void MainWindow::on_outputPageBtn_clicked()
 	/*검체 탭*/
 	ReinspectionRate = (double)ui->input_reinspect->text().toDouble();
 	OutpatientSpecimenTesting = (double)ui->input_outpatient->text().toDouble();
+}
+
+//출력화면 이동 버튼 클릭
+void MainWindow::on_outputPageBtn_clicked()
+{
+	MainWindow::saveInput();
 
 	for (int i = 0; i < OutputArray; i++) {
 		yInVector[i] = 0;
@@ -999,7 +915,7 @@ void MainWindow::on_outputPageBtn_clicked()
 	steps = 0;
 	evals = 0;
 	h = 1;
-	maxError = 0.5;
+	maxError = 0.02;
 	minError = maxError / 4;
 
 	MainWindow::run(goal);
@@ -1011,7 +927,6 @@ void MainWindow::on_outputPageBtn_clicked()
 	MainWindow::makeResourcePlot();
 	MainWindow::makeSpecimenPlot();
 	MainWindow::makeDailyPlot();
-	MainWindow::makeCumulativePlot();
 }
 //입력화면 이동 버튼 클릭
 void MainWindow::on_inputPageBtn_clicked()
@@ -1063,8 +978,6 @@ void MainWindow::on_input_contact_1_1_textChanged(const QString &arg1)
     ContactMatrix[Age0to6][Age0to6] = ui->input_contact_1_1->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_1_2_textChanged(const QString &arg1)
@@ -1072,8 +985,6 @@ void MainWindow::on_input_contact_1_2_textChanged(const QString &arg1)
     ContactMatrix[Age0to6][Age7to12] = ui->input_contact_1_2->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_1_3_textChanged(const QString &arg1)
@@ -1081,8 +992,6 @@ void MainWindow::on_input_contact_1_3_textChanged(const QString &arg1)
     ContactMatrix[Age0to6][Age13to18] = ui->input_contact_1_3->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_1_4_textChanged(const QString &arg1)
@@ -1090,8 +999,6 @@ void MainWindow::on_input_contact_1_4_textChanged(const QString &arg1)
     ContactMatrix[Age0to6][Age19to64] = ui->input_contact_1_4->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_1_5_textChanged(const QString &arg1)
@@ -1099,8 +1006,6 @@ void MainWindow::on_input_contact_1_5_textChanged(const QString &arg1)
     ContactMatrix[Age0to6][Age65toEnd] = ui->input_contact_1_5->text().toDouble();
     contactTotal0to6 =  ContactMatrix[Age0to6][Age0to6]+ ContactMatrix[Age0to6][Age7to12]+ ContactMatrix[Age0to6][Age13to18]+ ContactMatrix[Age0to6][Age19to64]+ ContactMatrix[Age0to6][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total0to6->setText(QString::number(contactTotal0to6));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 
@@ -1109,8 +1014,6 @@ void MainWindow::on_input_contact_2_2_textChanged(const QString &arg1)
     ContactMatrix[Age7to12][Age7to12] = ui->input_contact_2_2->text().toDouble();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
 }
 
 void MainWindow::on_input_contact_2_3_textChanged(const QString &arg1)
@@ -1118,8 +1021,7 @@ void MainWindow::on_input_contact_2_3_textChanged(const QString &arg1)
     ContactMatrix[Age7to12][Age13to18] = ui->input_contact_2_3->text().toDouble();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
+
 }
 
 void MainWindow::on_input_contact_2_4_textChanged(const QString &arg1)
@@ -1127,8 +1029,7 @@ void MainWindow::on_input_contact_2_4_textChanged(const QString &arg1)
     ContactMatrix[Age7to12][Age19to64] = ui->input_contact_2_4->text().toDouble();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
+
 }
 
 void MainWindow::on_input_contact_2_5_textChanged(const QString &arg1)
@@ -1136,8 +1037,7 @@ void MainWindow::on_input_contact_2_5_textChanged(const QString &arg1)
     ContactMatrix[Age7to12][Age65toEnd] = ui->input_contact_2_5->text().toDouble();
     contactTotal7to12 =  ContactMatrix[Age7to12][Age7to12]+ ContactMatrix[Age7to12][Age13to18]+ ContactMatrix[Age7to12][Age19to64]+ ContactMatrix[Age7to12][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total7to12->setText(QString::number(contactTotal7to12));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
+
 }
 
 void MainWindow::on_input_contact_3_3_textChanged(const QString &arg1)
@@ -1145,8 +1045,7 @@ void MainWindow::on_input_contact_3_3_textChanged(const QString &arg1)
     ContactMatrix[Age13to18][Age13to18] = ui->input_contact_3_3->text().toDouble();
     contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total13to18->setText(QString::number(contactTotal13to18));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
+
 }
 
 void MainWindow::on_input_contact_3_4_textChanged(const QString &arg1)
@@ -1154,8 +1053,7 @@ void MainWindow::on_input_contact_3_4_textChanged(const QString &arg1)
     ContactMatrix[Age13to18][Age19to64] = ui->input_contact_3_4->text().toDouble();
     contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total13to18->setText(QString::number(contactTotal13to18));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
+
 }
 
 void MainWindow::on_input_contact_3_5_textChanged(const QString &arg1)
@@ -1163,8 +1061,7 @@ void MainWindow::on_input_contact_3_5_textChanged(const QString &arg1)
     ContactMatrix[Age13to18][Age65toEnd] = ui->input_contact_3_5->text().toDouble();
     contactTotal13to18 =  ContactMatrix[Age13to18][Age13to18]+ ContactMatrix[Age13to18][Age19to64]+ ContactMatrix[Age13to18][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total13to18->setText(QString::number(contactTotal13to18));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
+
 }
 
 void MainWindow::on_input_contact_4_4_textChanged(const QString &arg1)
@@ -1172,8 +1069,7 @@ void MainWindow::on_input_contact_4_4_textChanged(const QString &arg1)
     ContactMatrix[Age19to64][Age19to64] = ui->input_contact_4_4->text().toDouble();
     contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total19to64->setText(QString::number(contactTotal19to64));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
+
 }
 
 void MainWindow::on_input_contact_4_5_textChanged(const QString &arg1)
@@ -1181,8 +1077,7 @@ void MainWindow::on_input_contact_4_5_textChanged(const QString &arg1)
     ContactMatrix[Age19to64][Age65toEnd] = ui->input_contact_4_5->text().toDouble();
     contactTotal19to64 =  ContactMatrix[Age19to64][Age19to64]+ ContactMatrix[Age19to64][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total19to64->setText(QString::number(contactTotal19to64));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
+
 }
 
 void MainWindow::on_input_contact_5_5_textChanged(const QString &arg1)
@@ -1190,8 +1085,7 @@ void MainWindow::on_input_contact_5_5_textChanged(const QString &arg1)
     ContactMatrix[Age65toEnd][Age65toEnd] = ui->input_contact_5_5->text().toDouble();
     contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
     contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
-    ui->input_contact_total65toEnd->setText(QString::number(contactTotal65toEnd));
-    ui->input_contact_totalAll->setText(QString::number(contactTotalAll));
+
 }
 
 
@@ -1206,7 +1100,6 @@ void MainWindow::on_age_checkBox1_clicked()
 	MainWindow::makeResourcePlot();
 	MainWindow::makeSpecimenPlot();
 	MainWindow::makeDailyPlot();
-	MainWindow::makeCumulativePlot();
 }
 
 void MainWindow::on_age_checkBox2_clicked()
@@ -1217,7 +1110,6 @@ void MainWindow::on_age_checkBox2_clicked()
 	MainWindow::makeResourcePlot();
 	MainWindow::makeSpecimenPlot();
 	MainWindow::makeDailyPlot();
-	MainWindow::makeCumulativePlot();
 }
 
 void MainWindow::on_age_checkBox3_clicked()
@@ -1228,7 +1120,6 @@ void MainWindow::on_age_checkBox3_clicked()
 	MainWindow::makeResourcePlot();
 	MainWindow::makeSpecimenPlot();
 	MainWindow::makeDailyPlot();
-	MainWindow::makeCumulativePlot();
 }
 
 void MainWindow::on_age_checkBox4_clicked()
@@ -1239,7 +1130,6 @@ void MainWindow::on_age_checkBox4_clicked()
 	MainWindow::makeResourcePlot();
 	MainWindow::makeSpecimenPlot();
 	MainWindow::makeDailyPlot();
-	MainWindow::makeCumulativePlot();
 }
 
 void MainWindow::on_age_checkBox5_clicked()
@@ -1250,7 +1140,6 @@ void MainWindow::on_age_checkBox5_clicked()
 	MainWindow::makeResourcePlot();
 	MainWindow::makeSpecimenPlot();
 	MainWindow::makeDailyPlot();
-	MainWindow::makeCumulativePlot();
 }
 
 void MainWindow::on_age_checkBox6_clicked()
@@ -1262,23 +1151,237 @@ void MainWindow::on_age_checkBox6_clicked()
 	MainWindow::makeResourcePlot();
 	MainWindow::makeSpecimenPlot();
 	MainWindow::makeDailyPlot();
-	MainWindow::makeCumulativePlot();
 }
 
 void MainWindow::on_actionOpen_triggered()
-{
 
+{
+	QString filter = "KISIM Files (*.kclm)";
+	QString filename = QFileDialog::getOpenFileName(this, tr("기존 파일 열기"), "", filter, &filter);
+	QFile inputFile(filename);
+	if (inputFile.open(QIODevice::ReadOnly))
+	{
+
+		int linecount = 0;
+		QTextStream in(&inputFile);
+		while (!in.atEnd())
+		{
+			QString line = in.readLine();
+			
+			switch (linecount) {
+
+			case 0:
+				Population[0] = line.toDouble();
+			case 1:
+				Population[1] = line.toDouble();
+			case 2:
+				Population[2] = line.toDouble();
+			case 3:
+				Population[3] = line.toDouble();
+			case 4:
+				Population[4] = line.toDouble();
+			case 5:
+				ContactMatrix[0][0] = line.toDouble();
+			case 6:
+				ContactMatrix[0][1] = line.toDouble();
+			case 7:
+				ContactMatrix[0][2] = line.toDouble();
+			case 8:
+				ContactMatrix[0][3] = line.toDouble();
+			case 9:
+				ContactMatrix[0][4] = line.toDouble();
+			case 10:
+				ContactMatrix[1][1] = line.toDouble();
+			case 11:
+				ContactMatrix[1][2] = line.toDouble();
+			case 12:
+				ContactMatrix[1][3] = line.toDouble();
+			case 13:
+				ContactMatrix[1][4] = line.toDouble();
+			case 14:
+				ContactMatrix[2][2] = line.toDouble();
+			case 15:
+				ContactMatrix[2][3] = line.toDouble();
+			case 16:
+				ContactMatrix[2][4] = line.toDouble();
+			case 17:
+				ContactMatrix[3][3] = line.toDouble();
+			case 18:
+				ContactMatrix[3][4] = line.toDouble();
+			case 19:
+				ContactMatrix[4][4] = line.toDouble();
+			case 20:
+				SchoolContactRate[0] = line.toDouble();
+			case 21:
+				SchoolContactRate[1] = line.toDouble();
+			case 22:
+				SchoolContactRate[2] = line.toDouble();
+			case 23:
+				LatentPeriod = line.toDouble();
+			case 24:
+				InfectiousDuration[0][0] = line.toDouble();
+			case 25:
+				InfectiousDuration[0][1] = line.toDouble();
+			case 26:
+				InfectiousDuration[0][2] = line.toDouble();
+			case 27:
+				InfectiousDuration[1][0] = line.toDouble();
+			case 28:
+				InfectiousDuration[1][1] = line.toDouble();
+			case 29:
+				InfectiousDuration[1][2] = line.toDouble();
+			case 30:
+				SevereRate = line.toDouble();
+			case 31:
+				MildRate = line.toDouble();
+			case 32:
+				ReturntoWorkPeriod = line.toDouble();
+			case 33:
+				HighRiskRate[0] = line.toDouble();
+			case 34:
+				HighRiskRate[1] = line.toDouble();
+			case 35:
+				HighRiskRate[2] = line.toDouble();
+			case 36:
+				LowRiskHospitalRate[0] = line.toDouble();
+			case 37:
+				LowRiskHospitalRate[1] = line.toDouble();
+			case 38:
+				LowRiskHospitalRate[2] = line.toDouble();
+			case 39:
+				HighRiskHospitalRate[0] = line.toDouble();
+			case 40:
+				HighRiskHospitalRate[1] = line.toDouble();
+			case 41:
+				HighRiskHospitalRate[2] = line.toDouble();
+			case 42:
+				DeadRate[0] = line.toDouble();
+			case 43:
+				DeadRate[1] = line.toDouble();
+			case 44:
+				DeadRate[2] = line.toDouble();
+			case 45:
+				R0 = line.toDouble();
+			case 46:
+				HalfInfectiousRate = line.toDouble();
+			case 47:
+				LastLatentPeriodCase = line.toDouble();
+			case 48:
+				AsymptomaticCase = line.toDouble();
+			case 49:
+				ModerateCase = line.toDouble();
+			case 50:
+				ModerateCaseIsolation = line.toDouble();
+			case 51:
+				SevereHomeCaseIsolation = line.toDouble();
+			case 52:
+				SevereHospitalCaseIsolation = line.toDouble();
+			case 53:
+				RangeofIsolationBegin = line.toInt();
+			case 54:
+				RangeofIsolationEnd = line.toInt();
+			case 55:
+				AntiviralsInjectionRate = line.toDouble();
+			case 56:
+				MedicalHelp = line.toDouble();
+			case 57:
+				AntiviralsHelp = line.toDouble();
+			case 58:
+				VerySickTreatRate = line.toDouble();
+			case 59:
+				VerySickTreatRangeBegin = line.toInt();
+			case 60:
+				VerySickTreatRangeEnd = line.toInt();
+			case 61:
+				ExtremelySickTreatRate = line.toDouble();
+			case 62:
+				ExtremelySickTreatRangeBegin = line.toInt();
+			case 63:
+				ExtremelySickTreatRangeEnd = line.toInt();
+			case 64:
+				ContagiousnessReduction = line.toDouble();
+			case 65:
+				DiseaseDurationReduction = line.toDouble();
+			case 66:
+				HospitalizationReduction = line.toDouble();
+			case 67:
+				ContactReductionRate = line.toDouble();
+			case 68:
+				ContactReductionRangeBegin = line.toInt();
+			case 69:
+				ContactReductionRangeEnd = line.toInt();
+			case 70:
+				SchoolCloseRangeBegin = line.toInt();
+			case 71:
+				SchoolCloseRangeEnd = line.toInt();
+			case 72:
+				GatheringCancelReductionRate = line.toDouble();
+			case 73:
+				GatheringCancleRangeBegin = line.toInt();
+			case 74:
+				GatheringCancleRangeEnd = line.toInt();
+			case 75:
+				HospitalizationNICU = line.toDouble();
+			case 76:
+				HospitalizationICU = line.toDouble();
+			case 77:
+				VaccineAgeRate[0] = line.toDouble();
+			case 78:
+				VaccineAgeRate[1] = line.toDouble();
+			case 79:
+				VaccineAgeRate[2] = line.toDouble();
+			case 80:
+				VaccineAgeRate[3] = line.toDouble();
+			case 81:
+				VaccineAgeRate[4] = line.toDouble();
+			case 82:
+				VaccineEffectAgeRate[0] = line.toDouble();
+			case 83:
+				VaccineEffectAgeRate[1] = line.toDouble();
+			case 84:
+				VaccineEffectAgeRate[2] = line.toDouble();
+			case 85:
+				VaccineEffectAgeRate[3] = line.toDouble();
+			case 86:
+				VaccineEffectAgeRate[4] = line.toDouble();
+			case 87:
+				AntibodyCreateRange = line.toDouble();
+			case 88:
+				VaccineStart = line.toDouble();
+			case 90:
+				MaskNeedNICU = line.toDouble();
+			case 91:
+				MaskNeedICU = line.toDouble();
+			case 92:
+				RespiratorNeedRate = line.toDouble();
+			case 93:
+				ReinspectionRate = line.toDouble();
+			case 94:
+				OutpatientSpecimenTesting = line.toDouble();
+
+			}
+
+			linecount++;
+
+		}
+		inputFile.close();
+
+		MainWindow::setDefault();
+	}
 }
 
 void MainWindow::on_actionSave_triggered()
 {
+	MainWindow::saveInput();
+
 	time_t     now = time(0);
 	struct tm  tstruct;
 	char       buf[80];
 	tstruct = *localtime(&now);
 	strftime(buf, sizeof(buf), "%Y-%m-%d-%H%M%S.kclm", &tstruct);
 
-	QString filename = QFileDialog::getSaveFileName(this, "저장하기", buf, ".kcim");
+	QString filter = "KISIM Files (*.kclm)";
+	QString filename = QFileDialog::getSaveFileName(this, tr("저장하기"), buf, filter, &filter);
 
 	if (! filename.isNull()) {
 		QFile f(filename);
@@ -1290,6 +1393,108 @@ void MainWindow::on_actionSave_triggered()
 		for (int i = 0; i < StageofAgeGroups; i++) {
 			fprintf(fp, "%f \n", Population[i]);
 		}
+
+		for (int i = 0; i < StageofAgeGroups; i++) {
+			for (int j = i; j < StageofAgeGroups; j++) {
+				fprintf(fp, "%f \n", ContactMatrix[i][j]);
+			}
+		}
+
+		for (int i = 0; i < ChildClass; i++) {
+			fprintf(fp, "%f \n", SchoolContactRate[i]);
+		}
+
+		fprintf(fp, "%f \n", LatentPeriod);
+
+		for (int i = 0; i < StageofSevere; i++) {
+			for (int j = 0; j < StageofWorkAge; j++) {
+				fprintf(fp, "%f \n", InfectiousDuration[i][j]);
+			}
+		}
+
+		fprintf(fp, "%f \n", SevereRate);
+		fprintf(fp, "%f \n", MildRate);
+
+		fprintf(fp, "%f \n", ReturntoWorkPeriod);
+
+		for (int i = 0; i < StageofWorkAge; i++) {
+			fprintf(fp, "%f \n", HighRiskRate[i]);
+		}
+		for (int i = 0; i < StageofWorkAge; i++) {
+			fprintf(fp, "%f \n", LowRiskHospitalRate[i]);
+		}
+		for (int i = 0; i < StageofWorkAge; i++) {
+			fprintf(fp, "%f \n", HighRiskHospitalRate[i]);
+		}
+		for (int i = 0; i < StageofWorkAge; i++) {
+			fprintf(fp, "%f \n", DeadRate[i]);
+		}
+
+		fprintf(fp, "%f \n", R0);
+
+		fprintf(fp, "%f \n", HalfInfectiousRate);
+
+		fprintf(fp, "%f \n", LastLatentPeriodCase);
+		fprintf(fp, "%f \n", AsymptomaticCase);
+		fprintf(fp, "%f \n", ModerateCase);
+
+		fprintf(fp, "%f \n", ModerateCaseIsolation);
+		fprintf(fp, "%f \n", SevereHomeCaseIsolation);
+		fprintf(fp, "%f \n", SevereHospitalCaseIsolation);
+		fprintf(fp, "%f \n", ModerateCaseIsolation);
+		fprintf(fp, "%d \n", RangeofIsolationBegin);
+		fprintf(fp, "%d \n", RangeofIsolationEnd);
+
+		fprintf(fp, "%f \n", AntiviralsInjectionRate);
+
+		fprintf(fp, "%f \n", MedicalHelp);
+		fprintf(fp, "%f \n", AntiviralsHelp);
+
+		fprintf(fp, "%f \n", VerySickTreatRate);
+		fprintf(fp, "%d \n", VerySickTreatRangeBegin);
+		fprintf(fp, "%d \n", VerySickTreatRangeEnd);
+
+		fprintf(fp, "%f \n", ExtremelySickTreatRate);
+		fprintf(fp, "%d \n", ExtremelySickTreatRangeBegin);
+		fprintf(fp, "%d \n", ExtremelySickTreatRangeEnd);
+
+		fprintf(fp, "%f \n", ContagiousnessReduction);
+		fprintf(fp, "%f \n", DiseaseDurationReduction);
+		fprintf(fp, "%f \n", HospitalizationReduction);
+
+		fprintf(fp, "%f \n", ContactReductionRate);
+		fprintf(fp, "%d \n", ContactReductionRangeBegin);
+		fprintf(fp, "%d \n", ContactReductionRangeEnd);
+
+		fprintf(fp, "%d \n", SchoolCloseRangeBegin);
+		fprintf(fp, "%d \n", SchoolCloseRangeEnd);
+
+		fprintf(fp, "%f \n", GatheringCancelReductionRate);
+		fprintf(fp, "%d \n", GatheringCancleRangeBegin);
+		fprintf(fp, "%d \n", GatheringCancleRangeEnd);
+
+		fprintf(fp, "%f \n", HospitalizationNICU);
+		fprintf(fp, "%f \n", HospitalizationICU);
+
+		for (int i = 0; i < StageofAgeGroups; i++) {
+			fprintf(fp, "%f \n", VaccineAgeRate[i]);
+		}
+		for (int i = 0; i < StageofAgeGroups; i++) {
+			fprintf(fp, "%f \n", VaccineEffectAgeRate[i]);
+		}
+
+		fprintf(fp, "%f \n", AntibodyCreateRange);
+
+		fprintf(fp, "%f \n", VaccineStart);
+
+		fprintf(fp, "%f \n", MaskNeedNICU);
+		fprintf(fp, "%f \n", MaskNeedICU);
+
+		fprintf(fp, "%f \n", RespiratorNeedRate);
+
+		fprintf(fp, "%f \n", ReinspectionRate);
+		fprintf(fp, "%f \n", OutpatientSpecimenTesting);
+
 		fclose(fp);
 	}
 

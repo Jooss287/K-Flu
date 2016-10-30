@@ -24,12 +24,13 @@ public:
 
 	void makeDailyPlot();
 
-	void makeCumulativePlot();
-
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
     void setDefault();
+	
+	void saveInput();
 
 private slots:
 

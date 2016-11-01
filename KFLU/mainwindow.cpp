@@ -7,7 +7,7 @@
 #include <sstream>
 #include <time.h>
 #include <qstring.h>
-
+#include <locale>
 using namespace std;
 #define toKor(str) QString::fromLocal8Bit(str)
 
@@ -23,7 +23,8 @@ int contactTotal65toEnd = ContactMatrix[Age65toEnd][Age65toEnd];
 double contactTotalAll = contactTotal0to6 + contactTotal7to12 + contactTotal13to18 + contactTotal19to64 + contactTotal65toEnd;
 
 /*output 관련 변수들*/
-int goal=200;
+bool outputFlag = false;
+int goal=300;
 double day = 0;
 int steps=0;
 int evals = 0;
@@ -40,6 +41,8 @@ double k3[OutputArray] = {};
 double k4[OutputArray] = {};
 
 int GraphAge = Age65toEnd+1; //default
+int csvOutput = 1;
+int jpgOutput = 1;
 
 QVector<QVector <double> > SusceptibleArray((NumberofArray));
 QVector<QVector <double> > ExposedArray((NumberofArray));
@@ -65,6 +68,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+	QString img_path = "images/logo1.jpg";
+	QImage img(img_path);
+	QPixmap buf = QPixmap::fromImage(img);
+
+	ui->logo1->setPixmap(buf);
+	ui->logo1->resize(buf.width(), buf.height());
+
+	QString img_path2 = "images/logo2.jpg";
+	QImage img2(img_path2);
+	QPixmap buf2 = QPixmap::fromImage(img2);
+
+	ui->logo2->setPixmap(buf2);
+	ui->logo2->resize(buf2.width(), buf2.height());
+
     setDefault();
 
 }
@@ -232,8 +250,6 @@ void MainWindow::step() {
 			MaskArray[Age65toEnd + 1][day] += total*(MaskNeedICU * (InitY[H(age, k, MedYES, ICU)] + InitY[H(age, k, MedNO, ICU)])
 				+ MaskNeedNICU * (InitY[H(age, k, MedYES, NICU)] + InitY[H(age, k, MedNO, NICU)]));
 
-
-
 			RespArray[age][day] = total*(percentage(RespiratorNeedRate) * (InitY[H(age, k, MedYES, ICU)] + InitY[H(age, k, MedNO, ICU)]));
 			RespArray[Age65toEnd + 1][day] += total*(percentage(RespiratorNeedRate) * (InitY[H(age, k, MedYES, ICU)] + InitY[H(age, k, MedNO, ICU)]));
 
@@ -258,7 +274,6 @@ void MainWindow::step() {
 					if (c == 1) {
 						DailyNICUArray[age][day] += total*(InitY[H(age, k, m, c)]);
 						DailyNICUArray[Age65toEnd + 1][day] += total*(InitY[H(age, k, m, c)]);
-
 					}
 					else if (c == 2) {
 						DailyICUArray[age][day] += total*(InitY[H(age, k, m, c)]);
@@ -281,7 +296,6 @@ void MainWindow::step() {
 
 		SpecimenArray[age][day] = total*(InitY[Spec(age)]);
 		SpecimenArray[Age65toEnd + 1][day] += total*(InitY[Spec(age)]);
-
 
 
 		for (int rStage = Rstage1; rStage < RstageGroups; rStage++) {
@@ -313,7 +327,7 @@ void MainWindow::makeInfectionPlot(){
 	ui->customPlot_infection->yAxis->setLabel(toKor("인구"));
 
 	// set axes ranges, so we see all data:
-	ui->customPlot_infection->xAxis->setRange(0, 210);
+	ui->customPlot_infection->xAxis->setRange(0, goal+10);
 	ui->customPlot_infection->yAxis->setRange(0, total);
 
 	QVector<double> x(goal);
@@ -367,7 +381,7 @@ void MainWindow::makeInfectionPlot(){
 
 	//회복중 그래프
 	ui->customPlot_infection->addGraph();
-	ui->customPlot_infection->graph(6)->setData(x, DeadArray[GraphAge]);
+	ui->customPlot_infection->graph(6)->setData(x, RArray[GraphAge]);
 	ui->customPlot_infection->graph(6)->setName(toKor("회복기 환자"));
 	ui->customPlot_infection->graph(6)->setPen(QColor(50, 216, 50, 255));
 	ui->customPlot_infection->replot();
@@ -381,13 +395,14 @@ void MainWindow::makeInfectionPlot(){
 
 
 	//테이블 크기 조절
-    ui->infectionTable->setColumnWidth(0,130);
+    ui->infectionTable->setColumnWidth(0,120);
     ui->infectionTable->setColumnWidth(1,120);
-    ui->infectionTable->setColumnWidth(2,90);
-    ui->infectionTable->setColumnWidth(3,130);
-	ui->infectionTable->setColumnWidth(4,130);
-	ui->infectionTable->setColumnWidth(5,90);
-	ui->infectionTable->setColumnWidth(6,90);
+    ui->infectionTable->setColumnWidth(2,120);
+    ui->infectionTable->setColumnWidth(3,120);
+	ui->infectionTable->setColumnWidth(4,120);
+	ui->infectionTable->setColumnWidth(5,100);
+	ui->infectionTable->setColumnWidth(6,100);
+	ui->infectionTable->setColumnWidth(7, 100);
 	
 
 	//테이블 인풋 
@@ -447,8 +462,8 @@ void MainWindow::makeResourcePlot(){
 
 
 	// set axes ranges, so we see all data:
-	ui->customPlot_resource->xAxis->setRange(0, 210);
-	ui->customPlot_resource->yAxis->setRange(0, total/10);
+	ui->customPlot_resource->xAxis->setRange(0, goal + 10);
+	ui->customPlot_resource->yAxis->setRange(0, total*0.08);
 
 	QVector<double> x(goal);
 
@@ -485,17 +500,17 @@ void MainWindow::makeResourcePlot(){
 
 
 	//테이블 인풋 
-	ui->resourceTable->setRowCount(NumberofArray);
-	for (int i = 0; i < NumberofArray; i++) {
+	ui->resourceTable->setRowCount(goal*0.08);
+	for (int i = 0; i < goal; i++) {
 		ui->resourceTable->setItem(i, 0, new QTableWidgetItem(QString::number((double)MaskArray[GraphAge][i], 'f')));
 	}
 
-	for (int i = 0; i < NumberofArray; i++) {
-		ui->resourceTable->setItem(i, 1, new QTableWidgetItem(QString::number(RespArray[GraphAge][i])));
+	for (int i = 0; i < goal; i++) {
+		ui->resourceTable->setItem(i, 1, new QTableWidgetItem(QString::number((double)RespArray[GraphAge][i], 'f')));
 	}
 
-	for (int i = 0; i < NumberofArray; i++) {
-		ui->resourceTable->setItem(i, 2, new QTableWidgetItem(QString::number(AntiviralsArray[GraphAge][i])));
+	for (int i = 0; i < goal; i++) {
+		ui->resourceTable->setItem(i, 2, new QTableWidgetItem(QString::number((double)AntiviralsArray[GraphAge][i], 'f')));
 	}
 }
 
@@ -516,8 +531,8 @@ void MainWindow::makeSpecimenPlot(){
 
 
 	// set axes ranges, so we see all data:
-	ui->customPlot_specimen->xAxis->setRange(0, 210);
-	ui->customPlot_specimen->yAxis->setRange(0, total);
+	ui->customPlot_specimen->xAxis->setRange(0, goal + 10);
+	ui->customPlot_specimen->yAxis->setRange(0, total*0.08);
 
 	QVector<double> x(goal);
 
@@ -534,7 +549,7 @@ void MainWindow::makeSpecimenPlot(){
 
 
 	//테이블 크기 조절
-	ui->resourceTable->setColumnWidth(0, 150);
+	ui->specimenTable->setColumnWidth(0, 200);
 
 
 	//테이블 인풋 
@@ -566,8 +581,8 @@ void MainWindow::makeDailyPlot(){
 
 
 	// set axes ranges, so we see all data:
-	ui->customPlot_daily->xAxis->setRange(0, 210);
-	ui->customPlot_daily->yAxis->setRange(0, total/10);
+	ui->customPlot_daily->xAxis->setRange(0, goal + 10);
+	ui->customPlot_daily->yAxis->setRange(0, total*0.08);
 
 	QVector<double> x(goal);
 
@@ -578,29 +593,29 @@ void MainWindow::makeDailyPlot(){
 	//외래환자 그래프
 	ui->customPlot_daily->addGraph();
 	ui->customPlot_daily->graph(0)->setData(x, DailyOutpatientArray[GraphAge]);
-	ui->customPlot_daily->graph(0)->setName(toKor("외래환자 수(일일)"));
+	ui->customPlot_daily->graph(0)->setName(toKor("외래환자 수"));
 	ui->customPlot_daily->graph(0)->setPen(QColor(255, 0, 0, 255));
 	ui->customPlot_daily->replot();
 
 	//중환자실 병상 그래프
 	ui->customPlot_daily->addGraph();
 	ui->customPlot_daily->graph(1)->setData(x, DailyNICUArray[GraphAge]);
-	ui->customPlot_daily->graph(1)->setName(toKor("일반병상수(일일)"));
+	ui->customPlot_daily->graph(1)->setName(toKor("일반병상수"));
 	ui->customPlot_daily->graph(1)->setPen(QColor(0, 0, 255, 255));
 	ui->customPlot_daily->replot();
 
 	//일반 병상 그래프
 	ui->customPlot_daily->addGraph();
 	ui->customPlot_daily->graph(2)->setData(x, DailyICUArray[GraphAge]);
-	ui->customPlot_daily->graph(2)->setName(toKor("중환자실병상수(일일)"));
+	ui->customPlot_daily->graph(2)->setName(toKor("중환자실병상수"));
 	ui->customPlot_daily->graph(2)->setPen(QColor(0, 255, 0, 255));
 	ui->customPlot_daily->replot();
 
 
 	//테이블 크기 조절
-	ui->dailyTable->setColumnWidth(0, 150);
-	ui->dailyTable->setColumnWidth(1, 150);
-	ui->dailyTable->setColumnWidth(2, 150);
+	ui->dailyTable->setColumnWidth(0, 200);
+	ui->dailyTable->setColumnWidth(1, 200);
+	ui->dailyTable->setColumnWidth(2, 200);
 
 
 	//테이블 인풋 
@@ -620,7 +635,38 @@ void MainWindow::makeDailyPlot(){
 
 void MainWindow::setDefault()
 {
-    /*인구 tab 기본값 세팅*/
+
+	QDoubleValidator *populationValidator = new QDoubleValidator(this);
+	populationValidator->setBottom(0.00);
+	populationValidator->setDecimals(4);
+	populationValidator->setTop(10000000.00);
+	populationValidator->setNotation(QDoubleValidator::StandardNotation);
+
+	QDoubleValidator *percentValidator = new QDoubleValidator(this);
+	percentValidator->setBottom(0.00);
+	percentValidator->setDecimals(4);
+	percentValidator->setTop(100.00);
+	percentValidator->setNotation(QDoubleValidator::StandardNotation);
+
+	QDoubleValidator *dayValidator = new QDoubleValidator(this);
+	dayValidator->setBottom(0.00);
+	dayValidator->setDecimals(4);
+	dayValidator->setTop(300.00);
+	dayValidator->setNotation(QDoubleValidator::StandardNotation);
+
+	QDoubleValidator *thousandValidator = new QDoubleValidator(this);
+	thousandValidator->setBottom(0.00);
+	thousandValidator->setDecimals(4);
+	thousandValidator->setTop(1000.00);
+	thousandValidator->setNotation(QDoubleValidator::StandardNotation);
+
+	QDoubleValidator *twentyValidator = new QDoubleValidator(this);
+	twentyValidator->setBottom(0.00);
+	twentyValidator->setDecimals(4);
+	twentyValidator->setTop(1000.00);
+	twentyValidator->setNotation(QDoubleValidator::StandardNotation);
+
+	/*인구 tab 기본값 세팅*/
 	ui->input_Age0to6->setText(QString::number(Population[0]));
 	ui->input_Age7to12->setText(QString::number(Population[1]));
 	ui->input_Age13to18->setText(QString::number(Population[2]));
@@ -647,114 +693,256 @@ void MainWindow::setDefault()
 
 	ui->input_contact_5_5->setText(QString::number(ContactMatrix[4][4]));
 
-    ui->input_SchoolRatio0to6->setText(QString::number(SchoolContactRate[0]));
-    ui->input_SchoolRatio7to12->setText(QString::number(SchoolContactRate[1])); 
-    ui->input_SchoolRatio13to18->setText(QString::number(SchoolContactRate[2]));
+	ui->input_SchoolRatio0to6->setText(QString::number(SchoolContactRate[0]));
+	ui->input_SchoolRatio7to12->setText(QString::number(SchoolContactRate[1]));
+	ui->input_SchoolRatio13to18->setText(QString::number(SchoolContactRate[2]));
+
+	/*인풋 예외 처리*/
+	ui->input_Age0to6->setValidator(new QIntValidator(0, 10000000, this));
+	ui->input_Age7to12->setValidator(new QIntValidator(0, 10000000, this));
+	ui->input_Age13to18->setValidator(new QIntValidator(0, 10000000, this));
+	ui->input_Age19to64->setValidator(new QIntValidator(0, 10000000, this));
+	ui->input_Age65toEnd->setValidator(new QIntValidator(0, 10000000, this));
+
+	ui->input_contact_1_1->setValidator(populationValidator);
+	ui->input_contact_1_2->setValidator(populationValidator);
+	ui->input_contact_1_3->setValidator(populationValidator);
+	ui->input_contact_1_4->setValidator(populationValidator);
+	ui->input_contact_1_5->setValidator(populationValidator);
+
+	ui->input_contact_2_2->setValidator(thousandValidator);
+	ui->input_contact_2_3->setValidator(thousandValidator);
+	ui->input_contact_2_4->setValidator(thousandValidator);
+	ui->input_contact_2_5->setValidator(thousandValidator);
+
+	ui->input_contact_3_3->setValidator(thousandValidator);
+	ui->input_contact_3_4->setValidator(thousandValidator);
+	ui->input_contact_3_5->setValidator(thousandValidator);
+
+	ui->input_contact_4_4->setValidator(thousandValidator);
+	ui->input_contact_4_5->setValidator(thousandValidator);
+
+	ui->input_contact_5_5->setValidator(thousandValidator);
+
+	ui->input_SchoolRatio0to6->setValidator(percentValidator);
+	ui->input_SchoolRatio7to12->setValidator(percentValidator);
+	ui->input_SchoolRatio13to18->setValidator(percentValidator);
+
+	/*질병 tab 기본값 세팅*/
+	ui->input_LatentPeriod->setText(QString::number(LatentPeriod));
+
+	ui->input_infDuration_1_1->setText(QString::number(InfectiousDuration[NonSevere][Child]));
+	ui->input_infDuration_1_2->setText(QString::number(InfectiousDuration[NonSevere][Worker]));
+	ui->input_infDuration_1_3->setText(QString::number(InfectiousDuration[NonSevere][Elderly]));
+	ui->input_infDuration_2_1->setText(QString::number(InfectiousDuration[Severe][Child]));
+	ui->input_infDuration_2_2->setText(QString::number(InfectiousDuration[Severe][Worker]));
+	ui->input_infDuration_2_3->setText(QString::number(InfectiousDuration[Severe][Elderly]));
+
+	ui->input_returnToWork->setText(QString::number(ReturntoWorkPeriod));
+
+	ui->input_MildRate->setText(QString::number(MildRate));
+	ui->input_SevereRate->setText(QString::number(SevereRate));
+
+	ui->input_high_1_1->setText(QString::number(HighRiskRate[Child]));
+	ui->input_high_1_2->setText(QString::number(HighRiskRate[Worker]));
+	ui->input_high_1_3->setText(QString::number(HighRiskRate[Elderly]));
+	ui->input_high_2_1->setText(QString::number(LowRiskHospitalRate[Child]));
+	ui->input_high_2_2->setText(QString::number(LowRiskHospitalRate[Worker]));
+	ui->input_high_2_3->setText(QString::number(LowRiskHospitalRate[Elderly]));
+	ui->input_high_3_1->setText(QString::number(HighRiskHospitalRate[Child]));
+	ui->input_high_3_2->setText(QString::number(HighRiskHospitalRate[Worker]));
+	ui->input_high_3_3->setText(QString::number(HighRiskHospitalRate[Elderly]));
+
+	ui->input_dead_1->setText(QString::number(DeadRate[Child]));
+	ui->input_dead_2->setText(QString::number(DeadRate[Worker]));
+	ui->input_dead_3->setText(QString::number(DeadRate[Elderly]));
 
 
-    /*질병 tab 기본값 세팅*/
-    ui->input_LatentPeriod->setText(QString::number(LatentPeriod));
+	/*인풋 예외 처리*/
+	ui->input_LatentPeriod->setValidator(thousandValidator);
 
-    ui->input_infDuration_1_1->setText(QString::number(InfectiousDuration[NonSevere][Child]));
-    ui->input_infDuration_1_2->setText(QString::number(InfectiousDuration[NonSevere][Worker]));
-    ui->input_infDuration_1_3->setText(QString::number(InfectiousDuration[NonSevere][Elderly]));
-    ui->input_infDuration_2_1->setText(QString::number(InfectiousDuration[Severe][Child]));
-    ui->input_infDuration_2_2->setText(QString::number(InfectiousDuration[Severe][Worker]));
-    ui->input_infDuration_2_3->setText(QString::number(InfectiousDuration[Severe][Elderly]));
+	ui->input_infDuration_1_1->setValidator(thousandValidator);
+	ui->input_infDuration_1_2->setValidator(thousandValidator);
+	ui->input_infDuration_1_3->setValidator(thousandValidator);
+	ui->input_infDuration_2_1->setValidator(thousandValidator);
+	ui->input_infDuration_2_2->setValidator(thousandValidator);
+	ui->input_infDuration_2_3->setValidator(thousandValidator);
 
-    ui->input_returnToWork->setText(QString::number(ReturntoWorkPeriod));
+	ui->input_returnToWork->setValidator(thousandValidator);
 
-    ui->input_MildRate->setText(QString::number(MildRate));
-    ui->input_SevereRate->setText(QString::number(SevereRate));
+	ui->input_MildRate->setValidator(percentValidator);
+	ui->input_SevereRate->setValidator(percentValidator);
 
-    ui->input_high_1_1->setText(QString::number(HighRiskRate[Child]));
-    ui->input_high_1_2->setText(QString::number(HighRiskRate[Worker]));
-    ui->input_high_1_3->setText(QString::number(HighRiskRate[Elderly]));
-    ui->input_high_2_1->setText(QString::number(LowRiskHospitalRate[Child]));
-    ui->input_high_2_2->setText(QString::number(LowRiskHospitalRate[Worker]));
-    ui->input_high_2_3->setText(QString::number(LowRiskHospitalRate[Elderly]));
-    ui->input_high_3_1->setText(QString::number(HighRiskHospitalRate[Child]));
-    ui->input_high_3_2->setText(QString::number(HighRiskHospitalRate[Worker]));
-    ui->input_high_3_3->setText(QString::number(HighRiskHospitalRate[Elderly]));
+	ui->input_high_1_1->setValidator(percentValidator);
+	ui->input_high_1_2->setValidator(percentValidator);
+	ui->input_high_1_3->setValidator(percentValidator);
+	ui->input_high_2_1->setValidator(percentValidator);
+	ui->input_high_2_2->setValidator(percentValidator);
+	ui->input_high_2_3->setValidator(percentValidator);
+	ui->input_high_3_1->setValidator(percentValidator);
+	ui->input_high_3_2->setValidator(percentValidator);
+	ui->input_high_3_3->setValidator(percentValidator);
 
-    ui->input_dead_1->setText(QString::number(DeadRate[Child]));
-    ui->input_dead_2->setText(QString::number(DeadRate[Worker]));
-    ui->input_dead_3->setText(QString::number(DeadRate[Elderly]));
+	ui->input_dead_1->setValidator(percentValidator);
+	ui->input_dead_2->setValidator(percentValidator);
+	ui->input_dead_3->setValidator(percentValidator);
 
-    /*전염성 tab 기본값 세팅*/
-    ui->input_R0->setText(QString::number(R0));
+	/*전염성 tab 기본값 세팅*/
 
-    ui->input_halfInfectiosRate->setText(QString::number(HalfInfectiousRate)); 
+	ui->input_R0->setText(QString::number(R0));
 
-    ui->input_lastLatent->setText(QString::number(LastLatentPeriodCase));
-    ui->input_asymptomatic->setText(QString::number(AsymptomaticCase));
-    ui->input_moderate->setText(QString::number(ModerateCase));
+	ui->input_halfInfectiosRate->setText(QString::number(HalfInfectiousRate));
 
-    ui->input_isolModerate->setText(QString::number(ModerateCaseIsolation));
-    ui->input_isolSevereHome->setText(QString::number(SevereHomeCaseIsolation));
-    ui->input_isolSevereHospital->setText(QString::number(SevereHospitalCaseIsolation));
-    ui->input_isolStart->setText(QString::number(RangeofIsolationBegin));
-    ui->input_isolEnd->setText(QString::number(RangeofIsolationEnd));
+	ui->input_lastLatent->setText(QString::number(LastLatentPeriodCase));
+	ui->input_asymptomatic->setText(QString::number(AsymptomaticCase));
+	ui->input_moderate->setText(QString::number(ModerateCase));
 
-    /*치료 tab 기본값 세팅*/
-    ui->input_antiviralsRate->setText(QString::number(AntiviralsInjectionRate));
+	ui->input_isolModerate->setText(QString::number(ModerateCaseIsolation));
+	ui->input_isolSevereHome->setText(QString::number(SevereHomeCaseIsolation));
+	ui->input_isolSevereHospital->setText(QString::number(SevereHospitalCaseIsolation));
+	ui->input_isolStart->setText(QString::number(RangeofIsolationBegin));
+	ui->input_isolEnd->setText(QString::number(RangeofIsolationEnd));
 
-    ui->input_medicalHelp->setText(QString::number(MedicalHelp));
-    ui->input_antiviralsHelp->setText(QString::number(AntiviralsHelp));
+	/*인풋 예외 처리*/
+	QDoubleValidator *r0Validator = new QDoubleValidator(this);
+	r0Validator->setBottom(0.00);
+	r0Validator->setDecimals(4);
+	r0Validator->setTop(5.00);
+	r0Validator->setNotation(QDoubleValidator::StandardNotation);
+	ui->input_R0->setValidator(r0Validator);
 
-    ui->input_verySickTreat->setText(QString::number(VerySickTreatRate));
-    ui->input_verySickTreatStart->setText(QString::number(VerySickTreatRangeBegin));
-    ui->input_verySickTreatEnd->setText(QString::number(VerySickTreatRangeEnd));
+	ui->input_halfInfectiosRate->setValidator(percentValidator);
 
-    ui->input_extreamlySickTreat->setText(QString::number(ExtremelySickTreatRate));
-    ui->input_extreamlySickTreatStart->setText(QString::number(ExtremelySickTreatRangeBegin));
-    ui->input_extreamlySickTreatEnd->setText(QString::number(ExtremelySickTreatRangeEnd));
+	ui->input_lastLatent->setValidator(percentValidator);
+	ui->input_asymptomatic->setValidator(percentValidator);
+	ui->input_moderate->setValidator(percentValidator);
 
-    ui->input_contagiousnessReduct->setText(QString::number(ContagiousnessReduction));
-    ui->input_durationReduct->setText(QString::number(DiseaseDurationReduction));
-    ui->input_HospitailizationReduct->setText(QString::number(HospitalizationReduction));
+	ui->input_isolModerate->setValidator(percentValidator);
+	ui->input_isolSevereHome->setValidator(percentValidator);
+	ui->input_isolSevereHospital->setValidator(percentValidator);
+	ui->input_isolStart->setValidator(dayValidator);
+	ui->input_isolEnd->setValidator(dayValidator);
 
-    /*격리 tab 기본값 세팅*/
-    ui->input_contactReduct->setText(QString::number(ContactReductionRate));
-    ui->input_contactReductStart->setText(QString::number(ContactReductionRangeBegin));
-    ui->input_contactReductEnd->setText(QString::number(ContactReductionRangeEnd));
+	/*치료 tab 기본값 세팅*/
+	ui->input_antiviralsRate->setText(QString::number(AntiviralsInjectionRate));
 
-    ui->input_schoolCloseRangeStart->setText(QString::number(SchoolCloseRangeBegin));
-    ui->input_schoolCloseRangeEnd->setText(QString::number(SchoolCloseRangeEnd));
+	ui->input_medicalHelp->setText(QString::number(MedicalHelp));
+	ui->input_antiviralsHelp->setText(QString::number(AntiviralsHelp));
 
-    ui->input_gatheringCancel->setText(QString::number(GatheringCancelReductionRate));
-    ui->input_gatheringCancelStart->setText(QString::number(GatheringCancleRangeBegin));
-    ui->input_gatheringCancelEnd->setText(QString::number(GatheringCancleRangeEnd));
+	ui->input_verySickTreat->setText(QString::number(VerySickTreatRate));
+	ui->input_verySickTreatStart->setText(QString::number(VerySickTreatRangeBegin));
+	ui->input_verySickTreatEnd->setText(QString::number(VerySickTreatRangeEnd));
 
-    /*입원 tab 기본값 세팅*/
-    ui->input_NICU->setText(QString::number(HospitalizationNICU));
-    ui->input_ICU->setText(QString::number(HospitalizationICU));
+	ui->input_extreamlySickTreat->setText(QString::number(ExtremelySickTreatRate));
+	ui->input_extreamlySickTreatStart->setText(QString::number(ExtremelySickTreatRangeBegin));
+	ui->input_extreamlySickTreatEnd->setText(QString::number(ExtremelySickTreatRangeEnd));
 
-    /*백신 tab 기본값 세팅*/
-    ui->input_vaccine_1->setText(QString::number(VaccineAgeRate[Age0to6]));
-    ui->input_vaccine_2->setText(QString::number(VaccineAgeRate[Age7to12]));
-    ui->input_vaccine_3->setText(QString::number(VaccineAgeRate[Age13to18]));
-    ui->input_vaccine_4->setText(QString::number(VaccineAgeRate[Age19to64]));
-    ui->input_vaccine_5->setText(QString::number(VaccineAgeRate[Age65toEnd]));
+	ui->input_contagiousnessReduct->setText(QString::number(ContagiousnessReduction));
+	ui->input_durationReduct->setText(QString::number(DiseaseDurationReduction));
+	ui->input_HospitailizationReduct->setText(QString::number(HospitalizationReduction));
 
-    ui->input_vaccineEffect_1->setText(QString::number(VaccineEffectAgeRate[Age0to6]));
-    ui->input_vaccineEffect_2->setText(QString::number(VaccineEffectAgeRate[Age7to12]));
-    ui->input_vaccineEffect_3->setText(QString::number(VaccineEffectAgeRate[Age13to18]));
-    ui->input_vaccineEffect_4->setText(QString::number(VaccineEffectAgeRate[Age19to64]));
-    ui->input_vaccineEffect_5->setText(QString::number(VaccineEffectAgeRate[Age65toEnd]));
+	/*인풋 예외 처리*/
+	ui->input_antiviralsRate->setValidator(percentValidator);
 
-    ui->input_antibodyRange->setText(QString::number(AntibodyCreateRange));
-    ui->input_vaccineStart->setText(QString::number(VaccineStart));
+	ui->input_medicalHelp->setValidator(thousandValidator);
+	ui->input_antiviralsHelp->setValidator(thousandValidator);
 
-    /*자원 tab 기본값 세팅*/
-    ui->input_mask_NICU->setText(QString::number(MaskNeedNICU));
-    ui->input_mask_ICU->setText(QString::number(MaskNeedICU));
+	ui->input_verySickTreat->setValidator(percentValidator);
+	ui->input_verySickTreatStart->setValidator(dayValidator);
+	ui->input_verySickTreatEnd->setValidator(dayValidator);
 
-    ui->input_respRate->setText(QString::number(RespiratorNeedRate));
+	ui->input_extreamlySickTreat->setValidator(percentValidator);
+	ui->input_extreamlySickTreatStart->setValidator(dayValidator);
+	ui->input_extreamlySickTreatEnd->setValidator(dayValidator);
 
-    /*검체 tab 기본값 세팅*/
-    ui->input_reinspect->setText(QString::number(ReinspectionRate));
-    ui->input_outpatient->setText(QString::number(OutpatientSpecimenTesting));
+	ui->input_contagiousnessReduct->setValidator(percentValidator);
+	ui->input_durationReduct->setValidator(percentValidator);
+	ui->input_HospitailizationReduct->setValidator(percentValidator);
+
+	/*격리 tab 기본값 세팅*/
+	ui->input_contactReduct->setText(QString::number(ContactReductionRate));
+	ui->input_contactReductStart->setText(QString::number(ContactReductionRangeBegin));
+	ui->input_contactReductEnd->setText(QString::number(ContactReductionRangeEnd));
+
+	ui->input_schoolCloseRangeStart->setText(QString::number(SchoolCloseRangeBegin));
+	ui->input_schoolCloseRangeEnd->setText(QString::number(SchoolCloseRangeEnd));
+
+	ui->input_gatheringCancel->setText(QString::number(GatheringCancelReductionRate));
+	ui->input_gatheringCancelStart->setText(QString::number(GatheringCancleRangeBegin));
+	ui->input_gatheringCancelEnd->setText(QString::number(GatheringCancleRangeEnd));
+
+	/*인풋 예외 처리*/
+	ui->input_contactReduct->setValidator(percentValidator);
+	ui->input_contactReductStart->setValidator(dayValidator);
+	ui->input_contactReductEnd->setValidator(dayValidator);
+
+	ui->input_schoolCloseRangeStart->setValidator(dayValidator);
+	ui->input_schoolCloseRangeEnd->setValidator(dayValidator);
+
+	ui->input_gatheringCancel->setValidator(percentValidator);
+	ui->input_gatheringCancelStart->setValidator(dayValidator);
+	ui->input_gatheringCancelEnd->setValidator(dayValidator);
+
+	/*입원 tab 기본값 세팅*/
+	ui->input_NICU->setText(QString::number(HospitalizationNICU));
+	ui->input_ICU->setText(QString::number(HospitalizationICU));
+
+	/*인풋 예외 처리*/
+	ui->input_NICU->setValidator(twentyValidator);
+	ui->input_ICU->setValidator(twentyValidator);
+
+	/*백신 tab 기본값 세팅*/
+	ui->input_vaccine_1->setText(QString::number(VaccineAgeRate[Age0to6]));
+	ui->input_vaccine_2->setText(QString::number(VaccineAgeRate[Age7to12]));
+	ui->input_vaccine_3->setText(QString::number(VaccineAgeRate[Age13to18]));
+	ui->input_vaccine_4->setText(QString::number(VaccineAgeRate[Age19to64]));
+	ui->input_vaccine_5->setText(QString::number(VaccineAgeRate[Age65toEnd]));
+
+	ui->input_vaccineEffect_1->setText(QString::number(VaccineEffectAgeRate[Age0to6]));
+	ui->input_vaccineEffect_2->setText(QString::number(VaccineEffectAgeRate[Age7to12]));
+	ui->input_vaccineEffect_3->setText(QString::number(VaccineEffectAgeRate[Age13to18]));
+	ui->input_vaccineEffect_4->setText(QString::number(VaccineEffectAgeRate[Age19to64]));
+	ui->input_vaccineEffect_5->setText(QString::number(VaccineEffectAgeRate[Age65toEnd]));
+
+	ui->input_antibodyRange->setText(QString::number(AntibodyCreateRange));
+	ui->input_vaccineStart->setText(QString::number(VaccineStart));
+
+	/*인풋 예외 처리*/
+	ui->input_vaccine_1->setValidator(percentValidator);
+	ui->input_vaccine_2->setValidator(percentValidator);
+	ui->input_vaccine_3->setValidator(percentValidator);
+	ui->input_vaccine_4->setValidator(percentValidator);
+	ui->input_vaccine_5->setValidator(percentValidator);
+
+	ui->input_vaccineEffect_1->setValidator(percentValidator);
+	ui->input_vaccineEffect_2->setValidator(percentValidator);
+	ui->input_vaccineEffect_3->setValidator(percentValidator);
+	ui->input_vaccineEffect_4->setValidator(percentValidator);
+	ui->input_vaccineEffect_5->setValidator(percentValidator);
+
+	ui->input_antibodyRange->setValidator(twentyValidator);
+	ui->input_vaccineStart->setValidator(dayValidator);
+
+	/*자원 tab 기본값 세팅*/
+	ui->input_mask_NICU->setText(QString::number(MaskNeedNICU));
+	ui->input_mask_ICU->setText(QString::number(MaskNeedICU));
+
+	ui->input_respRate->setText(QString::number(RespiratorNeedRate));
+
+	/*인풋 예외 처리*/
+	ui->input_mask_NICU->setValidator(thousandValidator);
+	ui->input_mask_ICU->setValidator(thousandValidator);
+
+	ui->input_respRate->setValidator(percentValidator);
+
+	/*검체 tab 기본값 세팅*/
+	ui->input_reinspect->setText(QString::number(ReinspectionRate));
+	ui->input_outpatient->setText(QString::number(OutpatientSpecimenTesting));
+
+
+	/*인풋 예외 처리*/
+	ui->input_reinspect->setValidator(percentValidator);
+	ui->input_outpatient->setValidator(percentValidator);
 }
 
 //시작버튼 클릭
@@ -777,6 +965,32 @@ void MainWindow::on_areaButton_clicked()
 //지역유형 확인 클릭
 void MainWindow::on_areaSubmit_clicked()
 {
+	ui->input_Age0to6->setText(QString::number(Population[0]));
+	ui->input_Age7to12->setText(QString::number(Population[1]));
+	ui->input_Age13to18->setText(QString::number(Population[2]));
+	ui->input_Age19to64->setText(QString::number(Population[3]));
+	ui->input_Age65toEnd->setText(QString::number(Population[4]));
+
+	ui->input_contact_1_1->setText(QString::number(ContactMatrix[0][0]));
+	ui->input_contact_1_2->setText(QString::number(ContactMatrix[0][1]));
+	ui->input_contact_1_3->setText(QString::number(ContactMatrix[0][2]));
+	ui->input_contact_1_4->setText(QString::number(ContactMatrix[0][3]));
+	ui->input_contact_1_5->setText(QString::number(ContactMatrix[0][4]));
+
+	ui->input_contact_2_2->setText(QString::number(ContactMatrix[1][1]));
+	ui->input_contact_2_3->setText(QString::number(ContactMatrix[1][2]));
+	ui->input_contact_2_4->setText(QString::number(ContactMatrix[1][3]));
+	ui->input_contact_2_5->setText(QString::number(ContactMatrix[1][4]));
+
+	ui->input_contact_3_3->setText(QString::number(ContactMatrix[2][2]));
+	ui->input_contact_3_4->setText(QString::number(ContactMatrix[2][3]));
+	ui->input_contact_3_5->setText(QString::number(ContactMatrix[2][4]));
+
+	ui->input_contact_4_4->setText(QString::number(ContactMatrix[3][3]));
+	ui->input_contact_4_5->setText(QString::number(ContactMatrix[3][4]));
+
+	ui->input_contact_5_5->setText(QString::number(ContactMatrix[4][4]));
+
     ui->areaWidget->hide();
 }
 
@@ -841,6 +1055,7 @@ void MainWindow::saveInput() {
 	antiviralRessource = percentage(AntiviralsInjectionRate);
 
 	MedicalHelp = (double)ui->input_medicalHelp->text().toDouble();
+	consultationDelay = changehour(MedicalHelp);
 	AntiviralsHelp = (double)ui->input_antiviralsHelp->text().toDouble();
 
 	VerySickTreatRate = (double)ui->input_verySickTreat->text().toDouble();
@@ -902,6 +1117,7 @@ void MainWindow::saveInput() {
 //출력화면 이동 버튼 클릭
 void MainWindow::on_outputPageBtn_clicked()
 {
+	outputFlag = true;
 	MainWindow::saveInput();
 
 	for (int i = 0; i < OutputArray; i++) {
@@ -1088,8 +1304,6 @@ void MainWindow::on_input_contact_5_5_textChanged(const QString &arg1)
 
 }
 
-
-
 /*output 나이 선택*/
 void MainWindow::on_age_checkBox1_clicked()
 {
@@ -1156,9 +1370,9 @@ void MainWindow::on_age_checkBox6_clicked()
 void MainWindow::on_actionOpen_triggered()
 
 {
-	QString filter = "KISIM Files (*.kclm)";
-	QString filename = QFileDialog::getOpenFileName(this, tr("기존 파일 열기"), "", filter, &filter);
-	QFile inputFile(filename);
+	QString filter = "KISIM Files (*.kcim)";
+	QString filename = QFileDialog::getOpenFileName(this, tr("open"), "", filter, &filter);
+	QFile inputFile(toKor(filename.toLocal8Bit()));
 	if (inputFile.open(QIODevice::ReadOnly))
 	{
 
@@ -1172,192 +1386,286 @@ void MainWindow::on_actionOpen_triggered()
 
 			case 0:
 				Population[0] = line.toDouble();
+				break;
 			case 1:
 				Population[1] = line.toDouble();
+				break;
 			case 2:
 				Population[2] = line.toDouble();
+				break;
 			case 3:
 				Population[3] = line.toDouble();
+				break;
 			case 4:
 				Population[4] = line.toDouble();
+				break;
 			case 5:
 				ContactMatrix[0][0] = line.toDouble();
+				break;
 			case 6:
 				ContactMatrix[0][1] = line.toDouble();
+				break;
 			case 7:
 				ContactMatrix[0][2] = line.toDouble();
+				break;
 			case 8:
 				ContactMatrix[0][3] = line.toDouble();
+				break;
 			case 9:
 				ContactMatrix[0][4] = line.toDouble();
+				break;
 			case 10:
 				ContactMatrix[1][1] = line.toDouble();
+				break;
 			case 11:
 				ContactMatrix[1][2] = line.toDouble();
+				break;
 			case 12:
 				ContactMatrix[1][3] = line.toDouble();
+				break;
 			case 13:
 				ContactMatrix[1][4] = line.toDouble();
+				break;
 			case 14:
 				ContactMatrix[2][2] = line.toDouble();
+				break;
 			case 15:
 				ContactMatrix[2][3] = line.toDouble();
+				break;
 			case 16:
 				ContactMatrix[2][4] = line.toDouble();
+				break;
 			case 17:
 				ContactMatrix[3][3] = line.toDouble();
+				break;
 			case 18:
 				ContactMatrix[3][4] = line.toDouble();
+				break;
 			case 19:
 				ContactMatrix[4][4] = line.toDouble();
+				break;
 			case 20:
 				SchoolContactRate[0] = line.toDouble();
+				break;
 			case 21:
 				SchoolContactRate[1] = line.toDouble();
+				break;
 			case 22:
 				SchoolContactRate[2] = line.toDouble();
+				break;
 			case 23:
 				LatentPeriod = line.toDouble();
+				break;
 			case 24:
 				InfectiousDuration[0][0] = line.toDouble();
+				break;
 			case 25:
 				InfectiousDuration[0][1] = line.toDouble();
+				break;
 			case 26:
 				InfectiousDuration[0][2] = line.toDouble();
+				break;
 			case 27:
 				InfectiousDuration[1][0] = line.toDouble();
+				break;
 			case 28:
 				InfectiousDuration[1][1] = line.toDouble();
+				break;
 			case 29:
 				InfectiousDuration[1][2] = line.toDouble();
+				break;
 			case 30:
 				SevereRate = line.toDouble();
+				break;
 			case 31:
 				MildRate = line.toDouble();
+				break;
 			case 32:
 				ReturntoWorkPeriod = line.toDouble();
+				break;
 			case 33:
 				HighRiskRate[0] = line.toDouble();
+				break;
 			case 34:
 				HighRiskRate[1] = line.toDouble();
+				break;
 			case 35:
 				HighRiskRate[2] = line.toDouble();
+				break;
 			case 36:
 				LowRiskHospitalRate[0] = line.toDouble();
+				break;
 			case 37:
 				LowRiskHospitalRate[1] = line.toDouble();
+				break;
 			case 38:
 				LowRiskHospitalRate[2] = line.toDouble();
+				break;
 			case 39:
 				HighRiskHospitalRate[0] = line.toDouble();
+				break;
 			case 40:
 				HighRiskHospitalRate[1] = line.toDouble();
+				break;
 			case 41:
 				HighRiskHospitalRate[2] = line.toDouble();
+				break;
 			case 42:
 				DeadRate[0] = line.toDouble();
+				break;
 			case 43:
 				DeadRate[1] = line.toDouble();
+				break;
 			case 44:
 				DeadRate[2] = line.toDouble();
+				break;
 			case 45:
 				R0 = line.toDouble();
+				break;
 			case 46:
 				HalfInfectiousRate = line.toDouble();
+				break;
 			case 47:
 				LastLatentPeriodCase = line.toDouble();
+				break;
 			case 48:
 				AsymptomaticCase = line.toDouble();
+				break;
 			case 49:
 				ModerateCase = line.toDouble();
+				break;
 			case 50:
 				ModerateCaseIsolation = line.toDouble();
+				break;
 			case 51:
 				SevereHomeCaseIsolation = line.toDouble();
+				break;
 			case 52:
 				SevereHospitalCaseIsolation = line.toDouble();
+				break;
 			case 53:
 				RangeofIsolationBegin = line.toInt();
+				break;
 			case 54:
 				RangeofIsolationEnd = line.toInt();
+				break;
 			case 55:
 				AntiviralsInjectionRate = line.toDouble();
+				break;
 			case 56:
 				MedicalHelp = line.toDouble();
+				break;
 			case 57:
 				AntiviralsHelp = line.toDouble();
+				break;
 			case 58:
 				VerySickTreatRate = line.toDouble();
+				break;
 			case 59:
 				VerySickTreatRangeBegin = line.toInt();
+				break;
 			case 60:
 				VerySickTreatRangeEnd = line.toInt();
+				break;
 			case 61:
 				ExtremelySickTreatRate = line.toDouble();
+				break;
 			case 62:
 				ExtremelySickTreatRangeBegin = line.toInt();
+				break;
 			case 63:
 				ExtremelySickTreatRangeEnd = line.toInt();
+				break;
 			case 64:
 				ContagiousnessReduction = line.toDouble();
+				break;
 			case 65:
 				DiseaseDurationReduction = line.toDouble();
+				break;
 			case 66:
 				HospitalizationReduction = line.toDouble();
+				break;
 			case 67:
 				ContactReductionRate = line.toDouble();
+				break;
 			case 68:
 				ContactReductionRangeBegin = line.toInt();
+				break;
 			case 69:
 				ContactReductionRangeEnd = line.toInt();
+				break;
 			case 70:
 				SchoolCloseRangeBegin = line.toInt();
+				break;
 			case 71:
 				SchoolCloseRangeEnd = line.toInt();
+				break;
 			case 72:
 				GatheringCancelReductionRate = line.toDouble();
+				break;
 			case 73:
 				GatheringCancleRangeBegin = line.toInt();
+				break;
 			case 74:
 				GatheringCancleRangeEnd = line.toInt();
+				break;
 			case 75:
 				HospitalizationNICU = line.toDouble();
+				break;
 			case 76:
 				HospitalizationICU = line.toDouble();
+				break;
 			case 77:
 				VaccineAgeRate[0] = line.toDouble();
+				break;
 			case 78:
 				VaccineAgeRate[1] = line.toDouble();
+				break;
 			case 79:
 				VaccineAgeRate[2] = line.toDouble();
+				break;
 			case 80:
 				VaccineAgeRate[3] = line.toDouble();
+				break;
 			case 81:
 				VaccineAgeRate[4] = line.toDouble();
+				break;
 			case 82:
 				VaccineEffectAgeRate[0] = line.toDouble();
+				break;
 			case 83:
 				VaccineEffectAgeRate[1] = line.toDouble();
+				break;
 			case 84:
 				VaccineEffectAgeRate[2] = line.toDouble();
+				break;
 			case 85:
 				VaccineEffectAgeRate[3] = line.toDouble();
+				break;
 			case 86:
 				VaccineEffectAgeRate[4] = line.toDouble();
+				break;
 			case 87:
 				AntibodyCreateRange = line.toDouble();
+				break;
 			case 88:
 				VaccineStart = line.toDouble();
+				break;
 			case 90:
 				MaskNeedNICU = line.toDouble();
+				break;
 			case 91:
 				MaskNeedICU = line.toDouble();
+				break;
 			case 92:
 				RespiratorNeedRate = line.toDouble();
+				break;
 			case 93:
 				ReinspectionRate = line.toDouble();
+				break;
 			case 94:
 				OutpatientSpecimenTesting = line.toDouble();
+				break;
 
 			}
 
@@ -1378,18 +1686,18 @@ void MainWindow::on_actionSave_triggered()
 	struct tm  tstruct;
 	char       buf[80];
 	tstruct = *localtime(&now);
-	strftime(buf, sizeof(buf), "%Y-%m-%d-%H%M%S.kclm", &tstruct);
+	strftime(buf, sizeof(buf), "output/%Y-%m-%d-%H%M%S.kcim", &tstruct);
 
-	QString filter = "KISIM Files (*.kclm)";
-	QString filename = QFileDialog::getSaveFileName(this, tr("저장하기"), buf, filter, &filter);
+	QString filter = "KISIM Files (*.kcim)";
+	QString filename = QFileDialog::getSaveFileName(this, tr("save"), buf, filter, &filter);
 
 	if (! filename.isNull()) {
-		QFile f(filename);
+		QFile f(toKor(filename.toLocal8Bit()));
 		f.open(QIODevice::WriteOnly);
 		// store data in f
 		f.close();
 
-		FILE* fp = fopen(&filename.toStdString()[0], "w+");
+		FILE* fp = fopen(toKor(filename.toLocal8Bit()).toStdString().c_str(), "w+");
 		for (int i = 0; i < StageofAgeGroups; i++) {
 			fprintf(fp, "%f \n", Population[i]);
 		}
@@ -1517,16 +1825,36 @@ void MainWindow::on_actionContact_triggered()
 
 void MainWindow::on_actionJPG_triggered()
 {
-    ui->jpgWidget->show();
-    ui->jpgWidget->activateWindow();
-    ui->jpgWidget->raise();
+	if (outputFlag) {
+		ui->jpgWidget->show();
+		ui->jpgWidget->activateWindow();
+		ui->jpgWidget->raise();
+	}
+	else {
+		QMessageBox msgBox;
+		msgBox.setText(toKor("결과 확인 후 변환 가능합니다."));
+		msgBox.setStandardButtons(QMessageBox::Ok);
+		msgBox.setDefaultButton(QMessageBox::Save);
+		int ret = msgBox.exec();
+	}
+
 }
 
 void MainWindow::on_actionCSV_triggered()
 {
-    ui->csvWidget->show();
-    ui->csvWidget->activateWindow();
-    ui->csvWidget->raise();
+	if (outputFlag) {
+		ui->csvWidget->show();
+		ui->csvWidget->activateWindow();
+		ui->csvWidget->raise();
+	}
+	else {
+		QMessageBox msgBox;
+		msgBox.setText(toKor("결과 확인 후 변환 가능합니다."));
+		msgBox.setStandardButtons(QMessageBox::Ok);
+		msgBox.setDefaultButton(QMessageBox::Save);
+		int ret = msgBox.exec();
+	}
+
 }
 
 void MainWindow::on_jpgSubmit_clicked()
@@ -1535,16 +1863,33 @@ void MainWindow::on_jpgSubmit_clicked()
 	struct tm  tstruct;
 	char       buf[80];
 	tstruct = *localtime(&now);
-	strftime(buf, sizeof(buf), "graph-%Y-%m-%d-%H%M%S.jpg", &tstruct);
+	strftime(buf, sizeof(buf), "output/graph-%Y-%m-%d-%H%M%S.jpg", &tstruct);
 
 	QString filename = QFileDialog::getSaveFileName(this, "Export to jpg", buf, ".jpg");
 
 	if (!filename.isNull()) {
 
-		QFile f(filename);
+		QFile f(toKor(filename.toLocal8Bit()));
+
 		f.open(QIODevice::WriteOnly);
 
-		ui->customPlot_infection->saveJpg(filename, 0, 0, 1.0, -1);
+		switch (jpgOutput)
+		{
+		case 1:
+			ui->customPlot_infection->saveJpg(filename, 0, 0, 1.0, -1);
+			break;
+		case 2:
+			ui->customPlot_daily->saveJpg(filename, 0, 0, 1.0, -1);
+			break;
+		case 3:
+			ui->customPlot_resource->saveJpg(filename, 0, 0, 1.0, -1);
+			break;
+		case 4:
+			ui->customPlot_specimen->saveJpg(filename, 0, 0, 1.0, -1);
+			break;
+		default:
+			break;
+		}
 
 		f.close();
 	}
@@ -1560,34 +1905,239 @@ const char* ConvertDoubleToString(double value) {
 
 void MainWindow::on_csvSubmit_clicked()
 {
+	setlocale(LC_ALL, "korean");
+
 	time_t     now = time(0);
 	struct tm  tstruct;
 	char       buf[80];
 	tstruct = *localtime(&now);
-	strftime(buf, sizeof(buf), "table-%Y-%m-%d-%H%M%S.csv", &tstruct);
+	strftime(buf, sizeof(buf), "output/table-%Y-%m-%d-%H%M%S.csv", &tstruct);
 
 	QString filename = QFileDialog::getSaveFileName(this, "Export to csv", buf, ".csv");
 
 	if (!filename.isNull()) {
-		QFile f(filename);
+		QFile f(toKor(filename.toLocal8Bit()));
+
 		f.open(QIODevice::WriteOnly);
 		// store data in f
-		f.close();
 
-		FILE* fp = fopen(&filename.toStdString()[0], "w+");
-		fprintf(fp, "KFLU Output,\n");
-		fprintf(fp, "Susceptible,exposed,Asymptomatic,Moderate,Severe,dead,Immune,r,total\n");
 
-		for (int i = 0; i < 500; i++) {
-			double helpme = SusceptibleArray[Age65toEnd + 1][i] + ExposedArray[Age65toEnd + 1][i] + AsymptomaticArray[Age65toEnd + 1][i] + ModerateArray[Age65toEnd + 1][i] + SevereArray[Age65toEnd + 1][i] + DeadArray[Age65toEnd + 1][i] + ImmuneArray[Age65toEnd + 1][i] + RArray[Age65toEnd + 1][i];
-			fprintf(fp, "%f,%f,%f,%f,%f,%f,%f,%f,%f,\n", SusceptibleArray[Age65toEnd + 1][i], ExposedArray[Age65toEnd + 1][i], AsymptomaticArray[Age65toEnd + 1][i], ModerateArray[Age65toEnd + 1][i], SevereArray[Age65toEnd + 1][i], DeadArray[Age65toEnd + 1][i], ImmuneArray[Age65toEnd + 1][i], RArray[Age65toEnd + 1][i], helpme);
+		//FILE* fp = fopen(toKor(filename.toLocal8Bit()).toStdString().c_str(), "w+");
+
+		switch (GraphAge)
+		{
+		case 0:
+			f.write("Age group 0~6,\n");
+			break;
+		case 1:
+			f.write("Age group 7~12,\n");
+			break;
+		case 2:
+			f.write("Age group 13~18,\n");
+			break;
+		case 3:
+			f.write("Age group 19~64,\n");
+			break;
+		case 4:
+			f.write("Age group 65 ~,\n");
+			break;
+		case 5:
+			f.write("All ages,\n");
+			break;
+		default:
+			break;
 		}
-		fclose(fp);
+
+		switch (csvOutput)
+		{
+		case 1:
+			f.write("Susceptible,exposed,Asymptomatic,Moderate,Severe,dead,convalescent,Immune,total,\n");
+			for (int i = 0; i < 500; i++) {
+				double population_total = SusceptibleArray[GraphAge][i] + ExposedArray[GraphAge][i] + AsymptomaticArray[GraphAge][i] + ModerateArray[GraphAge][i] + SevereArray[GraphAge][i] + DeadArray[GraphAge][i] + RArray[GraphAge][i] + ImmuneArray[GraphAge][i] ;
+				QString _str = QString("%1, %2, %3, %4, %5, %6, %7, %8, %9, \n").arg(SusceptibleArray[GraphAge][i]).arg(ExposedArray[GraphAge][i]).arg(AsymptomaticArray[GraphAge][i]).arg(ModerateArray[GraphAge][i]).arg(SevereArray[GraphAge][i]).arg(DeadArray[GraphAge][i]).arg(RArray[GraphAge][i]).arg(ImmuneArray[GraphAge][i]).arg(population_total);
+				QByteArray str;
+				str.append(_str);
+				f.write(str);
+			}
+			break;
+		case 2:
+			f.write("outpatient(daily),NICU(daily),ICU(daily),\n");
+			for (int i = 0; i < 500; i++) {
+				QString _str = QString("%1,%2,%3,\n").arg(DailyOutpatientArray[GraphAge][i]).arg(DailyNICUArray[GraphAge][i]).arg(DailyICUArray[GraphAge][i]);
+				QByteArray str;
+				str.append(_str);
+				f.write(str);
+			}
+			break;
+		case 3:
+			f.write("N-95 Mask, Respirator, Antivirals,\n");
+			for (int i = 0; i < 500; i++) {
+				QString _str = QString("%1,%2,%3,\n").arg(MaskArray[GraphAge][i]).arg(RespArray[GraphAge][i]).arg(AntiviralsArray[GraphAge][i]);
+				QByteArray str;
+				str.append(_str);
+				f.write(str);
+			}
+			break;
+		case 4:
+			f.write("Specimen,\n");
+			for (int i = 0; i < 500; i++) {
+				QString _str = QString("%1,\n").arg(SpecimenArray[GraphAge][i]);
+				QByteArray str;
+				str.append(_str);
+				f.write(str);
+			}
+			break;
+		default:
+			break;
+		}
+
+		f.close();
 	}
     ui->csvWidget->hide();
 }
 
 void MainWindow::on_saveBtn_clicked()
 {
+	ui->closeWidget->hide();
+	MainWindow::on_actionSave_triggered();
+	this->close();
+}
+void MainWindow::on_closeBtn_clicked()
+{
+	ui->closeWidget->hide();
+	this->close();
+}
 
+void MainWindow::on_csvoutput_1_clicked()
+{
+	csvOutput = 1;
+}
+
+void MainWindow::on_csvoutput_2_clicked()
+{
+	csvOutput = 2;
+}
+
+void MainWindow::on_csvoutput_3_clicked()
+{
+	csvOutput = 3;
+}
+
+void MainWindow::on_csvoutput_4_clicked()
+{
+	csvOutput = 4;
+}
+void MainWindow::on_jpgoutput_1_clicked()
+{
+	jpgOutput = 1;
+}
+
+void MainWindow::on_jpgoutput_2_clicked()
+{
+	jpgOutput = 2;
+}
+
+void MainWindow::on_jpgoutput_3_clicked()
+{
+	jpgOutput = 3;
+}
+
+void MainWindow::on_jpgoutput_4_clicked()
+{
+	jpgOutput = 4;
+}
+
+void MainWindow::on_areaButton_1_clicked()
+{
+	Population[0] = 384230;
+	Population[1] = 769242;
+	Population[2] = 543083;
+	Population[3] = 6667747;
+	Population[4] = 1202894;
+
+	ContactMatrix[0][0] = 181;
+	ContactMatrix[0][1] = 94.4;
+	ContactMatrix[0][2] = 21.4;
+	ContactMatrix[0][3] = 98.3;
+	ContactMatrix[0][4] = 49.2;
+
+	ContactMatrix[1][1] = 320.8;
+	ContactMatrix[1][2] = 57.4;
+	ContactMatrix[1][3] = 66.1;
+	ContactMatrix[1][4] = 50.2;
+
+	ContactMatrix[2][2] = 312.3;
+	ContactMatrix[2][3] = 128.4;
+	ContactMatrix[2][4] = 43.2;
+
+	ContactMatrix[3][3] = 360.6;
+	ContactMatrix[3][4] = 56;
+
+	ContactMatrix[4][4] = 83.5;
+}
+
+void MainWindow::on_areaButton_2_clicked()
+{
+	Population[0] = 8469;
+	Population[1] = 18084;
+	Population[2] = 10762;
+	Population[3] = 97835;
+	Population[4] = 11956;
+
+	ContactMatrix[0][0] = 179;
+	ContactMatrix[0][1] = 87.4;
+	ContactMatrix[0][2] = 15.8;
+	ContactMatrix[0][3] = 84.3;
+	ContactMatrix[0][4] = 19.8;
+
+	ContactMatrix[1][1] = 340.4;
+	ContactMatrix[1][2] = 67.2;
+	ContactMatrix[1][3] = 68.8;
+	ContactMatrix[1][4] = 28.2;
+
+	ContactMatrix[2][2] = 347.3;
+	ContactMatrix[2][3] = 134;
+	ContactMatrix[2][4] = 19;
+
+	ContactMatrix[3][3] = 362.4;
+	ContactMatrix[3][4] = 41.3;
+
+	ContactMatrix[4][4] = 79.9;
+
+}
+
+void MainWindow::on_areaButton_3_clicked()
+{
+	Population[0] = 7711;
+	Population[1] = 18373;
+	Population[2] = 14227;
+	Population[3] = 132496;
+	Population[4] = 33383;
+
+	ContactMatrix[0][0] = 169.1;
+	ContactMatrix[0][1] = 34;
+	ContactMatrix[0][2] = 8.4;
+	ContactMatrix[0][3] = 57.2;
+	ContactMatrix[0][4] = 22.4;
+
+	ContactMatrix[1][1] = 264.9;
+	ContactMatrix[1][2] = 50.7;
+	ContactMatrix[1][3] = 55.7;
+	ContactMatrix[1][4] = 21;
+
+	ContactMatrix[2][2] = 299.5;
+	ContactMatrix[2][3] = 107.7;
+	ContactMatrix[2][4] = 40.6;
+
+	ContactMatrix[3][3] = 274.1;
+	ContactMatrix[3][4] = 49.8;
+
+	ContactMatrix[4][4] = 50.9;
+}
+
+void MainWindow::on_actionExit_triggered()
+{
+	ui->closeWidget->show();
+	ui->closeWidget->activateWindow();
+	ui->closeWidget->raise();
 }

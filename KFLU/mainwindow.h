@@ -12,9 +12,9 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-	void MainWindow::run(double goal);
+	void run(double goal);
 
-	void MainWindow::step();
+	void step();
 
 	void makeInfectionPlot();
 
@@ -115,6 +115,32 @@ private slots:
 	void on_input_contact_5_5_textChanged(const QString &arg1);
 
     void on_saveBtn_clicked();
+
+	void on_closeBtn_clicked();
+
+    void on_csvoutput_1_clicked();
+
+    void on_csvoutput_2_clicked();
+
+    void on_csvoutput_3_clicked();
+
+    void on_csvoutput_4_clicked();
+
+    void on_jpgoutput_1_clicked();
+
+    void on_jpgoutput_2_clicked();
+
+    void on_jpgoutput_3_clicked();
+
+    void on_jpgoutput_4_clicked();
+
+    void on_areaButton_1_clicked();
+
+    void on_areaButton_2_clicked();
+
+    void on_areaButton_3_clicked();
+
+    void on_actionExit_triggered();
 
 private:
     Ui::MainWindow *ui;
